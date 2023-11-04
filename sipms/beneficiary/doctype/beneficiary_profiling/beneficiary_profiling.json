@@ -209,7 +209,7 @@
  "modified": "2023-11-04 11:40:09.915810",
  "modified_by": "Administrator",
  "module": "Beneficiary",
- "name": "Beneficiary registration",
+ "name": "Beneficiary Profiling",
  "naming_rule": "By script",
  "owner": "Administrator",
  "permissions": [

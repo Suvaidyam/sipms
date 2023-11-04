@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Beneficiaryregistration(Document):
+class BeneficiaryProfiling(Document):
 	pass
