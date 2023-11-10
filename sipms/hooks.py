@@ -12,7 +12,8 @@ fixtures=[
     "Education",
     "Marital status",
     "Social vulnerable category",
-    "PWD master"
+    "PWD master",
+    "ID Document"
 ]
 # Includes in <head>
 # ------------------
