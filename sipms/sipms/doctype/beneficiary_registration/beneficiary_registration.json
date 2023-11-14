@@ -1,0 +1,193 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-04 12:27:23.777152",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "profile_tab",
+  "select_beneficary",
+  "tab_2_tab",
+  "residence_section",
+  "current_house_type",
+  "state",
+  "district",
+  "column_break_ydya",
+  "wardtehsilblock",
+  "name_of_the_settlement",
+  "address_with_landmark",
+  "origin_details_section",
+  "state_of_origin",
+  "district_of_origin",
+  "wardtehsilblock_of_origin",
+  "column_break_ddaq",
+  "id_documents_tab",
+  "do_you_have_any_id_documents",
+  "id_table",
+  "scheme_tab",
+  "scheme_table",
+  "follow_up_tab",
+  "data_gogb"
+ ],
+ "fields": [
+  {
+   "fieldname": "profile_tab",
+   "fieldtype": "Tab Break",
+   "label": "Profile"
+  },
+  {
+   "fieldname": "select_beneficary",
+   "fieldtype": "Link",
+   "label": "Select beneficary",
+   "options": "Beneficiary Profiling"
+  },
+  {
+   "fieldname": "tab_2_tab",
+   "fieldtype": "Tab Break",
+   "label": "Residence demography"
+  },
+  {
+   "fieldname": "residence_section",
+   "fieldtype": "Section Break",
+   "label": "Current address"
+  },
+  {
+   "fieldname": "current_house_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Current house type",
+   "options": "\nOwn\nRented\nRelative's Home\nGovt. Quarter\nOthers",
+   "reqd": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State",
+   "reqd": 1
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ydya",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "wardtehsilblock",
+   "fieldtype": "Link",
+   "label": "Ward/Tehsil/Block",
+   "options": "Block",
+   "reqd": 1
+  },
+  {
+   "fieldname": "name_of_the_settlement",
+   "fieldtype": "Data",
+   "label": "Name of the settlement",
+   "reqd": 1
+  },
+  {
+   "fieldname": "address_with_landmark",
+   "fieldtype": "Data",
+   "label": "Address (with landmark)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "origin_details_section",
+   "fieldtype": "Section Break",
+   "label": "Origin details"
+  },
+  {
+   "fieldname": "state_of_origin",
+   "fieldtype": "Link",
+   "label": "State of origin",
+   "options": "State",
+   "reqd": 1
+  },
+  {
+   "fieldname": "district_of_origin",
+   "fieldtype": "Link",
+   "label": "District of origin",
+   "options": "District",
+   "reqd": 1
+  },
+  {
+   "fieldname": "wardtehsilblock_of_origin",
+   "fieldtype": "Link",
+   "label": "Ward/Tehsil/Block of origin",
+   "options": "Block",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ddaq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "id_documents_tab",
+   "fieldtype": "Tab Break",
+   "label": "ID documents"
+  },
+  {
+   "fieldname": "do_you_have_any_id_documents",
+   "fieldtype": "Select",
+   "label": "Do you have any ID documents?",
+   "options": "\nYes\nNo",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.do_you_have_any_id_documents ===\"Yes\"",
+   "fieldname": "id_table",
+   "fieldtype": "Table",
+   "options": "ID Document Child"
+  },
+  {
+   "fieldname": "scheme_tab",
+   "fieldtype": "Tab Break",
+   "label": "Scheme"
+  },
+  {
+   "fieldname": "scheme_table",
+   "fieldtype": "Table",
+   "options": "Scheme Child"
+  },
+  {
+   "fieldname": "follow_up_tab",
+   "fieldtype": "Tab Break",
+   "label": "Follow-up"
+  },
+  {
+   "fieldname": "data_gogb",
+   "fieldtype": "Data"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-11-14 14:07:34.587619",
+ "modified_by": "Administrator",
+ "module": "SIPMS",
+ "name": "Beneficiary registration",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
