@@ -49,7 +49,7 @@
   "block",
   "id_documents_tab",
   "do_you_have_any_id_documents",
-  "table_ljph"
+  "id_table_list"
  ],
  "fields": [
   {
@@ -322,14 +322,15 @@
    "reqd": 1
   },
   {
-   "fieldname": "table_ljph",
+   "depends_on": "eval:doc.do_you_have_any_id_documents ==\"Yes\"",
+   "fieldname": "id_table_list",
    "fieldtype": "Table",
    "options": "ID Document Child"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-14 17:22:47.704125",
+ "modified": "2023-11-14 17:33:55.969259",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
