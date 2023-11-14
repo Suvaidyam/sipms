@@ -5,7 +5,5 @@
 from frappe.model.document import Document
 
 
-class BeneficiaryProfiling(Document):
-	def after_insert(self):
-		if(self.has_anyone_from_your_family_visisted_before == "No"):
-			print('')
+class Family(Document):
+	pass

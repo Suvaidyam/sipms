@@ -225,9 +225,10 @@
   {
    "depends_on": "eval:doc.has_anyone_from_your_family_visisted_before == \"Yes\"",
    "fieldname": "family",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Family",
-   "mandatory_depends_on": "eval:doc.has_anyone_from_your_family_visisted_before == \"Yes\""
+   "mandatory_depends_on": "eval:doc.has_anyone_from_your_family_visisted_before == \"Yes\"",
+   "options": "Family"
   },
   {
    "fieldname": "tab_2_tab",
@@ -330,7 +331,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-14 17:33:55.969259",
+ "modified": "2023-11-14 20:47:03.801065",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
