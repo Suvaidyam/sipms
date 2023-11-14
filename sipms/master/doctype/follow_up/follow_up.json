@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-14 14:57:19.576044",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "scheme",
+  "follow_up_date",
+  "follow_up_status",
+  "benefit_received",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "scheme",
+   "fieldtype": "Data",
+   "label": "Scheme"
+  },
+  {
+   "fieldname": "follow_up_date",
+   "fieldtype": "Data",
+   "label": "Follow-up date"
+  },
+  {
+   "fieldname": "follow_up_status",
+   "fieldtype": "Select",
+   "label": "Follow-up status",
+   "options": "\nUnder Process\nSanctioned\nRejected"
+  },
+  {
+   "fieldname": "benefit_received",
+   "fieldtype": "Select",
+   "label": "Benefit received?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Date",
+   "label": "Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-11-14 15:00:21.667770",
+ "modified_by": "Administrator",
+ "module": "Master",
+ "name": "Follow-up",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
