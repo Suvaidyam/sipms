@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:phone_no",
  "creation": "2023-11-14 20:45:34.258356",
  "default_view": "List",
  "doctype": "DocType",
@@ -8,30 +9,41 @@
  "engine": "InnoDB",
  "field_order": [
   "name_of_head_of_family",
+  "name_of_parents",
   "phone_no"
  ],
  "fields": [
   {
    "fieldname": "name_of_head_of_family",
-   "fieldtype": "Data",
-   "in_list_view": 1,
+   "fieldtype": "Link",
    "label": "Name of Head of Family",
+   "options": "Beneficiary Profiling",
    "reqd": 1
   },
   {
-   "default": "+91-",
+   "fetch_from": "name_of_head_of_family.contact_number",
    "fieldname": "phone_no",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Phone no",
-   "reqd": 1
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "name_of_head_of_family.name_of_the_beneficiary",
+   "fieldname": "name_of_parents",
+   "fieldtype": "Data",
+   "label": "Name of Parents",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-14 20:46:37.020645",
+ "modified": "2023-11-15 07:51:25.574737",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Family",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -47,7 +59,9 @@
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "name_of_parents"
 }
