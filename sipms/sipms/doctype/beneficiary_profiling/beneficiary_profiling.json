@@ -35,6 +35,7 @@
   "has_anyone_from_your_family_visisted_before",
   "family",
   "tab_2_tab",
+  "current_address_section",
   "current_address_column",
   "current_house_type",
   "state",
@@ -99,7 +100,7 @@
   },
   {
    "fieldname": "name_of_help_desk",
-   "fieldtype": "Date",
+   "fieldtype": "Data",
    "label": "Name of Help-desk"
   },
   {
@@ -242,8 +243,7 @@
   },
   {
    "fieldname": "current_address_column",
-   "fieldtype": "Column Break",
-   "label": "Current address"
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "current_house_type",
@@ -327,11 +327,16 @@
    "fieldname": "id_table_list",
    "fieldtype": "Table",
    "options": "ID Document Child"
+  },
+  {
+   "fieldname": "current_address_section",
+   "fieldtype": "Section Break",
+   "label": "Current address"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-14 20:47:03.801065",
+ "modified": "2023-11-15 13:20:12.185035",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
