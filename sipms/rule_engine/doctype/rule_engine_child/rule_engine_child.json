@@ -6,34 +6,46 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "field",
-  "minimum_value",
-  "maximum_value"
+  "rule_field",
+  "operator",
+  "data",
+  "code"
  ],
  "fields": [
   {
-   "fieldname": "minimum_value",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Minimum Value"
-  },
-  {
-   "fieldname": "maximum_value",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Maximum Value"
-  },
-  {
-   "fieldname": "field",
+   "fieldname": "operator",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Field"
+   "label": "Operator",
+   "options": "\n=\n!=\n>\n<\n>=\n<=\nIN\nNOT IN",
+   "reqd": 1
+  },
+  {
+   "fieldname": "data",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Data"
+  },
+  {
+   "fieldname": "code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Code",
+   "read_only": 1,
+   "width": "20"
+  },
+  {
+   "fieldname": "rule_field",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Field",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-11-15 13:14:28.278296",
+ "modified": "2023-11-16 12:22:04.450387",
  "modified_by": "Administrator",
  "module": "Rule Engine",
  "name": "Rule Engine Child",

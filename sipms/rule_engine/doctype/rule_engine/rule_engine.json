@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:Rule-{#####}",
  "creation": "2023-11-15 10:24:54.420985",
  "default_view": "List",
  "doctype": "DocType",
@@ -8,7 +9,8 @@
  "engine": "InnoDB",
  "field_order": [
   "name_of_rules",
-  "field_table"
+  "field_table",
+  "condition"
  ],
  "fields": [
   {
@@ -20,14 +22,20 @@
    "fieldname": "field_table",
    "fieldtype": "Table",
    "options": "Rule Engine Child"
+  },
+  {
+   "fieldname": "condition",
+   "fieldtype": "Data",
+   "label": "Condition"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-15 13:14:06.598170",
+ "modified": "2023-11-16 13:43:56.750662",
  "modified_by": "Administrator",
  "module": "Rule Engine",
  "name": "Rule Engine",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
