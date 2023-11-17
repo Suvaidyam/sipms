@@ -38,7 +38,13 @@ frappe.ui.form.on('Rule Engine Child', {
     }
     
     get_field_list(frm)
-    console.log(row)
+    console.log("aa",cur_frm.fields_dict.field_table.grid.toggle_reqd)
+    cur_frm.fields_dict.field_table.grid.toggle_reqd("data", 1)
+    // console.log(frm.fields_dict.field_table.grid.df.read_only)
+    // frm.fields_dict.field_table.grid.df.read_only = 1
+    frm.fields_dict.field_table.row.data.df.data = 'Date';
+    console.log(frm.fields_dict.field_table.section.fields_dict.field_table)
+    // row.data.refresh();
       // set_field_options("specific_support_type", ["Loan Approved","Loan Appealing"])
   
     }

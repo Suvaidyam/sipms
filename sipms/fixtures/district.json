@@ -1,0 +1,5681 @@
+[
+ {
+  "district_code": "S01010",
+  "district_name": "Srinagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.174202",
+  "name": "S01010",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01011",
+  "district_name": "Ganderbal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.197143",
+  "name": "S01011",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01012",
+  "district_name": "Pulwama",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.221403",
+  "name": "S01012",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01013",
+  "district_name": "Shupiyan",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.241856",
+  "name": "S01013",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01014",
+  "district_name": "Anantnag",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.264003",
+  "name": "S01014",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01015",
+  "district_name": "Kulgam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.286239",
+  "name": "S01015",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01016",
+  "district_name": "Doda",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.308910",
+  "name": "S01016",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01017",
+  "district_name": "Ramban",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.330751",
+  "name": "S01017",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01018",
+  "district_name": "Kishtwar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.358318",
+  "name": "S01018",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01019",
+  "district_name": "Udhampur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.380322",
+  "name": "S01019",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01002",
+  "district_name": "Badgam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.402639",
+  "name": "S01002",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01020",
+  "district_name": "Reasi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.429294",
+  "name": "S01020",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01021",
+  "district_name": "Jammu",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.454374",
+  "name": "S01021",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01022",
+  "district_name": "Samba",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.479236",
+  "name": "S01022",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01005",
+  "district_name": "Punch",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.612192",
+  "name": "S01005",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01006",
+  "district_name": "Rajouri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.638045",
+  "name": "S01006",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01007",
+  "district_name": "Kathua",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.663022",
+  "name": "S01007",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01008",
+  "district_name": "Baramula",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.687462",
+  "name": "S01008",
+  "state": "S01"
+ },
+ {
+  "district_code": "S01009",
+  "district_name": "Bandipore",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.711521",
+  "name": "S01009",
+  "state": "S01"
+ },
+ {
+  "district_code": "S02023",
+  "district_name": "Chamba",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.735533",
+  "name": "S02023",
+  "state": "S02"
+ },
+ {
+  "district_code": "S02024",
+  "district_name": "Kangra",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.759447",
+  "name": "S02024",
+  "state": "S02"
+ },
+ {
+  "district_code": "S02025",
+  "district_name": "Lahul & Spiti",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.786388",
+  "name": "S02025",
+  "state": "S02"
+ },
+ {
+  "district_code": "S02026",
+  "district_name": "Kullu",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.809278",
+  "name": "S02026",
+  "state": "S02"
+ },
+ {
+  "district_code": "S02028",
+  "district_name": "Hamirpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.851077",
+  "name": "S02028",
+  "state": "S02"
+ },
+ {
+  "district_code": "S02029",
+  "district_name": "Una",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.874402",
+  "name": "S02029",
+  "state": "S02"
+ },
+ {
+  "district_code": "S02030",
+  "district_name": "Bilaspur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.895378",
+  "name": "S02030",
+  "state": "S02"
+ },
+ {
+  "district_code": "S02031",
+  "district_name": "Solan",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.917385",
+  "name": "S02031",
+  "state": "S02"
+ },
+ {
+  "district_code": "S02032",
+  "district_name": "Sirmaur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.938216",
+  "name": "S02032",
+  "state": "S02"
+ },
+ {
+  "district_code": "S02033",
+  "district_name": "Shimla",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.958899",
+  "name": "S02033",
+  "state": "S02"
+ },
+ {
+  "district_code": "S02034",
+  "district_name": "Kinnaur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.983101",
+  "name": "S02034",
+  "state": "S02"
+ },
+ {
+  "district_code": "S03035",
+  "district_name": "Gurdaspur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.007947",
+  "name": "S03035",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03036",
+  "district_name": "Kapurthala",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.032212",
+  "name": "S03036",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03037",
+  "district_name": "Jalandhar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.055927",
+  "name": "S03037",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03038",
+  "district_name": "Hoshiarpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.079456",
+  "name": "S03038",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03039",
+  "district_name": "Shahid Bhagat Singh Nagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.097648",
+  "name": "S03039",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03040",
+  "district_name": "Fatehgarh Sahib",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.119622",
+  "name": "S03040",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03041",
+  "district_name": "Ludhiana",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.139756",
+  "name": "S03041",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03042",
+  "district_name": "Moga",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.158406",
+  "name": "S03042",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03043",
+  "district_name": "Firozpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.177594",
+  "name": "S03043",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03044",
+  "district_name": "Muktsar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.197776",
+  "name": "S03044",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03045",
+  "district_name": "Faridkot",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.218462",
+  "name": "S03045",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03046",
+  "district_name": "Bathinda",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.238277",
+  "name": "S03046",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03047",
+  "district_name": "Mansa",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.255689",
+  "name": "S03047",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03048",
+  "district_name": "Patiala",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.274797",
+  "name": "S03048",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03049",
+  "district_name": "Amritsar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.294180",
+  "name": "S03049",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03050",
+  "district_name": "Tarn Taran",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.312918",
+  "name": "S03050",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03051",
+  "district_name": "Rupnagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.332447",
+  "name": "S03051",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03052",
+  "district_name": "Sahibzada Ajit Singh Nagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.350618",
+  "name": "S03052",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03053",
+  "district_name": "Sangrur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.370832",
+  "name": "S03053",
+  "state": "S03"
+ },
+ {
+  "district_code": "S03054",
+  "district_name": "Barnala",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.391508",
+  "name": "S03054",
+  "state": "S03"
+ },
+ {
+  "district_code": "S05056",
+  "district_name": "Uttarkashi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.430579",
+  "name": "S05056",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05057",
+  "district_name": "Chamoli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.449788",
+  "name": "S05057",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05058",
+  "district_name": "Rudraprayag",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.468209",
+  "name": "S05058",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05059",
+  "district_name": "Tehri Garhwal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.487289",
+  "name": "S05059",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05060",
+  "district_name": "Dehradun",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.506225",
+  "name": "S05060",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05061",
+  "district_name": "Garhwal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.525304",
+  "name": "S05061",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05062",
+  "district_name": "Pithoragarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.544544",
+  "name": "S05062",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05063",
+  "district_name": "Bageshwar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.564282",
+  "name": "S05063",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05064",
+  "district_name": "Almora",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.582580",
+  "name": "S05064",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05065",
+  "district_name": "Champawat",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.600243",
+  "name": "S05065",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05066",
+  "district_name": "Nainital",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.618571",
+  "name": "S05066",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05067",
+  "district_name": "Udham Singh Nagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.638726",
+  "name": "S05067",
+  "state": "S05"
+ },
+ {
+  "district_code": "S05068",
+  "district_name": "Hardwar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.657635",
+  "name": "S05068",
+  "state": "S05"
+ },
+ {
+  "district_code": "S06069",
+  "district_name": "Panchkula",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.676514",
+  "name": "S06069",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06070",
+  "district_name": "Ambala",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.695435",
+  "name": "S06070",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06071",
+  "district_name": "Yamunanagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.714176",
+  "name": "S06071",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06072",
+  "district_name": "Kurukshetra",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.734189",
+  "name": "S06072",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06073",
+  "district_name": "Kaithal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.754314",
+  "name": "S06073",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06074",
+  "district_name": "Karnal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.794050",
+  "name": "S06074",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06075",
+  "district_name": "Panipat",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.857811",
+  "name": "S06075",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06076",
+  "district_name": "Sonipat",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.880641",
+  "name": "S06076",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06077",
+  "district_name": "Jind",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.903486",
+  "name": "S06077",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06078",
+  "district_name": "Fatehabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.929199",
+  "name": "S06078",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06079",
+  "district_name": "Sirsa",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.958030",
+  "name": "S06079",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06080",
+  "district_name": "Hisar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.992038",
+  "name": "S06080",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06081",
+  "district_name": "Bhiwani",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.025751",
+  "name": "S06081",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06082",
+  "district_name": "Rohtak",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.054652",
+  "name": "S06082",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06083",
+  "district_name": "Jhajjar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.080046",
+  "name": "S06083",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06084",
+  "district_name": "Mahendragarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.104813",
+  "name": "S06084",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06085",
+  "district_name": "Rewari",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.142406",
+  "name": "S06085",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06087",
+  "district_name": "Mewat",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.191010",
+  "name": "S06087",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06088",
+  "district_name": "Faridabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.210511",
+  "name": "S06088",
+  "state": "S06"
+ },
+ {
+  "district_code": "S06089",
+  "district_name": "Palwal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.230604",
+  "name": "S06089",
+  "state": "S06"
+ },
+ {
+  "district_code": "S07090",
+  "district_name": "North West",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.250906",
+  "name": "S07090",
+  "state": "S07"
+ },
+ {
+  "district_code": "S07092",
+  "district_name": "North East",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.290076",
+  "name": "S07092",
+  "state": "S07"
+ },
+ {
+  "district_code": "S07093",
+  "district_name": "East",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.308805",
+  "name": "S07093",
+  "state": "S07"
+ },
+ {
+  "district_code": "S07096",
+  "district_name": "West",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.327114",
+  "name": "S07096",
+  "state": "S07"
+ },
+ {
+  "district_code": "S07098",
+  "district_name": "South",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.365786",
+  "name": "S07098",
+  "state": "S07"
+ },
+ {
+  "district_code": "S08100",
+  "district_name": "Hanumangarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.384649",
+  "name": "S08100",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08101",
+  "district_name": "Bikaner",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.402881",
+  "name": "S08101",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08102",
+  "district_name": "Churu",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.420809",
+  "name": "S08102",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08103",
+  "district_name": "Jhunjhunun",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.442805",
+  "name": "S08103",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08104",
+  "district_name": "Alwar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.462267",
+  "name": "S08104",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08105",
+  "district_name": "Bharatpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.480571",
+  "name": "S08105",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08106",
+  "district_name": "Dhaulpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.499613",
+  "name": "S08106",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08107",
+  "district_name": "Karauli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.518982",
+  "name": "S08107",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08108",
+  "district_name": "Sawai Madhopur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.539161",
+  "name": "S08108",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08109",
+  "district_name": "Dausa",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.560396",
+  "name": "S08109",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08110",
+  "district_name": "Jaipur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.583646",
+  "name": "S08110",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08111",
+  "district_name": "Sikar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.606663",
+  "name": "S08111",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08112",
+  "district_name": "Nagaur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.628141",
+  "name": "S08112",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08113",
+  "district_name": "Jodhpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.648832",
+  "name": "S08113",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08114",
+  "district_name": "Jaisalmer",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.671750",
+  "name": "S08114",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08115",
+  "district_name": "Barmer",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.692952",
+  "name": "S08115",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08116",
+  "district_name": "Jalor",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.714021",
+  "name": "S08116",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08117",
+  "district_name": "Sirohi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.736347",
+  "name": "S08117",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08118",
+  "district_name": "Pali",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.760943",
+  "name": "S08118",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08119",
+  "district_name": "Ajmer",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.790939",
+  "name": "S08119",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08120",
+  "district_name": "Tonk",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.815249",
+  "name": "S08120",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08121",
+  "district_name": "Bundi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.842092",
+  "name": "S08121",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08122",
+  "district_name": "Bhilwara",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.868170",
+  "name": "S08122",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08123",
+  "district_name": "Rajsamand",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.889708",
+  "name": "S08123",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08124",
+  "district_name": "Dungarpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.918047",
+  "name": "S08124",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08125",
+  "district_name": "Banswara",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.942206",
+  "name": "S08125",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08126",
+  "district_name": "Chittaurgarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.964241",
+  "name": "S08126",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08127",
+  "district_name": "Kota",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.997855",
+  "name": "S08127",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08128",
+  "district_name": "Baran",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.025956",
+  "name": "S08128",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08129",
+  "district_name": "Jhalawar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.052678",
+  "name": "S08129",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08130",
+  "district_name": "Udaipur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.080274",
+  "name": "S08130",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08131",
+  "district_name": "Pratapgarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.104394",
+  "name": "S08131",
+  "state": "S08"
+ },
+ {
+  "district_code": "S08099",
+  "district_name": "Ganganagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.125645",
+  "name": "S08099",
+  "state": "S08"
+ },
+ {
+  "district_code": "S09132",
+  "district_name": "Saharanpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.146262",
+  "name": "S09132",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09133",
+  "district_name": "Muzaffarnagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.165966",
+  "name": "S09133",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09134",
+  "district_name": "Bijnor",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.184792",
+  "name": "S09134",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09135",
+  "district_name": "Moradabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.207914",
+  "name": "S09135",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09136",
+  "district_name": "Rampur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.231585",
+  "name": "S09136",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09137",
+  "district_name": "Jyotiba Phule Nagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.256268",
+  "name": "S09137",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09138",
+  "district_name": "Meerut",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.285512",
+  "name": "S09138",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09139",
+  "district_name": "Baghpat",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.309070",
+  "name": "S09139",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09140",
+  "district_name": "Ghaziabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.331227",
+  "name": "S09140",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09141",
+  "district_name": "Gautam Buddha Nagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.353566",
+  "name": "S09141",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09142",
+  "district_name": "Bulandshahr",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.376136",
+  "name": "S09142",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09143",
+  "district_name": "Aligarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.398900",
+  "name": "S09143",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09144",
+  "district_name": "Mahamaya Nagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.420994",
+  "name": "S09144",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09145",
+  "district_name": "Mathura",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.445094",
+  "name": "S09145",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09146",
+  "district_name": "Agra",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.468792",
+  "name": "S09146",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09147",
+  "district_name": "Firozabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.493507",
+  "name": "S09147",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09148",
+  "district_name": "Mainpuri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.518901",
+  "name": "S09148",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09149",
+  "district_name": "Budaun",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.543248",
+  "name": "S09149",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09150",
+  "district_name": "Bareilly",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.567642",
+  "name": "S09150",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09151",
+  "district_name": "Pilibhit",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.594750",
+  "name": "S09151",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09152",
+  "district_name": "Shahjahanpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.618449",
+  "name": "S09152",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09153",
+  "district_name": "Kheri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.654037",
+  "name": "S09153",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09154",
+  "district_name": "Sitapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.696530",
+  "name": "S09154",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09155",
+  "district_name": "Hardoi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.718973",
+  "name": "S09155",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09156",
+  "district_name": "Unnao",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.738869",
+  "name": "S09156",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09157",
+  "district_name": "Lucknow",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.759228",
+  "name": "S09157",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09158",
+  "district_name": "Rae Bareli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.779027",
+  "name": "S09158",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09159",
+  "district_name": "Farrukhabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.799408",
+  "name": "S09159",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09160",
+  "district_name": "Kannauj",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.824621",
+  "name": "S09160",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09161",
+  "district_name": "Etawah",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.843899",
+  "name": "S09161",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09162",
+  "district_name": "Auraiya",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.863947",
+  "name": "S09162",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09163",
+  "district_name": "Kanpur Dehat",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.892138",
+  "name": "S09163",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09164",
+  "district_name": "Kanpur Nagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.911743",
+  "name": "S09164",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09165",
+  "district_name": "Jalaun",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.931999",
+  "name": "S09165",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09166",
+  "district_name": "Jhansi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:17.969428",
+  "name": "S09166",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09167",
+  "district_name": "Lalitpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.012937",
+  "name": "S09167",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09168",
+  "district_name": "Hamirpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.035803",
+  "name": "S09168",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09169",
+  "district_name": "Mahoba",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.065968",
+  "name": "S09169",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09170",
+  "district_name": "Banda",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.092219",
+  "name": "S09170",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09171",
+  "district_name": "Chitrakoot",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.116117",
+  "name": "S09171",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09172",
+  "district_name": "Fatehpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.138213",
+  "name": "S09172",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09173",
+  "district_name": "Pratapgarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.164367",
+  "name": "S09173",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09174",
+  "district_name": "Kaushambi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.186490",
+  "name": "S09174",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09175",
+  "district_name": "Allahabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.208569",
+  "name": "S09175",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09176",
+  "district_name": "Bara Banki",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.229613",
+  "name": "S09176",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09177",
+  "district_name": "Faizabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.251471",
+  "name": "S09177",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09178",
+  "district_name": "Ambedkar Nagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.275240",
+  "name": "S09178",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09179",
+  "district_name": "Sultanpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.297233",
+  "name": "S09179",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09180",
+  "district_name": "Bahraich",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.318482",
+  "name": "S09180",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09181",
+  "district_name": "Shrawasti",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.339780",
+  "name": "S09181",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09182",
+  "district_name": "Balrampur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.370959",
+  "name": "S09182",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09183",
+  "district_name": "Gonda",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.401399",
+  "name": "S09183",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09184",
+  "district_name": "Siddharthnagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.422447",
+  "name": "S09184",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09185",
+  "district_name": "Basti",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.441859",
+  "name": "S09185",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09186",
+  "district_name": "Sant Kabir Nagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.461108",
+  "name": "S09186",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09187",
+  "district_name": "Mahrajganj",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.482620",
+  "name": "S09187",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09188",
+  "district_name": "Gorakhpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.503700",
+  "name": "S09188",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09189",
+  "district_name": "Kushinagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.525249",
+  "name": "S09189",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09190",
+  "district_name": "Deoria",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.550120",
+  "name": "S09190",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09191",
+  "district_name": "Azamgarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.569793",
+  "name": "S09191",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09192",
+  "district_name": "Mau",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.591009",
+  "name": "S09192",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09193",
+  "district_name": "Ballia",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.614838",
+  "name": "S09193",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09194",
+  "district_name": "Jaunpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.636405",
+  "name": "S09194",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09195",
+  "district_name": "Ghazipur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.657732",
+  "name": "S09195",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09196",
+  "district_name": "Chandauli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.679752",
+  "name": "S09196",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09197",
+  "district_name": "Varanasi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.705704",
+  "name": "S09197",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09198",
+  "district_name": "Sant Ravidas Nagar (Bhadohi)",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.730594",
+  "name": "S09198",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09199",
+  "district_name": "Mirzapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.757747",
+  "name": "S09199",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09200",
+  "district_name": "Sonbhadra",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.786096",
+  "name": "S09200",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09201",
+  "district_name": "Etah",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.811876",
+  "name": "S09201",
+  "state": "S09"
+ },
+ {
+  "district_code": "S09202",
+  "district_name": "Kanshiram Nagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.847726",
+  "name": "S09202",
+  "state": "S09"
+ },
+ {
+  "district_code": "S10203",
+  "district_name": "Pashchim Champaran",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.874684",
+  "name": "S10203",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10204",
+  "district_name": "Purba Champaran",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.899914",
+  "name": "S10204",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10205",
+  "district_name": "Sheohar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.931308",
+  "name": "S10205",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10206",
+  "district_name": "Sitamarhi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.960946",
+  "name": "S10206",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10207",
+  "district_name": "Madhubani",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:18.998631",
+  "name": "S10207",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10208",
+  "district_name": "Supaul",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.024976",
+  "name": "S10208",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10209",
+  "district_name": "Araria",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.049343",
+  "name": "S10209",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10210",
+  "district_name": "Kishanganj",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.072301",
+  "name": "S10210",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10211",
+  "district_name": "Purnia",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.095973",
+  "name": "S10211",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10212",
+  "district_name": "Katihar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.113789",
+  "name": "S10212",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10213",
+  "district_name": "Madhepura",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.134443",
+  "name": "S10213",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10214",
+  "district_name": "Saharsa",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.153532",
+  "name": "S10214",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10215",
+  "district_name": "Darbhanga",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.171606",
+  "name": "S10215",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10216",
+  "district_name": "Muzaffarpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.188974",
+  "name": "S10216",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10217",
+  "district_name": "Gopalganj",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.209537",
+  "name": "S10217",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10218",
+  "district_name": "Siwan",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.227879",
+  "name": "S10218",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10220",
+  "district_name": "Vaishali",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.264565",
+  "name": "S10220",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10221",
+  "district_name": "Samastipur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.296688",
+  "name": "S10221",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10222",
+  "district_name": "Begusarai",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.316402",
+  "name": "S10222",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10223",
+  "district_name": "Khagaria",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.336992",
+  "name": "S10223",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10224",
+  "district_name": "Bhagalpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.356721",
+  "name": "S10224",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10225",
+  "district_name": "Banka",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.375730",
+  "name": "S10225",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10226",
+  "district_name": "Munger",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.394700",
+  "name": "S10226",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10227",
+  "district_name": "Lakhisarai",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.417018",
+  "name": "S10227",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10228",
+  "district_name": "Sheikhpura",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.438668",
+  "name": "S10228",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10229",
+  "district_name": "Nalanda",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.458625",
+  "name": "S10229",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10230",
+  "district_name": "Patna",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.478574",
+  "name": "S10230",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10231",
+  "district_name": "Bhojpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.497517",
+  "name": "S10231",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10232",
+  "district_name": "Buxar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.517706",
+  "name": "S10232",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10233",
+  "district_name": "Kaimur (Bhabua)",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.536852",
+  "name": "S10233",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10234",
+  "district_name": "Rohtas",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.556004",
+  "name": "S10234",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10235",
+  "district_name": "Aurangabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.576879",
+  "name": "S10235",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10236",
+  "district_name": "Gaya",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.596206",
+  "name": "S10236",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10237",
+  "district_name": "Nawada",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.616131",
+  "name": "S10237",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10238",
+  "district_name": "Jamui",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.636587",
+  "name": "S10238",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10239",
+  "district_name": "Jehanabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.660390",
+  "name": "S10239",
+  "state": "S10"
+ },
+ {
+  "district_code": "S10240",
+  "district_name": "Arwal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.691761",
+  "name": "S10240",
+  "state": "S10"
+ },
+ {
+  "district_code": "S11241",
+  "district_name": "North  District",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.726155",
+  "name": "S11241",
+  "state": "S11"
+ },
+ {
+  "district_code": "S11242",
+  "district_name": "West District",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.761500",
+  "name": "S11242",
+  "state": "S11"
+ },
+ {
+  "district_code": "S11243",
+  "district_name": "South District",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.792781",
+  "name": "S11243",
+  "state": "S11"
+ },
+ {
+  "district_code": "S11244",
+  "district_name": "East District",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.815579",
+  "name": "S11244",
+  "state": "S11"
+ },
+ {
+  "district_code": "S12245",
+  "district_name": "Tawang",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.836439",
+  "name": "S12245",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12246",
+  "district_name": "West Kameng",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.857385",
+  "name": "S12246",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12247",
+  "district_name": "East Kameng",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.878196",
+  "name": "S12247",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12248",
+  "district_name": "Papum Pare",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.902457",
+  "name": "S12248",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12249",
+  "district_name": "Upper Subansiri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.923278",
+  "name": "S12249",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12250",
+  "district_name": "West Siang",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.942827",
+  "name": "S12250",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12251",
+  "district_name": "East Siang",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.971027",
+  "name": "S12251",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12252",
+  "district_name": "Upper Siang",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.003494",
+  "name": "S12252",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12253",
+  "district_name": "Changlang",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.033484",
+  "name": "S12253",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12254",
+  "district_name": "Tirap",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.062413",
+  "name": "S12254",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12255",
+  "district_name": "Lower Subansiri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.083670",
+  "name": "S12255",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12256",
+  "district_name": "Kurung Kumey",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.109711",
+  "name": "S12256",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12257",
+  "district_name": "Dibang Valley",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.134921",
+  "name": "S12257",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12258",
+  "district_name": "Lower Dibang Valley",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.161188",
+  "name": "S12258",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12259",
+  "district_name": "Lohit",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.185899",
+  "name": "S12259",
+  "state": "S12"
+ },
+ {
+  "district_code": "S12260",
+  "district_name": "Anjaw",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.210641",
+  "name": "S12260",
+  "state": "S12"
+ },
+ {
+  "district_code": "S13261",
+  "district_name": "Mon",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.236766",
+  "name": "S13261",
+  "state": "S13"
+ },
+ {
+  "district_code": "S13262",
+  "district_name": "Mokokchung",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.261390",
+  "name": "S13262",
+  "state": "S13"
+ },
+ {
+  "district_code": "S13263",
+  "district_name": "Zunheboto",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.285283",
+  "name": "S13263",
+  "state": "S13"
+ },
+ {
+  "district_code": "S13264",
+  "district_name": "Wokha",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.310280",
+  "name": "S13264",
+  "state": "S13"
+ },
+ {
+  "district_code": "S13265",
+  "district_name": "Dimapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.337529",
+  "name": "S13265",
+  "state": "S13"
+ },
+ {
+  "district_code": "S13266",
+  "district_name": "Phek",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.362212",
+  "name": "S13266",
+  "state": "S13"
+ },
+ {
+  "district_code": "S13267",
+  "district_name": "Tuensang",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.385558",
+  "name": "S13267",
+  "state": "S13"
+ },
+ {
+  "district_code": "S13268",
+  "district_name": "Longleng",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.409535",
+  "name": "S13268",
+  "state": "S13"
+ },
+ {
+  "district_code": "S13269",
+  "district_name": "Kiphire",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.434383",
+  "name": "S13269",
+  "state": "S13"
+ },
+ {
+  "district_code": "S13270",
+  "district_name": "Kohima",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.458792",
+  "name": "S13270",
+  "state": "S13"
+ },
+ {
+  "district_code": "S13271",
+  "district_name": "Peren",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.483066",
+  "name": "S13271",
+  "state": "S13"
+ },
+ {
+  "district_code": "S14272",
+  "district_name": "Senapati",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.508205",
+  "name": "S14272",
+  "state": "S14"
+ },
+ {
+  "district_code": "S14273",
+  "district_name": "Tamenglong",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.542458",
+  "name": "S14273",
+  "state": "S14"
+ },
+ {
+  "district_code": "S14274",
+  "district_name": "Churachandpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.566090",
+  "name": "S14274",
+  "state": "S14"
+ },
+ {
+  "district_code": "S14275",
+  "district_name": "Bishnupur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.589243",
+  "name": "S14275",
+  "state": "S14"
+ },
+ {
+  "district_code": "S14276",
+  "district_name": "Thoubal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.612541",
+  "name": "S14276",
+  "state": "S14"
+ },
+ {
+  "district_code": "S14277",
+  "district_name": "Imphal West",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.636687",
+  "name": "S14277",
+  "state": "S14"
+ },
+ {
+  "district_code": "S14278",
+  "district_name": "Imphal East",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.659511",
+  "name": "S14278",
+  "state": "S14"
+ },
+ {
+  "district_code": "S14279",
+  "district_name": "Ukhrul",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.685507",
+  "name": "S14279",
+  "state": "S14"
+ },
+ {
+  "district_code": "S14280",
+  "district_name": "Chandel",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.704427",
+  "name": "S14280",
+  "state": "S14"
+ },
+ {
+  "district_code": "S15281",
+  "district_name": "Mamit",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.723348",
+  "name": "S15281",
+  "state": "S15"
+ },
+ {
+  "district_code": "S15282",
+  "district_name": "Kolasib",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.741853",
+  "name": "S15282",
+  "state": "S15"
+ },
+ {
+  "district_code": "S15283",
+  "district_name": "Aizawl",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.760252",
+  "name": "S15283",
+  "state": "S15"
+ },
+ {
+  "district_code": "S15284",
+  "district_name": "Champhai",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.779033",
+  "name": "S15284",
+  "state": "S15"
+ },
+ {
+  "district_code": "S15285",
+  "district_name": "Serchhip",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.797933",
+  "name": "S15285",
+  "state": "S15"
+ },
+ {
+  "district_code": "S15286",
+  "district_name": "Lunglei",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.816120",
+  "name": "S15286",
+  "state": "S15"
+ },
+ {
+  "district_code": "S15287",
+  "district_name": "Lawngtlai",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.834787",
+  "name": "S15287",
+  "state": "S15"
+ },
+ {
+  "district_code": "S15288",
+  "district_name": "Saiha",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.852985",
+  "name": "S15288",
+  "state": "S15"
+ },
+ {
+  "district_code": "S16289",
+  "district_name": "West Tripura",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.871900",
+  "name": "S16289",
+  "state": "S16"
+ },
+ {
+  "district_code": "S16290",
+  "district_name": "South Tripura",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.890373",
+  "name": "S16290",
+  "state": "S16"
+ },
+ {
+  "district_code": "S16291",
+  "district_name": "Dhalai",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.909711",
+  "name": "S16291",
+  "state": "S16"
+ },
+ {
+  "district_code": "S16292",
+  "district_name": "North Tripura",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.928719",
+  "name": "S16292",
+  "state": "S16"
+ },
+ {
+  "district_code": "S17293",
+  "district_name": "West Garo Hills",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.947118",
+  "name": "S17293",
+  "state": "S17"
+ },
+ {
+  "district_code": "S17294",
+  "district_name": "East Garo Hills",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.965359",
+  "name": "S17294",
+  "state": "S17"
+ },
+ {
+  "district_code": "S17295",
+  "district_name": "South Garo Hills",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:20.983997",
+  "name": "S17295",
+  "state": "S17"
+ },
+ {
+  "district_code": "S17296",
+  "district_name": "West Khasi Hills",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.003803",
+  "name": "S17296",
+  "state": "S17"
+ },
+ {
+  "district_code": "S17297",
+  "district_name": "Ribhoi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.023424",
+  "name": "S17297",
+  "state": "S17"
+ },
+ {
+  "district_code": "S17298",
+  "district_name": "East Khasi Hills",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.042733",
+  "name": "S17298",
+  "state": "S17"
+ },
+ {
+  "district_code": "S17299",
+  "district_name": "Jaintia Hills",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.061652",
+  "name": "S17299",
+  "state": "S17"
+ },
+ {
+  "district_code": "S18300",
+  "district_name": "Kokrajhar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.081079",
+  "name": "S18300",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18301",
+  "district_name": "Dhubri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.099727",
+  "name": "S18301",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18302",
+  "district_name": "Goalpara",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.118590",
+  "name": "S18302",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18303",
+  "district_name": "Barpeta",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.138343",
+  "name": "S18303",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18304",
+  "district_name": "Morigaon",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.157033",
+  "name": "S18304",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18305",
+  "district_name": "Nagaon",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.175833",
+  "name": "S18305",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18306",
+  "district_name": "Sonitpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.194461",
+  "name": "S18306",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18307",
+  "district_name": "Lakhimpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.212847",
+  "name": "S18307",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18308",
+  "district_name": "Dhemaji",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.231021",
+  "name": "S18308",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18309",
+  "district_name": "Tinsukia",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.249503",
+  "name": "S18309",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18310",
+  "district_name": "Dibrugarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.267556",
+  "name": "S18310",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18311",
+  "district_name": "Sivasagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.287571",
+  "name": "S18311",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18312",
+  "district_name": "Jorhat",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.306659",
+  "name": "S18312",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18313",
+  "district_name": "Golaghat",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.326783",
+  "name": "S18313",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18314",
+  "district_name": "Karbi Anglong",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.346415",
+  "name": "S18314",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18315",
+  "district_name": "Dima Hasao",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.366248",
+  "name": "S18315",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18316",
+  "district_name": "Cachar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.385564",
+  "name": "S18316",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18317",
+  "district_name": "Karimganj",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.404408",
+  "name": "S18317",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18318",
+  "district_name": "Hailakandi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.422818",
+  "name": "S18318",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18319",
+  "district_name": "Bongaigaon",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.442729",
+  "name": "S18319",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18320",
+  "district_name": "Chirang",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.462695",
+  "name": "S18320",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18321",
+  "district_name": "Kamrup",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.481504",
+  "name": "S18321",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18322",
+  "district_name": "Kamrup Metropolitan",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.503150",
+  "name": "S18322",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18323",
+  "district_name": "Nalbari",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.522086",
+  "name": "S18323",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18324",
+  "district_name": "Baksa",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.541803",
+  "name": "S18324",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18325",
+  "district_name": "Darrang",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.560836",
+  "name": "S18325",
+  "state": "S18"
+ },
+ {
+  "district_code": "S18326",
+  "district_name": "Udalguri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.579966",
+  "name": "S18326",
+  "state": "S18"
+ },
+ {
+  "district_code": "S19327",
+  "district_name": "Darjiling",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.601145",
+  "name": "S19327",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19328",
+  "district_name": "Jalpaiguri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.630216",
+  "name": "S19328",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19329",
+  "district_name": "Koch Bihar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.662966",
+  "name": "S19329",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19330",
+  "district_name": "Uttar Dinajpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.681932",
+  "name": "S19330",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19331",
+  "district_name": "Dakshin Dinajpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.706820",
+  "name": "S19331",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19332",
+  "district_name": "Maldah",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.732745",
+  "name": "S19332",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19333",
+  "district_name": "Murshidabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.759861",
+  "name": "S19333",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19334",
+  "district_name": "Birbhum",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.804595",
+  "name": "S19334",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19335",
+  "district_name": "Barddhaman",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.843926",
+  "name": "S19335",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19336",
+  "district_name": "Nadia",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.869349",
+  "name": "S19336",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19337",
+  "district_name": "North Twenty Four Parganas",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.897449",
+  "name": "S19337",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19338",
+  "district_name": "Hugli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.923389",
+  "name": "S19338",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19339",
+  "district_name": "Bankura",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.947876",
+  "name": "S19339",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19340",
+  "district_name": "Puruliya",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:21.974182",
+  "name": "S19340",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19341",
+  "district_name": "Haora",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.000644",
+  "name": "S19341",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19343",
+  "district_name": "South Twenty Four Parganas",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.027702",
+  "name": "S19343",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19344",
+  "district_name": "Paschim Medinipur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.052696",
+  "name": "S19344",
+  "state": "S19"
+ },
+ {
+  "district_code": "S19345",
+  "district_name": "Purba Medinipur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.077639",
+  "name": "S19345",
+  "state": "S19"
+ },
+ {
+  "district_code": "S20346",
+  "district_name": "Garhwa",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.102493",
+  "name": "S20346",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20347",
+  "district_name": "Chatra",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.126807",
+  "name": "S20347",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20348",
+  "district_name": "Kodarma",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.149354",
+  "name": "S20348",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20349",
+  "district_name": "Giridih",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.170637",
+  "name": "S20349",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20350",
+  "district_name": "Deoghar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.196089",
+  "name": "S20350",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20351",
+  "district_name": "Godda",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.216871",
+  "name": "S20351",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20352",
+  "district_name": "Sahibganj",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.236963",
+  "name": "S20352",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20353",
+  "district_name": "Pakur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.257478",
+  "name": "S20353",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20354",
+  "district_name": "Dhanbad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.278082",
+  "name": "S20354",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20355",
+  "district_name": "Bokaro",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.298025",
+  "name": "S20355",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20356",
+  "district_name": "Lohardaga",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.317451",
+  "name": "S20356",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20357",
+  "district_name": "Purbi Singhbhum",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.336218",
+  "name": "S20357",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20358",
+  "district_name": "Palamu",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.355479",
+  "name": "S20358",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20359",
+  "district_name": "Latehar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.375805",
+  "name": "S20359",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20360",
+  "district_name": "Hazaribagh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.395299",
+  "name": "S20360",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20361",
+  "district_name": "Ramgarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.415165",
+  "name": "S20361",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20362",
+  "district_name": "Dumka",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.435194",
+  "name": "S20362",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20363",
+  "district_name": "Jamtara",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.455960",
+  "name": "S20363",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20364",
+  "district_name": "Ranchi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.475574",
+  "name": "S20364",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20365",
+  "district_name": "Khunti",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.496461",
+  "name": "S20365",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20366",
+  "district_name": "Gumla",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.516099",
+  "name": "S20366",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20367",
+  "district_name": "Simdega",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.536487",
+  "name": "S20367",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20368",
+  "district_name": "Pashchimi Singhbhum",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.556977",
+  "name": "S20368",
+  "state": "S20"
+ },
+ {
+  "district_code": "S20369",
+  "district_name": "Saraikela-Kharsawan",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.578636",
+  "name": "S20369",
+  "state": "S20"
+ },
+ {
+  "district_code": "S21370",
+  "district_name": "Bargarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.598457",
+  "name": "S21370",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21371",
+  "district_name": "Jharsuguda",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.618247",
+  "name": "S21371",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21372",
+  "district_name": "Sambalpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.637013",
+  "name": "S21372",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21373",
+  "district_name": "Debagarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.657130",
+  "name": "S21373",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21374",
+  "district_name": "Sundargarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.676949",
+  "name": "S21374",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21375",
+  "district_name": "Kendujhar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.695936",
+  "name": "S21375",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21376",
+  "district_name": "Mayurbhanj",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.714813",
+  "name": "S21376",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21377",
+  "district_name": "Baleshwar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.732910",
+  "name": "S21377",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21378",
+  "district_name": "Bhadrak",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.751608",
+  "name": "S21378",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21379",
+  "district_name": "Kendrapara",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.770822",
+  "name": "S21379",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21380",
+  "district_name": "Jagatsinghapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.789561",
+  "name": "S21380",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21381",
+  "district_name": "Cuttack",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.808086",
+  "name": "S21381",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21382",
+  "district_name": "Jajapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.826425",
+  "name": "S21382",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21383",
+  "district_name": "Dhenkanal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.844584",
+  "name": "S21383",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21384",
+  "district_name": "Anugul",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.865651",
+  "name": "S21384",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21385",
+  "district_name": "Nayagarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.888317",
+  "name": "S21385",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21386",
+  "district_name": "Khordha",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.909097",
+  "name": "S21386",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21387",
+  "district_name": "Puri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.928459",
+  "name": "S21387",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21388",
+  "district_name": "Ganjam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.947769",
+  "name": "S21388",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21389",
+  "district_name": "Gajapati",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.971134",
+  "name": "S21389",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21390",
+  "district_name": "Kandhamal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:22.990903",
+  "name": "S21390",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21391",
+  "district_name": "Baudh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.014929",
+  "name": "S21391",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21392",
+  "district_name": "Subarnapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.034232",
+  "name": "S21392",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21393",
+  "district_name": "Balangir",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.053434",
+  "name": "S21393",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21394",
+  "district_name": "Nuapada",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.074301",
+  "name": "S21394",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21395",
+  "district_name": "Kalahandi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.095346",
+  "name": "S21395",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21396",
+  "district_name": "Rayagada",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.116646",
+  "name": "S21396",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21397",
+  "district_name": "Nabarangapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.135459",
+  "name": "S21397",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21398",
+  "district_name": "Koraput",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.158766",
+  "name": "S21398",
+  "state": "S21"
+ },
+ {
+  "district_code": "S21399",
+  "district_name": "Malkangiri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.184343",
+  "name": "S21399",
+  "state": "S21"
+ },
+ {
+  "district_code": "S22400",
+  "district_name": "Koriya",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.208455",
+  "name": "S22400",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22401",
+  "district_name": "Surguja",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.232937",
+  "name": "S22401",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22402",
+  "district_name": "Jashpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.256569",
+  "name": "S22402",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22403",
+  "district_name": "Raigarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.296311",
+  "name": "S22403",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22404",
+  "district_name": "Korba",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.320756",
+  "name": "S22404",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22405",
+  "district_name": "Janjgir - Champa",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.344428",
+  "name": "S22405",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22406",
+  "district_name": "Bilaspur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.368536",
+  "name": "S22406",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22407",
+  "district_name": "Kabeerdham",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.392728",
+  "name": "S22407",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22408",
+  "district_name": "Rajnandgaon",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.417980",
+  "name": "S22408",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22409",
+  "district_name": "Durg",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.443066",
+  "name": "S22409",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22410",
+  "district_name": "Raipur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.466869",
+  "name": "S22410",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22411",
+  "district_name": "Mahasamund",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.490488",
+  "name": "S22411",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22412",
+  "district_name": "Dhamtari",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.517347",
+  "name": "S22412",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22413",
+  "district_name": "Uttar Bastar Kanker",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.541908",
+  "name": "S22413",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22414",
+  "district_name": "Bastar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.565620",
+  "name": "S22414",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22415",
+  "district_name": "Narayanpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.589509",
+  "name": "S22415",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22416",
+  "district_name": "Dakshin Bastar Dantewada",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.613233",
+  "name": "S22416",
+  "state": "S22"
+ },
+ {
+  "district_code": "S22417",
+  "district_name": "Bijapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.638089",
+  "name": "S22417",
+  "state": "S22"
+ },
+ {
+  "district_code": "S23418",
+  "district_name": "Sheopur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.661846",
+  "name": "S23418",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23419",
+  "district_name": "Morena",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.683409",
+  "name": "S23419",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23420",
+  "district_name": "Bhind",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.703085",
+  "name": "S23420",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23421",
+  "district_name": "Gwalior",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.722608",
+  "name": "S23421",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23422",
+  "district_name": "Datia",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.745170",
+  "name": "S23422",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23423",
+  "district_name": "Shivpuri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.770347",
+  "name": "S23423",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23424",
+  "district_name": "Tikamgarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.790086",
+  "name": "S23424",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23425",
+  "district_name": "Chhatarpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.811248",
+  "name": "S23425",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23426",
+  "district_name": "Panna",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.833889",
+  "name": "S23426",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23427",
+  "district_name": "Sagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.853695",
+  "name": "S23427",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23428",
+  "district_name": "Damoh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.884010",
+  "name": "S23428",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23429",
+  "district_name": "Satna",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.907425",
+  "name": "S23429",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23430",
+  "district_name": "Rewa",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.931108",
+  "name": "S23430",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23431",
+  "district_name": "Umaria",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.958788",
+  "name": "S23431",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23432",
+  "district_name": "Neemuch",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:23.994178",
+  "name": "S23432",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23433",
+  "district_name": "Mandsaur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.017867",
+  "name": "S23433",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23434",
+  "district_name": "Ratlam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.037660",
+  "name": "S23434",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23435",
+  "district_name": "Ujjain",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.067931",
+  "name": "S23435",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23436",
+  "district_name": "Shajapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.096272",
+  "name": "S23436",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23437",
+  "district_name": "Dewas",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.115805",
+  "name": "S23437",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23438",
+  "district_name": "Dhar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.134674",
+  "name": "S23438",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23439",
+  "district_name": "Indore",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.152993",
+  "name": "S23439",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23440",
+  "district_name": "Khargone (West Nimar)",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.171632",
+  "name": "S23440",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23441",
+  "district_name": "Barwani",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.196466",
+  "name": "S23441",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23442",
+  "district_name": "Rajgarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.238947",
+  "name": "S23442",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23443",
+  "district_name": "Vidisha",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.264447",
+  "name": "S23443",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23444",
+  "district_name": "Bhopal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.283176",
+  "name": "S23444",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23445",
+  "district_name": "Sehore",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.301118",
+  "name": "S23445",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23446",
+  "district_name": "Raisen",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.319560",
+  "name": "S23446",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23447",
+  "district_name": "Betul",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.338321",
+  "name": "S23447",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23448",
+  "district_name": "Harda",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.356478",
+  "name": "S23448",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23449",
+  "district_name": "Hoshangabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.374955",
+  "name": "S23449",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23450",
+  "district_name": "Katni",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.393546",
+  "name": "S23450",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23451",
+  "district_name": "Jabalpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.412706",
+  "name": "S23451",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23452",
+  "district_name": "Narsimhapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.431608",
+  "name": "S23452",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23453",
+  "district_name": "Dindori",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.450356",
+  "name": "S23453",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23454",
+  "district_name": "Mandla",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.469254",
+  "name": "S23454",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23455",
+  "district_name": "Chhindwara",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.488193",
+  "name": "S23455",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23456",
+  "district_name": "Seoni",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.507074",
+  "name": "S23456",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23457",
+  "district_name": "Balaghat",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.525782",
+  "name": "S23457",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23458",
+  "district_name": "Guna",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.544832",
+  "name": "S23458",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23459",
+  "district_name": "Ashoknagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.563329",
+  "name": "S23459",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23460",
+  "district_name": "Shahdol",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.581749",
+  "name": "S23460",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23461",
+  "district_name": "Anuppur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.600307",
+  "name": "S23461",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23462",
+  "district_name": "Sidhi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.619944",
+  "name": "S23462",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23463",
+  "district_name": "Singrauli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.638871",
+  "name": "S23463",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23464",
+  "district_name": "Jhabua",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.663034",
+  "name": "S23464",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23465",
+  "district_name": "Alirajpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.690356",
+  "name": "S23465",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23466",
+  "district_name": "Khandwa (East Nimar)",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.717227",
+  "name": "S23466",
+  "state": "S23"
+ },
+ {
+  "district_code": "S23467",
+  "district_name": "Burhanpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.744201",
+  "name": "S23467",
+  "state": "S23"
+ },
+ {
+  "district_code": "S24468",
+  "district_name": "Kachchh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.769841",
+  "name": "S24468",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24469",
+  "district_name": "Banas Kantha",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.799816",
+  "name": "S24469",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24470",
+  "district_name": "Patan",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.824973",
+  "name": "S24470",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24471",
+  "district_name": "Mahesana",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.849511",
+  "name": "S24471",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24472",
+  "district_name": "Sabar Kantha",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.873272",
+  "name": "S24472",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24473",
+  "district_name": "Gandhinagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.899075",
+  "name": "S24473",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24474",
+  "district_name": "Ahmadabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.923806",
+  "name": "S24474",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24475",
+  "district_name": "Surendranagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.945902",
+  "name": "S24475",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24476",
+  "district_name": "Rajkot",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.970201",
+  "name": "S24476",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24477",
+  "district_name": "Jamnagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:24.998395",
+  "name": "S24477",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24478",
+  "district_name": "Porbandar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.032045",
+  "name": "S24478",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24479",
+  "district_name": "Junagadh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.056352",
+  "name": "S24479",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24480",
+  "district_name": "Amreli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.082064",
+  "name": "S24480",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24481",
+  "district_name": "Bhavnagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.104576",
+  "name": "S24481",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24482",
+  "district_name": "Anand",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.129388",
+  "name": "S24482",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24483",
+  "district_name": "Kheda",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.151838",
+  "name": "S24483",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24484",
+  "district_name": "Panch Mahals",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.176541",
+  "name": "S24484",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24485",
+  "district_name": "Dohad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.196317",
+  "name": "S24485",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24486",
+  "district_name": "Vadodara",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.214842",
+  "name": "S24486",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24487",
+  "district_name": "Narmada",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.234049",
+  "name": "S24487",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24488",
+  "district_name": "Bharuch",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.255156",
+  "name": "S24488",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24489",
+  "district_name": "The Dangs",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.275589",
+  "name": "S24489",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24490",
+  "district_name": "Navsari",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.296926",
+  "name": "S24490",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24491",
+  "district_name": "Valsad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.320036",
+  "name": "S24491",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24492",
+  "district_name": "Surat",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.339522",
+  "name": "S24492",
+  "state": "S24"
+ },
+ {
+  "district_code": "S24493",
+  "district_name": "Tapi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.360422",
+  "name": "S24493",
+  "state": "S24"
+ },
+ {
+  "district_code": "S25494",
+  "district_name": "Diu",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.379124",
+  "name": "S25494",
+  "state": "S25"
+ },
+ {
+  "district_code": "S25495",
+  "district_name": "Daman",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.399368",
+  "name": "S25495",
+  "state": "S25"
+ },
+ {
+  "district_code": "S27497",
+  "district_name": "Nandurbar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.437951",
+  "name": "S27497",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27498",
+  "district_name": "Dhule",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.472697",
+  "name": "S27498",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27499",
+  "district_name": "Jalgaon",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.492910",
+  "name": "S27499",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27500",
+  "district_name": "Buldana",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.512664",
+  "name": "S27500",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27501",
+  "district_name": "Akola",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.535034",
+  "name": "S27501",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27502",
+  "district_name": "Washim",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.554816",
+  "name": "S27502",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27503",
+  "district_name": "Amravati",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.573880",
+  "name": "S27503",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27504",
+  "district_name": "Wardha",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.592904",
+  "name": "S27504",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27505",
+  "district_name": "Nagpur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.612083",
+  "name": "S27505",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27506",
+  "district_name": "Bhandara",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.632011",
+  "name": "S27506",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27507",
+  "district_name": "Gondiya",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.652324",
+  "name": "S27507",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27508",
+  "district_name": "Gadchiroli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.674042",
+  "name": "S27508",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27509",
+  "district_name": "Chandrapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.699351",
+  "name": "S27509",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27510",
+  "district_name": "Yavatmal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.740819",
+  "name": "S27510",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27511",
+  "district_name": "Nanded",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.760608",
+  "name": "S27511",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27512",
+  "district_name": "Hingoli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.779105",
+  "name": "S27512",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27513",
+  "district_name": "Parbhani",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.798981",
+  "name": "S27513",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27514",
+  "district_name": "Jalna",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.821328",
+  "name": "S27514",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27515",
+  "district_name": "Aurangabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.840142",
+  "name": "S27515",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27516",
+  "district_name": "Nashik",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.879872",
+  "name": "S27516",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27517",
+  "district_name": "Thane",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.906841",
+  "name": "S27517",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27520",
+  "district_name": "Raigarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.931137",
+  "name": "S27520",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27521",
+  "district_name": "Pune",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.954014",
+  "name": "S27521",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27522",
+  "district_name": "Ahmadnagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.981193",
+  "name": "S27522",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27524",
+  "district_name": "Latur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.024930",
+  "name": "S27524",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27525",
+  "district_name": "Osmanabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.045338",
+  "name": "S27525",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27526",
+  "district_name": "Solapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.066257",
+  "name": "S27526",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27527",
+  "district_name": "Satara",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.085946",
+  "name": "S27527",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27528",
+  "district_name": "Ratnagiri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.105006",
+  "name": "S27528",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27529",
+  "district_name": "Sindhudurg",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.124151",
+  "name": "S27529",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27530",
+  "district_name": "Kolhapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.145528",
+  "name": "S27530",
+  "state": "S27"
+ },
+ {
+  "district_code": "S27531",
+  "district_name": "Sangli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.167328",
+  "name": "S27531",
+  "state": "S27"
+ },
+ {
+  "district_code": "S28532",
+  "district_name": "Adilabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.194822",
+  "name": "S28532",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28533",
+  "district_name": "Nizamabad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.230321",
+  "name": "S28533",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28534",
+  "district_name": "Karimnagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.266838",
+  "name": "S28534",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28535",
+  "district_name": "Medak",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.299906",
+  "name": "S28535",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28537",
+  "district_name": "Rangareddy",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.327428",
+  "name": "S28537",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28538",
+  "district_name": "Mahbubnagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.361202",
+  "name": "S28538",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28539",
+  "district_name": "Nalgonda",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.396640",
+  "name": "S28539",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28540",
+  "district_name": "Warangal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.422227",
+  "name": "S28540",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28541",
+  "district_name": "Khammam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.452633",
+  "name": "S28541",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28542",
+  "district_name": "Srikakulam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.486843",
+  "name": "S28542",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28543",
+  "district_name": "Vizianagaram",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.509954",
+  "name": "S28543",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28544",
+  "district_name": "Visakhapatnam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.534552",
+  "name": "S28544",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28545",
+  "district_name": "East Godavari",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.553359",
+  "name": "S28545",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28546",
+  "district_name": "West Godavari",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.572515",
+  "name": "S28546",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28547",
+  "district_name": "Krishna",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.591147",
+  "name": "S28547",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28548",
+  "district_name": "Guntur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.609711",
+  "name": "S28548",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28549",
+  "district_name": "Prakasam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.630798",
+  "name": "S28549",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28550",
+  "district_name": "Sri Potti Sriramulu Nellore",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.651177",
+  "name": "S28550",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28551",
+  "district_name": "Y.S.R.",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.671203",
+  "name": "S28551",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28552",
+  "district_name": "Kurnool",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.689937",
+  "name": "S28552",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28553",
+  "district_name": "Anantapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.708812",
+  "name": "S28553",
+  "state": "S28"
+ },
+ {
+  "district_code": "S28554",
+  "district_name": "Chittoor",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.730170",
+  "name": "S28554",
+  "state": "S28"
+ },
+ {
+  "district_code": "S29555",
+  "district_name": "Belgaum",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.749566",
+  "name": "S29555",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29556",
+  "district_name": "Bagalkot",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.770303",
+  "name": "S29556",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29557",
+  "district_name": "Bijapur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.791120",
+  "name": "S29557",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29558",
+  "district_name": "Bidar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.810484",
+  "name": "S29558",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29559",
+  "district_name": "Raichur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.831412",
+  "name": "S29559",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29560",
+  "district_name": "Koppal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.856434",
+  "name": "S29560",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29561",
+  "district_name": "Gadag",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.875040",
+  "name": "S29561",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29562",
+  "district_name": "Dharwad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.895075",
+  "name": "S29562",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29563",
+  "district_name": "Uttara Kannada",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.914548",
+  "name": "S29563",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29564",
+  "district_name": "Haveri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.934658",
+  "name": "S29564",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29565",
+  "district_name": "Bellary",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.952846",
+  "name": "S29565",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29566",
+  "district_name": "Chitradurga",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.971188",
+  "name": "S29566",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29567",
+  "district_name": "Davanagere",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.990281",
+  "name": "S29567",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29568",
+  "district_name": "Shimoga",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.009970",
+  "name": "S29568",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29569",
+  "district_name": "Udupi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.029147",
+  "name": "S29569",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29570",
+  "district_name": "Chikmagalur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.050305",
+  "name": "S29570",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29571",
+  "district_name": "Tumkur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.068744",
+  "name": "S29571",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29572",
+  "district_name": "Bangalore",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.087194",
+  "name": "S29572",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29573",
+  "district_name": "Mandya",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.108019",
+  "name": "S29573",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29574",
+  "district_name": "Hassan",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.126221",
+  "name": "S29574",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29575",
+  "district_name": "Dakshina Kannada",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.145609",
+  "name": "S29575",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29576",
+  "district_name": "Kodagu",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.163791",
+  "name": "S29576",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29577",
+  "district_name": "Mysore",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.182448",
+  "name": "S29577",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29578",
+  "district_name": "Chamarajanagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.201221",
+  "name": "S29578",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29579",
+  "district_name": "Gulbarga",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.221695",
+  "name": "S29579",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29580",
+  "district_name": "Yadgir",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.240303",
+  "name": "S29580",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29581",
+  "district_name": "Kolar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.258325",
+  "name": "S29581",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29582",
+  "district_name": "Chikkaballapura",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.276660",
+  "name": "S29582",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29583",
+  "district_name": "Bangalore Rural",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.295273",
+  "name": "S29583",
+  "state": "S29"
+ },
+ {
+  "district_code": "S29584",
+  "district_name": "Ramanagara",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.316662",
+  "name": "S29584",
+  "state": "S29"
+ },
+ {
+  "district_code": "S30585",
+  "district_name": "North Goa",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.345067",
+  "name": "S30585",
+  "state": "S30"
+ },
+ {
+  "district_code": "S30586",
+  "district_name": "South Goa",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.382321",
+  "name": "S30586",
+  "state": "S30"
+ },
+ {
+  "district_code": "S31587",
+  "district_name": "Lakshadweep",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.422662",
+  "name": "S31587",
+  "state": "S31"
+ },
+ {
+  "district_code": "S32588",
+  "district_name": "Kasaragod",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.453380",
+  "name": "S32588",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32589",
+  "district_name": "Kannur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.481302",
+  "name": "S32589",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32590",
+  "district_name": "Wayanad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.499837",
+  "name": "S32590",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32591",
+  "district_name": "Kozhikode",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.525197",
+  "name": "S32591",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32592",
+  "district_name": "Malappuram",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.549593",
+  "name": "S32592",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32593",
+  "district_name": "Palakkad",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.572980",
+  "name": "S32593",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32594",
+  "district_name": "Thrissur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.598212",
+  "name": "S32594",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32595",
+  "district_name": "Ernakulam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.674410",
+  "name": "S32595",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32596",
+  "district_name": "Idukki",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.714772",
+  "name": "S32596",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32597",
+  "district_name": "Kottayam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.756365",
+  "name": "S32597",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32598",
+  "district_name": "Alappuzha",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.795269",
+  "name": "S32598",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32599",
+  "district_name": "Pathanamthitta",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.867827",
+  "name": "S32599",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32600",
+  "district_name": "Kollam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.914700",
+  "name": "S32600",
+  "state": "S32"
+ },
+ {
+  "district_code": "S32601",
+  "district_name": "Thiruvananthapuram",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.938975",
+  "name": "S32601",
+  "state": "S32"
+ },
+ {
+  "district_code": "S33602",
+  "district_name": "Thiruvallur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.962826",
+  "name": "S33602",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33604",
+  "district_name": "Kancheepuram",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:27.989692",
+  "name": "S33604",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33605",
+  "district_name": "Vellore",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.016224",
+  "name": "S33605",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33606",
+  "district_name": "Tiruvannamalai",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.041365",
+  "name": "S33606",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33607",
+  "district_name": "Viluppuram",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.065352",
+  "name": "S33607",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33608",
+  "district_name": "Salem",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.087832",
+  "name": "S33608",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33609",
+  "district_name": "Namakkal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.113817",
+  "name": "S33609",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33610",
+  "district_name": "Erode",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.139199",
+  "name": "S33610",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33611",
+  "district_name": "The Nilgiris",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.163527",
+  "name": "S33611",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33612",
+  "district_name": "Dindigul",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.187155",
+  "name": "S33612",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33613",
+  "district_name": "Karur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.211327",
+  "name": "S33613",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33614",
+  "district_name": "Tiruchirappalli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.236529",
+  "name": "S33614",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33615",
+  "district_name": "Perambalur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.261658",
+  "name": "S33615",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33616",
+  "district_name": "Ariyalur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.280678",
+  "name": "S33616",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33617",
+  "district_name": "Cuddalore",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.298820",
+  "name": "S33617",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33618",
+  "district_name": "Nagapattinam",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.317520",
+  "name": "S33618",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33619",
+  "district_name": "Thiruvarur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.336275",
+  "name": "S33619",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33620",
+  "district_name": "Thanjavur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.355412",
+  "name": "S33620",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33621",
+  "district_name": "Pudukkottai",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.374085",
+  "name": "S33621",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33622",
+  "district_name": "Sivaganga",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.392480",
+  "name": "S33622",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33623",
+  "district_name": "Madurai",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.411726",
+  "name": "S33623",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33624",
+  "district_name": "Theni",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.430936",
+  "name": "S33624",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33625",
+  "district_name": "Virudhunagar",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.449507",
+  "name": "S33625",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33626",
+  "district_name": "Ramanathapuram",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.468736",
+  "name": "S33626",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33627",
+  "district_name": "Thoothukkudi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.488369",
+  "name": "S33627",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33628",
+  "district_name": "Tirunelveli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.507266",
+  "name": "S33628",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33629",
+  "district_name": "Kanniyakumari",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.526551",
+  "name": "S33629",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33630",
+  "district_name": "Dharmapuri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.545709",
+  "name": "S33630",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33631",
+  "district_name": "Krishnagiri",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.564614",
+  "name": "S33631",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33632",
+  "district_name": "Coimbatore",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.583093",
+  "name": "S33632",
+  "state": "S33"
+ },
+ {
+  "district_code": "S33633",
+  "district_name": "Tiruppur",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.601744",
+  "name": "S33633",
+  "state": "S33"
+ },
+ {
+  "district_code": "S34635",
+  "district_name": "Puducherry",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.620286",
+  "name": "S34635",
+  "state": "S34"
+ },
+ {
+  "district_code": "S34637",
+  "district_name": "Karaikal",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.640076",
+  "name": "S34637",
+  "state": "S34"
+ },
+ {
+  "district_code": "S35638",
+  "district_name": "Nicobars",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.658056",
+  "name": "S35638",
+  "state": "S35"
+ },
+ {
+  "district_code": "S35639",
+  "district_name": "North  & Middle Andaman",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.676185",
+  "name": "S35639",
+  "state": "S35"
+ },
+ {
+  "district_code": "S35640",
+  "district_name": "South Andaman",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:28.694121",
+  "name": "S35640",
+  "state": "S35"
+ },
+ {
+  "district_code": "S01001",
+  "district_name": "Kupwara",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.132926",
+  "name": "S01001",
+  "state": "S01"
+ },
+ {
+  "district_code": "S06086",
+  "district_name": "Gurgaon",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.165861",
+  "name": "S06086",
+  "state": "S06"
+ },
+ {
+  "district_code": "S07097",
+  "district_name": "South West",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.345822",
+  "name": "S07097",
+  "state": "S07"
+ },
+ {
+  "district_code": "S27523",
+  "district_name": "Bid",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:26.003245",
+  "name": "S27523",
+  "state": "S27"
+ },
+ {
+  "district_code": "S10219",
+  "district_name": "Saran",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:19.245726",
+  "name": "S10219",
+  "state": "S10"
+ },
+ {
+  "district_code": "S26496",
+  "district_name": "Dadra & Nagar Haveli",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:25.418254",
+  "name": "S26496",
+  "state": "S26"
+ },
+ {
+  "district_code": "S01003",
+  "district_name": "Leh(Ladakh)",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.517859",
+  "name": "S01003",
+  "state": "S01"
+ },
+ {
+  "district_code": "S04055",
+  "district_name": "Chandigarh",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:15.411023",
+  "name": "S04055",
+  "state": "S04"
+ },
+ {
+  "district_code": "S02027",
+  "district_name": "Mandi",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.829366",
+  "name": "S02027",
+  "state": "S02"
+ },
+ {
+  "district_code": "S01004",
+  "district_name": "Kargil",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:14.569884",
+  "name": "S01004",
+  "state": "S01"
+ },
+ {
+  "district_code": "S07091",
+  "district_name": "North",
+  "docstatus": 0,
+  "doctype": "District",
+  "modified": "2023-10-06 16:55:16.269652",
+  "name": "S07091",
+  "state": "S07"
+ }
+]

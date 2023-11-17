@@ -1,0 +1,117 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"QQhj-PNDuW\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Geo Master</b></span>\",\"col\":12}},{\"id\":\"FMmf5hKd3u\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State\",\"col\":3}},{\"id\":\"i7zHIMK4zU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"District\",\"col\":3}},{\"id\":\"SHvbdVwbQV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Block\",\"col\":3}},{\"id\":\"RZLdOnV413\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Village\",\"col\":3}},{\"id\":\"aXg7o9TIDl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Master</b></span>\",\"col\":12}},{\"id\":\"gBmArJ1mPy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ID Document\",\"col\":3}},{\"id\":\"eojmteDdwA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pwd Master\",\"col\":3}},{\"id\":\"v1tOX1yqVD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Social Vulnerable Category\",\"col\":3}},{\"id\":\"hspVBls5tq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Occupation\",\"col\":3}},{\"id\":\"Xi0liL29xs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Marital Status\",\"col\":3}},{\"id\":\"gWJMXyXHt8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Education\",\"col\":3}},{\"id\":\"YwH0Y-ayyH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Religion\",\"col\":3}},{\"id\":\"OddPJNClJR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Caste Category\",\"col\":3}}]",
+ "creation": "2023-09-23 15:47:37.607170",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "duplicate",
+ "idx": 1,
+ "is_hidden": 0,
+ "label": "App Master",
+ "links": [],
+ "modified": "2023-11-17 12:08:36.973106",
+ "modified_by": "Administrator",
+ "module": "Master",
+ "name": "App Master",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Administrator"
+  }
+ ],
+ "sequence_id": 2.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Pwd Master",
+   "link_to": "PWD master",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Religion",
+   "link_to": "Religion",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Education",
+   "link_to": "Education",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Marital Status",
+   "link_to": "Marital status",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Social Vulnerable Category",
+   "link_to": "Social vulnerable category",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Occupation",
+   "link_to": "Occupation",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Village",
+   "link_to": "Village",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "ID Document",
+   "link_to": "ID Document",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "State",
+   "link_to": "State",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Caste Category",
+   "link_to": "Caste category",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "District",
+   "link_to": "District",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Block",
+   "link_to": "Block",
+   "type": "DocType"
+  }
+ ],
+ "title": "App Master"
+}
