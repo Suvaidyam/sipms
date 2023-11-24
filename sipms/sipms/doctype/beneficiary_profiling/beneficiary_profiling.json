@@ -32,6 +32,7 @@
   "fathers_name",
   "mothers_name",
   "mode_of_reach_out",
+  "select_camp",
   "has_anyone_from_your_family_visisted_before",
   "family",
   "tab_2_tab",
@@ -227,6 +228,7 @@
    "depends_on": "eval:doc.has_anyone_from_your_family_visisted_before == \"Yes\"",
    "fieldname": "family",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Family",
    "mandatory_depends_on": "eval:doc.has_anyone_from_your_family_visisted_before == \"Yes\"",
    "options": "Family"
@@ -332,11 +334,19 @@
    "fieldname": "current_address_section",
    "fieldtype": "Section Break",
    "label": "Current address"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_reach_out ==\"Camps\"",
+   "fieldname": "select_camp",
+   "fieldtype": "Link",
+   "label": "Select Camp",
+   "mandatory_depends_on": "eval:doc.mode_of_reach_out ==\"Camps\"",
+   "options": "Camp"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-15 13:20:12.185035",
+ "modified": "2023-11-24 12:30:00.309187",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
