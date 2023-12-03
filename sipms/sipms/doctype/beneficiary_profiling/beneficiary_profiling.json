@@ -51,7 +51,11 @@
   "block",
   "id_documents_tab",
   "do_you_have_any_id_documents",
-  "id_table_list"
+  "id_table_list",
+  "support_tab",
+  "support_table",
+  "follow_up_tab",
+  "follow_up_table"
  ],
  "fields": [
   {
@@ -342,11 +346,31 @@
    "label": "Select Camp",
    "mandatory_depends_on": "eval:doc.mode_of_reach_out ==\"Camps\"",
    "options": "Camp"
+  },
+  {
+   "fieldname": "support_tab",
+   "fieldtype": "Tab Break",
+   "label": "Support"
+  },
+  {
+   "fieldname": "support_table",
+   "fieldtype": "Table",
+   "options": "Support Child"
+  },
+  {
+   "fieldname": "follow_up_tab",
+   "fieldtype": "Tab Break",
+   "label": "Follow-up"
+  },
+  {
+   "fieldname": "follow_up_table",
+   "fieldtype": "Table",
+   "options": "Follow Up Child"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-24 12:30:00.309187",
+ "modified": "2023-12-03 16:25:16.067736",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
