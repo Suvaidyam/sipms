@@ -1,5 +1,111 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // For license information, please see license.txt
+let support__document_sub = []
+let document_submitted = new frappe.ui.Dialog({
+  title: 'Enter details for Support',
+  fields: [
+    {
+      label: 'Date of application',
+      fieldname: 'date_of_application',
+      fieldtype: 'Date',
+      reqd: 1,
+    },
+    {
+      label: 'Application number',
+      fieldname: 'application_number',
+      fieldtype: 'Data'
+    },
+    {
+      label: 'Amount paid',
+      fieldname: 'amount_paid',
+      fieldtype: 'Int'
+    },
+    {
+      label: 'Paid by',
+      fieldname: 'paid_by',
+      fieldtype: 'Select',
+      options: ["Self", "CSC"]
+    }
+  ],
+  size: 'small', // small, large, extra-large
+  primary_action_label: 'Save',
+  primary_action(values) {
+    support__document_sub = values
+    document_submitted.hide();
+  }
+});
+let support__document_com = []
+let document_completed = new frappe.ui.Dialog({
+  title: 'Enter details for Support',
+  fields: [
+    {
+      label: 'Date of completion',
+      fieldname: 'date_of_completion',
+      fieldtype: 'Date',
+      reqd: 1,
+    },
+    {
+      label: 'Completion certificate',
+      fieldname: 'completion_certificate',
+      fieldtype: 'Attach'
+    }
+  ],
+  size: 'small', // small, large, extra-large
+  primary_action_label: 'Save',
+  primary_action(values) {
+    support__document_com = values
+    console.log("save")
+    document_completed.hide();
+  }
+});
+let support__document_rej = []
+let document_rejected = new frappe.ui.Dialog({
+  title: 'Enter details for Support',
+  fields: [
+    {
+      label: 'Date of rejection',
+      fieldname: 'date_of_rejection',
+      fieldtype: 'Date',
+      reqd: 1,
+    },
+    {
+      label: 'Reason of rejection',
+      fieldname: 'reason_of_rejection',
+      fieldtype: 'Data'
+    }
+  ],
+  size: 'small', // small, large, extra-large
+  primary_action_label: 'Save',
+  primary_action(values) {
+    support__document_rej = values
+    console.log("save")
+    document_rejected.hide();
+  }
+});
+
+// API calling for support and 
+function get_support_list(frm, support_type) {
+  frappe.call({
+    method: 'frappe.desk.search.search_link',
+    args: {
+      doctype: 'Support',
+      txt: '',
+      filters: [
+        ['Support', 'support_type', '=', support_type],
+      ],
+      page_length: 100,  // Adjust the number of results per page as needed
+    },
+    freeze: true,
+    freeze_message: __("Calling"),
+    callback: async function (response) {
+      let under_process_completed_ops = frm.doc.support_table.filter(f => (['Under process', 'Open'].includes(f.status))).map(m => m.specific_support_type)
+      // console.log("under_process_completed_ops", under_process_completed_ops)
+      let ops = response.results.filter(f => !under_process_completed_ops.includes(f.value))
+      // console.log(" options", ops)
+      frm.fields_dict.support_table.grid.update_docfield_property("specific_support_type", "options", ops);
+    }
+  });
+};
 
 //  COMMON FUNCTION FOR DEFULT FILTER 
 function defult_filter(field_name, filter_on , frm){
@@ -86,3 +192,14 @@ frappe.ui.form.on("Beneficiary Profiling", {
       },
 
 });
+
+frappe.ui.form.on('Support Child', {
+  support_table_add:function(frm ,  cdt, cdn){
+    let row = frappe.get_doc(cdt, cdn);
+    get_support_types(frm)
+  },
+  reason_of_application:function(frm , cdt, cdn){
+    let row = frappe.get_doc(cdt, cdn);
+    console.log(row)
+  }
+})
