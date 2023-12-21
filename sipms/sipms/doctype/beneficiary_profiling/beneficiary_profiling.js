@@ -253,7 +253,6 @@ frappe.ui.form.on('Support Child', {
   support_table_add:function(frm ,  cdt, cdn){
     let row = frappe.get_doc(cdt, cdn);
     console.log(row)
-    // get_support_types(frm)
   },
   reason_of_application:function(frm , cdt, cdn){
     let row = frappe.get_doc(cdt, cdn);
