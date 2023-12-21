@@ -131,28 +131,45 @@ const createDialog = (_doc, config) => {
   });
 }
 // API calling for support and 
-function get_support_list(frm, support_type) {
+function get_scheme_list(frm, support_type) {
   frappe.call({
     method: 'frappe.desk.search.search_link',
     args: {
-      doctype: 'Support',
+      doctype: 'Scheme',
       txt: '',
       filters: [
-        ['Support', 'support_category', '=', support_type],
+        ['milestone', '=', support_type],
       ],
       page_length: 100,  // Adjust the number of results per page as needed
     },
     freeze: true,
     freeze_message: __("Calling"),
     callback: async function (response) {
-      let under_process_completed_ops = frm.doc.support_table.filter(f => (['Under process', 'Open'].includes(f.status))).map(m => m.specific_support_type)
+      let under_process_completed_ops = frm.doc.scheme_table.filter(f => (['Under process', 'Open'].includes(f.status))).map(m => m.specific_support_type)
       // console.log("under_process_completed_ops", under_process_completed_ops)
       let ops = response.results.filter(f => !under_process_completed_ops.includes(f.value))
-      // console.log(" options", ops)
-      frm.fields_dict.support_table.grid.update_docfield_property("specific_support_type", "options", ops);
+      console.log(" options", ops)
+      frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
     }
   });
 };
+// //////////////////////////////////////////////////////////////////////
+// function get_milestone_category(frm) {
+//   frappe.call({
+//     method: 'frappe.desk.search.search_link',
+//     args: {
+//       doctype: 'Milestone category',
+//       txt: '',
+//       page_length: 100,  // Adjust the number of results per page as needed
+//     },
+//     freeze: true,
+//     freeze_message: __("Calling"),
+//     callback: async function (response) {
+//       frm.fields_dict.support_table.grid.update_docfield_property("milestone_category", "options", response.results);
+//       // console.log(response)
+//     }
+//   });
+// };
 
 //  COMMON FUNCTION FOR DEFULT FILTER 
 function defult_filter(field_name, filter_on , frm){
@@ -189,6 +206,109 @@ frappe.ui.form.on("Beneficiary Profiling", {
       // check alternate mobile number digits
       if(frm.doc.alternate_contact_number < 4){
         frm.doc.alternate_contact_number = ''
+      }
+      if (frm.doc.do_you_have_id_document == "Yes" && frm.doc.id_section?.length == '0') {
+        if (!(frm.doc.id_section[0] && frm.doc?.id_section[0]?.select_id != "undefined")) {
+          frappe.throw('Please Select Which of the following ID documents do you have?');
+        }
+        return
+      }
+      // support status manage
+      if (frm.selected_doc.scheme_table) {
+        for (support_items of frm.selected_doc.scheme_table) {
+          if (support_items.application_submitted == "No") {
+            support_items.status = 'Open'
+          } else if (support_items.application_submitted == "Yes") {
+            support_items.status = 'Under process'
+          } else {
+            support_items.status = 'Completed'
+          }
+        }
+      }
+      // follow up status manage
+      if (frm.selected_doc.followup_table) {
+        for (support_item of frm.selected_doc.scheme_table) {
+          if (!['Completed'].includes(support_item.status)) {
+            let followups = frm.selected_doc.followup_table.filter(f => f.parent_ref == support_item?.name)
+            let latestFollowup = followups.length ? followups[(followups.length - 1)] : null
+            if (latestFollowup) {
+              switch (latestFollowup.follow_up_status) {
+                case "Interested":
+                  support_item.status = "Open"
+                  break;
+                case "Not interested":
+                  support_item.status = "Closed"
+                  break;
+                case "Rejected":
+                  support_item.status = "Rejected"
+                  support_item.date_of_rejection = latestFollowup.date_of_rejection || support_item.date_of_rejection
+                  support_item.reason_of_rejection = latestFollowup.reason_of_rejection || support_item.reason_of_rejection
+                  break;
+                case "Document submitted":
+                  support_item.application_submitted = "Yes"
+                  support_item.status = "Under process"
+                  support_item.date_of_application = latestFollowup.date_of_application || support_item.date_of_application
+                  support_item.application_number = latestFollowup.application_number || support_item.application_number
+                  support_item.amount_paid = latestFollowup.amount_paid || support_item.amount_paid
+                  support_item.paid_by = latestFollowup.paid_by || support_item.paid_by
+                  break;
+                case "Completed":
+                  support_item.status = "Completed"
+                  support_item.date_of_completion = latestFollowup.date_of_completion || support_item.date_of_completion
+                  support_item.completion_certificate = latestFollowup.completion_certificate || support_item.completion_certificate
+                  break;
+                case "Not reachable":
+                  support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
+                  if(latestFollowup.to_close_status){
+                    support_item.status = latestFollowup.to_close_status
+                  }
+                  break;
+                default:
+                  support_item.status = "Under process"
+                  break;
+              }
+            }
+          }
+        }
+    
+      }
+  
+      let open, under_process, form_submitted, rejected, completed, closed;
+      open = under_process = form_submitted = rejected = completed = closed = 0;
+      let total_no_of_support = 0
+      if (frm.selected_doc.scheme_table) {
+        for (item of frm.selected_doc.scheme_table) {
+          // global_data.push(item)
+          ++total_no_of_support
+          if (item.status === 'Open') {
+            ++open
+          } else if (item.status === 'Under process') {
+            ++under_process
+          } else if (item.status === 'Form submitted') {
+            ++form_submitted
+          } else if (item.status === 'Rejected') {
+            ++rejected
+          } else if (item.status === 'Completed') {
+            ++completed
+          } else {
+            ++closed
+          }
+        }
+      }
+      let numberic_overall_status = (completed + rejected) + '/' + (completed + rejected + form_submitted + under_process + open)
+      frm.doc.numeric_overall_status = numberic_overall_status;
+      if (total_no_of_support === open) {
+        frm.doc.overall_status = 'Open'
+      } else if (total_no_of_support === completed) {
+        frm.doc.overall_status = 'Completed'
+      } else {
+        if (total_no_of_support === open + under_process + form_submitted) {
+          frm.doc.overall_status = 'Open'
+        } else if (total_no_of_support === completed + closed + rejected) {
+          frm.doc.overall_status = 'Completed'
+        } else {
+          frm.doc.overall_status = 'Partially completed'
+        }
       }
 
     },
@@ -250,13 +370,14 @@ frappe.ui.form.on("Beneficiary Profiling", {
 });
 // ********************* Support CHILD Table***********************
 frappe.ui.form.on('Scheme Child', {
-  support_table_add:function(frm ,  cdt, cdn){
+  scheme_table_add:function(frm ,  cdt, cdn){
+    // get_milestone_category(frm)
     let row = frappe.get_doc(cdt, cdn);
     console.log(row)
   },
-  support_type: function (frm, cdt, cdn) {
+  milestone_category: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    get_support_list(frm, row.support_type)
+    get_scheme_list(frm, row.milestone_category)
 
   },
   application_submitted: function (frm, cdt, cdn) {
@@ -274,5 +395,15 @@ frappe.ui.form.on('Scheme Child', {
 // ********************* FOLLOW UP CHILD Table***********************
 
 frappe.ui.form.on('Follow Up Child', {
+  follow_up_table_add(frm, cdt, cdn) {
+    let row = frappe.get_doc(cdt, cdn);
+    console.log("kkkk")
+    let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.specific_support_type);
+    row.follow_up_date = frappe.datetime.get_today()
+    frm.fields_dict.followup_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
+  },
+  follow_up_date:function(frm,  cdt , cdn){
+    console.log(frm)
+  }
 
 })

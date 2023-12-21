@@ -54,11 +54,11 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:doc.type_of_the_scheme ==\"State\"",
+   "depends_on": "eval:doc.type_of_the_scheme !=\"State\"",
    "fieldname": "state",
    "fieldtype": "Link",
    "label": "State",
-   "mandatory_depends_on": "eval:doc.type_of_the_scheme ==\"State\"",
+   "mandatory_depends_on": "eval:doc.type_of_the_scheme !=\"State\"",
    "options": "State"
   },
   {
@@ -74,13 +74,13 @@
    "fieldtype": "Long Text",
    "in_list_view": 1,
    "label": "Objective of the scheme",
-   "options": "Support category"
+   "options": "Milestone category"
   },
   {
    "fieldname": "milestone",
    "fieldtype": "Link",
    "label": "Milestone",
-   "options": "Milestone"
+   "options": "Milestone category"
   },
   {
    "fieldname": "mode_of_application",
@@ -106,7 +106,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-21 14:13:56.189000",
+ "modified": "2023-12-21 17:07:37.260964",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
