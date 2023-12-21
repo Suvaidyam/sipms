@@ -32,7 +32,7 @@ class family:
             return family_doc
         
 
-    def delete(beneficiary):
-        print("kk")
-
-    
+    def delete_family(beneficiary):
+        delate_family = frappe.db.delete("Family", {
+                        "name": beneficiary.contact_number})   
+        return delate_family
