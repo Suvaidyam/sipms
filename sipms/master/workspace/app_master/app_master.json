@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "App Master",
  "links": [],
- "modified": "2023-12-21 17:05:19.317601",
+ "modified": "2023-12-21 19:09:44.293730",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "App Master",
@@ -26,7 +26,7 @@
    "role": "Administrator"
   }
  ],
- "sequence_id": 2.0,
+ "sequence_id": 1.0,
  "shortcuts": [
   {
    "color": "Grey",
