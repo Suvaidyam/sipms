@@ -4,20 +4,17 @@
 import frappe
 from frappe.model.document import Document
 from sipms.services.family import family
-
+ 
 
 class BeneficiaryProfiling(Document):
 	def after_insert(self):
-		beneficiary = frappe.get_doc("Beneficiary Profiling" , self.name)
 		print(self.has_anyone_from_your_family_visisted_before)
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
-			family.create(self)
-			beneficiary.family = family.create
-			beneficiary.save()
+			family_doc = family.create(self)
+			frappe.db.set_value('Beneficiary Profiling', self.name, 'family', family_doc.name, update_modified=False)
+	
 
 	def on_update(self):
-		beneficiary = frappe.get_doc("Beneficiary Profiling" , self.name)
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
-			family.update(self)
-			beneficiary.family = family.update
-			# beneficiary.save()
+			family_doc = family.update(self)
+			frappe.db.set_value('Beneficiary Profiling', self.name, 'family', family_doc.name, update_modified=False)
