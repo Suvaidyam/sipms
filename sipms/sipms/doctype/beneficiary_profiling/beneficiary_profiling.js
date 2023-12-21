@@ -139,9 +139,18 @@ function hide_advance_search(frm ,list){
 frappe.ui.form.on("Beneficiary Profiling", {
     /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
     before_save: function(frm){
+      // check alternate mobile number digits
+      if(frm.doc.alternate_contact_number < 4){
+        frm.doc.alternate_contact_number = ''
+      }
 
     },
 	refresh(frm) {
+    // check alternate mobile number digits
+    // if(!frm.doc.alternate_contact_number){
+    //   frm.doc.alternate_contact_number = '+91-'
+    //   refresh_field("alternate_contact_number")
+    // }
         // set  defult date of visit 
         if(frm.doc.__islocal){
             frm.set_value('date_of_visit', frappe.datetime.get_today());
