@@ -42,7 +42,7 @@
  "modified": "2023-11-15 07:51:25.574737",
  "modified_by": "Administrator",
  "module": "SIPMS",
- "name": "Family",
+ "name": "Primary Member",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Camp(Document):
+class Support(Document):
 	pass

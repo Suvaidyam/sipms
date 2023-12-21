@@ -27,14 +27,13 @@
   "name_of_the_concerned_help_desk_member",
   "column_break_tgpw",
   "are_you_a_person_with_disability_pwd",
-  "pwd_category",
+  "what_is_the_extent_of_your_disability",
   "annual_income",
   "fathers_name",
   "mothers_name",
-  "mode_of_reach_out",
-  "select_camp",
+  "source_of_information",
   "has_anyone_from_your_family_visisted_before",
-  "family",
+  "select_primary_member",
   "tab_2_tab",
   "current_address_section",
   "current_address_column",
@@ -88,7 +87,8 @@
   {
    "fieldname": "completed_age",
    "fieldtype": "Int",
-   "label": "Completed age"
+   "label": "Completed age",
+   "reqd": 1
   },
   {
    "default": "+91-",
@@ -187,16 +187,8 @@
    "reqd": 1
   },
   {
-   "depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'",
-   "fieldname": "pwd_category",
-   "fieldtype": "Link",
-   "label": "PWD category",
-   "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'",
-   "options": "PWD master"
-  },
-  {
    "fieldname": "annual_income",
-   "fieldtype": "Int",
+   "fieldtype": "Currency",
    "label": "Annual income",
    "non_negative": 1,
    "reqd": 1
@@ -214,28 +206,12 @@
    "reqd": 1
   },
   {
-   "fieldname": "mode_of_reach_out",
-   "fieldtype": "Select",
-   "label": "Mode of reach out",
-   "options": "\nAwareness session\nCamps\nCommunity meeting\nOne to one interaction with HD members\nTraining",
-   "reqd": 1
-  },
-  {
    "default": "No",
    "fieldname": "has_anyone_from_your_family_visisted_before",
    "fieldtype": "Select",
    "label": "Has anyone from your family visisted before?",
    "options": "Yes\nNo",
    "reqd": 1
-  },
-  {
-   "depends_on": "eval:doc.has_anyone_from_your_family_visisted_before == \"Yes\"",
-   "fieldname": "family",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Family",
-   "mandatory_depends_on": "eval:doc.has_anyone_from_your_family_visisted_before == \"Yes\"",
-   "options": "Family"
   },
   {
    "fieldname": "tab_2_tab",
@@ -322,6 +298,7 @@
    "reqd": 1
   },
   {
+   "default": "No",
    "fieldname": "do_you_have_any_id_documents",
    "fieldtype": "Select",
    "label": "Do you have any ID documents?",
@@ -338,14 +315,6 @@
    "fieldname": "current_address_section",
    "fieldtype": "Section Break",
    "label": "Current address"
-  },
-  {
-   "depends_on": "eval:doc.mode_of_reach_out ==\"Camps\"",
-   "fieldname": "select_camp",
-   "fieldtype": "Link",
-   "label": "Select Camp",
-   "mandatory_depends_on": "eval:doc.mode_of_reach_out ==\"Camps\"",
-   "options": "Camp"
   },
   {
    "fieldname": "support_tab",
@@ -366,11 +335,34 @@
    "fieldname": "follow_up_table",
    "fieldtype": "Table",
    "options": "Follow Up Child"
+  },
+  {
+   "depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'",
+   "fieldname": "what_is_the_extent_of_your_disability",
+   "fieldtype": "Data",
+   "label": "What is the extent of your disability?",
+   "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'"
+  },
+  {
+   "fieldname": "source_of_information",
+   "fieldtype": "Select",
+   "label": "Source of information",
+   "options": "\nAwareness session\nAadhar camps\nABHA card camps\nCommunity meeting\nOne to one interaction\nTraining\nOthers",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.has_anyone_from_your_family_visisted_before == \"Yes\"",
+   "fieldname": "select_primary_member",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Select primary member",
+   "mandatory_depends_on": "eval:doc.has_anyone_from_your_family_visisted_before == \"Yes\"",
+   "options": "Primary Member"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-03 16:25:16.067736",
+ "modified": "2023-12-21 13:27:48.232895",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
