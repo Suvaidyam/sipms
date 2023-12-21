@@ -18,3 +18,5 @@ class BeneficiaryProfiling(Document):
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
 			family_doc = family.update(self)
 			frappe.db.set_value('Beneficiary Profiling', self.name, 'family', family_doc.name, update_modified=False)
+		else:
+			family.delete_family(self)
