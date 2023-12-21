@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Family(Document):
+class PrimaryMember(Document):
 	pass

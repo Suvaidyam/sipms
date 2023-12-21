@@ -138,7 +138,7 @@ function get_support_list(frm, support_type) {
       doctype: 'Support',
       txt: '',
       filters: [
-        ['Support', 'support_type', '=', support_type],
+        ['Support', 'support_category', '=', support_type],
       ],
       page_length: 100,  // Adjust the number of results per page as needed
     },
@@ -254,9 +254,10 @@ frappe.ui.form.on('Support Child', {
     let row = frappe.get_doc(cdt, cdn);
     console.log(row)
   },
-  reason_of_application:function(frm , cdt, cdn){
+  support_type: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    console.log(row)
+    get_support_list(frm, row.support_type)
+
   },
   application_submitted: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
@@ -266,5 +267,12 @@ frappe.ui.form.on('Support Child', {
     }else if(row.application_submitted == "Completed"){
       createDialog(row, dialogsConfig.document_completed_frm_support).show();
     }
-  }
+  },
+  
+})
+
+// ********************* FOLLOW UP CHILD Table***********************
+
+frappe.ui.form.on('Follow Up Child', {
+  
 })
