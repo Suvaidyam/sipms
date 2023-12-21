@@ -1,88 +1,135 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // For license information, please see license.txt
-let support__document_sub = []
-let document_submitted = new frappe.ui.Dialog({
-  title: 'Enter details for Support',
-  fields: [
-    {
-      label: 'Date of application',
-      fieldname: 'date_of_application',
-      fieldtype: 'Date',
-      reqd: 1,
-    },
-    {
-      label: 'Application number',
-      fieldname: 'application_number',
-      fieldtype: 'Data'
-    },
-    {
-      label: 'Amount paid',
-      fieldname: 'amount_paid',
-      fieldtype: 'Int'
-    },
-    {
-      label: 'Paid by',
-      fieldname: 'paid_by',
-      fieldtype: 'Select',
-      options: ["Self", "CSC"]
-    }
-  ],
-  size: 'small', // small, large, extra-large
-  primary_action_label: 'Save',
-  primary_action(values) {
-    support__document_sub = values
-    document_submitted.hide();
+const dialogsConfig = {
+  document_submitted: {
+    title: 'Enter details for Support',
+    fields: [
+      {
+        label: 'Date of application',
+        fieldname: 'date_of_application',
+        fieldtype: 'Date',
+        reqd: 1,
+        _doc: true
+      },
+      {
+        label: 'Application number',
+        fieldname: 'application_number',
+        fieldtype: 'Data',
+        _doc: true
+      },
+      {
+        label: 'Amount paid',
+        fieldname: 'amount_paid',
+        fieldtype: 'Int',
+        _doc: true
+      },
+      {
+        label: 'Paid by',
+        fieldname: 'paid_by',
+        fieldtype: 'Select',
+        options: ["Self", "CSC"],
+        _doc: true
+      }
+    ]
+  },
+  document_completed_frm_support: {
+    title: 'Enter details for Support',
+    fields: [
+      {
+        label: 'Date of application',
+        fieldname: 'date_of_application',
+        fieldtype: 'Date',
+        reqd: 1,
+        _doc: true
+      },
+      {
+        label: 'Application number',
+        fieldname: 'application_number',
+        fieldtype: 'Data',
+        _doc: true
+      },
+      {
+        label: 'Amount paid',
+        fieldname: 'amount_paid',
+        fieldtype: 'Int',
+        _doc: true
+      },
+      {
+        label: 'Paid by',
+        fieldname: 'paid_by',
+        fieldtype: 'Select',
+        options: ["Self", "CSC"],
+        _doc: true
+      },
+      {
+        label: 'Date of completion',
+        fieldname: 'date_of_completion',
+        fieldtype: 'Date',
+        reqd: 1,
+        _doc: true
+      },
+      {
+        label: 'Completion certificate',
+        fieldname: 'completion_certificate',
+        fieldtype: 'Attach',
+        _doc: true
+      }
+    ]
+  },
+  document_completed: {
+    title: 'Enter details for Support',
+    fields: [
+      {
+        label: 'Date of completion',
+        fieldname: 'date_of_completion',
+        fieldtype: 'Date',
+        reqd: 1,
+        _doc: true
+      },
+      {
+        label: 'Completion certificate',
+        fieldname: 'completion_certificate',
+        fieldtype: 'Attach',
+        _doc: true
+      }
+    ]
+  },
+  document_rejected: {
+    title: 'Enter details for Support',
+    fields: [
+      {
+        label: 'Date of rejection',
+        fieldname: 'date_of_rejection',
+        fieldtype: 'Date',
+        reqd: 1,
+        _doc: true
+      },
+      {
+        label: 'Reason of rejection',
+        fieldname: 'reason_of_rejection',
+        fieldtype: 'Data',
+        reqd: 1,
+        _doc: true
+      }
+    ]
   }
-});
-let support__document_com = []
-let document_completed = new frappe.ui.Dialog({
-  title: 'Enter details for Support',
-  fields: [
-    {
-      label: 'Date of completion',
-      fieldname: 'date_of_completion',
-      fieldtype: 'Date',
-      reqd: 1,
-    },
-    {
-      label: 'Completion certificate',
-      fieldname: 'completion_certificate',
-      fieldtype: 'Attach'
+}
+const createDialog = (_doc, config) => {
+  return new frappe.ui.Dialog({
+    title: config.title,
+    fields: config.fields,
+    size: 'small', // small, large, extra-large
+    primary_action_label: 'Save',
+    primary_action(obj) {
+      let fields = config.fields.filter(f => f._doc).map(e => e.fieldname)
+      for (let field of fields) {
+        if (obj[field])
+          _doc[field] = obj[field]
+      }
+      this.hide()
     }
-  ],
-  size: 'small', // small, large, extra-large
-  primary_action_label: 'Save',
-  primary_action(values) {
-    support__document_com = values
-    console.log("save")
-    document_completed.hide();
-  }
-});
-let support__document_rej = []
-let document_rejected = new frappe.ui.Dialog({
-  title: 'Enter details for Support',
-  fields: [
-    {
-      label: 'Date of rejection',
-      fieldname: 'date_of_rejection',
-      fieldtype: 'Date',
-      reqd: 1,
-    },
-    {
-      label: 'Reason of rejection',
-      fieldname: 'reason_of_rejection',
-      fieldtype: 'Data'
-    }
-  ],
-  size: 'small', // small, large, extra-large
-  primary_action_label: 'Save',
-  primary_action(values) {
-    support__document_rej = values
-    console.log("save")
-    document_rejected.hide();
-  }
-});
-
+  });
+}
 // API calling for support and 
 function get_support_list(frm, support_type) {
   frappe.call({
@@ -201,14 +248,24 @@ frappe.ui.form.on("Beneficiary Profiling", {
       },
 
 });
-
+// ********************* Support CHILD Table***********************
 frappe.ui.form.on('Support Child', {
   support_table_add:function(frm ,  cdt, cdn){
     let row = frappe.get_doc(cdt, cdn);
-    get_support_types(frm)
+    console.log(row)
+    // get_support_types(frm)
   },
   reason_of_application:function(frm , cdt, cdn){
     let row = frappe.get_doc(cdt, cdn);
     console.log(row)
+  },
+  application_submitted: function (frm, cdt, cdn) {
+    let row = frappe.get_doc(cdt, cdn);
+    if(row.application_submitted == "Yes"){
+      row.status =''
+      createDialog(row, dialogsConfig.document_submitted).show();
+    }else if(row.application_submitted == "Completed"){
+      createDialog(row, dialogsConfig.document_completed_frm_support).show();
+    }
   }
 })

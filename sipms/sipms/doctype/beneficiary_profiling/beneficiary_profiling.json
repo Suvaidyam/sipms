@@ -322,6 +322,7 @@
    "reqd": 1
   },
   {
+   "default": "No",
    "fieldname": "do_you_have_any_id_documents",
    "fieldtype": "Select",
    "label": "Do you have any ID documents?",
@@ -370,7 +371,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-03 16:25:16.067736",
+ "modified": "2023-12-21 11:54:17.750110",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
