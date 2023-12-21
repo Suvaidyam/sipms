@@ -51,8 +51,10 @@
   "id_documents_tab",
   "do_you_have_any_id_documents",
   "id_table_list",
-  "support_tab",
-  "support_table",
+  "overall_status",
+  "numeric_overall_status",
+  "scheme_tab",
+  "scheme_table",
   "follow_up_tab",
   "follow_up_table"
  ],
@@ -317,16 +319,6 @@
    "label": "Current address"
   },
   {
-   "fieldname": "support_tab",
-   "fieldtype": "Tab Break",
-   "label": "Scheme"
-  },
-  {
-   "fieldname": "support_table",
-   "fieldtype": "Table",
-   "options": "Scheme Child"
-  },
-  {
    "fieldname": "follow_up_tab",
    "fieldtype": "Tab Break",
    "label": "Follow-up"
@@ -358,11 +350,31 @@
    "label": "Select primary member",
    "mandatory_depends_on": "eval:doc.has_anyone_from_your_family_visisted_before == \"Yes\"",
    "options": "Primary Member"
+  },
+  {
+   "fieldname": "scheme_tab",
+   "fieldtype": "Tab Break",
+   "label": "Scheme"
+  },
+  {
+   "fieldname": "scheme_table",
+   "fieldtype": "Table",
+   "options": "Scheme Child"
+  },
+  {
+   "fieldname": "overall_status",
+   "fieldtype": "Data",
+   "label": "Overall status"
+  },
+  {
+   "fieldname": "numeric_overall_status",
+   "fieldtype": "Data",
+   "label": "Numeric overall status"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-21 13:42:08.920000",
+ "modified": "2023-12-21 18:03:45.958946",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
