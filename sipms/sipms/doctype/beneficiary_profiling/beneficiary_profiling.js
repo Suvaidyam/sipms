@@ -398,12 +398,75 @@ frappe.ui.form.on('Follow Up Child', {
   follow_up_table_add(frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     console.log("kkkk")
-    let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.specific_support_type);
+    let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.milestone_category);
     row.follow_up_date = frappe.datetime.get_today()
-    frm.fields_dict.followup_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
+    frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },
-  follow_up_date:function(frm,  cdt , cdn){
-    console.log(frm)
+  name_of_the_scheme: function (frm, cdt, cdn) {
+    let row = frappe.get_doc(cdt, cdn);
+    let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
+    let latestSupport = supports.length ? supports[supports.length - 1] : null;
+    if (latestSupport) {
+      row.parent_ref = latestSupport.name
+    }
+    for (support_items of frm.doc.scheme_table) {
+      if (row.support_name == support_items.specific_support_type) {
+        if (support_items.status === "Open" && support_items.application_submitted == "No") {
+          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_with", "options", ["Beneficiary"]);
+          row.follow_up_with = "Beneficiary"
+          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Interested", "Not interested", "Document submitted", "Not reachable"]);
+        } else if (support_items.status === "Under process" && support_items.application_submitted == "Yes") {
+          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_with", "options", ["Beneficiary", "Government department", "Government website", "Others"]);
+          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Not reachable", "Under process", "Additional info required", "Completed", "Rejected"]);
+        }else if (support_items.status === "Closed" && support_items.application_submitted == "Yes"){
+          // last call update  ?? confusion changes
+          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_with", "options", ["Beneficiary", "Government department", "Government website", "Others"]);
+          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Not reachable", "Under process", "Additional info required", "Completed", "Rejected"]);
+        }else if(support_items.status === "Closed" && support_items.application_submitted == "No"){
+          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_with", "options", ["Beneficiary"]);
+          row.follow_up_with = "Beneficiary"
+          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Interested", "Not interested", "Document submitted", "Not reachable"]);
+        }
+      }
+    }
+  },
+  follow_up_with: function (frm, cdt, cdn) {
+    let row = frappe.get_doc(cdt, cdn);
+    let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
+    let latestSupport = supports.length ? supports[supports.length - 1] : null;
+    if (row.follow_up_with != "Beneficiary" && latestSupport.application_submitted == "Yes") {
+      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Not reachable" ,"Under process", "Additional info required", "Completed", "Rejected"]);
+    }else if(row.follow_up_with == "Beneficiary" && latestSupport.application_submitted == "Yes"){
+      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Not reachable", "Under process", "Additional info required", "Completed", "Rejected"]);
+    }else if(row.follow_up_with == "Beneficiary" && latestSupport.application_submitted == "No"){
+      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Interested", "Not interested", "Document submitted", "Not reachable"]);
+    }
+  },
+  follow_up_status: function (frm, cdt, cdn) {
+    let row = frappe.get_doc(cdt, cdn);
+    let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
+    let latestSupport = supports.length ? supports[supports.length - 1] : null;
+    if (row.follow_up_status === "Document submitted") {
+      createDialog(row, dialogsConfig.document_submitted).show();
+    } else if (row.follow_up_status === "Completed") {
+      createDialog(row, dialogsConfig.document_completed).show();
+    } else if (row.follow_up_status === "Rejected") {
+      createDialog(row, dialogsConfig.document_rejected).show();
+    } else if (row.follow_up_status === "Not reachable" && latestSupport.status != "Closed") {
+      let followups = frm.doc.follow_up_table.filter(f => f.parent_ref == row.parent_ref && f.support_name == row.support_name && f.follow_up_status == "Not reachable")
+      if (followups.length >= 2) {
+        frappe.warn('Do you want to close the support?',
+          `The follow-up status is "Not reachable" ${followups.length} times`,
+          () => {
+            row.to_close_status = "Closed"
+          },
+          'Close',
+          true // Sets dialog as minimizable
+        )
+
+      }
+      //  show popup and continue and close if more than two times
+    }
   }
 
 })
