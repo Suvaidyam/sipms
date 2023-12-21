@@ -319,12 +319,12 @@
   {
    "fieldname": "support_tab",
    "fieldtype": "Tab Break",
-   "label": "Support"
+   "label": "Scheme"
   },
   {
    "fieldname": "support_table",
    "fieldtype": "Table",
-   "options": "Support Child"
+   "options": "Scheme Child"
   },
   {
    "fieldname": "follow_up_tab",
@@ -362,7 +362,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-21 13:27:48.232895",
+ "modified": "2023-12-21 13:42:08.920000",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

@@ -249,7 +249,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
 });
 // ********************* Support CHILD Table***********************
-frappe.ui.form.on('Support Child', {
+frappe.ui.form.on('Scheme Child', {
   support_table_add:function(frm ,  cdt, cdn){
     let row = frappe.get_doc(cdt, cdn);
     console.log(row)
@@ -274,5 +274,5 @@ frappe.ui.form.on('Support Child', {
 // ********************* FOLLOW UP CHILD Table***********************
 
 frappe.ui.form.on('Follow Up Child', {
-  
+
 })
