@@ -11,10 +11,12 @@ class BeneficiaryProfiling(Document):
 		print(self.has_anyone_from_your_family_visisted_before)
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
 			family_doc = family.create(self)
-			frappe.db.set_value('Beneficiary Profiling', self.name, 'family', family_doc.name, update_modified=False)
+			frappe.db.set_value('Beneficiary Profiling', self.name, 'select_primary_member', family_doc.name, update_modified=False)
 	
 
 	def on_update(self):
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
 			family_doc = family.update(self)
-			frappe.db.set_value('Beneficiary Profiling', self.name, 'family', family_doc.name, update_modified=False)
+			frappe.db.set_value('Beneficiary Profiling', self.name, 'select_primary_member', family_doc.name, update_modified=False)
+		else:
+			family.delete_family(self)

@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"QQhj-PNDuW\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Geo Master</b></span>\",\"col\":12}},{\"id\":\"FMmf5hKd3u\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State\",\"col\":3}},{\"id\":\"i7zHIMK4zU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"District\",\"col\":3}},{\"id\":\"SHvbdVwbQV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Block\",\"col\":3}},{\"id\":\"RZLdOnV413\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Village\",\"col\":3}},{\"id\":\"aXg7o9TIDl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Master</b></span>\",\"col\":12}},{\"id\":\"gBmArJ1mPy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ID Document\",\"col\":3}},{\"id\":\"eojmteDdwA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pwd Master\",\"col\":3}},{\"id\":\"v1tOX1yqVD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Social Vulnerable Category\",\"col\":3}},{\"id\":\"hspVBls5tq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Occupation\",\"col\":3}},{\"id\":\"Xi0liL29xs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Marital Status\",\"col\":3}},{\"id\":\"gWJMXyXHt8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Education\",\"col\":3}},{\"id\":\"YwH0Y-ayyH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Religion\",\"col\":3}},{\"id\":\"OddPJNClJR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Caste Category\",\"col\":3}}]",
+ "content": "[{\"id\":\"QQhj-PNDuW\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Geo Master</b></span>\",\"col\":12}},{\"id\":\"FMmf5hKd3u\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State\",\"col\":3}},{\"id\":\"i7zHIMK4zU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"District\",\"col\":3}},{\"id\":\"SHvbdVwbQV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Block\",\"col\":3}},{\"id\":\"RZLdOnV413\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Village\",\"col\":3}},{\"id\":\"aXg7o9TIDl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Master</b></span>\",\"col\":12}},{\"id\":\"gBmArJ1mPy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ID Document\",\"col\":3}},{\"id\":\"eojmteDdwA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pwd Master\",\"col\":3}},{\"id\":\"v1tOX1yqVD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Social Vulnerable Category\",\"col\":3}},{\"id\":\"hspVBls5tq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Occupation\",\"col\":3}},{\"id\":\"Xi0liL29xs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Marital Status\",\"col\":3}},{\"id\":\"gWJMXyXHt8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Education\",\"col\":3}},{\"id\":\"YwH0Y-ayyH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Religion\",\"col\":3}},{\"id\":\"OddPJNClJR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Caste Category\",\"col\":3}},{\"id\":\"4hoE3iTiNK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Milestone Category\",\"col\":3}},{\"id\":\"rqxoVlbWAJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Scheme\",\"col\":3}}]",
  "creation": "2023-09-23 15:47:37.607170",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "App Master",
  "links": [],
- "modified": "2023-12-08 13:12:22.932397",
+ "modified": "2023-12-21 19:09:44.293730",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "App Master",
@@ -26,8 +26,22 @@
    "role": "Administrator"
   }
  ],
- "sequence_id": 2.0,
+ "sequence_id": 1.0,
  "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Scheme",
+   "link_to": "Scheme",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Milestone Category",
+   "link_to": "Milestone category",
+   "type": "DocType"
+  },
   {
    "color": "Grey",
    "doc_view": "List",
