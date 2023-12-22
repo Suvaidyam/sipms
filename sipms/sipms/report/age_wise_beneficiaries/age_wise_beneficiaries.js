@@ -36,6 +36,9 @@ if (!frappe.user_roles.includes("MIS executive") || frappe.user_roles.includes("
 	}
 	)
 }
-frappe.query_reports["Religion Wise Beneficaries"] = {
+frappe.query_reports["Age Wise Beneficiaries"] = {
 	filters: filters
 };
+
+
+

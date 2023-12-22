@@ -1,14 +1,13 @@
 # Copyright (c) 2023, suvaidyam and contributors
 # For license information, please see license.txt
-
 import frappe
 from sipms.utils.filter import Filter
 
 def execute(filters=None):
     columns = [
         {
-            "fieldname": "Religion",
-            "label": "Religion",
+            "fieldname": "Occupation",
+            "label": "Occupation",
             "fieldtype": "Data",
             "width": 200
         },
@@ -29,13 +28,13 @@ def execute(filters=None):
 
     sql_query = f"""
         SELECT
-            religion AS Religion,
+            current_occupation AS Occupation,
             COUNT(*) AS Number_of_Beneficiaries
         FROM
             `tabBeneficiary Profiling`
         {condition_str}
         GROUP BY
-            religion
+            current_occupation
     """
 
     data = frappe.db.sql(sql_query, as_dict=True)
