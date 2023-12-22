@@ -226,10 +226,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
         }
       }
       // follow up status manage
-      if (frm.selected_doc.followup_table) {
+      if (frm.selected_doc.follow_up_table) {
         for (support_item of frm.selected_doc.scheme_table) {
           if (!['Completed'].includes(support_item.status)) {
-            let followups = frm.selected_doc.followup_table.filter(f => f.parent_ref == support_item?.name)
+            let followups = frm.selected_doc.follow_up_table.filter(f => f.parent_ref == support_item?.name)
             let latestFollowup = followups.length ? followups[(followups.length - 1)] : null
             if (latestFollowup) {
               switch (latestFollowup.follow_up_status) {
@@ -261,6 +261,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
                   support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
                   if(latestFollowup.to_close_status){
                     support_item.status = latestFollowup.to_close_status
+                    console.log("closed")
                   }
                   break;
                 default:
@@ -459,6 +460,7 @@ frappe.ui.form.on('Follow Up Child', {
           `The follow-up status is "Not reachable" ${followups.length} times`,
           () => {
             row.to_close_status = "Closed"
+            console.log(row , "row")
           },
           'Close',
           true // Sets dialog as minimizable
