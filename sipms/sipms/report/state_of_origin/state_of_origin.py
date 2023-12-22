@@ -8,8 +8,8 @@ def execute(filters=None):
 	# frappe.errprint(filters)
 	columns = [
 		{
-			"fieldname":"education",
-			"label":"Education of beneficiary",
+			"fieldname":"state",
+			"label":"State",
 			"fieldtype":"Data",
 			"width":400
 		},
@@ -20,15 +20,12 @@ def execute(filters=None):
 			"width":200
 		}
 	]
-	new_filters = Filter.set_report_filters(filters, 'date_of_visit')
 
+	new_filters = Filter.set_report_filters(filters, 'creation')
 
 	data = frappe.get_all("Beneficiary Profiling",
 	filters=new_filters,
-	fields=["education as education",'count(name) as count'],
-	group_by='education')
+	fields=["state_of_origin.state_name as state",'count(`tabBeneficiary Profiling`.name) as count'],
+	group_by='state')
 
-	for result in data:
-		if result.education is None:
-			result.education = 'None'
 	return columns, data
