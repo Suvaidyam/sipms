@@ -1,6 +1,23 @@
 {
- "charts": [],
- "content": "[{\"id\":\"6vDcYvdR5K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF BENEFICIARIES\",\"col\":3}},{\"id\":\"xdXxm17yLL\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF FAMILIES\",\"col\":3}},{\"id\":\"9aIJqm6tVJ\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Male\",\"col\":3}},{\"id\":\"pdYXzuoJ83\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Female\",\"col\":3}},{\"id\":\"EvTK0vILQF\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Beneficiaries</span>\",\"col\":12}}]",
+ "charts": [
+  {
+   "chart_name": "House Type Wise Beneficiaries",
+   "label": "House Type Wise Beneficiaries"
+  },
+  {
+   "chart_name": "Occupation Wise Beneficiaries",
+   "label": "Occupation Wise Beneficiaries"
+  },
+  {
+   "chart_name": "Age Wise Beneficiaries",
+   "label": "Age Wise Beneficiaries"
+  },
+  {
+   "chart_name": "Religion Wise Beneficaries",
+   "label": "Religion Wise Beneficaries"
+  }
+ ],
+ "content": "[{\"id\":\"6vDcYvdR5K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF BENEFICIARIES\",\"col\":3}},{\"id\":\"xdXxm17yLL\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF FAMILIES\",\"col\":3}},{\"id\":\"9aIJqm6tVJ\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Male\",\"col\":3}},{\"id\":\"pdYXzuoJ83\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Female\",\"col\":3}},{\"id\":\"EvTK0vILQF\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Beneficiaries</span>\",\"col\":12}},{\"id\":\"YRTmrFUaw8\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Age Wise Beneficiaries\",\"col\":6}},{\"id\":\"OnL0h1qlvu\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Occupation Wise Beneficiaries\",\"col\":6}},{\"id\":\"GxuwfhS5Xu\",\"type\":\"chart\",\"data\":{\"chart_name\":\"House Type Wise Beneficiaries\",\"col\":6}},{\"id\":\"ZWDsj6v9GU\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Religion Wise Beneficaries\",\"col\":6}}]",
  "creation": "2023-12-21 19:17:06.822003",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +30,7 @@
  "is_hidden": 0,
  "label": "Beneficiaries",
  "links": [],
- "modified": "2023-12-22 12:00:10.759477",
+ "modified": "2023-12-22 14:50:11.425559",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiaries",
