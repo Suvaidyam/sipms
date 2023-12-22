@@ -18,7 +18,8 @@ fixtures=[
     "Social vulnerable category",
     "PWD master",
     "ID Document",
-    "Occupation"
+    "Occupation",
+    "Role Profile"
 ]
 # Includes in <head>
 # ------------------
