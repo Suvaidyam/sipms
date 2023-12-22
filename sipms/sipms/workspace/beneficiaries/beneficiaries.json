@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"6vDcYvdR5K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF BENEFICIARIES\",\"col\":4}},{\"id\":\"xdXxm17yLL\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF FAMILIES\",\"col\":4}},{\"id\":\"EvTK0vILQF\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Beneficiaries</span>\",\"col\":12}}]",
+ "content": "[{\"id\":\"6vDcYvdR5K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF BENEFICIARIES\",\"col\":3}},{\"id\":\"xdXxm17yLL\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF FAMILIES\",\"col\":3}},{\"id\":\"9aIJqm6tVJ\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Male\",\"col\":3}},{\"id\":\"pdYXzuoJ83\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Female\",\"col\":3}},{\"id\":\"EvTK0vILQF\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Beneficiaries</span>\",\"col\":12}}]",
  "creation": "2023-12-21 19:17:06.822003",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,11 +13,19 @@
  "is_hidden": 0,
  "label": "Beneficiaries",
  "links": [],
- "modified": "2023-12-21 20:26:59.679598",
+ "modified": "2023-12-22 12:00:10.759477",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiaries",
  "number_cards": [
+  {
+   "label": "Total Female",
+   "number_card_name": "Total Female"
+  },
+  {
+   "label": "Total Male",
+   "number_card_name": "Total Male"
+  },
   {
    "label": "NUMBER OF FAMILIES",
    "number_card_name": "NUMBER OF FAMILIES"
