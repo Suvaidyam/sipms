@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"57OiTjigcG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports</span>\",\"col\":12}},{\"id\":\"kPH4cDiWK2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gender composition\",\"col\":3}},{\"id\":\"M7NDzjasg-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State of origin\",\"col\":3}},{\"id\":\"eCkvl_KIaB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Education composition\",\"col\":3}},{\"id\":\"blDeDcTYVu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Place of origin\",\"col\":3}},{\"id\":\"VQsrdIAOBU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Age Wise Beneficiaries\",\"col\":3}},{\"id\":\"1nhjHlMAvt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Occupation Wise Beneficiaries\",\"col\":3}},{\"id\":\"ZULovgUpIG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"House Type Wise Beneficiaries\",\"col\":6}},{\"id\":\"l1aIVwbTUx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Religion Wise Beneficaries\",\"col\":3}}]",
+ "content": "[{\"id\":\"57OiTjigcG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports</span>\",\"col\":12}},{\"id\":\"M7NDzjasg-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State of origin\",\"col\":3}},{\"id\":\"blDeDcTYVu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Place of origin\",\"col\":3}},{\"id\":\"eCkvl_KIaB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Education composition\",\"col\":3}},{\"id\":\"kPH4cDiWK2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gender composition\",\"col\":3}},{\"id\":\"VQsrdIAOBU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Age Wise Beneficiaries\",\"col\":3}},{\"id\":\"l1aIVwbTUx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Religion Wise Beneficaries\",\"col\":3}},{\"id\":\"1nhjHlMAvt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Occupation Wise Beneficiaries\",\"col\":3}},{\"id\":\"ZULovgUpIG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"House Type Wise Beneficiaries\",\"col\":3}},{\"id\":\"AbqRaxqmYH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Total Demands\",\"col\":3}},{\"id\":\"1ai-WmhJ6G\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Total Submitted Demands\",\"col\":3}},{\"id\":\"Y-l_7H3d6J\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Total Approved Demands\",\"col\":3}}]",
  "creation": "2023-12-21 19:09:40.349725",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Reports",
  "links": [],
- "modified": "2023-12-22 20:32:11.279555",
+ "modified": "2023-12-23 20:53:51.417586",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Reports",
@@ -28,6 +28,13 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "Total Demands",
+   "link_to": "Total Demands",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "State of origin",
    "link_to": "State of origin",
    "type": "Report"
@@ -37,6 +44,20 @@
    "doc_view": "List",
    "label": "Occupation Wise Beneficiaries",
    "link_to": "Occupation Wise Beneficiaries",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Total Submitted Demands",
+   "link_to": "Total Submitted Demands",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Total Approved Demands",
+   "link_to": "Total Approved Demands",
    "type": "Report"
   },
   {
