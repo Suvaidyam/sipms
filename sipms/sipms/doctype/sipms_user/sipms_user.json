@@ -11,6 +11,8 @@
   "role_profile",
   "column_break_itbc",
   "state",
+  "single_window",
+  "help_desk",
   "password",
   "confirm_password"
  ],
@@ -64,11 +66,21 @@
    "label": "State",
    "options": "State",
    "reqd": 1
+  },
+  {
+   "fieldname": "single_window",
+   "fieldtype": "Data",
+   "label": "Single Window"
+  },
+  {
+   "fieldname": "help_desk",
+   "fieldtype": "Data",
+   "label": "Help desk"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-22 21:29:00.892515",
+ "modified": "2023-12-23 07:46:55.042799",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms User",
