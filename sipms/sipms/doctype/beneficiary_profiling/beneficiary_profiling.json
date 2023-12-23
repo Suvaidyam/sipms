@@ -331,9 +331,10 @@
   {
    "depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'",
    "fieldname": "what_is_the_extent_of_your_disability",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "What is the extent of your disability?",
-   "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'"
+   "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'",
+   "options": "PWD master"
   },
   {
    "fieldname": "source_of_information",
@@ -374,7 +375,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-21 18:03:45.958946",
+ "modified": "2023-12-23 19:49:00.747056",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
