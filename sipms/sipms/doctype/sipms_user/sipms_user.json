@@ -55,8 +55,9 @@
   },
   {
    "fieldname": "confirm_password",
-   "fieldtype": "Password",
-   "label": "Confirm Password"
+   "fieldtype": "Data",
+   "label": "Confirm Password",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_itbc",
@@ -90,7 +91,7 @@
  "image_field": "user_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-23 10:12:12.395935",
+ "modified": "2023-12-23 10:47:47.516891",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms User",
