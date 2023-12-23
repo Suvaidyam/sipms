@@ -5,8 +5,16 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "email",
   "first_name",
-  "last_name"
+  "last_name",
+  "role_profile",
+  "column_break_itbc",
+  "state",
+  "single_window",
+  "help_desk",
+  "password",
+  "confirm_password"
  ],
  "fields": [
   {
@@ -22,11 +30,57 @@
    "in_list_view": 1,
    "label": "Last name",
    "reqd": 1
+  },
+  {
+   "fieldname": "role_profile",
+   "fieldtype": "Link",
+   "label": "Role Profile",
+   "options": "Role Profile",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Password",
+   "label": "Password",
+   "reqd": 1
+  },
+  {
+   "fieldname": "confirm_password",
+   "fieldtype": "Password",
+   "label": "Confirm Password",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_itbc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State",
+   "reqd": 1
+  },
+  {
+   "fieldname": "single_window",
+   "fieldtype": "Data",
+   "label": "Single Window"
+  },
+  {
+   "fieldname": "help_desk",
+   "fieldtype": "Data",
+   "label": "Help desk"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-22 20:37:52.884361",
+ "modified": "2023-12-23 07:46:55.042799",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms User",
