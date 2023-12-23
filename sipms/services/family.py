@@ -1,6 +1,5 @@
 import frappe
 
-
 class family:
     def create(beneficiary):
         family_doc = frappe.new_doc("Primary Member")
