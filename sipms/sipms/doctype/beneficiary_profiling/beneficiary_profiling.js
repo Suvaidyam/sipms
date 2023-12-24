@@ -131,28 +131,28 @@ const createDialog = (_doc, config) => {
   });
 }
 // API calling for support and 
-function get_scheme_list(frm, support_type) {
-  frappe.call({
-    method: 'frappe.desk.search.search_link',
-    args: {
-      doctype: 'Scheme',
-      txt: '',
-      filters: [
-        ['milestone', '=', support_type],
-      ],
-      page_length: 100,  // Adjust the number of results per page as needed
-    },
-    freeze: true,
-    freeze_message: __("Calling"),
-    callback: async function (response) {
-      let under_process_completed_ops = frm.doc.scheme_table.filter(f => (['Under process', 'Open'].includes(f.status))).map(m => m.specific_support_type)
-      // console.log("under_process_completed_ops", under_process_completed_ops)
-      let ops = response.results.filter(f => !under_process_completed_ops.includes(f.value))
-      console.log(" options", ops)
-      frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
-    }
-  });
-};
+// function get_scheme_list(frm, support_type) {
+//   frappe.call({
+//     method: 'frappe.desk.search.search_link',
+//     args: {
+//       doctype: 'Scheme',
+//       txt: '',
+//       filters: [
+//         ['milestone', '=', support_type],
+//       ],
+//       page_length: 100,  // Adjust the number of results per page as needed
+//     },
+//     freeze: true,
+//     freeze_message: __("Calling"),
+//     callback: async function (response) {
+//       let under_process_completed_ops = frm.doc.scheme_table.filter(f => (['Under process', 'Open'].includes(f.status))).map(m => m.specific_support_type)
+//       // console.log("under_process_completed_ops", under_process_completed_ops)
+//       let ops = response.results.filter(f => !under_process_completed_ops.includes(f.value))
+//       console.log(" options", ops)
+//       frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
+//     }
+//   });
+// };
 // //////////////////////////////////////////////////////////////////////
 // function get_milestone_category(frm) {
 //   frappe.call({
@@ -378,7 +378,7 @@ frappe.ui.form.on('Scheme Child', {
   },
   milestone_category: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    get_scheme_list(frm, row.milestone_category)
+    // get_scheme_list(frm, row.milestone_category)
 
   },
   application_submitted: function (frm, cdt, cdn) {
