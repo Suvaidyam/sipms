@@ -402,21 +402,25 @@
    "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
   },
   {
+   "depends_on": "eval:(frappe.session.user ==\"Administrator\" || frappe.session.user ==\"Admin\")",
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single Window",
+   "mandatory_depends_on": "eval:(frappe.session.user ==\"Administrator\" || frappe.session.user ==\"Admin\")",
    "options": "Single Window"
   },
   {
+   "depends_on": "eval:(frappe.session.user ==\"Administrator\" || frappe.session.user ==\"Admin\")",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
+   "mandatory_depends_on": "eval:(frappe.session.user ==\"Administrator\" || frappe.session.user ==\"Admin\")",
    "options": "Help Desk"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 14:25:06.977428",
+ "modified": "2023-12-24 16:14:04.690832",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

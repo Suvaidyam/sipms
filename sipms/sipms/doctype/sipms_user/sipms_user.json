@@ -99,7 +99,7 @@
  "image_field": "user_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 15:22:14.599581",
+ "modified": "2023-12-24 16:19:25.050767",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms User",
@@ -129,6 +129,33 @@
    "role": "Admin",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "MIS executive",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CSC Member",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Help-desk member",
+   "share": 1
   }
  ],
  "sort_field": "modified",
