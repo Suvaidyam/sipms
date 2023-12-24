@@ -273,6 +273,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
     },
 	refresh(frm) {
+    frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user
+    refresh_field("name_of_the_concerned_help_desk_member")
     // check alternate mobile number digits
     // if(!frm.doc.alternate_contact_number){
     //   frm.doc.alternate_contact_number = '+91-'

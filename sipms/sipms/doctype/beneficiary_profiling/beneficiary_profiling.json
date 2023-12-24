@@ -14,6 +14,7 @@
   "completed_age",
   "contact_number",
   "alternate_contact_number",
+  "single_windows",
   "name_of_help_desk",
   "column_break_ewit",
   "caste_category",
@@ -111,8 +112,9 @@
   },
   {
    "fieldname": "name_of_help_desk",
-   "fieldtype": "Data",
-   "label": "Name of Help-desk"
+   "fieldtype": "Link",
+   "label": "Name of Help-desk",
+   "options": "Help Desk"
   },
   {
    "fieldname": "column_break_ewit",
@@ -396,11 +398,17 @@
   {
    "fieldname": "column_break_htmx",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "single_windows",
+   "fieldtype": "Link",
+   "label": "Single Windows",
+   "options": "Single Window"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 09:17:25.106106",
+ "modified": "2023-12-24 10:56:18.469546",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
