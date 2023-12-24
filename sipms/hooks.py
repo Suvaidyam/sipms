@@ -21,7 +21,8 @@ fixtures=[
     "Occupation",
     "Role Profile",
     "Source Of Information",
-    "House Types"
+    "House Types",
+    "Gender"
 ]
 # Includes in <head>
 # ------------------
