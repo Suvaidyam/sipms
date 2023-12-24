@@ -36,6 +36,8 @@
   {
    "fieldname": "role_profile",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Role Profile",
    "options": "Role Profile",
    "reqd": 1
@@ -97,7 +99,7 @@
  "image_field": "user_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 10:34:43.730137",
+ "modified": "2023-12-24 15:22:14.599581",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms User",
@@ -113,6 +115,18 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Admin",
    "share": 1,
    "write": 1
   }
