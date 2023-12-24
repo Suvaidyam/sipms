@@ -326,6 +326,18 @@ frappe.ui.form.on("Beneficiary Profiling", {
           frm.set_value('completed_age', null)
         }
       },
+      same_as_above: function(frm){
+        if(frm.doc.same_as_above == '1'){
+        frm.doc.state_of_origin = frm.doc.state;
+        frm.doc.district_of_origin = frm.doc.district;
+        frm.doc.block = frm.doc.ward;
+        }else{
+        frm.doc.state_of_origin = '';
+        frm.doc.district_of_origin = '';
+        frm.doc.block = '';
+        }
+        frm.refresh()
+      }
 
 });
 // ********************* Support CHILD Table***********************
