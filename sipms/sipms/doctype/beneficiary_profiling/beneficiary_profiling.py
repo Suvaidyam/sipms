@@ -8,7 +8,11 @@ from sipms.services.family import family
 
 class BeneficiaryProfiling(Document):
 	def after_insert(self):
-		# source of informtion other logics 
+		# source of informtion other logics
+		if(self.new_source_of_information):
+			new_source_of_information_doc = frappe.new_doc("Current Occupation")
+			new_source_of_information_doc.source_name = self.new_source_of_information
+			new_source_of_information_doc.save()
 
 		# other logics for other house types
 		print(self.has_anyone_from_your_family_visisted_before)
