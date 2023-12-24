@@ -34,7 +34,7 @@
  "is_hidden": 0,
  "label": "Beneficiaries",
  "links": [],
- "modified": "2023-12-24 10:00:01.950866",
+ "modified": "2023-12-24 12:25:34.456204",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiaries",
@@ -60,7 +60,20 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "CSC Member"
+  },
+  {
+   "role": "Help-desk member"
+  },
+  {
+   "role": "MIS executive"
+  }
+ ],
  "sequence_id": 1.0,
  "shortcuts": [],
  "title": "Beneficiaries"

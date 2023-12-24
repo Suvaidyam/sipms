@@ -22,10 +22,19 @@ fixtures=[
     "Role Profile",
     "Source Of Information",
     "House Types",
-    "Gender"
+    "Gender",
+    "Role"
 ]
 # Includes in <head>
 # ------------------
+permission_query_conditions = {
+    "Beneficiary Profiling": "sipms.middlewares.beneficiary.list_query",
+    "Primary Member": "sipms.middlewares.family.list_query",
+    # "Current location":"epms.middlewares.current_location.list_query",
+    # "User":"epms.middlewares.user.list_query",
+    # "Role Profile":"epms.middlewares.role_profile.list_query"
+
+}
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/sipms/css/sipms.css"

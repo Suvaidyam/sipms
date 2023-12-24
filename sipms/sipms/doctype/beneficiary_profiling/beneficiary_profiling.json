@@ -14,7 +14,7 @@
   "completed_age",
   "contact_number",
   "alternate_contact_number",
-  "single_windows",
+  "single_window",
   "name_of_help_desk",
   "column_break_ewit",
   "caste_category",
@@ -40,6 +40,7 @@
   "current_address_section",
   "current_address_column",
   "current_house_type",
+  "add_house_type",
   "state",
   "district",
   "column_break_hspz",
@@ -400,15 +401,22 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "single_windows",
+   "depends_on": "eval:doc.current_house_type ==\"Others\"",
+   "fieldname": "add_house_type",
+   "fieldtype": "Data",
+   "label": "Add house type",
+   "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
+  },
+  {
+   "fieldname": "single_window",
    "fieldtype": "Link",
-   "label": "Single Windows",
+   "label": "Single Window",
    "options": "Single Window"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 10:56:18.469546",
+ "modified": "2023-12-24 12:36:06.877529",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
@@ -424,6 +432,48 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Admin",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CSC Member",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Help-desk member",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "MIS executive",
    "share": 1,
    "write": 1
   }

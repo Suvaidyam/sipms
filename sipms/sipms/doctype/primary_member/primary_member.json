@@ -10,7 +10,8 @@
  "field_order": [
   "name_of_head_of_family",
   "name_of_parents",
-  "phone_no"
+  "phone_no",
+  "state"
  ],
  "fields": [
   {
@@ -35,11 +36,17 @@
    "fieldtype": "Data",
    "label": "Name of Parents",
    "read_only": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-15 07:51:25.574737",
+ "modified": "2023-12-24 12:14:34.735380",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Primary Member",
