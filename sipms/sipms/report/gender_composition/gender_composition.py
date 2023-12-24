@@ -20,7 +20,7 @@ def execute(filters=None):
 		"width":200
 		}
 	]
-	new_filters = Filter.set_report_filters(filters, 'registration_date')
+	new_filters = Filter.set_report_filters(filters, 'creation')
 	gender = frappe.get_all("Beneficiary Profiling",
 	filters=new_filters,
 	fields=["gender as gender",'count(name) as count'],

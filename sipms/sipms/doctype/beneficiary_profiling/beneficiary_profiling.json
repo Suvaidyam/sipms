@@ -14,7 +14,8 @@
   "completed_age",
   "contact_number",
   "alternate_contact_number",
-  "name_of_help_desk",
+  "single_window",
+  "help_desk",
   "column_break_ewit",
   "caste_category",
   "religion",
@@ -32,29 +33,34 @@
   "fathers_name",
   "mothers_name",
   "source_of_information",
+  "new_source_of_information",
   "has_anyone_from_your_family_visisted_before",
   "select_primary_member",
   "tab_2_tab",
   "current_address_section",
   "current_address_column",
   "current_house_type",
+  "add_house_type",
   "state",
   "district",
   "column_break_hspz",
   "ward",
   "name_of_the_settlement",
   "address_with_landmark",
+  "section_break_gxqe",
+  "same_as_above",
   "origin_details_section",
   "state_of_origin",
   "district_of_origin",
+  "column_break_htmx",
   "block",
   "id_documents_tab",
   "do_you_have_any_id_documents",
   "id_table_list",
-  "overall_status",
-  "numeric_overall_status",
   "scheme_tab",
   "scheme_table",
+  "overall_status",
+  "numeric_overall_status",
   "follow_up_tab",
   "follow_up_table"
  ],
@@ -104,11 +110,6 @@
    "fieldname": "alternate_contact_number",
    "fieldtype": "Phone",
    "label": "Alternate contact number"
-  },
-  {
-   "fieldname": "name_of_help_desk",
-   "fieldtype": "Data",
-   "label": "Name of Help-desk"
   },
   {
    "fieldname": "column_break_ewit",
@@ -231,9 +232,9 @@
   },
   {
    "fieldname": "current_house_type",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Current house type",
-   "options": "\nOwn\nRented\nRelative's Home\nGovt. Quarter\nOthers",
+   "options": "House Types",
    "reqd": 1
   },
   {
@@ -263,15 +264,15 @@
   },
   {
    "fieldname": "name_of_the_settlement",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Name of the settlement",
+   "options": "Village",
    "reqd": 1
   },
   {
    "fieldname": "address_with_landmark",
    "fieldtype": "Data",
-   "label": "Address (with landmark)",
-   "reqd": 1
+   "label": "Address (with landmark)"
   },
   {
    "fieldname": "origin_details_section",
@@ -331,15 +332,16 @@
   {
    "depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'",
    "fieldname": "what_is_the_extent_of_your_disability",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "What is the extent of your disability?",
-   "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'"
+   "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'",
+   "options": "PWD master"
   },
   {
    "fieldname": "source_of_information",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Source of information",
-   "options": "\nAwareness session\nAadhar camps\nABHA card camps\nCommunity meeting\nOne to one interaction\nTraining\nOthers",
+   "options": "Source Of Information",
    "reqd": 1
   },
   {
@@ -370,11 +372,51 @@
    "fieldname": "numeric_overall_status",
    "fieldtype": "Data",
    "label": "Numeric overall status"
+  },
+  {
+   "depends_on": "eval:doc.source_of_information == \"Others\"",
+   "fieldname": "new_source_of_information",
+   "fieldtype": "Data",
+   "label": "New Source of information",
+   "mandatory_depends_on": "eval:doc.source_of_information == \"Others\""
+  },
+  {
+   "fieldname": "section_break_gxqe",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "same_as_above",
+   "fieldtype": "Check",
+   "label": "Same as Above"
+  },
+  {
+   "fieldname": "column_break_htmx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.current_house_type ==\"Others\"",
+   "fieldname": "add_house_type",
+   "fieldtype": "Data",
+   "label": "Add house type",
+   "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
+  },
+  {
+   "fieldname": "single_window",
+   "fieldtype": "Link",
+   "label": "Single Window",
+   "options": "Single Window"
+  },
+  {
+   "fieldname": "help_desk",
+   "fieldtype": "Link",
+   "label": "Name of Help-desk",
+   "options": "Help Desk"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-21 18:03:45.958946",
+ "modified": "2023-12-24 14:25:06.977428",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
@@ -390,6 +432,48 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Admin",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CSC Member",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Help-desk member",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "MIS executive",
    "share": 1,
    "write": 1
   }

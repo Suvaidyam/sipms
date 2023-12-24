@@ -20,7 +20,7 @@ def execute(filters=None):
 			"width":200
 		}
 	]
-	new_filters = Filter.set_report_filters(filters, 'registration_date')
+	new_filters = Filter.set_report_filters(filters, 'date_of_visit')
 
 
 	data = frappe.get_all("Beneficiary Profiling",

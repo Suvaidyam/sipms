@@ -1,6 +1,27 @@
 {
- "charts": [],
- "content": "[{\"id\":\"6vDcYvdR5K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF BENEFICIARIES\",\"col\":4}},{\"id\":\"xdXxm17yLL\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF FAMILIES\",\"col\":4}},{\"id\":\"EvTK0vILQF\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Beneficiaries</span>\",\"col\":12}}]",
+ "charts": [
+  {
+   "chart_name": "House Type Wise Beneficiaries",
+   "label": "House Type Wise Beneficiaries"
+  },
+  {
+   "chart_name": "Gender composition",
+   "label": "Gender composition"
+  },
+  {
+   "chart_name": "Occupation Wise Beneficiaries",
+   "label": "Occupation Wise Beneficiaries"
+  },
+  {
+   "chart_name": "Age Wise Beneficiaries",
+   "label": "Age Wise Beneficiaries"
+  },
+  {
+   "chart_name": "Religion Wise Beneficaries",
+   "label": "Religion Wise Beneficaries"
+  }
+ ],
+ "content": "[{\"id\":\"6vDcYvdR5K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF BENEFICIARIES\",\"col\":3}},{\"id\":\"xdXxm17yLL\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF FAMILIES\",\"col\":3}},{\"id\":\"9aIJqm6tVJ\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Male\",\"col\":3}},{\"id\":\"pdYXzuoJ83\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Female\",\"col\":3}},{\"id\":\"vNViM96luc\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Gender composition\",\"col\":6}},{\"id\":\"YRTmrFUaw8\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Age Wise Beneficiaries\",\"col\":6}},{\"id\":\"OnL0h1qlvu\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Occupation Wise Beneficiaries\",\"col\":6}},{\"id\":\"GxuwfhS5Xu\",\"type\":\"chart\",\"data\":{\"chart_name\":\"House Type Wise Beneficiaries\",\"col\":6}},{\"id\":\"ZWDsj6v9GU\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Religion Wise Beneficaries\",\"col\":6}}]",
  "creation": "2023-12-21 19:17:06.822003",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,11 +34,19 @@
  "is_hidden": 0,
  "label": "Beneficiaries",
  "links": [],
- "modified": "2023-12-21 20:26:59.679598",
+ "modified": "2023-12-24 12:25:34.456204",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiaries",
  "number_cards": [
+  {
+   "label": "Total Female",
+   "number_card_name": "Total Female"
+  },
+  {
+   "label": "Total Male",
+   "number_card_name": "Total Male"
+  },
   {
    "label": "NUMBER OF FAMILIES",
    "number_card_name": "NUMBER OF FAMILIES"
@@ -31,7 +60,20 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "CSC Member"
+  },
+  {
+   "role": "Help-desk member"
+  },
+  {
+   "role": "MIS executive"
+  }
+ ],
  "sequence_id": 1.0,
  "shortcuts": [],
  "title": "Beneficiaries"

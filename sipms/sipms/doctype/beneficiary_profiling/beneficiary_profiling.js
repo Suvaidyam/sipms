@@ -43,6 +43,13 @@ const dialogsConfig = {
         _doc: true
       },
       {
+        label: 'Date of completion',
+        fieldname: 'date_of_completion',
+        fieldtype: 'Date',
+        reqd: 1,
+        _doc: true
+      },
+      {
         label: 'Application number',
         fieldname: 'application_number',
         fieldtype: 'Data',
@@ -59,13 +66,6 @@ const dialogsConfig = {
         fieldname: 'paid_by',
         fieldtype: 'Select',
         options: ["Self", "CSC"],
-        _doc: true
-      },
-      {
-        label: 'Date of completion',
-        fieldname: 'date_of_completion',
-        fieldtype: 'Date',
-        reqd: 1,
         _doc: true
       },
       {
@@ -130,47 +130,6 @@ const createDialog = (_doc, config) => {
     }
   });
 }
-// API calling for support and 
-function get_scheme_list(frm, support_type) {
-  frappe.call({
-    method: 'frappe.desk.search.search_link',
-    args: {
-      doctype: 'Scheme',
-      txt: '',
-      filters: [
-        ['milestone', '=', support_type],
-      ],
-      page_length: 100,  // Adjust the number of results per page as needed
-    },
-    freeze: true,
-    freeze_message: __("Calling"),
-    callback: async function (response) {
-      let under_process_completed_ops = frm.doc.scheme_table.filter(f => (['Under process', 'Open'].includes(f.status))).map(m => m.specific_support_type)
-      // console.log("under_process_completed_ops", under_process_completed_ops)
-      let ops = response.results.filter(f => !under_process_completed_ops.includes(f.value))
-      console.log(" options", ops)
-      frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
-    }
-  });
-};
-// //////////////////////////////////////////////////////////////////////
-// function get_milestone_category(frm) {
-//   frappe.call({
-//     method: 'frappe.desk.search.search_link',
-//     args: {
-//       doctype: 'Milestone category',
-//       txt: '',
-//       page_length: 100,  // Adjust the number of results per page as needed
-//     },
-//     freeze: true,
-//     freeze_message: __("Calling"),
-//     callback: async function (response) {
-//       frm.fields_dict.support_table.grid.update_docfield_property("milestone_category", "options", response.results);
-//       // console.log(response)
-//     }
-//   });
-// };
-
 //  COMMON FUNCTION FOR DEFULT FILTER 
 function defult_filter(field_name, filter_on , frm){
     frm.fields_dict[field_name].get_query = function (doc) {
@@ -226,10 +185,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
         }
       }
       // follow up status manage
-      if (frm.selected_doc.followup_table) {
+      if (frm.selected_doc.follow_up_table) {
         for (support_item of frm.selected_doc.scheme_table) {
           if (!['Completed'].includes(support_item.status)) {
-            let followups = frm.selected_doc.followup_table.filter(f => f.parent_ref == support_item?.name)
+            let followups = frm.selected_doc.follow_up_table.filter(f => f.parent_ref == support_item?.name)
             let latestFollowup = followups.length ? followups[(followups.length - 1)] : null
             if (latestFollowup) {
               switch (latestFollowup.follow_up_status) {
@@ -261,6 +220,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
                   support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
                   if(latestFollowup.to_close_status){
                     support_item.status = latestFollowup.to_close_status
+                    console.log("closed")
                   }
                   break;
                 default:
@@ -313,6 +273,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
     },
 	refresh(frm) {
+    frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user
+    refresh_field("name_of_the_concerned_help_desk_member")
     // check alternate mobile number digits
     // if(!frm.doc.alternate_contact_number){
     //   frm.doc.alternate_contact_number = '+91-'
@@ -366,6 +328,18 @@ frappe.ui.form.on("Beneficiary Profiling", {
           frm.set_value('completed_age', null)
         }
       },
+      same_as_above: function(frm){
+        if(frm.doc.same_as_above == '1'){
+        frm.doc.state_of_origin = frm.doc.state;
+        frm.doc.district_of_origin = frm.doc.district;
+        frm.doc.block = frm.doc.ward;
+        }else{
+        frm.doc.state_of_origin = '';
+        frm.doc.district_of_origin = '';
+        frm.doc.block = '';
+        }
+        frm.refresh()
+      }
 
 });
 // ********************* Support CHILD Table***********************
@@ -377,7 +351,7 @@ frappe.ui.form.on('Scheme Child', {
   },
   milestone_category: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    get_scheme_list(frm, row.milestone_category)
+    // get_scheme_list(frm, row.milestone_category)
 
   },
   application_submitted: function (frm, cdt, cdn) {
@@ -459,6 +433,7 @@ frappe.ui.form.on('Follow Up Child', {
           `The follow-up status is "Not reachable" ${followups.length} times`,
           () => {
             row.to_close_status = "Closed"
+            console.log(row , "row")
           },
           'Close',
           true // Sets dialog as minimizable
