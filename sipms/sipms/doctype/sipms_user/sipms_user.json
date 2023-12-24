@@ -71,14 +71,18 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:(doc.role_profile == \"CSC Member\" || doc.role_profile == \"MIS executive\" || doc.role_profile ==\"Help-desk member\")",
    "fieldname": "single_window",
    "fieldtype": "Data",
-   "label": "Single Window"
+   "label": "Single Window",
+   "mandatory_depends_on": "eval:(doc.role_profile == \"CSC Member\" || doc.role_profile == \"MIS executive\" || doc.role_profile ==\"Help-desk member\")"
   },
   {
+   "depends_on": "eval:doc.role_profile ==\"Help-desk member\"",
    "fieldname": "help_desk",
    "fieldtype": "Data",
-   "label": "Help desk"
+   "label": "Help-desk",
+   "mandatory_depends_on": "eval:doc.role_profile ==\"Help-desk member\""
   },
   {
    "fieldname": "user_image",
@@ -91,7 +95,7 @@
  "image_field": "user_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-23 10:47:47.516891",
+ "modified": "2023-12-24 09:54:23.678002",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms User",
