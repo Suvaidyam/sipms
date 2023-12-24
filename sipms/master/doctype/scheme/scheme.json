@@ -21,7 +21,10 @@
   "department_urlwebsite",
   "column_break_xrsh",
   "remarks",
-  "information_materials"
+  "information_materials",
+  "rules_tab",
+  "field_table",
+  "condition"
  ],
  "fields": [
   {
@@ -102,11 +105,26 @@
    "fieldname": "information_materials",
    "fieldtype": "Attach",
    "label": "Information materials"
+  },
+  {
+   "fieldname": "rules_tab",
+   "fieldtype": "Tab Break",
+   "label": "Rules"
+  },
+  {
+   "fieldname": "condition",
+   "fieldtype": "Data",
+   "label": "Condition"
+  },
+  {
+   "fieldname": "field_table",
+   "fieldtype": "Table",
+   "options": "Rule Engine Child"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-21 17:07:37.260964",
+ "modified": "2023-12-22 00:39:01.383197",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
