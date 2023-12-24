@@ -36,7 +36,7 @@ class Filter:
                     new_filters[filter_key] = filters[filter_key]
 
         csc = None
-        csc_key = f"csc"
+        csc_key = f"single_window"
         if table_name:
             csc_key = f"{table_name}.{csc_key}"
         user = frappe.session.user
