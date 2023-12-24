@@ -20,7 +20,7 @@ def execute(filters=None):
         }
     ]
 
-    condition_str = Filter.set_report_filters(filters, 'creation', True)
+    condition_str = Filter.set_report_filters(filters, '', True)
 
     if condition_str:
         condition_str = f"WHERE {condition_str}"
