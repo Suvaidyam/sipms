@@ -27,7 +27,7 @@ def execute(filters=None):
             `tabScheme Child`
         WHERE
             (application_submitted = 'No' AND status = 'Open')
-            OR (application_submitted = 'Yes' AND status = 'Under Process')
+            OR (application_submitted = 'Yes' AND status = 'Under process')
             {condition_str}
         GROUP BY
             application_submitted;
