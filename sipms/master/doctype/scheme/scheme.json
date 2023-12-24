@@ -54,11 +54,11 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:doc.type_of_the_scheme !=\"State\"",
+   "depends_on": "eval:doc.type_of_the_scheme ==\"State\"",
    "fieldname": "state",
    "fieldtype": "Link",
    "label": "State",
-   "mandatory_depends_on": "eval:doc.type_of_the_scheme !=\"State\"",
+   "mandatory_depends_on": "eval:doc.type_of_the_scheme ==\"State\"",
    "options": "State"
   },
   {
@@ -106,7 +106,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-21 17:07:37.260964",
+ "modified": "2023-12-24 09:21:40.612212",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",

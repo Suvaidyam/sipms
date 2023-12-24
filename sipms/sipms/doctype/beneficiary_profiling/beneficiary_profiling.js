@@ -43,6 +43,13 @@ const dialogsConfig = {
         _doc: true
       },
       {
+        label: 'Date of completion',
+        fieldname: 'date_of_completion',
+        fieldtype: 'Date',
+        reqd: 1,
+        _doc: true
+      },
+      {
         label: 'Application number',
         fieldname: 'application_number',
         fieldtype: 'Data',
@@ -59,13 +66,6 @@ const dialogsConfig = {
         fieldname: 'paid_by',
         fieldtype: 'Select',
         options: ["Self", "CSC"],
-        _doc: true
-      },
-      {
-        label: 'Date of completion',
-        fieldname: 'date_of_completion',
-        fieldtype: 'Date',
-        reqd: 1,
         _doc: true
       },
       {
@@ -130,47 +130,6 @@ const createDialog = (_doc, config) => {
     }
   });
 }
-// API calling for support and 
-// function get_scheme_list(frm, support_type) {
-//   frappe.call({
-//     method: 'frappe.desk.search.search_link',
-//     args: {
-//       doctype: 'Scheme',
-//       txt: '',
-//       filters: [
-//         ['milestone', '=', support_type],
-//       ],
-//       page_length: 100,  // Adjust the number of results per page as needed
-//     },
-//     freeze: true,
-//     freeze_message: __("Calling"),
-//     callback: async function (response) {
-//       let under_process_completed_ops = frm.doc.scheme_table.filter(f => (['Under process', 'Open'].includes(f.status))).map(m => m.specific_support_type)
-//       // console.log("under_process_completed_ops", under_process_completed_ops)
-//       let ops = response.results.filter(f => !under_process_completed_ops.includes(f.value))
-//       console.log(" options", ops)
-//       frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
-//     }
-//   });
-// };
-// //////////////////////////////////////////////////////////////////////
-// function get_milestone_category(frm) {
-//   frappe.call({
-//     method: 'frappe.desk.search.search_link',
-//     args: {
-//       doctype: 'Milestone category',
-//       txt: '',
-//       page_length: 100,  // Adjust the number of results per page as needed
-//     },
-//     freeze: true,
-//     freeze_message: __("Calling"),
-//     callback: async function (response) {
-//       frm.fields_dict.support_table.grid.update_docfield_property("milestone_category", "options", response.results);
-//       // console.log(response)
-//     }
-//   });
-// };
-
 //  COMMON FUNCTION FOR DEFULT FILTER 
 function defult_filter(field_name, filter_on , frm){
     frm.fields_dict[field_name].get_query = function (doc) {
