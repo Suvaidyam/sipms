@@ -32,6 +32,7 @@
   "fathers_name",
   "mothers_name",
   "source_of_information",
+  "new_source_of_information",
   "has_anyone_from_your_family_visisted_before",
   "select_primary_member",
   "tab_2_tab",
@@ -338,9 +339,9 @@
   },
   {
    "fieldname": "source_of_information",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Source of information",
-   "options": "\nAwareness session\nAadhar camps\nABHA card camps\nCommunity meeting\nOne to one interaction\nTraining\nOthers",
+   "options": "Source Of Information",
    "reqd": 1
   },
   {
@@ -371,11 +372,18 @@
    "fieldname": "numeric_overall_status",
    "fieldtype": "Data",
    "label": "Numeric overall status"
+  },
+  {
+   "depends_on": "eval:doc.source_of_information == \"Others\"",
+   "fieldname": "new_source_of_information",
+   "fieldtype": "Data",
+   "label": "New Source of information",
+   "mandatory_depends_on": "eval:doc.source_of_information == \"Others\""
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-23 19:49:00.747056",
+ "modified": "2023-12-23 20:12:20.725184",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

@@ -8,6 +8,9 @@ from sipms.services.family import family
 
 class BeneficiaryProfiling(Document):
 	def after_insert(self):
+		# source of informtion other logics 
+
+		# other logics for other house types
 		print(self.has_anyone_from_your_family_visisted_before)
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
 			family_doc = family.create(self)

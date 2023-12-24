@@ -7,19 +7,19 @@ app_license = "mit"
 # required_apps = []
 
 fixtures=[
-    # "State",
-    # "District",
-    # "Block",
-    # "Village",
-    # "Caste category",
-    # "Religion",
-    # "Education",
-    # "Marital status",
-    # "Social vulnerable category",
-    # "PWD master",
-    # "ID Document",
-    # "Occupation",
-    # "Role Profile",
+    "State",
+    "District",
+    "Block",
+    "Village",
+    "Caste category",
+    "Religion",
+    "Education",
+    "Marital status",
+    "Social vulnerable category",
+    "PWD master",
+    "ID Document",
+    "Occupation",
+    "Role Profile",
     "Source Of Information"
 ]
 # Includes in <head>
