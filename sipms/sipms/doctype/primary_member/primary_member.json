@@ -12,7 +12,8 @@
   "name_of_parents",
   "phone_no",
   "state",
-  "single_window"
+  "single_window",
+  "help_desk"
  ],
  "fields": [
   {
@@ -49,11 +50,17 @@
    "fieldtype": "Link",
    "label": "Single Window",
    "options": "Single Window"
+  },
+  {
+   "fieldname": "help_desk",
+   "fieldtype": "Link",
+   "label": "Help desk",
+   "options": "Help Desk"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 12:41:34.634803",
+ "modified": "2023-12-24 14:27:29.480619",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Primary Member",
