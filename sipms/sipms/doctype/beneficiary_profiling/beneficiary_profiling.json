@@ -45,9 +45,12 @@
   "ward",
   "name_of_the_settlement",
   "address_with_landmark",
+  "section_break_gxqe",
+  "same_as_above",
   "origin_details_section",
   "state_of_origin",
   "district_of_origin",
+  "column_break_htmx",
   "block",
   "id_documents_tab",
   "do_you_have_any_id_documents",
@@ -264,15 +267,15 @@
   },
   {
    "fieldname": "name_of_the_settlement",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Name of the settlement",
+   "options": "Village",
    "reqd": 1
   },
   {
    "fieldname": "address_with_landmark",
    "fieldtype": "Data",
-   "label": "Address (with landmark)",
-   "reqd": 1
+   "label": "Address (with landmark)"
   },
   {
    "fieldname": "origin_details_section",
@@ -379,11 +382,25 @@
    "fieldtype": "Data",
    "label": "New Source of information",
    "mandatory_depends_on": "eval:doc.source_of_information == \"Others\""
+  },
+  {
+   "fieldname": "section_break_gxqe",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "same_as_above",
+   "fieldtype": "Check",
+   "label": "Same as Above"
+  },
+  {
+   "fieldname": "column_break_htmx",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 08:59:11.834464",
+ "modified": "2023-12-24 09:12:58.750287",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
