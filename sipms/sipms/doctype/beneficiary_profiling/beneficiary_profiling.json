@@ -14,7 +14,8 @@
   "completed_age",
   "contact_number",
   "alternate_contact_number",
-  "name_of_help_desk",
+  "single_window",
+  "help_desk",
   "column_break_ewit",
   "caste_category",
   "religion",
@@ -39,6 +40,7 @@
   "current_address_section",
   "current_address_column",
   "current_house_type",
+  "add_house_type",
   "state",
   "district",
   "column_break_hspz",
@@ -108,11 +110,6 @@
    "fieldname": "alternate_contact_number",
    "fieldtype": "Phone",
    "label": "Alternate contact number"
-  },
-  {
-   "fieldname": "name_of_help_desk",
-   "fieldtype": "Data",
-   "label": "Name of Help-desk"
   },
   {
    "fieldname": "column_break_ewit",
@@ -396,11 +393,30 @@
   {
    "fieldname": "column_break_htmx",
    "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.current_house_type ==\"Others\"",
+   "fieldname": "add_house_type",
+   "fieldtype": "Data",
+   "label": "Add house type",
+   "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
+  },
+  {
+   "fieldname": "single_window",
+   "fieldtype": "Link",
+   "label": "Single Window",
+   "options": "Single Window"
+  },
+  {
+   "fieldname": "help_desk",
+   "fieldtype": "Link",
+   "label": "Name of Help-desk",
+   "options": "Help Desk"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 09:17:25.106106",
+ "modified": "2023-12-24 14:25:06.977428",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
@@ -416,6 +432,48 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Admin",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CSC Member",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Help-desk member",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "MIS executive",
    "share": 1,
    "write": 1
   }

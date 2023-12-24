@@ -10,7 +10,10 @@
  "field_order": [
   "name_of_head_of_family",
   "name_of_parents",
-  "phone_no"
+  "phone_no",
+  "state",
+  "single_window",
+  "help_desk"
  ],
  "fields": [
   {
@@ -35,11 +38,29 @@
    "fieldtype": "Data",
    "label": "Name of Parents",
    "read_only": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Link",
+   "label": "State",
+   "options": "State"
+  },
+  {
+   "fieldname": "single_window",
+   "fieldtype": "Link",
+   "label": "Single Window",
+   "options": "Single Window"
+  },
+  {
+   "fieldname": "help_desk",
+   "fieldtype": "Link",
+   "label": "Help desk",
+   "options": "Help Desk"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-11-15 07:51:25.574737",
+ "modified": "2023-12-24 14:27:29.480619",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Primary Member",
@@ -55,6 +76,48 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Admin",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CSC Member",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Help-desk member",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "MIS executive",
    "share": 1,
    "write": 1
   }

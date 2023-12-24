@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Sipms Users",
  "links": [],
- "modified": "2023-12-22 20:39:44.762577",
+ "modified": "2023-12-24 12:49:59.846293",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms Users",
@@ -22,7 +22,14 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "CSC Member"
+  }
+ ],
  "sequence_id": 2.0,
  "shortcuts": [
   {
