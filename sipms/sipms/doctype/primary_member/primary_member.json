@@ -11,7 +11,8 @@
   "name_of_head_of_family",
   "name_of_parents",
   "phone_no",
-  "state"
+  "state",
+  "single_window"
  ],
  "fields": [
   {
@@ -42,11 +43,17 @@
    "fieldtype": "Link",
    "label": "State",
    "options": "State"
+  },
+  {
+   "fieldname": "single_window",
+   "fieldtype": "Link",
+   "label": "Single Window",
+   "options": "Single Window"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 12:38:22.171187",
+ "modified": "2023-12-24 12:41:34.634803",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Primary Member",
