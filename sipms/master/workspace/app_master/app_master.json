@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "App Master",
  "links": [],
- "modified": "2023-12-23 19:53:22.519268",
+ "modified": "2023-12-23 20:02:51.012367",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "App Master",
@@ -24,6 +24,9 @@
  "roles": [
   {
    "role": "Administrator"
+  },
+  {
+   "role": "Admin"
   }
  ],
  "sequence_id": 3.0,

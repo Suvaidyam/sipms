@@ -19,7 +19,8 @@ fixtures=[
     "PWD master",
     "ID Document",
     "Occupation",
-    "Role Profile"
+    "Role Profile",
+    "Source Of Information"
 ]
 # Includes in <head>
 # ------------------
