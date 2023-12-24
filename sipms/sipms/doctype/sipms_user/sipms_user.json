@@ -81,11 +81,11 @@
    "options": "Single Window"
   },
   {
-   "depends_on": "eval:doc.role_profile ==\"Help-desk member\"",
+   "depends_on": "eval:(doc.role_profile ==\"Help-desk member\" || doc.role_profile ==\"CSC Member\")",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Help-desk",
-   "mandatory_depends_on": "eval:doc.role_profile ==\"Help-desk member\"",
+   "mandatory_depends_on": "eval:(doc.role_profile ==\"Help-desk member\" || doc.role_profile ==\"CSC Member\")",
    "options": "Help Desk"
   },
   {
@@ -99,7 +99,7 @@
  "image_field": "user_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 16:19:25.050767",
+ "modified": "2023-12-24 20:20:43.094290",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms User",
