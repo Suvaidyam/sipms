@@ -15,7 +15,7 @@
   "contact_number",
   "alternate_contact_number",
   "single_window",
-  "name_of_help_desk",
+  "help_desk",
   "column_break_ewit",
   "caste_category",
   "religion",
@@ -110,12 +110,6 @@
    "fieldname": "alternate_contact_number",
    "fieldtype": "Phone",
    "label": "Alternate contact number"
-  },
-  {
-   "fieldname": "name_of_help_desk",
-   "fieldtype": "Link",
-   "label": "Name of Help-desk",
-   "options": "Help Desk"
   },
   {
    "fieldname": "column_break_ewit",
@@ -412,11 +406,17 @@
    "fieldtype": "Link",
    "label": "Single Window",
    "options": "Single Window"
+  },
+  {
+   "fieldname": "help_desk",
+   "fieldtype": "Link",
+   "label": "Name of Help-desk",
+   "options": "Help Desk"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 12:36:06.877529",
+ "modified": "2023-12-24 14:25:06.977428",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
