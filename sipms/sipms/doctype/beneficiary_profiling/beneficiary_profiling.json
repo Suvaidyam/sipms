@@ -232,9 +232,9 @@
   },
   {
    "fieldname": "current_house_type",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Current house type",
-   "options": "\nOwn\nRented\nRelative's Home\nGovt. Quarter\nOthers",
+   "options": "House Types",
    "reqd": 1
   },
   {
@@ -383,7 +383,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-23 20:12:20.725184",
+ "modified": "2023-12-24 08:59:11.834464",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

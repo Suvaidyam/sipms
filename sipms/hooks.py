@@ -20,7 +20,8 @@ fixtures=[
     "ID Document",
     "Occupation",
     "Role Profile",
-    "Source Of Information"
+    "Source Of Information",
+    "House Types"
 ]
 # Includes in <head>
 # ------------------
