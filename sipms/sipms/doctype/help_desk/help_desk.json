@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{state}-{single_window}-{help_desk_name}",
  "creation": "2023-12-24 10:10:53.422531",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -33,10 +34,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 10:12:13.424937",
+ "modified": "2023-12-24 10:32:01.061297",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Help Desk",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -52,7 +54,9 @@
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "help_desk_name"
 }

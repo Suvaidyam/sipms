@@ -73,16 +73,18 @@
   {
    "depends_on": "eval:(doc.role_profile == \"CSC Member\" || doc.role_profile == \"MIS executive\" || doc.role_profile ==\"Help-desk member\")",
    "fieldname": "single_window",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Single Window",
-   "mandatory_depends_on": "eval:(doc.role_profile == \"CSC Member\" || doc.role_profile == \"MIS executive\" || doc.role_profile ==\"Help-desk member\")"
+   "mandatory_depends_on": "eval:(doc.role_profile == \"CSC Member\" || doc.role_profile == \"MIS executive\" || doc.role_profile ==\"Help-desk member\")",
+   "options": "Single Window"
   },
   {
    "depends_on": "eval:doc.role_profile ==\"Help-desk member\"",
    "fieldname": "help_desk",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Help-desk",
-   "mandatory_depends_on": "eval:doc.role_profile ==\"Help-desk member\""
+   "mandatory_depends_on": "eval:doc.role_profile ==\"Help-desk member\"",
+   "options": "Help Desk"
   },
   {
    "fieldname": "user_image",
@@ -95,7 +97,7 @@
  "image_field": "user_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 09:54:23.678002",
+ "modified": "2023-12-24 10:34:43.730137",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms User",
