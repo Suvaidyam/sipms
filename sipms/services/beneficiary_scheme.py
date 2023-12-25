@@ -1,7 +1,7 @@
 import frappe
 class BeneficaryScheme:
   def run(beneficiary=None):
-    schemes = frappe.get_list('Scheme', fields=['name'])
+    schemes = frappe.get_list('Scheme', fields=['name', 'name_of_department'])
     for scheme in schemes:
         doc = frappe.get_doc("Scheme", scheme.name)
         new_rules = []
