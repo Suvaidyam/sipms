@@ -283,11 +283,15 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   async refresh(frm) {
     frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user
-    scheme_list = await callAPI({
+    let sc_list = await callAPI({
       method: 'sipms.api.execute',
       freeze: true,
+      args: {
+        name: frm.doc.name
+      },
       freeze_message: __("Getting schemes..."),
     })
+    scheme_list = sc_list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
     let tableConf = {
       columns: [
         {

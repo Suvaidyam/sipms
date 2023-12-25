@@ -7,7 +7,7 @@ class BeneficaryScheme:
         new_rules = []
         matching_counter = 0
         for rule in doc.rules:
-            local_filters = [] if beneficiary is None else ['name','=',beneficiary]
+            local_filters = [] if beneficiary is None else [['name','=',beneficiary]]
             local_filters.append([rule.get('rule_field'),rule.get('operator'),rule.get('data')])
             beneficiary_list = frappe.get_list("Beneficiary Profiling", filters=local_filters)
             check = True if len(beneficiary_list) else False
