@@ -9,7 +9,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2023-12-24 12:18:51.387431",
+ "modified": "2023-12-24 21:26:09.801160",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "State wise support status",
@@ -21,6 +21,18 @@
  "roles": [
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "CSC Member"
+  },
+  {
+   "role": "MIS executive"
+  },
+  {
+   "role": "Help-desk member"
   }
  ]
 }
