@@ -61,6 +61,7 @@
   "scheme_table",
   "overall_status",
   "numeric_overall_status",
+  "all_schemes",
   "follow_up_tab",
   "follow_up_table"
  ],
@@ -402,25 +403,28 @@
    "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
   },
   {
-   "depends_on": "eval:(frappe.session.user ==\"Administrator\" || frappe.session.user ==\"Admin\")",
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single Window",
-   "mandatory_depends_on": "eval:(frappe.session.user ==\"Administrator\" || frappe.session.user ==\"Admin\")",
    "options": "Single Window"
   },
   {
-   "depends_on": "eval:(frappe.session.user ==\"Administrator\" || frappe.session.user ==\"Admin\")",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
-   "mandatory_depends_on": "eval:(frappe.session.user ==\"Administrator\" || frappe.session.user ==\"Admin\")",
    "options": "Help Desk"
+  },
+  {
+   "depends_on": "eval:doc.is_local==1",
+   "fieldname": "all_schemes",
+   "fieldtype": "HTML",
+   "label": "Schemes",
+   "options": "<h3>Schemes</h3>\n<div id=\"all_schemes\">\n</div>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 21:21:45.591983",
+ "modified": "2023-12-25 15:35:48.810926",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

@@ -1,171 +1,183 @@
 {
- "actions": [],
- "allow_rename": 1,
- "autoname": "field:name_of_the_scheme",
- "creation": "2023-12-21 12:16:16.031112",
- "default_view": "List",
- "doctype": "DocType",
- "editable_grid": 1,
- "engine": "InnoDB",
- "field_order": [
-  "basic_details_tab",
-  "type_of_the_scheme",
-  "state",
-  "milestone",
-  "name_of_the_scheme",
-  "column_break_wijy",
-  "objective_of_the_scheme",
-  "other_details_tab",
-  "name_of_department",
-  "mode_of_application",
-  "department_urlwebsite",
-  "column_break_xrsh",
-  "remarks",
-  "information_materials"
- ],
- "fields": [
-  {
-   "fieldname": "other_details_tab",
-   "fieldtype": "Tab Break",
-   "label": "Other details"
-  },
-  {
-   "fieldname": "name_of_department",
-   "fieldtype": "Data",
-   "label": "Name of department"
-  },
-  {
-   "fieldname": "column_break_xrsh",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "basic_details_tab",
-   "fieldtype": "Tab Break",
-   "label": "Basic Details"
-  },
-  {
-   "fieldname": "type_of_the_scheme",
-   "fieldtype": "Select",
-   "label": "Type of the scheme",
-   "options": "\nCentral\nState"
-  },
-  {
-   "fieldname": "column_break_wijy",
-   "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:doc.type_of_the_scheme ==\"State\"",
-   "fieldname": "state",
-   "fieldtype": "Link",
-   "label": "State",
-   "mandatory_depends_on": "eval:doc.type_of_the_scheme ==\"State\"",
-   "options": "State"
-  },
-  {
-   "fieldname": "name_of_the_scheme",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Name of the scheme",
-   "reqd": 1,
-   "unique": 1
-  },
-  {
-   "fieldname": "objective_of_the_scheme",
-   "fieldtype": "Long Text",
-   "in_list_view": 1,
-   "label": "Objective of the scheme",
-   "options": "Milestone category"
-  },
-  {
-   "fieldname": "milestone",
-   "fieldtype": "Link",
-   "label": "Milestone",
-   "options": "Milestone category"
-  },
-  {
-   "fieldname": "mode_of_application",
-   "fieldtype": "Select",
-   "label": "Mode of application",
-   "options": "\nOnline\nOffline"
-  },
-  {
-   "fieldname": "department_urlwebsite",
-   "fieldtype": "Data",
-   "label": "Department URL/Website"
-  },
-  {
-   "fieldname": "remarks",
-   "fieldtype": "Data",
-   "label": "Remarks"
-  },
-  {
-   "fieldname": "information_materials",
-   "fieldtype": "Attach",
-   "label": "Information materials"
-  }
- ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2023-12-24 15:48:33.288425",
- "modified_by": "Administrator",
- "module": "Master",
- "name": "Scheme",
- "naming_rule": "By fieldname",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Admin",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "MIS executive",
-   "share": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "CSC Member",
-   "share": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Help-desk member",
-   "share": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+    "actions": [],
+    "allow_rename": 1,
+    "autoname": "field:name_of_the_scheme",
+    "creation": "2023-12-21 12:16:16.031112",
+    "default_view": "List",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+        "basic_details_tab",
+        "type_of_the_scheme",
+        "state",
+        "milestone",
+        "name_of_the_scheme",
+        "column_break_wijy",
+        "objective_of_the_scheme",
+        "other_details_tab",
+        "name_of_department",
+        "mode_of_application",
+        "department_urlwebsite",
+        "column_break_xrsh",
+        "remarks",
+        "information_materials",
+        "rules_tab",
+        "rules"
+    ],
+    "fields": [
+        {
+            "fieldname": "other_details_tab",
+            "fieldtype": "Tab Break",
+            "label": "Other details"
+        },
+        {
+            "fieldname": "name_of_department",
+            "fieldtype": "Data",
+            "label": "Name of department"
+        },
+        {
+            "fieldname": "column_break_xrsh",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "basic_details_tab",
+            "fieldtype": "Tab Break",
+            "label": "Basic Details"
+        },
+        {
+            "fieldname": "type_of_the_scheme",
+            "fieldtype": "Select",
+            "label": "Type of the scheme",
+            "options": "\nCentral\nState"
+        },
+        {
+            "fieldname": "column_break_wijy",
+            "fieldtype": "Column Break"
+        },
+        {
+            "depends_on": "eval:doc.type_of_the_scheme ==\"State\"",
+            "fieldname": "state",
+            "fieldtype": "Link",
+            "label": "State",
+            "mandatory_depends_on": "eval:doc.type_of_the_scheme ==\"State\"",
+            "options": "State"
+        },
+        {
+            "fieldname": "name_of_the_scheme",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Name of the scheme",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "objective_of_the_scheme",
+            "fieldtype": "Long Text",
+            "in_list_view": 1,
+            "label": "Objective of the scheme",
+            "options": "Milestone category"
+        },
+        {
+            "fieldname": "milestone",
+            "fieldtype": "Link",
+            "label": "Milestone",
+            "options": "Milestone category"
+        },
+        {
+            "fieldname": "mode_of_application",
+            "fieldtype": "Select",
+            "label": "Mode of application",
+            "options": "\nOnline\nOffline"
+        },
+        {
+            "fieldname": "department_urlwebsite",
+            "fieldtype": "Data",
+            "label": "Department URL/Website"
+        },
+        {
+            "fieldname": "remarks",
+            "fieldtype": "Data",
+            "label": "Remarks"
+        },
+        {
+            "fieldname": "information_materials",
+            "fieldtype": "Attach",
+            "label": "Information materials"
+        },
+        {
+            "fieldname": "rules_tab",
+            "fieldtype": "Tab Break",
+            "label": "Rules"
+        },
+        {
+            "fieldname": "rules",
+            "fieldtype": "Table",
+            "options": "Rule Engine Child"
+        }
+    ],
+    "index_web_pages_for_search": 1,
+    "links": [],
+    "modified": "2023-12-24 15:48:33.288425",
+    "modified_by": "Administrator",
+    "module": "Master",
+    "name": "Scheme",
+    "naming_rule": "By fieldname",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "Admin",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "MIS executive",
+            "share": 1
+        },
+        {
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "CSC Member",
+            "share": 1
+        },
+        {
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "Help-desk member",
+            "share": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
 }

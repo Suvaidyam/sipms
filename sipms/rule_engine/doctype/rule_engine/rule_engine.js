@@ -1,6 +1,11 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // For license information, please see license.txt
-
+var common_operators = ["=", "!="]
+var field_types = {
+    "Date": [...common_operators, ">", "<", ">=", "<="],
+    "Int": [...common_operators, ">", "<", ">=", "<="],
+    "Link": [...common_operators]
+}
 function evaluateExpression(input, expression) {
     if (!(/^[a-zA-Z0-9\s()+\-/*%&|=!<>]*$/.test(expression))) {
         return 'Invalid expression'
@@ -35,40 +40,38 @@ function get_field_list(frm) {
         method: "sipms.rule_engine.apis.get_meta_api.get_field_lists",
         args: {
             doctype_name: "Beneficiary Profiling",
-            field_types: ["Date", "Int", "Link"]
+            field_types: Object.keys(field_types)
         },
         callback: function (response) {
             // Handle the response
-            field_list = response.message
-            frm.fields_dict.field_table.grid.update_docfield_property("rule_field", "options", response.message);
             if (response.message) {
+                field_list = response.message
+                frm.fields_dict.field_table.grid.update_docfield_property("rule_field", "options", response.message);
                 console.log(response.message);
             } else {
-                console.error("API call failed");
+                // console.error("API call failed");
             }
         }
     });
 
 }
-function get_Link_list(doctype_name, frm) {
-    frappe.call({
-        method: "frappe.desk.search.search_link",
-        args: {
-            doctype: doctype_name,
-            txt: "",
-            page_length: 10000
-        },
-        callback: function (response) {
-            // Handle the response
-            frm.fields_dict.field_table.grid.update_docfield_property("select", "options", response.results);
-            if (response.results) {
-                console.log(response.results);
-            } else {
-                console.error("API call failed");
+function get_Link_list(doctype_name) {
+    return new Promise((resolve, reject) => {
+        frappe.call({
+            method: "frappe.desk.search.search_link",
+            args: {
+                doctype: doctype_name,
+                txt: "",
+                page_length: 10000
+            },
+            callback: async function (response) {
+                let data = response?.results || response?.message
+                if (data) {
+                    resolve(data);
+                }
             }
-        }
-    });
-
+        });
+    })
 }
 frappe.ui.form.on("Rule Engine", {
     refresh(frm) {
@@ -128,14 +131,17 @@ frappe.ui.form.on('Rule Engine Child', {
 
 
     },
-    rule_field: function (frm, cdt, cdn) {
+    rule_field: async function (frm, cdt, cdn) {
         let row = frappe.get_doc(cdt, cdn);
         row.type = field_list?.find(f => f.value == row.rule_field)?.type;
+        frm.fields_dict.field_table.grid.update_docfield_property("operator", "options", field_types[row.type]);
+
         if (row.type == "Link") {
-            frm.fields_dict.field_table.grid.update_docfield_property("operator", "options", ["=", "!=", "IN", "NOT IN"]);
-            get_Link_list(field_list.find(f => f.value == row.rule_field)?.options, frm)
-        } else {
-            frm.fields_dict.field_table.grid.update_docfield_property("operator", "options", ["=", "!=", ">", "<", ">=", "<=", "IN", "NOT IN"]);
+            let options = field_list.find(f => f.value == row.rule_field)?.options;
+            console.log("rule_field", row.type, options);
+            let link_data = await get_Link_list(options)
+            console.log("link_data:", link_data);
+            frm.fields_dict.field_table.grid.update_docfield_property("select", "options", link_data);
         }
         frm.fields_dict.field_table.grid.refresh();
         var cur_grid = frm.get_field('field_table').grid;
