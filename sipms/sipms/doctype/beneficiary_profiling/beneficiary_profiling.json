@@ -61,6 +61,7 @@
   "scheme_table",
   "overall_status",
   "numeric_overall_status",
+  "all_schemes",
   "follow_up_tab",
   "follow_up_table"
  ],
@@ -412,11 +413,17 @@
    "fieldtype": "Link",
    "label": "Name of Help-desk",
    "options": "Help Desk"
+  },
+  {
+   "fieldname": "all_schemes",
+   "fieldtype": "HTML",
+   "label": "Schemes",
+   "options": "<h3>Schemes</h3>\n<div id=\"all_schemes\">\n</div>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 14:25:06.977428",
+ "modified": "2023-12-25 15:14:52.128325",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

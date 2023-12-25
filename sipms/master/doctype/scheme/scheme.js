@@ -37,7 +37,8 @@ function generateQueryString(rows, __expression) {
     return 'select * from `tabBeneficiary Profiling` where ' + expression
 }
 var field_list = []
-function get_field_list(frm) {
+function get_field_list(child_table_field, frm) {
+    console.log("called");
     frappe.call({
         method: "sipms.rule_engine.apis.get_meta_api.get_field_lists",
         args: {
@@ -48,7 +49,7 @@ function get_field_list(frm) {
             // Handle the response
             if (response.message) {
                 field_list = response.message
-                frm.fields_dict.field_table.grid.update_docfield_property("rule_field", "options", response.message);
+                frm.fields_dict[child_table_field].grid.update_docfield_property("rule_field", "options", response.message);
                 console.log(response.message);
             } else {
                 // console.error("API call failed");
@@ -77,40 +78,14 @@ function get_Link_list(doctype_name) {
 }
 frappe.ui.form.on("Scheme", {
     refresh(frm) {
-
-    },
-    condition: (frm) => {
-        let el = document.querySelector("[data-fieldname='condition'] p")
-        let rows = frm.get_field('field_table')?.grid?.data;
-        if (rows && rows?.length) {
-            let input = {};
-            for (let row of rows) {
-                input[row.code] = true
-            }
-            let eval = evaluateExpression(input, frm.doc.condition);
-            if (typeof eval == 'string') {
-                // el.style.color = 'red !important';
-                el.setAttribute("style", "color: red !important");
-                el.textContent = eval;
-            } else {
-                el.setAttribute("style", "color: green !important");
-                el.textContent = generateQueryString(rows, frm.doc.condition);
-            }
-        } else if (frm.doc.condition) {
-            el.setAttribute("style", "color: red !important");
-            el.textContent = 'Invalid expression.';
-        } else {
-            el.setAttribute("style", "");
-            el.textContent = '';
-        }
+        console.log("Scheme[refresh]");
     }
 });
 // CHILD TABLE
-frappe.ui.form.on('Rule Engine Child', {
-    refresh(frm) {
-        console.log("refresh");
-    },
-    field_table_add(frm, cdt, cdn) {
+var child_table_field = 'rules'
+const form_events = {
+    [`${child_table_field}_add`]: (frm, cdt, cdn) => {
+        console.log("row added");
         let initial_code = 64
         let row = frappe.get_doc(cdt, cdn);
         if (row.idx <= 26) {
@@ -118,20 +93,26 @@ frappe.ui.form.on('Rule Engine Child', {
         } else {
             row.code = (String.fromCharCode(initial_code + (row.idx - 26)) + String.fromCharCode(initial_code + (row.idx - 26)))
         }
-        get_field_list(frm)
+        get_field_list('rules', frm)
+    }
+}
+frappe.ui.form.on('Rule Engine Child', {
+    refresh(frm) {
+        console.log("refresh");
     },
+    ...form_events,
     rule_field: async function (frm, cdt, cdn) {
         let row = frappe.get_doc(cdt, cdn);
         row.type = field_list?.find(f => f.value == row.rule_field)?.type;
-        frm.fields_dict.field_table.grid.update_docfield_property("operator", "options", field_types[row.type]);
+        frm.fields_dict[child_table_field].grid.update_docfield_property("operator", "options", field_types[row.type]);
 
         if (row.type == "Link") {
             let options = field_list.find(f => f.value == row.rule_field)?.options;
             let link_data = await get_Link_list(options)
-            frm.fields_dict.field_table.grid.update_docfield_property("select", "options", link_data);
+            frm.fields_dict[child_table_field].grid.update_docfield_property("select", "options", link_data);
         }
-        frm.fields_dict.field_table.grid.refresh();
-        var cur_grid = frm.get_field('field_table').grid;
+        frm.fields_dict[child_table_field].grid.refresh();
+        var cur_grid = frm.get_field(`${child_table_field}`).grid;
         var cur_doc = locals[cdt][cdn];
         var cur_row = cur_grid.get_row(cur_doc.name);
         cur_row.toggle_view();
@@ -139,16 +120,16 @@ frappe.ui.form.on('Rule Engine Child', {
     date: function (frm, cdt, cdn) {
         let row = frappe.get_doc(cdt, cdn);
         row.data = row.date
-        frm.fields_dict.field_table.grid.refresh();
+        frm.fields_dict[child_table_field].grid.refresh();
     },
     select: function (frm, cdt, cdn) {
         let row = frappe.get_doc(cdt, cdn);
         row.data = row.select
-        frm.fields_dict.field_table.grid.refresh();
+        frm.fields_dict[child_table_field].grid.refresh();
     },
     value: function (frm, cdt, cdn) {
         let row = frappe.get_doc(cdt, cdn);
         row.data = row.value
-        frm.fields_dict.field_table.grid.refresh();
+        frm.fields_dict[child_table_field].grid.refresh();
     }
 })

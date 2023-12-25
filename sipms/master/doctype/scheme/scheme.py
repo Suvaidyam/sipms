@@ -8,16 +8,7 @@ from frappe import _
 import frappe
 class Scheme(Document):
 	def validate(self):
-		if self.condition:
-			try:
-				if evaluate_expression([],self.condition):
-					pass
-				else:
-					frappe.msgprint(_("Not a valid condition"), raise_exception=1)
-			except Exception as e:
-				frappe.msgprint(_(e), raise_exception=1)
-		else:
-			pass
+		pass
 
 	def evaluate_expression(input_dict, expression):
 		if not re.match(r"^[a-zA-Z0-9\s()+\-/*%&|=!<>]*$", expression):
