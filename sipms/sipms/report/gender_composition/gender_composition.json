@@ -10,7 +10,7 @@
  "is_standard": "Yes",
  "json": "{}",
  "letterhead": null,
- "modified": "2023-12-22 12:17:09.676080",
+ "modified": "2023-12-24 21:10:21.546205",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Gender composition",
@@ -22,6 +22,18 @@
  "roles": [
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "CSC Member"
+  },
+  {
+   "role": "Help-desk member"
+  },
+  {
+   "role": "MIS executive"
   }
  ]
 }
