@@ -415,7 +415,7 @@
    "options": "Help Desk"
   },
   {
-   "depends_on": "eval:doc.is_local==1",
+   "depends_on": "eval:!doc.__islocal",
    "fieldname": "all_schemes",
    "fieldtype": "HTML",
    "label": "Schemes",
@@ -424,7 +424,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-25 15:35:48.810926",
+ "modified": "2023-12-25 17:20:28.520258",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

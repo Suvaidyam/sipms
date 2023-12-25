@@ -22,6 +22,9 @@ class BeneficaryScheme:
         scheme['rules'] = new_rules
         scheme['total_rules'] = len(new_rules)
         scheme['matching_rules'] = matching_counter
-        scheme['matching_rules_per'] = (matching_counter/len(new_rules))*100
+        scheme['matching_rules_per'] = 0
+        if matching_counter > 0:
+            scheme['matching_rules_per'] = (matching_counter/len(new_rules))*100
+        
 
     return schemes

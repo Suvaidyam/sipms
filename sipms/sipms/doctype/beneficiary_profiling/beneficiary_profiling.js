@@ -167,6 +167,18 @@ function hide_advance_search(frm, list) {
   for (item of list) {
     frm.set_df_property(item, 'only_select', true);
   }
+};
+const get_scheme_list = async(frm)=>{
+  let list = await callAPI({
+    method: 'sipms.api.execute',
+    freeze: true,
+    args: {
+      name: frm.doc.name
+    },
+    freeze_message: __("Getting schemes..."),
+  })
+  scheme_list = list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
+  return scheme_list
 }
 frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
@@ -283,15 +295,16 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   async refresh(frm) {
     frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user_fullname
-    let sc_list = await callAPI({
-      method: 'sipms.api.execute',
-      freeze: true,
-      args: {
-        name: frm.doc.name
-      },
-      freeze_message: __("Getting schemes..."),
-    })
-    scheme_list = sc_list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
+
+    // let sc_list = await callAPI({
+    //   method: 'sipms.api.execute',
+    //   freeze: true,
+    //   args: {
+    //     name: frm.doc.name
+    //   },
+    //   freeze_message: __("Getting schemes..."),
+    // })
+    scheme_list = await get_scheme_list(frm)
     let tableConf = {
       columns: [
         {
@@ -312,7 +325,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 100
+          width: 200
         },
         {
           name: "Operator",
@@ -332,7 +345,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 100
+          width: 200
         },
         {
           name: "Check",
@@ -342,7 +355,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 100
+          width: 100,
+          format: (value) => {
+            return value ?'&#x2714;'.fontcolor('green').bold(): '&#10060;'.fontcolor('red').bold()
+          }
         }
       ],
       rows: []
@@ -357,6 +373,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
         f = false
       }
     }
+    console.log("tableConf", tableConf)
     const container = document.getElementById('all_schemes');
     const datatable = new DataTable(container, { columns: tableConf.columns });
     datatable.refresh(tableConf.rows);
@@ -431,10 +448,14 @@ frappe.ui.form.on("Beneficiary Profiling", {
 });
 // ********************* Support CHILD Table***********************
 frappe.ui.form.on('Scheme Child', {
-  scheme_table_add: function (frm, cdt, cdn) {
+  scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
     let row = frappe.get_doc(cdt, cdn);
     console.log(row)
+    scheme_list =  await get_scheme_list(frm)
+    ops = scheme_list.map(e=>{return{'lable': e.name , "value": e.name}})
+   frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
+
   },
   milestone_category: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
