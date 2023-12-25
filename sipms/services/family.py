@@ -22,13 +22,10 @@ class family:
 
 
     def update(beneficiary):
-        # family_doc_name = frappe.get_list("Primary Member",
-        # filters={'name': beneficiary.contact_number},
-        # fields=["name"])
-        family_doc_name = frappe.db.exists('Primary Member', beneficiary.select_primary_member)
+        family_doc_name = frappe.db.exists('Primary Member', beneficiary.contact_number)
         if(family_doc_name):
             family_doc = frappe.get_doc("Primary Member", family_doc_name)
-            family_doc.name_of_parents = beneficiary.name_of_the_beneficiary
+            family_doc.name_of_parents = beneficiary.name
             family_doc.phone_no = beneficiary.contact_number
             family_doc.state = beneficiary.state
             if not beneficiary.single_window:
