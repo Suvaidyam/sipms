@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:marital_status",
  "creation": "2023-11-04 11:01:51.561011",
@@ -22,7 +23,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 15:37:59.556034",
+ "modified": "2023-12-26 19:33:49.178598",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Marital status",

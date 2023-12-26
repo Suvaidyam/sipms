@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:{state}-{single_window_name}",
  "creation": "2023-12-23 12:15:19.306238",
@@ -27,7 +28,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 15:23:52.684011",
+ "modified": "2023-12-26 19:36:36.112146",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Single Window",

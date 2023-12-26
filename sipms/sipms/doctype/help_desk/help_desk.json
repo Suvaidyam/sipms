@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:{state}-{single_window}-{help_desk_name}",
  "creation": "2023-12-24 10:10:53.422531",
@@ -34,7 +35,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 10:32:01.061297",
+ "modified": "2023-12-26 19:36:58.766845",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Help Desk",

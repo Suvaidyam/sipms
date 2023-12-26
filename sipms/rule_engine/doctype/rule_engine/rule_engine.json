@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:Rule-{#####}",
  "creation": "2023-11-15 10:24:54.420985",
@@ -33,7 +34,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-26 09:16:37.169910",
+ "modified": "2023-12-26 19:35:21.714404",
  "modified_by": "Administrator",
  "module": "Rule Engine",
  "name": "Rule Engine",
