@@ -8,8 +8,8 @@ from sipms.utils.filter import Filter
 def execute(filters=None):
     columns = [
         {
-            "fieldname": "state_name",
-            "label": " Name Of State ",
+            "fieldname": "help_desk_name",
+            "label": " Help Desk Name",
             "fieldtype": "Data",
             "width": 200,
 
@@ -87,7 +87,7 @@ def execute(filters=None):
 
     sql_query = f"""
 SELECT
-    s.state_name,
+    hd.help_desk_name,
     COUNT(*) as count,
     SUM(CASE WHEN (sc.application_submitted = 'No' AND sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
     SUM(CASE WHEN (sc.status = 'Completed' AND sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as completed_demands,
@@ -100,11 +100,13 @@ FROM
 LEFT JOIN
     `tabScheme Child` sc ON bp.name = sc.parent
 LEFT JOIN
-    `tabState` s ON bp.state = s.name
+    `tabHelp Desk` hd ON bp.help_desk = hd.name 
 {condition_str}
 GROUP BY
-    s.state_name;
+    hd.help_desk_name;
 """
+
+
 
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data

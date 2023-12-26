@@ -8,8 +8,8 @@ from sipms.utils.filter import Filter
 def execute(filters=None):
     columns = [
         {
-            "fieldname": "state_name",
-            "label": " Name Of State ",
+            "fieldname": "single_window_name",
+            "label": " Single Window Name ",
             "fieldtype": "Data",
             "width": 200,
 
@@ -87,7 +87,8 @@ def execute(filters=None):
 
     sql_query = f"""
 SELECT
-    s.state_name,
+    bp.single_window,
+    tw.single_window_name,  -- Include the single_window_name field from tabSingle Window
     COUNT(*) as count,
     SUM(CASE WHEN (sc.application_submitted = 'No' AND sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
     SUM(CASE WHEN (sc.status = 'Completed' AND sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as completed_demands,
@@ -100,11 +101,12 @@ FROM
 LEFT JOIN
     `tabScheme Child` sc ON bp.name = sc.parent
 LEFT JOIN
-    `tabState` s ON bp.state = s.name
+    `tabSingle Window` tw ON bp.single_window = tw.name
 {condition_str}
 GROUP BY
-    s.state_name;
+    bp.single_window, tw.single_window_name;
 """
+
 
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
