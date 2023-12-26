@@ -135,7 +135,7 @@ function defult_filter(field_name, filter_on, frm) {
   frm.fields_dict[field_name].get_query = function (doc) {
     return {
       filters: {
-        [filter_on]: frm.doc.filter_on || `please select Current ${filter_on}`,
+        [filter_on]: frm.doc.filter_on || `please select ${filter_on}`,
       },
     };
   }
@@ -386,7 +386,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
     // Hide Advance search options
     hide_advance_search(frm, ["state", "district", "ward", "state_of_origin",
       "district_of_origin", "block", "gender", "caste_category", "religion", "education",
-      "current_occupation", "marital_status", "social_vulnerable_category", "pwd_category", "family"])
+      "current_occupation", "marital_status", "social_vulnerable_category", "pwd_category", "family",
+      "help_desk", "single_window" ,"what_is_the_extent_of_your_disability", "source_of_information",
+      "current_house_type" ,"name_of_the_settlement" , ""
+    ])
 
     // Increase Defult Limit of link field
     frm.set_query("state", () => { return { page_length: 1000 }; });
@@ -402,6 +405,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     frm.doc.ward ? apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward) : defult_filter('name_of_the_settlement', "Block", frm);
     frm.doc.state_of_origin ? apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin) : defult_filter('block', "District", frm);
     frm.doc.district_of_origin ? apply_filter("block", "District", frm, frm.doc.district_of_origin) : defult_filter('district_of_origin', "State", frm);
+    frm.doc.single_window ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
   },
   state: function (frm) {
     apply_filter("district", "State", frm, frm.doc.state)
@@ -417,6 +421,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   district_of_origin: function (frm) {
     apply_filter("block", "District", frm, frm.doc.district_of_origin)
+  },
+  single_window: function(frm){
+    apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
   },
 
   date_of_birth: function (frm) {
