@@ -15,11 +15,12 @@ fixtures=[
     "PWD master",
     "ID Document",
     "Occupation",
+    "Occupational Category",
     "Role Profile",
     "Source Of Information",
     "House Types",
     "Gender",
-    "Role"
+    "Role",
 ]
 # Includes in <head>
 # ------------------

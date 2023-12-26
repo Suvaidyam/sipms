@@ -22,6 +22,7 @@
   "religion",
   "education",
   "current_occupation",
+  "occupational_category",
   "marital_status",
   "spouses_name",
   "social_vulnerable",
@@ -420,11 +421,20 @@
    "fieldtype": "HTML",
    "label": "Schemes",
    "options": "<h3>Schemes</h3>\n<div id=\"all_schemes\">\n</div>"
+  },
+  {
+   "fetch_from": "current_occupation.occupational_category",
+   "fieldname": "occupational_category",
+   "fieldtype": "Link",
+   "label": "Occupational category",
+   "options": "Occupation",
+   "read_only": 1,
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-26 19:36:14.647822",
+ "modified": "2023-12-26 21:29:15.878778",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
