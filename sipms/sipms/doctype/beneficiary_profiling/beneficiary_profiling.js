@@ -135,7 +135,7 @@ function defult_filter(field_name, filter_on, frm) {
   frm.fields_dict[field_name].get_query = function (doc) {
     return {
       filters: {
-        [filter_on]: `please select Current ${filter_on}`,
+        [filter_on]: frm.doc.filter_on || `please select Current ${filter_on}`,
       },
     };
   }
@@ -379,11 +379,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
     datatable.refresh(tableConf.rows);
 
     refresh_field("name_of_the_concerned_help_desk_member")
-    // check alternate mobile number digits
-    // if(!frm.doc.alternate_contact_number){
-    //   frm.doc.alternate_contact_number = '+91-'
-    //   refresh_field("alternate_contact_number")
-    // }
     // set  defult date of visit
     if (frm.doc.__islocal) {
       frm.set_value('date_of_visit', frappe.datetime.get_today());
@@ -402,10 +397,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
     frm.set_query("block", () => { return { page_length: 1000 }; });
 
     // Apply defult filter in doctype
-    defult_filter('district', "State", frm);
-    defult_filter('ward', "District", frm)
-    defult_filter('district_of_origin', "State", frm)
-    defult_filter('block', "District", frm)
+    frm.doc.state ? apply_filter("district", "State", frm, frm.doc.state): defult_filter('district', "State", frm);
+    frm.doc.district ?  apply_filter("ward", "District", frm, frm.doc.district) : defult_filter('ward', "District", frm);
+    frm.doc.ward ? apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward) : defult_filter('name_of_the_settlement', "Block", frm);
+    frm.doc.state_of_origin ? apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin) : defult_filter('block', "District", frm);
+    frm.doc.district_of_origin ? apply_filter("block", "District", frm, frm.doc.district_of_origin) : defult_filter('district_of_origin', "State", frm);
   },
   state: function (frm) {
     apply_filter("district", "State", frm, frm.doc.state)
@@ -413,13 +409,16 @@ frappe.ui.form.on("Beneficiary Profiling", {
   district: function (frm) {
     apply_filter("ward", "District", frm, frm.doc.district)
   },
+  ward: function(frm){
+    apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward)
+  },
   state_of_origin: function (frm) {
-    console.log(frm.doc.state)
     apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin)
   },
   district_of_origin: function (frm) {
     apply_filter("block", "District", frm, frm.doc.district_of_origin)
   },
+
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth
     if (dob) {

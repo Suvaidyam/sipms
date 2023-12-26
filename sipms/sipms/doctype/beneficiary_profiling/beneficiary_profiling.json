@@ -107,7 +107,6 @@
    "reqd": 1
   },
   {
-   "default": "+91-",
    "fieldname": "alternate_contact_number",
    "fieldtype": "Phone",
    "label": "Alternate contact number"
@@ -424,7 +423,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-25 17:20:28.520258",
+ "modified": "2023-12-26 07:45:05.703035",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

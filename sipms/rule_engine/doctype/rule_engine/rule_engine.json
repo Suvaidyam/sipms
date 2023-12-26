@@ -26,12 +26,14 @@
   {
    "fieldname": "condition",
    "fieldtype": "Data",
-   "label": "Condition"
+   "in_list_view": 1,
+   "label": "Condition",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-22 00:16:07.877716",
+ "modified": "2023-12-26 09:16:37.169910",
  "modified_by": "Administrator",
  "module": "Rule Engine",
  "name": "Rule Engine",
