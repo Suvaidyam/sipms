@@ -1,21 +1,22 @@
 {
  "charts": [],
- "content": "[{\"id\":\"ge1gceQxsT\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Rule Engine</span>\",\"col\":12}},{\"id\":\"fkxQlJDcpa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Rule Engine\",\"col\":12}}]",
+ "content": "[{\"id\":\"ge1gceQxsT\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Rule Engine</span>\",\"col\":12}},{\"id\":\"fkxQlJDcpa\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Scheme\",\"col\":12}}]",
  "creation": "2023-11-15 10:17:04.399906",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
- "icon": "getting-started",
+ "icon": "month-view",
  "idx": 1,
+ "indicator_color": "",
  "is_hidden": 0,
- "label": "Rule Engines",
+ "label": "Scheme Master",
  "links": [],
- "modified": "2023-12-22 20:32:11.341984",
+ "modified": "2023-12-26 10:24:41.897294",
  "modified_by": "Administrator",
  "module": "Rule Engine",
- "name": "Rule Engines",
+ "name": "Scheme Master",
  "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
@@ -27,10 +28,11 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Rule Engine",
-   "link_to": "Rule Engine",
+   "label": "Scheme",
+   "link_to": "Scheme",
+   "stats_filter": "[]",
    "type": "DocType"
   }
  ],
- "title": "Rule Engines"
+ "title": "Scheme Master"
 }
