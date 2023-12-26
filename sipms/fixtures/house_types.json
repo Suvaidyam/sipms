@@ -23,15 +23,15 @@
  {
   "docstatus": 0,
   "doctype": "House Types",
-  "house_type_name": "Govt. Quarter",
-  "modified": "2023-12-24 08:56:27.197358",
-  "name": "Govt. Quarter"
+  "house_type_name": "Others",
+  "modified": "2023-12-24 08:56:36.182215",
+  "name": "Others"
  },
  {
   "docstatus": 0,
   "doctype": "House Types",
-  "house_type_name": "Others",
-  "modified": "2023-12-24 08:56:36.182215",
-  "name": "Others"
+  "house_type_name": "Govt. Quarter",
+  "modified": "2023-12-24 08:56:27.197358",
+  "name": "Govt. Quarter"
  }
 ]
