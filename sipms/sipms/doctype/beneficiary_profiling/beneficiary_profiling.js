@@ -135,7 +135,7 @@ function defult_filter(field_name, filter_on, frm) {
   frm.fields_dict[field_name].get_query = function (doc) {
     return {
       filters: {
-        [filter_on]: `please select Current ${filter_on}`,
+        [filter_on]: frm.doc.filter_on || `please select Current ${filter_on}`,
       },
     };
   }
@@ -413,6 +413,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
   district: function (frm) {
     apply_filter("ward", "District", frm, frm.doc.district)
   },
+  ward: function(frm){
+    apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward)
+  },
   state_of_origin: function (frm) {
     console.log(frm.doc.state)
     apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin)
@@ -420,6 +423,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
   district_of_origin: function (frm) {
     apply_filter("block", "District", frm, frm.doc.district_of_origin)
   },
+
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth
     if (dob) {
