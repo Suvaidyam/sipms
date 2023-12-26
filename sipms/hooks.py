@@ -7,10 +7,6 @@ app_license = "mit"
 # required_apps = []
 
 fixtures=[
-    "State",
-    "District",
-    "Block",
-    "Village",
     "Caste category",
     "Religion",
     "Education",
