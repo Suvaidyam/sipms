@@ -16,13 +16,6 @@
  {
   "docstatus": 0,
   "doctype": "Source Of Information",
-  "modified": "2023-12-23 20:06:56.641710",
-  "name": "ABHA card camps",
-  "source_name": "ABHA card camps"
- },
- {
-  "docstatus": 0,
-  "doctype": "Source Of Information",
   "modified": "2023-12-23 20:07:07.065341",
   "name": "Community meeting",
   "source_name": "Community meeting"
@@ -47,5 +40,12 @@
   "modified": "2023-12-23 20:07:51.718702",
   "name": "Others",
   "source_name": "Others"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Source Of Information",
+  "modified": "2023-12-23 20:06:56.641710",
+  "name": "ABHA card camps",
+  "source_name": "ABHA card camps"
  }
 ]

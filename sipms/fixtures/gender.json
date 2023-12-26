@@ -9,15 +9,15 @@
  {
   "docstatus": 0,
   "doctype": "Gender",
-  "gender": "Other",
-  "modified": "2023-12-23 19:39:31.738849",
-  "name": "Other"
+  "gender": "Male",
+  "modified": "2023-12-23 19:39:31.601106",
+  "name": "Male"
  },
  {
   "docstatus": 0,
   "doctype": "Gender",
-  "gender": "Male",
-  "modified": "2023-12-23 19:39:31.601106",
-  "name": "Male"
+  "gender": "Other",
+  "modified": "2023-12-23 19:39:31.738849",
+  "name": "Other"
  }
 ]
