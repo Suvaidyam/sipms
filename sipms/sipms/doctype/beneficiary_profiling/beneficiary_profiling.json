@@ -425,7 +425,7 @@
   {
    "fetch_from": "current_occupation.occupational_category",
    "fieldname": "occupational_category",
-   "fieldtype": "Link",
+   "fieldtype": "Autocomplete",
    "label": "Occupational category",
    "options": "Occupation",
    "read_only": 1,
@@ -434,7 +434,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-26 21:29:15.878778",
+ "modified": "2023-12-27 21:34:05.695543",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

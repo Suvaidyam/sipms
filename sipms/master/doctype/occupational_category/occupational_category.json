@@ -21,7 +21,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-26 21:02:41.758059",
+ "modified": "2023-12-27 21:33:22.056125",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Occupational Category",
@@ -41,7 +41,9 @@
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "occupational_category"
 }
