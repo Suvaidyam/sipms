@@ -34,7 +34,7 @@
  "is_hidden": 0,
  "label": "Beneficiaries",
  "links": [],
- "modified": "2023-12-24 12:25:34.456204",
+ "modified": "2023-12-27 15:29:56.122423",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiaries",
@@ -72,6 +72,9 @@
   },
   {
    "role": "MIS executive"
+  },
+  {
+   "role": "System Manager"
   }
  ],
  "sequence_id": 1.0,
