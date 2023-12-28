@@ -11,12 +11,6 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Admin"
-   },
-   {
-    "parent": "Admin",
-    "parentfield": "roles",
-    "parenttype": "Role Profile",
-    "role": "System Manager"
    }
   ]
  },
@@ -41,7 +35,14 @@
   "modified": "2023-12-22 21:07:24.303903",
   "name": "CSC Member",
   "role_profile": "CSC Member",
-  "roles": []
+  "roles": [
+    {
+        "parent": "CSC Member",
+        "parentfield": "roles",
+        "parenttype": "Role Profile",
+        "role": "CSC Member"
+    }
+  ]
  },
  {
   "docstatus": 0,
@@ -49,6 +50,13 @@
   "modified": "2023-12-22 21:07:52.128794",
   "name": "Help-desk member",
   "role_profile": "Help-desk member",
-  "roles": []
+  "roles": [
+    {
+        "parent": "Help-desk member",
+        "parentfield": "roles",
+        "parenttype": "Role Profile",
+        "role": "Help-desk member"
+    }
+  ]
  }
 ]

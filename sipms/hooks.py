@@ -202,7 +202,7 @@ permission_query_conditions = {
 # Ignore links to specified DocTypes when deleting documents
 # -----------------------------------------------------------
 
-ignore_links_on_delete = ["Beneficiary Profiling", "Family"]
+ignore_links_on_delete = ["Beneficiary Profiling", "Family" , "Route History"]
 
 # Request Events
 # ----------------
