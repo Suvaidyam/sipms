@@ -140,6 +140,14 @@ function defult_filter(field_name, filter_on, frm) {
     };
   }
 };
+function extend_options_length(frm, fields) {
+  fields.forEach((field) => {
+    frm.set_query(field, () => {
+      return { page_length: 1000 };
+    });
+  })
+};
+
 var scheme_list = []
 function callAPI(options) {
   return new Promise((resolve, reject) => {
@@ -168,7 +176,7 @@ function hide_advance_search(frm, list) {
     frm.set_df_property(item, 'only_select', true);
   }
 };
-const get_scheme_list = async(frm)=>{
+const get_scheme_list = async (frm) => {
   let list = await callAPI({
     method: 'sipms.api.execute',
     freeze: true,
@@ -295,7 +303,22 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   async refresh(frm) {
     frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user_fullname
+    // frm.set_query("what_is_the_extent_of_your_disability", () => {
+    //   return { page_length: 1000 };
+    // });
+    // frm.set_query("source_of_information", () => {
+    //   return { page_length: 1000 };
+    // });
+    // frm.set_query("marital_status", () => {
+    //   return { page_length: 1000 };
+    // });
 
+    // frm.set_query("education", () => {
+    //   return { page_length: 1000 };
+    // });
+    extend_options_length(frm, ["what_is_the_extent_of_your_disability", "religion", "single_window", "help_desk",
+      "source_of_information", "marital_status", "current_occupation", "caste_category", "current_house_type", "state", "district",
+      "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin"])
     // let sc_list = await callAPI({
     //   method: 'sipms.api.execute',
     //   freeze: true,
@@ -357,7 +380,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           dropdown: false,
           width: 100,
           format: (value) => {
-            return value ?'&#x2714;'.fontcolor('green').bold(): '&#10060;'.fontcolor('red').bold()
+            return value ? '&#x2714;'.fontcolor('green').bold() : '&#10060;'.fontcolor('red').bold()
           }
         }
       ],
@@ -387,8 +410,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
     hide_advance_search(frm, ["state", "district", "ward", "state_of_origin",
       "district_of_origin", "block", "gender", "caste_category", "religion", "education",
       "current_occupation", "marital_status", "social_vulnerable_category", "pwd_category", "family",
-      "help_desk", "single_window" ,"what_is_the_extent_of_your_disability", "source_of_information",
-      "current_house_type" ,"name_of_the_settlement" , ""
+      "help_desk", "single_window", "what_is_the_extent_of_your_disability", "source_of_information",
+      "current_house_type", "name_of_the_settlement", ""
     ])
 
     // Increase Defult Limit of link field
@@ -400,8 +423,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
     frm.set_query("block", () => { return { page_length: 1000 }; });
 
     // Apply defult filter in doctype
-    frm.doc.state ? apply_filter("district", "State", frm, frm.doc.state): defult_filter('district', "State", frm);
-    frm.doc.district ?  apply_filter("ward", "District", frm, frm.doc.district) : defult_filter('ward', "District", frm);
+    frm.doc.state ? apply_filter("district", "State", frm, frm.doc.state) : defult_filter('district', "State", frm);
+    frm.doc.district ? apply_filter("ward", "District", frm, frm.doc.district) : defult_filter('ward', "District", frm);
     frm.doc.ward ? apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward) : defult_filter('name_of_the_settlement', "Block", frm);
     frm.doc.state_of_origin ? apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin) : defult_filter('block', "District", frm);
     frm.doc.district_of_origin ? apply_filter("block", "District", frm, frm.doc.district_of_origin) : defult_filter('district_of_origin', "State", frm);
@@ -413,7 +436,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
   district: function (frm) {
     apply_filter("ward", "District", frm, frm.doc.district)
   },
-  ward: function(frm){
+  ward: function (frm) {
     apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward)
   },
   state_of_origin: function (frm) {
@@ -422,7 +445,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
   district_of_origin: function (frm) {
     apply_filter("block", "District", frm, frm.doc.district_of_origin)
   },
-  single_window: function(frm){
+  single_window: function (frm) {
     apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
   },
 
@@ -458,9 +481,9 @@ frappe.ui.form.on('Scheme Child', {
     // get_milestone_category(frm)
     let row = frappe.get_doc(cdt, cdn);
     console.log(row)
-    scheme_list =  await get_scheme_list(frm)
-    ops = scheme_list.map(e=>{return{'lable': e.name , "value": e.name}})
-   frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
+    scheme_list = await get_scheme_list(frm)
+    ops = scheme_list.map(e => { return { 'lable': e.name, "value": e.name } })
+    frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
 
   },
   milestone_category: function (frm, cdt, cdn) {
