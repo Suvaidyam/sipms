@@ -303,19 +303,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   async refresh(frm) {
     frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user_fullname
-    // frm.set_query("what_is_the_extent_of_your_disability", () => {
-    //   return { page_length: 1000 };
-    // });
-    // frm.set_query("source_of_information", () => {
-    //   return { page_length: 1000 };
-    // });
-    // frm.set_query("marital_status", () => {
-    //   return { page_length: 1000 };
-    // });
-
-    // frm.set_query("education", () => {
-    //   return { page_length: 1000 };
-    // });
     extend_options_length(frm, ["what_is_the_extent_of_your_disability", "religion", "single_window", "help_desk",
       "source_of_information", "marital_status", "current_occupation", "caste_category", "current_house_type", "state", "district",
       "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin"])
