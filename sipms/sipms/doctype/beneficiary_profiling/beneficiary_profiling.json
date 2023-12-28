@@ -84,10 +84,10 @@
   },
   {
    "fieldname": "gender",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Gender",
-   "options": "\nMale\nFemale\nTransgender\nOthers",
+   "options": "Gender",
    "reqd": 1
   },
   {
@@ -404,15 +404,19 @@
    "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
   },
   {
+   "depends_on": "eval:(frappe.user_roles.includes(\"Admin\") || frappe.user_roles.includes(\"Administrator\"))",
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single Window",
+   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "Single Window"
   },
   {
+   "depends_on": "eval:(frappe.user_roles.includes(\"Admin\") || frappe.user_roles.includes(\"Administrator\"))",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
+   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\") || frappe.user_roles.includes(\"Administrator\") || frappe.user_roles.includes(\"MIS executive\"))",
    "options": "Help Desk"
   },
   {
@@ -434,7 +438,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-28 13:03:09.741206",
+ "modified": "2023-12-28 15:02:40.625179",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
