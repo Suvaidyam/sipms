@@ -23,6 +23,10 @@ class BeneficiaryProfiling(Document):
 			current_house_type_doc.house_type_name = self.add_house_type
 			current_house_type_doc.save()
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
+			family_doc_name = frappe.db.exists('Primary Member', self.contact_number)
+			if(family_doc_name):
+				frappe.throw("Primary Member exist, Please Select Primary Member")
+			
 			family_doc = family.create(self)
 			frappe.db.set_value('Beneficiary Profiling', self.name, 'select_primary_member', family_doc.name, update_modified=False)
 	

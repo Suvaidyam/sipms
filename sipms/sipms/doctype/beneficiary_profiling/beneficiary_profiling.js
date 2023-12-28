@@ -468,9 +468,9 @@ frappe.ui.form.on('Scheme Child', {
     // get_milestone_category(frm)
     let row = frappe.get_doc(cdt, cdn);
     console.log(row)
-    scheme_list = await get_scheme_list(frm)
-    ops = scheme_list.map(e => { return { 'lable': e.name, "value": e.name } })
-    frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
+    // scheme_list = await get_scheme_list(frm)
+    // ops = scheme_list.map(e => { return { 'lable': e.name, "value": e.name } })
+    // frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
 
   },
   milestone_category: function (frm, cdt, cdn) {
