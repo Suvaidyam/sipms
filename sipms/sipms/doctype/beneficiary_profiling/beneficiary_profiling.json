@@ -214,7 +214,7 @@
    "default": "No",
    "fieldname": "has_anyone_from_your_family_visisted_before",
    "fieldtype": "Select",
-   "label": "Has anyone from your family visisted before?",
+   "label": "Has anyone from your family visited before?",
    "options": "Yes\nNo",
    "reqd": 1
   },
@@ -404,19 +404,15 @@
    "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
   },
   {
-   "depends_on": "eval:(frappe.user_roles.includes(\"Admin\") || frappe.user_roles.includes(\"Administrator\"))",
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single Window",
-   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "Single Window"
   },
   {
-   "depends_on": "eval:(frappe.user_roles.includes(\"Admin\") || frappe.user_roles.includes(\"Administrator\"))",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
-   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\") || frappe.user_roles.includes(\"Administrator\") || frappe.user_roles.includes(\"MIS executive\"))",
    "options": "Help Desk"
   },
   {
@@ -429,7 +425,7 @@
   {
    "fetch_from": "current_occupation.occupational_category",
    "fieldname": "occupational_category",
-   "fieldtype": "Autocomplete",
+   "fieldtype": "Link",
    "label": "Occupational category",
    "options": "Occupation",
    "read_only": 1,
@@ -438,7 +434,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-28 17:27:56.659543",
+ "modified": "2023-12-29 09:37:28.711086",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
