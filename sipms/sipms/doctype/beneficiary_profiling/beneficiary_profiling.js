@@ -303,9 +303,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   async refresh(frm) {
     frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user_fullname
-    extend_options_length(frm, ["what_is_the_extent_of_your_disability", "religion", "single_window", "help_desk",
-      "source_of_information", "marital_status", "current_occupation", "caste_category", "current_house_type", "state", "district",
-      "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin"])
+    extend_options_length(frm, ["what_is_the_extent_of_your_disability", "single_window", "help_desk",
+      "source_of_information", "current_occupation", "current_house_type", "state", "district",
+      "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin", "social_vulnerable_category"])
     // let sc_list = await callAPI({
     //   method: 'sipms.api.execute',
     //   freeze: true,
@@ -395,8 +395,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
     // Hide Advance search options
     hide_advance_search(frm, ["state", "district", "ward", "state_of_origin",
-      "district_of_origin", "block", "gender", "caste_category", "religion", "education",
-      "current_occupation", "marital_status", "social_vulnerable_category", "pwd_category", "family",
+      "district_of_origin", "block", "gender",
+      "current_occupation", "social_vulnerable_category", "pwd_category", "family",
       "help_desk", "single_window", "what_is_the_extent_of_your_disability", "source_of_information",
       "current_house_type", "name_of_the_settlement", ""
     ])
