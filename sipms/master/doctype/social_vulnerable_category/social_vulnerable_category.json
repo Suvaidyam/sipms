@@ -21,9 +21,10 @@
    "unique": 1
   }
  ],
+ "force_re_route_to_default_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-26 19:32:27.376351",
+ "modified": "2023-12-29 10:06:01.561413",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Social vulnerable category",
@@ -79,7 +80,7 @@
    "share": 1
   }
  ],
- "sort_field": "modified",
+ "sort_field": "social_vulnerable_category",
  "sort_order": "DESC",
  "states": []
 }

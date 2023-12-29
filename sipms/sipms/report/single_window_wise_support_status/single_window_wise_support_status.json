@@ -9,7 +9,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2023-12-26 13:46:05.912691",
+ "modified": "2023-12-29 10:30:13.084887",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Single-window wise support status",
@@ -18,5 +18,15 @@
  "ref_doctype": "Beneficiary Profiling",
  "report_name": "Single-window wise support status",
  "report_type": "Script Report",
- "roles": []
+ "roles": [
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "MIS executive"
+  },
+  {
+   "role": "CSC Member"
+  }
+ ]
 }

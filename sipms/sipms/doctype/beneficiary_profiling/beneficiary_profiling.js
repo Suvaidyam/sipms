@@ -314,6 +314,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
     //   },
     //   freeze_message: __("Getting schemes..."),
     // })
+    frm.set_query('religion', () => {
+      return {
+          order_by: 'religion.religion ASC'
+      };
+  });
     scheme_list = await get_scheme_list(frm)
     let tableConf = {
       columns: [

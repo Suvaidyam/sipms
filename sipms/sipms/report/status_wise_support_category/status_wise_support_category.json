@@ -9,7 +9,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2023-12-24 11:17:16.089987",
+ "modified": "2023-12-29 10:30:47.367367",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Status Wise Support Category",
@@ -21,6 +21,18 @@
  "roles": [
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "CSC Member"
+  },
+  {
+   "role": "MIS executive"
+  },
+  {
+   "role": "Help-desk member"
   }
  ]
 }
