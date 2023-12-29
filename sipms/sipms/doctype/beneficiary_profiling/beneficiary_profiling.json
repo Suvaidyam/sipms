@@ -84,10 +84,10 @@
   },
   {
    "fieldname": "gender",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Gender",
-   "options": "\nMale\nFemale\nTransgender\nOthers",
+   "options": "Gender",
    "reqd": 1
   },
   {
@@ -425,7 +425,7 @@
   {
    "fetch_from": "current_occupation.occupational_category",
    "fieldname": "occupational_category",
-   "fieldtype": "Link",
+   "fieldtype": "Autocomplete",
    "label": "Occupational category",
    "options": "Occupation",
    "read_only": 1,
@@ -434,7 +434,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-29 10:44:18.683178",
+ "modified": "2023-12-29 10:52:25.212116",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
