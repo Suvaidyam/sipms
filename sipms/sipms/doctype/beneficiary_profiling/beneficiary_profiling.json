@@ -84,10 +84,10 @@
   },
   {
    "fieldname": "gender",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Gender",
-   "options": "Gender",
+   "options": "\nMale\nFemale\nTransgender\nOthers",
    "reqd": 1
   },
   {
@@ -434,7 +434,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-29 11:04:18.697527",
+ "modified": "2023-12-29 11:11:48.428369",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
