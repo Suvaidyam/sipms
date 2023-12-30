@@ -30,7 +30,7 @@ frappe.ui.form.on("Sipms User", {
 
     refresh(frm) {
         frm.doc.state ? apply_filter("single_window", "state", frm, frm.doc.state) : defult_filter('single_window', "state", frm);
-        frm.doc.single_window ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
+        frm.doc.state ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
         extend_options_length(frm, ["state"])
     },
     role_profile: function (frm) {
