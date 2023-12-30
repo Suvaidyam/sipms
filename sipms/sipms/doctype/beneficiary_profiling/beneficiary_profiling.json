@@ -176,9 +176,11 @@
    "options": "Social vulnerable category"
   },
   {
+   "depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "fieldname": "name_of_the_concerned_help_desk_member",
    "fieldtype": "Data",
-   "label": "Name of the concerned Help-desk member"
+   "label": "Name of the concerned Help-desk member",
+   "mandatory_depends_on": "eval:frappe.user_roles.includes(\"Admin\")"
   },
   {
    "fieldname": "column_break_tgpw",
@@ -438,7 +440,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-30 11:31:22.061536",
+ "modified": "2023-12-30 11:37:55.593325",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
