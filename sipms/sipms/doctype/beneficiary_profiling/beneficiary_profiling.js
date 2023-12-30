@@ -302,7 +302,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   },
   async refresh(frm) {
-    // hide delete options for helpdesk and csc member // same as agrasar
+    // hide delete options for helpdesk and csc member 
+
     if(frappe.user_roles.includes("Help-desk member") || frappe.user_roles.includes("CSC Member") ){
       if(!frappe.user_roles.includes("Administrator")){
       frm.set_df_property('scheme_table', 'cannot_delete_rows', true); // Hide delete button
