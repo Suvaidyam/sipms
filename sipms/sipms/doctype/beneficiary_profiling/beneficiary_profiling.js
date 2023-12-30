@@ -302,6 +302,15 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   },
   async refresh(frm) {
+    // hide delete options for helpdesk and csc member
+    if(frappe.user_roles.includes("Help-desk member") || frappe.user_roles.includes("CSC Member") ){
+      if(!frappe.user_roles.includes("Administrator")){
+      frm.set_df_property('scheme_table', 'cannot_delete_rows', true); // Hide delete button
+      frm.set_df_property('scheme_table', 'cannot_delete_all_rows', true);
+      frm.set_df_property('follow_up_table', 'cannot_delete_rows', true); // Hide delete button
+      frm.set_df_property('follow_up_table', 'cannot_delete_all_rows', true);
+    }
+    }
     frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user_fullname
     extend_options_length(frm, ["what_is_the_extent_of_your_disability", "single_window", "help_desk",
       "source_of_information", "current_occupation", "current_house_type", "state", "district",
