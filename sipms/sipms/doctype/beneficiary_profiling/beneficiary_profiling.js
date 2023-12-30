@@ -510,6 +510,7 @@ frappe.ui.form.on('Scheme Child', {
 frappe.ui.form.on('Follow Up Child', {
   follow_up_table_add(frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
+    row.follow = frappe.session.user_fullname
     console.log("kkkk")
     let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
     row.follow_up_date = frappe.datetime.get_today()
