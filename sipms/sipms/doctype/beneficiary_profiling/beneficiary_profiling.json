@@ -404,9 +404,11 @@
    "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
   },
   {
+   "depends_on": "eval:!frappe.user_roles.includes(\"Help-desk member\") || !frappe.user_roles.includes(\"CSC Member\") || !frappe.user_roles.includes(\"MIS executive\")",
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single Window",
+   "mandatory_depends_on": "eval:!frappe.user_roles.includes(\"Help-desk member\") || !frappe.user_roles.includes(\"CSC Member\") || !frappe.user_roles.includes(\"MIS executive\")",
    "options": "Single Window"
   },
   {
@@ -434,7 +436,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-29 11:11:48.428369",
+ "modified": "2023-12-30 11:03:23.165867",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
