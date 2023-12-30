@@ -128,14 +128,14 @@
    "fieldname": "religion",
    "fieldtype": "Select",
    "label": "Religion",
-   "options": "\nHindu\nMuslim\nSikh\nChristian\nBuddhist\nJain\nOthers",
+   "options": "\nHindu\nMuslim\nSikh\nChristian\nBuddhist\nJain",
    "reqd": 1
   },
   {
    "fieldname": "education",
    "fieldtype": "Select",
    "label": "Education",
-   "options": "\nChild\nIlliterate\nLiterate\nKindergarten\nPrimary (1-5)\nLower secondary (6-8)\nSecondary (9-10)\nHigher secondary (11-12)\nDiploma\nITI/Technical\nUnder graduate\nGraduate\nPost graduate\nOthers",
+   "options": "\nChild\nIlliterate\nLiterate\nKindergarten\nPrimary (1-5)\nLower secondary (6-8)\nSecondary (9-10)\nHigher secondary (11-12)\nDiploma\nITI/Technical\nUnder graduate\nGraduate\nPost graduate",
    "reqd": 1
   },
   {
@@ -176,11 +176,9 @@
    "options": "Social vulnerable category"
   },
   {
-   "depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "fieldname": "name_of_the_concerned_help_desk_member",
    "fieldtype": "Data",
-   "label": "Name of the concerned Help-desk member",
-   "mandatory_depends_on": "eval:frappe.user_roles.includes(\"Admin\")"
+   "label": "Name of the concerned Help-desk member"
   },
   {
    "fieldname": "column_break_tgpw",
@@ -406,19 +404,15 @@
    "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
   },
   {
-   "depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single Window",
-   "mandatory_depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "options": "Single Window"
   },
   {
-   "depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
-   "mandatory_depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "options": "Help Desk"
   },
   {
@@ -440,7 +434,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-30 11:37:55.593325",
+ "modified": "2023-12-30 11:51:00.606087",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
