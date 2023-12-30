@@ -7,11 +7,11 @@
  "field_order": [
   "name_of_the_scheme",
   "follow_up_date",
-  "follow",
   "follow_up_with",
-  "follow_up_mode",
   "follow_up_status",
   "remark",
+  "follow",
+  "follow_up_mode",
   "parent_ref"
  ],
  "fields": [
@@ -42,6 +42,7 @@
   {
    "fieldname": "follow_up_with",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Follow-up with",
    "options": "\nBeneficiary\nGovernment department\nGovernment website",
    "set_only_once": 1
@@ -64,6 +65,7 @@
    "fieldname": "follow",
    "fieldtype": "Data",
    "label": "Follow-up by",
+   "reqd": 1,
    "set_only_once": 1
   },
   {
@@ -78,7 +80,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-12-26 20:16:02.375933",
+ "modified": "2023-12-30 11:47:27.176114",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Follow Up Child",
