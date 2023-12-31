@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "creation": "2023-11-04 10:29:07.053188",
  "default_view": "List",
@@ -21,6 +22,7 @@
   "religion",
   "education",
   "current_occupation",
+  "occupational_category",
   "marital_status",
   "spouses_name",
   "social_vulnerable",
@@ -82,10 +84,10 @@
   },
   {
    "fieldname": "gender",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Gender",
-   "options": "Gender",
+   "options": "\nMale\nFemale\nTransgender\nOthers",
    "reqd": 1
   },
   {
@@ -107,7 +109,6 @@
    "reqd": 1
   },
   {
-   "default": "+91-",
    "fieldname": "alternate_contact_number",
    "fieldtype": "Phone",
    "label": "Alternate contact number"
@@ -118,23 +119,23 @@
   },
   {
    "fieldname": "caste_category",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Caste category",
-   "options": "Caste category",
+   "options": "\nGeneral\nEWS\nOBC\nSC\nST\nDidn't know\nRefused to share",
    "reqd": 1
   },
   {
    "fieldname": "religion",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Religion",
-   "options": "Religion",
+   "options": "\nHindu\nMuslim\nSikh\nChristian\nBuddhist\nJain",
    "reqd": 1
   },
   {
    "fieldname": "education",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Education",
-   "options": "Education",
+   "options": "\nChild\nIlliterate\nLiterate\nKindergarten\nPrimary (1-5)\nLower secondary (6-8)\nSecondary (9-10)\nHigher secondary (11-12)\nDiploma\nITI/Technical\nUnder graduate\nGraduate\nPost graduate",
    "reqd": 1
   },
   {
@@ -146,9 +147,9 @@
   },
   {
    "fieldname": "marital_status",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Marital status",
-   "options": "Marital status",
+   "options": "\nChild\nSingle (unmarried)\nMarried\nDivorced\nWidow\nSeparated\nAbandoned",
    "reqd": 1
   },
   {
@@ -213,7 +214,7 @@
    "default": "No",
    "fieldname": "has_anyone_from_your_family_visisted_before",
    "fieldtype": "Select",
-   "label": "Has anyone from your family visisted before?",
+   "label": "Has anyone from your family visited before?",
    "options": "Yes\nNo",
    "reqd": 1
   },
@@ -333,10 +334,10 @@
   {
    "depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'",
    "fieldname": "what_is_the_extent_of_your_disability",
-   "fieldtype": "Link",
-   "label": "What is the extent of your disability?",
+   "fieldtype": "Select",
+   "label": "What is the extent of your disability? (%)",
    "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'",
-   "options": "PWD master"
+   "options": "\n0-10%\n11-20%\n21-30%\n31-40%\n41-50%\n51-60%\n61-70%\n71-80%\n81-90%\n91-100%"
   },
   {
    "fieldname": "source_of_information",
@@ -415,16 +416,25 @@
    "options": "Help Desk"
   },
   {
-   "depends_on": "eval:doc.is_local==1",
+   "depends_on": "eval:!doc.__islocal",
    "fieldname": "all_schemes",
    "fieldtype": "HTML",
    "label": "Schemes",
    "options": "<h3>Schemes</h3>\n<div id=\"all_schemes\">\n</div>"
+  },
+  {
+   "fetch_from": "current_occupation.occupational_category",
+   "fieldname": "occupational_category",
+   "fieldtype": "Autocomplete",
+   "label": "Occupational category",
+   "options": "Occupation",
+   "read_only": 1,
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-25 15:35:48.810926",
+ "modified": "2023-12-30 11:51:00.606087",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

@@ -9,13 +9,6 @@
  {
   "docstatus": 0,
   "doctype": "Marital status",
-  "marital_status": "Abandoned",
-  "modified": "2023-11-04 11:02:45.543556",
-  "name": "Abandoned"
- },
- {
-  "docstatus": 0,
-  "doctype": "Marital status",
   "marital_status": "Separated",
   "modified": "2023-11-04 11:02:53.301350",
   "name": "Separated"
@@ -47,5 +40,12 @@
   "marital_status": "Child",
   "modified": "2023-11-04 11:04:21.699434",
   "name": "Child"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Marital status",
+  "marital_status": "Abandoned",
+  "modified": "2023-11-04 11:02:45.543556",
+  "name": "Abandoned"
  }
 ]

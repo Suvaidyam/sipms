@@ -21,8 +21,7 @@
    "fieldname": "state",
    "fieldtype": "Link",
    "label": "State",
-   "options": "State",
-   "reqd": 1
+   "options": "State"
   },
   {
    "fieldname": "district",
@@ -62,7 +61,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 15:44:45.665628",
+ "modified": "2023-12-25 09:58:17.807565",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Village",

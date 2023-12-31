@@ -135,11 +135,19 @@ function defult_filter(field_name, filter_on, frm) {
   frm.fields_dict[field_name].get_query = function (doc) {
     return {
       filters: {
-        [filter_on]: `please select Current ${filter_on}`,
+        [filter_on]: frm.doc.filter_on || `please select ${filter_on}`,
       },
     };
   }
 };
+function extend_options_length(frm, fields) {
+  fields.forEach((field) => {
+    frm.set_query(field, () => {
+      return { page_length: 1000 };
+    });
+  })
+};
+
 var scheme_list = []
 function callAPI(options) {
   return new Promise((resolve, reject) => {
@@ -167,6 +175,18 @@ function hide_advance_search(frm, list) {
   for (item of list) {
     frm.set_df_property(item, 'only_select', true);
   }
+};
+const get_scheme_list = async (frm) => {
+  let list = await callAPI({
+    method: 'sipms.api.execute',
+    freeze: true,
+    args: {
+      name: frm.doc.name
+    },
+    freeze_message: __("Getting schemes..."),
+  })
+  scheme_list = list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
+  return scheme_list
 }
 frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
@@ -282,16 +302,34 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   },
   async refresh(frm) {
-    frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user
-    let sc_list = await callAPI({
-      method: 'sipms.api.execute',
-      freeze: true,
-      args: {
-        name: frm.doc.name
-      },
-      freeze_message: __("Getting schemes..."),
-    })
-    scheme_list = sc_list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
+    // hide delete options for helpdesk and csc member 
+
+    if(frappe.user_roles.includes("Help-desk member") || frappe.user_roles.includes("CSC Member") ){
+      if(!frappe.user_roles.includes("Administrator")){
+      frm.set_df_property('scheme_table', 'cannot_delete_rows', true); // Hide delete button
+      frm.set_df_property('scheme_table', 'cannot_delete_all_rows', true);
+      frm.set_df_property('follow_up_table', 'cannot_delete_rows', true); // Hide delete button
+      frm.set_df_property('follow_up_table', 'cannot_delete_all_rows', true);
+    }
+    }
+    frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user_fullname
+    extend_options_length(frm, ["what_is_the_extent_of_your_disability", "single_window", "help_desk",
+      "source_of_information", "current_occupation", "current_house_type", "state", "district",
+      "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin", "social_vulnerable_category"])
+    // let sc_list = await callAPI({
+    //   method: 'sipms.api.execute',
+    //   freeze: true,
+    //   args: {
+    //     name: frm.doc.name
+    //   },
+    //   freeze_message: __("Getting schemes..."),
+    // })
+    frm.set_query('religion', () => {
+      return {
+          order_by: 'religion.religion ASC'
+      };
+  });
+    scheme_list = await get_scheme_list(frm)
     let tableConf = {
       columns: [
         {
@@ -312,7 +350,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 100
+          width: 200
         },
         {
           name: "Operator",
@@ -332,7 +370,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 100
+          width: 200
         },
         {
           name: "Check",
@@ -342,7 +380,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 100
+          width: 100,
+          format: (value) => {
+            return value ? '&#x2714;'.fontcolor('green').bold() : '&#10060;'.fontcolor('red').bold()
+          }
         }
       ],
       rows: []
@@ -357,24 +398,23 @@ frappe.ui.form.on("Beneficiary Profiling", {
         f = false
       }
     }
+    console.log("tableConf", tableConf)
     const container = document.getElementById('all_schemes');
     const datatable = new DataTable(container, { columns: tableConf.columns });
     datatable.refresh(tableConf.rows);
 
     refresh_field("name_of_the_concerned_help_desk_member")
-    // check alternate mobile number digits
-    // if(!frm.doc.alternate_contact_number){
-    //   frm.doc.alternate_contact_number = '+91-'
-    //   refresh_field("alternate_contact_number")
-    // }
     // set  defult date of visit
     if (frm.doc.__islocal) {
       frm.set_value('date_of_visit', frappe.datetime.get_today());
     }
     // Hide Advance search options
     hide_advance_search(frm, ["state", "district", "ward", "state_of_origin",
-      "district_of_origin", "block", "gender", "caste_category", "religion", "education",
-      "current_occupation", "marital_status", "social_vulnerable_category", "pwd_category", "family"])
+      "district_of_origin", "block", "gender",
+      "current_occupation", "social_vulnerable_category", "pwd_category", "family",
+      "help_desk", "single_window", "what_is_the_extent_of_your_disability", "source_of_information",
+      "current_house_type", "name_of_the_settlement", ""
+    ])
 
     // Increase Defult Limit of link field
     frm.set_query("state", () => { return { page_length: 1000 }; });
@@ -385,10 +425,12 @@ frappe.ui.form.on("Beneficiary Profiling", {
     frm.set_query("block", () => { return { page_length: 1000 }; });
 
     // Apply defult filter in doctype
-    defult_filter('district', "State", frm);
-    defult_filter('ward', "District", frm)
-    defult_filter('district_of_origin', "State", frm)
-    defult_filter('block', "District", frm)
+    frm.doc.state ? apply_filter("district", "State", frm, frm.doc.state) : defult_filter('district', "State", frm);
+    frm.doc.district ? apply_filter("ward", "District", frm, frm.doc.district) : defult_filter('ward', "District", frm);
+    frm.doc.ward ? apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward) : defult_filter('name_of_the_settlement', "Block", frm);
+    frm.doc.state_of_origin ? apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin) : defult_filter('block', "District", frm);
+    frm.doc.district_of_origin ? apply_filter("block", "District", frm, frm.doc.district_of_origin) : defult_filter('district_of_origin', "State", frm);
+    frm.doc.single_window ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
   },
   state: function (frm) {
     apply_filter("district", "State", frm, frm.doc.state)
@@ -396,13 +438,19 @@ frappe.ui.form.on("Beneficiary Profiling", {
   district: function (frm) {
     apply_filter("ward", "District", frm, frm.doc.district)
   },
+  ward: function (frm) {
+    apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward)
+  },
   state_of_origin: function (frm) {
-    console.log(frm.doc.state)
     apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin)
   },
   district_of_origin: function (frm) {
     apply_filter("block", "District", frm, frm.doc.district_of_origin)
   },
+  single_window: function (frm) {
+    apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
+  },
+
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth
     if (dob) {
@@ -431,10 +479,14 @@ frappe.ui.form.on("Beneficiary Profiling", {
 });
 // ********************* Support CHILD Table***********************
 frappe.ui.form.on('Scheme Child', {
-  scheme_table_add: function (frm, cdt, cdn) {
+  scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
     let row = frappe.get_doc(cdt, cdn);
     console.log(row)
+    // scheme_list = await get_scheme_list(frm)
+    // ops = scheme_list.map(e => { return { 'lable': e.name, "value": e.name } })
+    // frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
+
   },
   milestone_category: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
@@ -458,8 +510,9 @@ frappe.ui.form.on('Scheme Child', {
 frappe.ui.form.on('Follow Up Child', {
   follow_up_table_add(frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
+    row.follow = frappe.session.user_fullname
     console.log("kkkk")
-    let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.milestone_category);
+    let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
     row.follow_up_date = frappe.datetime.get_today()
     frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },

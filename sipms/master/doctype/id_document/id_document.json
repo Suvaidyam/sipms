@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:document",
  "creation": "2023-11-10 12:02:10.714778",
@@ -22,7 +23,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 15:40:52.247062",
+ "modified": "2023-12-26 19:31:34.212956",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "ID Document",
