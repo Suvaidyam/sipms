@@ -420,7 +420,7 @@
    "fieldname": "all_schemes",
    "fieldtype": "HTML",
    "label": "Schemes",
-   "options": "<h3>Schemes</h3>\n<div id=\"all_schemes\">\n</div>"
+   "options": "<h3>Schemes</h3>\n<div id=\"all_schemes\"></div>"
   },
   {
    "fetch_from": "current_occupation.occupational_category",
@@ -434,7 +434,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-30 11:51:00.606087",
+ "modified": "2024-01-02 09:46:54.758506",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
