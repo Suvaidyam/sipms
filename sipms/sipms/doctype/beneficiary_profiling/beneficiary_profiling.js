@@ -159,6 +159,19 @@ function callAPI(options) {
     });
   })
 }
+const showRules = (scheme_name) => {
+  console.log("showRules", scheme_name);
+  let rules = (scheme_list.find(s => s.name == scheme_name)?.rules || []).map(e => `${e.rule_field} ${e.operator} ${e.data} ${e.check}`).join("\n")
+  frappe.msgprint({
+    title: __('rules'),
+    message: rules,
+    primary_action: {
+      action(values) {
+        console.log(values);
+      }
+    }
+  });
+}
 // COMMON FUNCTON FOR FILTER OF LINK FIELD
 function apply_filter(field_name, filter_on, frm, filter_value) {
   frm.fields_dict[field_name].get_query = function (doc) {
@@ -302,33 +315,25 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   },
   async refresh(frm) {
-    // hide delete options for helpdesk and csc member 
-
-    if(frappe.user_roles.includes("Help-desk member") || frappe.user_roles.includes("CSC Member") ){
-      if(!frappe.user_roles.includes("Administrator")){
-      frm.set_df_property('scheme_table', 'cannot_delete_rows', true); // Hide delete button
-      frm.set_df_property('scheme_table', 'cannot_delete_all_rows', true);
-      frm.set_df_property('follow_up_table', 'cannot_delete_rows', true); // Hide delete button
-      frm.set_df_property('follow_up_table', 'cannot_delete_all_rows', true);
-    }
+    // hide delete options for helpdesk and csc member
+    apply_filter('select_primary_member', 'name_of_head_of_family', frm, ['!=', frm.doc.name])
+    if (frappe.user_roles.includes("Help-desk member") || frappe.user_roles.includes("CSC Member")) {
+      if (!frappe.user_roles.includes("Administrator")) {
+        frm.set_df_property('scheme_table', 'cannot_delete_rows', true); // Hide delete button
+        frm.set_df_property('scheme_table', 'cannot_delete_all_rows', true);
+        frm.set_df_property('follow_up_table', 'cannot_delete_rows', true); // Hide delete button
+        frm.set_df_property('follow_up_table', 'cannot_delete_all_rows', true);
+      }
     }
     frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user_fullname
     extend_options_length(frm, ["what_is_the_extent_of_your_disability", "single_window", "help_desk",
       "source_of_information", "current_occupation", "current_house_type", "state", "district",
       "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin", "social_vulnerable_category"])
-    // let sc_list = await callAPI({
-    //   method: 'sipms.api.execute',
-    //   freeze: true,
-    //   args: {
-    //     name: frm.doc.name
-    //   },
-    //   freeze_message: __("Getting schemes..."),
-    // })
     frm.set_query('religion', () => {
       return {
-          order_by: 'religion.religion ASC'
+        order_by: 'religion.religion ASC'
       };
-  });
+    });
     scheme_list = await get_scheme_list(frm)
     let tableConf = {
       columns: [
@@ -340,63 +345,31 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: true,
-          width: 200
+          width: 600
         },
         {
-          name: "Field",
-          id: 'rule_field',
+          name: "Matches",
+          id: 'name',
           editable: false,
           resizable: false,
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 200
-        },
-        {
-          name: "Operator",
-          id: 'operator',
-          editable: false,
-          resizable: false,
-          sortable: false,
-          focusable: false,
-          dropdown: false,
-          width: 100
-        },
-        {
-          name: "Data",
-          id: 'data',
-          editable: false,
-          resizable: false,
-          sortable: false,
-          focusable: false,
-          dropdown: false,
-          width: 200
-        },
-        {
-          name: "Check",
-          id: 'check',
-          editable: false,
-          resizable: false,
-          sortable: false,
-          focusable: false,
-          dropdown: false,
-          width: 100,
-          format: (value) => {
-            return value ? '&#x2714;'.fontcolor('green').bold() : '&#10060;'.fontcolor('red').bold()
+          width: 200,
+          format: (value, columns, ops, row) => {
+            let rules = row?.rules?.map(e => `[${e.rule_field} ${e.operator} ${e.data}] ${e.check ? '&#x2714;' : '&#10060;'}`).join("\n").toString()
+            return `<p title='${rules}'>${row?.matches?.bold()}</p>`
           }
         }
       ],
       rows: []
     };
     for (let scheme of scheme_list) {
-      let f = true
-      for (let rule of scheme.rules) {
-        tableConf.rows.push({
-          name: f ? scheme.name : undefined,
-          ...rule
-        })
-        f = false
-      }
+      tableConf.rows.push({
+        name: scheme.name,
+        matches: `${scheme.matching_rules}/${scheme.total_rules}`,
+        rules: scheme.rules
+      })
     }
     console.log("tableConf", tableConf)
     const container = document.getElementById('all_schemes');
@@ -484,8 +457,8 @@ frappe.ui.form.on('Scheme Child', {
     let row = frappe.get_doc(cdt, cdn);
     console.log(row)
     // scheme_list = await get_scheme_list(frm)
-    // ops = scheme_list.map(e => { return { 'lable': e.name, "value": e.name } })
-    // frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
+    ops = scheme_list.map(e => { return { 'lable': e.name, "value": e.name } })
+    frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
 
   },
   milestone_category: function (frm, cdt, cdn) {
