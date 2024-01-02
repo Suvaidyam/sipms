@@ -1,7 +1,7 @@
 import frappe
 class BeneficaryScheme:
   def run(beneficiary=None):
-    schemes = frappe.get_list('Scheme', fields=['name', 'name_of_department'])
+    schemes = frappe.get_list('Scheme', fields=['name', 'name_of_department','name_of_department','mode_of_application', 'milestone'])
     for scheme in schemes:
         doc = frappe.get_doc("Scheme", scheme.name)
         new_rules = []
@@ -25,6 +25,6 @@ class BeneficaryScheme:
         scheme['matching_rules_per'] = 0
         if matching_counter > 0:
             scheme['matching_rules_per'] = (matching_counter/len(new_rules))*100
-        
+
 
     return schemes

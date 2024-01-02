@@ -159,9 +159,8 @@ function callAPI(options) {
     });
   })
 }
-const showRules = (scheme_name) => {
-  console.log("showRules", scheme_name);
-  let rules = (scheme_list.find(s => s.name == scheme_name)?.rules || []).map(e => `${e.rule_field} ${e.operator} ${e.data} ${e.check}`).join("\n")
+const showRules = (row) => {
+  let rules = (row?.rules || []).map(e => `${e.rule_field} ${e.operator} ${e.data} ${e.check}`).join("\n")
   frappe.msgprint({
     title: __('rules'),
     message: rules,
@@ -375,6 +374,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     const container = document.getElementById('all_schemes');
     const datatable = new DataTable(container, { columns: tableConf.columns });
     datatable.refresh(tableConf.rows);
+    datatable.style.setStyle(`.dt-scrollable`, { 'overflow': 'scroll' });
 
     refresh_field("name_of_the_concerned_help_desk_member")
     // set  defult date of visit
@@ -454,17 +454,22 @@ frappe.ui.form.on("Beneficiary Profiling", {
 frappe.ui.form.on('Scheme Child', {
   scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
+    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
     let row = frappe.get_doc(cdt, cdn);
-    console.log(row)
-    // scheme_list = await get_scheme_list(frm)
-    ops = scheme_list.map(e => { return { 'lable': e.name, "value": e.name } })
+    ops = scheme_list.filter(f => !schemes_op.includes(f.name)).map(e => { return { 'lable': e.name, "value": e.name } })
     frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
 
   },
-  milestone_category: function (frm, cdt, cdn) {
+  name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    // get_scheme_list(frm, row.milestone_category)
+    let scheme = scheme_list.find(f => row.name_of_the_scheme == f.name)
 
+    if (scheme) {
+      row.milestone_category = scheme.milestone;
+      row.mode_of_application = scheme.mode_of_application;
+      row.name_of_the_department = scheme.name_of_department;
+    }
+    frm.refresh()
   },
   application_submitted: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
