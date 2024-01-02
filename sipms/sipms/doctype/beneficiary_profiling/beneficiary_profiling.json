@@ -32,6 +32,7 @@
   "are_you_a_person_with_disability_pwd",
   "what_is_the_extent_of_your_disability",
   "annual_income",
+  "do_you_have_any_bank_account",
   "fathers_name",
   "mothers_name",
   "source_of_information",
@@ -176,11 +177,9 @@
    "options": "Social vulnerable category"
   },
   {
-   "depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "fieldname": "name_of_the_concerned_help_desk_member",
    "fieldtype": "Data",
-   "label": "Name of the concerned Help-desk member",
-   "mandatory_depends_on": "eval:frappe.user_roles.includes(\"Admin\")"
+   "label": "Name of the concerned Help-desk member"
   },
   {
    "fieldname": "column_break_tgpw",
@@ -406,19 +405,15 @@
    "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
   },
   {
-   "depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single Window",
-   "mandatory_depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "options": "Single Window"
   },
   {
-   "depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
-   "mandatory_depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "options": "Help Desk"
   },
   {
@@ -436,11 +431,18 @@
    "options": "Occupation",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "do_you_have_any_bank_account",
+   "fieldtype": "Select",
+   "label": "Do you have any bank account?",
+   "options": "\nYes\nNo",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-02 09:46:54.758506",
+ "modified": "2024-01-02 12:33:24.368841",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
