@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Sipms Users",
  "links": [],
- "modified": "2023-12-24 20:32:56.274809",
+ "modified": "2023-12-27 15:30:13.394244",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms Users",
@@ -28,6 +28,9 @@
   },
   {
    "role": "MIS executive"
+  },
+  {
+   "role": "System Manager"
   }
  ],
  "sequence_id": 2.0,

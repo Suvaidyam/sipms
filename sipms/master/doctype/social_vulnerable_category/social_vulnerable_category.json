@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:social_vulnerable_category",
  "creation": "2023-11-04 11:06:34.668947",
@@ -20,9 +21,10 @@
    "unique": 1
   }
  ],
+ "force_re_route_to_default_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 15:39:05.593541",
+ "modified": "2023-12-29 10:06:01.561413",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Social vulnerable category",
@@ -78,7 +80,7 @@
    "share": 1
   }
  ],
- "sort_field": "modified",
+ "sort_field": "social_vulnerable_category",
  "sort_order": "DESC",
  "states": []
 }

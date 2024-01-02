@@ -58,6 +58,29 @@ def execute(filters=None):
             "width": 140
         }
     ]
+    # user_role = frappe.get_roles(frappe.session.user)
+    # print(user_role)
+    # is_adminstrator = "Administrator" in user_role
+    # is_admin = "Admin" in user_role
+    # is_help_desk_member = "Help-desk member" in user_role
+    # is_csc_member = "CSC Member" in user_role
+    # is_mis_executive = "MIS executive" in user_role
+
+    # if not is_adminstrator:
+    #     user_state = frappe.db.get_value("User", frappe.session.user, "state")
+    #     condition_str = Filter.set_report_filters(filters, user_state, True)
+    # elif is_help_desk_member:
+    #     user_help_desk = frappe.db.get_value("User", frappe.session.user, "help_desk")
+    #     condition_str = Filter.set_report_filters(filters, user_help_desk, True)
+    # elif is_csc_member:
+    #     user_csc = frappe.db.get_value("User", frappe.session.user, "help_desk")
+    #     condition_str = Filter.set_report_filters(filters, user_csc, True)
+    # elif is_mis_executive:
+    #     user_single_window = frappe.db.get_value("User", frappe.session.user, "single_window")
+    #     condition_str = Filter.set_report_filters(filters, user_single_window, True)
+    # else:
+    #     condition_str = Filter.set_report_filters(filters, '', True)                      
+    
 
     condition_str = Filter.set_report_filters(filters, '', True)
     condition_str = f"WHERE {condition_str}" if condition_str else ""

@@ -25,3 +25,7 @@ class SipmsUser(Document):
 		user_doc.user_image = self.user_image
 		user_doc.new_password = self.confirm_password
 		user_doc.save()
+		
+	def on_trash(self):
+		pass
+	

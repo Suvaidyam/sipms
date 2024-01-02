@@ -7,10 +7,6 @@ app_license = "mit"
 # required_apps = []
 
 fixtures=[
-    "State",
-    "District",
-    "Block",
-    "Village",
     "Caste category",
     "Religion",
     "Education",
@@ -19,11 +15,12 @@ fixtures=[
     "PWD master",
     "ID Document",
     "Occupation",
+    "Occupational Category",
     "Role Profile",
     "Source Of Information",
     "House Types",
     "Gender",
-    "Role"
+    "Role",
 ]
 # Includes in <head>
 # ------------------
@@ -31,8 +28,9 @@ permission_query_conditions = {
     "Beneficiary Profiling": "sipms.middlewares.beneficiary.list_query",
     "Primary Member": "sipms.middlewares.family.list_query",
     # "Current location":"epms.middlewares.current_location.list_query",
-    # "User":"epms.middlewares.user.list_query",
-    # "Role Profile":"epms.middlewares.role_profile.list_query"
+    "Sipms User":"sipms.middlewares.sipms_user.list_query",
+    "Role Profile":"sipms.middlewares.role_profile.list_query",
+    "User":"sipms.middlewares.user.list_query",
 
 }
 
@@ -204,7 +202,7 @@ permission_query_conditions = {
 # Ignore links to specified DocTypes when deleting documents
 # -----------------------------------------------------------
 
-ignore_links_on_delete = ["Beneficiary Profiling", "Family"]
+ignore_links_on_delete = ["Beneficiary Profiling", "Family" , "Route History"]
 
 # Request Events
 # ----------------
