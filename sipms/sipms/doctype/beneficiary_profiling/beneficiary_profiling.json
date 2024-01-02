@@ -235,9 +235,8 @@
   },
   {
    "fieldname": "current_house_type",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Current house type",
-   "options": "House Types",
    "reqd": 1
   },
   {
@@ -442,7 +441,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-02 12:33:24.368841",
+ "modified": "2024-01-02 13:00:03.916821",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
