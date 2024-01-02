@@ -32,6 +32,7 @@
   "are_you_a_person_with_disability_pwd",
   "what_is_the_extent_of_your_disability",
   "annual_income",
+  "do_you_have_any_bank_account",
   "fathers_name",
   "mothers_name",
   "source_of_information",
@@ -430,11 +431,18 @@
    "options": "Occupation",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "do_you_have_any_bank_account",
+   "fieldtype": "Select",
+   "label": "Do you have any bank account?",
+   "options": "\nYes\nNo",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-02 09:46:54.758506",
+ "modified": "2024-01-02 12:33:24.368841",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
