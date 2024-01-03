@@ -225,6 +225,11 @@ const get_scheme_list = async (frm) => {
 frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
   before_save: function (frm) {
+    // fill into hidden fields
+    for (_doc of frm.doc.scheme_table) {
+      _doc.scheme = _doc.name_of_the_scheme;
+      _doc.milestone = _doc.milestone_category;
+    }
     // check alternate mobile number digits
     if (frm.doc.alternate_contact_number < 4) {
       frm.doc.alternate_contact_number = ''
@@ -430,6 +435,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
     frm.doc.district_of_origin ? apply_filter("block", "District", frm, frm.doc.district_of_origin) : defult_filter('district_of_origin', "State", frm);
     frm.doc.single_window ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
   },
+  validate(frm) {
+    console.log("validate:", frm.doc);
+  },
   state: function (frm) {
     apply_filter("district", "State", frm, frm.doc.state)
   },
@@ -481,14 +489,14 @@ frappe.ui.form.on('Scheme Child', {
     // get_milestone_category(frm)
     let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
     let fl_schemes_ops = scheme_list.filter(f => !schemes_op.includes(f.name))
-    let milestones = [];
+    let milestones = {};
     let ops = fl_schemes_ops.map(e => {
-      milestones.includes(e.milestone) ? '' : milestones.push(e.milestone)
+      milestones.hasOwnProperty(e.milestone) ? '' : milestones[e.milestone] = e.milestone
       return { 'lable': e.name, "value": e.name }
     })
 
     frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
-    frm.fields_dict.scheme_table.grid.update_docfield_property("milestone_category", "options", milestones.map(e => { return { 'lable': e, "value": e } }));
+    frm.fields_dict.scheme_table.grid.update_docfield_property("milestone_category", "options", Object.keys(milestones).map(e => { return { 'lable': milestones[e], "value": milestones[e] } }));
   },
   name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
