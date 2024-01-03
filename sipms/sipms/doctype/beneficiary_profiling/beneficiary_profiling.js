@@ -480,13 +480,19 @@ frappe.ui.form.on('Scheme Child', {
   scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
     let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
-    let row = frappe.get_doc(cdt, cdn);
-    ops = scheme_list.filter(f => !schemes_op.includes(f.name)).map(e => { return { 'lable': e.name, "value": e.name } })
-    frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
+    let fl_schemes_ops = scheme_list.filter(f => !schemes_op.includes(f.name))
+    let milestones = [];
+    let ops = fl_schemes_ops.map(e => {
+      milestones.includes(e.milestone) ? '' : milestones.push(e.milestone)
+      return { 'lable': e.name, "value": e.name }
+    })
 
+    frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
+    frm.fields_dict.scheme_table.grid.update_docfield_property("milestone_category", "options", milestones.map(e => { return { 'lable': e, "value": e } }));
   },
   name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
+    row.milestone_category = ''
     let scheme = scheme_list.find(f => row.name_of_the_scheme == f.name)
 
     if (scheme) {
@@ -495,6 +501,14 @@ frappe.ui.form.on('Scheme Child', {
       row.name_of_the_department = scheme.name_of_department;
     }
     frm.refresh()
+  },
+  milestone_category: (frm, cdt, cdn) => {
+    let row = frappe.get_doc(cdt, cdn);
+    row.name_of_the_scheme = ''
+    let schemes = scheme_list.filter(f => row.milestone_category == f.milestone)
+    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
+    let ops = schemes.filter(f => !schemes_op.includes(f.name)).map(e => { return { 'lable': e.name, "value": e.name } })
+    frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
   },
   application_submitted: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
