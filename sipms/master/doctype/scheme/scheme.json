@@ -12,35 +12,26 @@
   "basic_details_tab",
   "type_of_the_scheme",
   "state",
-  "milestone",
   "name_of_the_scheme",
-  "column_break_wijy",
-  "objective_of_the_scheme",
-  "other_details_tab",
-  "name_of_department",
+  "milestone",
   "mode_of_application",
+  "column_break_pwlq",
+  "name_of_department",
   "department_urlwebsite",
-  "test",
-  "column_break_xrsh",
   "remarks",
   "information_materials",
+  "scheme_objectives_and_documents_tab",
+  "objective_of_the_scheme",
+  "docs_required_to_apply",
+  "comments_remarks",
   "rules_tab",
   "rules"
  ],
  "fields": [
   {
-   "fieldname": "other_details_tab",
-   "fieldtype": "Tab Break",
-   "label": "Other details"
-  },
-  {
    "fieldname": "name_of_department",
    "fieldtype": "Data",
    "label": "Name of department"
-  },
-  {
-   "fieldname": "column_break_xrsh",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "basic_details_tab",
@@ -51,18 +42,15 @@
    "fieldname": "type_of_the_scheme",
    "fieldtype": "Select",
    "label": "Type of the scheme",
-   "options": "\nCentral\nState"
+   "options": "\nCentral\nState",
+   "reqd": 1
   },
   {
-   "fieldname": "column_break_wijy",
-   "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:doc.type_of_the_scheme ==\"State\"",
+   "depends_on": "eval:doc.type_of_the_scheme==\"State\"",
    "fieldname": "state",
    "fieldtype": "Link",
    "label": "State",
-   "mandatory_depends_on": "eval:doc.type_of_the_scheme ==\"State\"",
+   "mandatory_depends_on": "eval:doc.type_of_the_scheme==\"State\"",
    "options": "State"
   },
   {
@@ -77,20 +65,22 @@
    "fieldname": "objective_of_the_scheme",
    "fieldtype": "Long Text",
    "in_list_view": 1,
-   "label": "Objective of the scheme",
+   "label": "Objectives and details of the scheme",
    "options": "Milestone category"
   },
   {
    "fieldname": "milestone",
    "fieldtype": "Link",
-   "label": "Milestone",
-   "options": "Milestone category"
+   "label": "Milestone category",
+   "options": "Milestone category",
+   "reqd": 1
   },
   {
    "fieldname": "mode_of_application",
    "fieldtype": "Select",
    "label": "Mode of application",
-   "options": "\nOnline\nOffline"
+   "options": "\nOnline\nOffline",
+   "reqd": 1
   },
   {
    "fieldname": "department_urlwebsite",
@@ -118,14 +108,32 @@
    "options": "Rule Engine Child"
   },
   {
-   "fieldname": "test",
-   "fieldtype": "Autocomplete",
-   "label": "Test"
+   "fieldname": "column_break_pwlq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "scheme_objectives_and_documents_tab",
+   "fieldtype": "Tab Break",
+   "label": "Scheme objectives and documents"
+  },
+  {
+   "fieldname": "docs_required_to_apply",
+   "fieldtype": "Long Text",
+   "in_list_view": 1,
+   "label": "Documents required to apply",
+   "options": "Milestone category"
+  },
+  {
+   "fieldname": "comments_remarks",
+   "fieldtype": "Long Text",
+   "in_list_view": 1,
+   "label": "Comments/remarks",
+   "options": "Milestone category"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-02 14:44:19.262596",
+ "modified": "2024-01-03 15:34:21.561625",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
