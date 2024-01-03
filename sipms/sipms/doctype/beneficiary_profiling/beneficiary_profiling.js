@@ -188,18 +188,18 @@ function hide_advance_search(frm, list) {
     frm.set_df_property(item, 'only_select', true);
   }
 };
-const get_ordered_list = async (doctype , other_in_last= true)=>{
+const get_ordered_list = async (doctype, other_in_last = true) => {
   let list = await callAPI({
     method: 'frappe.desk.search.search_link',
     freeze: true,
     args: {
       doctype: doctype,
       page_length: 1000,
-      txt:''
+      txt: ''
     },
     freeze_message: __("Getting list ..."),
   })
-  if(other_in_last){
+  if (other_in_last) {
     const otherOption = list.find(item => item.value === 'Others');
     if (otherOption) {
       list = list.filter(item => item.value !== 'Others');
@@ -336,9 +336,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   },
   async refresh(frm) {
-    // set dropdown value 
-    frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types",true));
-    
+    // set dropdown value
+    frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", true));
+
     // hide delete options for helpdesk and csc member
     apply_filter('select_primary_member', 'name_of_head_of_family', frm, ['!=', frm.doc.name])
     if (frappe.user_roles.includes("Help-desk member") || frappe.user_roles.includes("CSC Member")) {
