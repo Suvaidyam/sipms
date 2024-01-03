@@ -20,6 +20,7 @@
   "name_of_department",
   "mode_of_application",
   "department_urlwebsite",
+  "test",
   "column_break_xrsh",
   "remarks",
   "information_materials",
@@ -115,11 +116,16 @@
    "fieldname": "rules",
    "fieldtype": "Table",
    "options": "Rule Engine Child"
+  },
+  {
+   "fieldname": "test",
+   "fieldtype": "Autocomplete",
+   "label": "Test"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-26 19:34:42.649446",
+ "modified": "2024-01-02 14:44:19.262596",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",

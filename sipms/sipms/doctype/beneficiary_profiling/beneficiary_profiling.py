@@ -5,9 +5,40 @@ import frappe
 from frappe.model.document import Document
 from sipms.services.family import family
 from sipms.utils.login_user_details import LoginUser
- 
+
 class BeneficiaryProfiling(Document):
+	def printKeys(obj, f=False):
+		if f and obj.get('_doc_before_save', None):
+			for key in obj.get('_doc_before_save').__dict__.keys():
+				print(key,obj.get(key, None))
+		else:
+			for key in obj.__dict__.keys():
+				print(key,obj.get(key, None))
+
+	def get_family(contact_number):
+		docs = frappe.db.get_list(doctype='Primary Member', filters={'name':contact_number}, fields=["name",'name_of_head_of_family.name_of_the_beneficiary as name_of_the_beneficiary'])
+		if len(docs):
+			return docs[0]
+		return None
+
+	def validate(self):
+		# BeneficiaryProfiling.printKeys(self)
+		if(self.has_anyone_from_your_family_visisted_before == "No"):
+			if self.get('_doc_before_save', None): # Update
+				if self.get('_doc_before_save').get('has_anyone_from_your_family_visisted_before') == 'Yes':
+					family_doc = BeneficiaryProfiling.get_family(self.contact_number)
+					if family_doc:
+						frappe.throw(f"Primary member exist with name <a target='_blank' href='/app/primary-member/{family_doc.name}'><b>{family_doc.name_of_the_beneficiary}</b> [{self.contact_number}]</a>, Please Select Primary Member")
+						return
+					self.select_primary_member = None # set family to None
+			else: # Create
+				family_doc = BeneficiaryProfiling.get_family(self.contact_number)
+				if family_doc:
+					frappe.throw(f"Primary member exist with name <a target='_blank' href='/app/primary-member/{family_doc.name}'><b>{family_doc.name_of_the_beneficiary}</b> [{self.contact_number}]</a>, Please Select Primary Member")
+					return
+
 	def after_insert(self):
+		print("Ben[after_insert]")
 		if not self.single_window:
 			single_window = LoginUser.get_single_windows()
 			frappe.db.set_value('Beneficiary Profiling', self.name, 'single_window', single_window, update_modified=False)
@@ -23,17 +54,28 @@ class BeneficiaryProfiling(Document):
 			current_house_type_doc.house_type_name = self.add_house_type
 			current_house_type_doc.save()
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
-			family_doc_name = frappe.db.exists('Primary Member', self.contact_number)
-			if(family_doc_name):
-				frappe.throw("Primary Member exist, Please Select Primary Member")
-			
 			family_doc = family.create(self)
 			frappe.db.set_value('Beneficiary Profiling', self.name, 'select_primary_member', family_doc.name, update_modified=False)
-	
 
 	def on_update(self):
-		if(self.has_anyone_from_your_family_visisted_before == "No"):
-			family_doc = family.update(self)
-			frappe.db.set_value('Beneficiary Profiling', self.name, 'select_primary_member', family_doc.name, update_modified=False)
+		if self.get('localname'):
+			return
 		else:
-			family.delete_family(self)
+			if(self.has_anyone_from_your_family_visisted_before == "No"):
+				if self.get('_doc_before_save', None):
+					_doc_before_save = self.get('_doc_before_save')
+					if _doc_before_save.get('has_anyone_from_your_family_visisted_before') == 'Yes':
+						family_doc = family.update(self)
+						frappe.db.set_value('Beneficiary Profiling', self.name, 'select_primary_member', family_doc.name, update_modified=False)
+					else:
+						family_doc = family.update(self)
+			else: # handle if No -> Yes
+				if self.get('_doc_before_save', None):
+					_doc_before_save = self.get('_doc_before_save')
+					if _doc_before_save.get('has_anyone_from_your_family_visisted_before') == 'No':
+						family_doc = BeneficiaryProfiling.get_family(_doc_before_save.contact_number)
+						if family_doc:
+							query = f"UPDATE `tabBeneficiary Profiling` SET select_primary_member = '{self.select_primary_member}' WHERE select_primary_member = '{_doc_before_save.select_primary_member}'"
+							frappe.db.sql(query)
+							frappe.db.delete("Primary Member", {"name": family_doc.name})
+
