@@ -4,7 +4,9 @@ var common_operators = ["=", "!="]
 var field_types = {
     "Date": [...common_operators, ">", "<", ">=", "<="],
     "Int": [...common_operators, ">", "<", ">=", "<="],
-    "Link": [...common_operators]
+    "Link": [...common_operators],
+    "Select": [...common_operators],
+    "Currency":[...common_operators , ">", "<", ">=", "<="]
 }
 function evaluateExpression(input, expression) {
     if (!(/^[a-zA-Z0-9\s()+\-/*%&|=!<>]*$/.test(expression))) {
@@ -105,10 +107,14 @@ frappe.ui.form.on('Rule Engine Child', {
         let row = frappe.get_doc(cdt, cdn);
         row.type = field_list?.find(f => f.value == row.rule_field)?.type;
         frm.fields_dict[child_table_field].grid.update_docfield_property("operator", "options", field_types[row.type]);
+        let options = field_list.find(f => f.value == row.rule_field)?.options;
 
         if (row.type == "Link") {
-            let options = field_list.find(f => f.value == row.rule_field)?.options;
             let link_data = await get_Link_list(options)
+            frm.fields_dict[child_table_field].grid.update_docfield_property("select", "options", link_data);
+        }
+        if (row.type == "Select") {
+            let link_data = options?.split('\n').filter(f =>f).map(e=>{return{'label':e , 'value': e}})
             frm.fields_dict[child_table_field].grid.update_docfield_property("select", "options", link_data);
         }
         frm.fields_dict[child_table_field].grid.refresh();
