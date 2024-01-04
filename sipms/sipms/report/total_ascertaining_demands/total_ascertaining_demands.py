@@ -4,8 +4,14 @@ from sipms.utils.filter import Filter
 def execute(filters=None):
     columns = [
         {
+            "fieldname": "current_status",
+            "label": "Current status",
+            "fieldtype": "Data",
+            "width": 400,
+        },
+        {
             "fieldname": "status",
-            "label": "Total ascertaining demands",
+            "label": "Count",
             "fieldtype": "Int",
             "width": 400,
         },
@@ -20,9 +26,12 @@ def execute(filters=None):
 
     sql_query = f"""
         SELECT
+            status as current_status,
             COUNT(status) as status
         FROM
             `tabScheme Child`
+            GROUP BY
+    status;
     """
 
     data = frappe.db.sql(sql_query, as_dict=True)
