@@ -248,7 +248,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
         if (support_items.application_submitted == "No") {
           support_items.status = 'Open'
         } else if (support_items.application_submitted == "Yes") {
-          support_items.status = 'Under process'
+          if(support_items.status != 'Closed'){
+            support_items.status = 'Under process'
+          }
         } else {
           support_items.status = 'Completed'
         }
@@ -260,7 +262,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
         if (!['Completed'].includes(support_item.status)) {
           let followups = frm.selected_doc.follow_up_table.filter(f => f.parent_ref == support_item?.name)
           let latestFollowup = followups.length ? followups[(followups.length - 1)] : null
-          console.log("latestFollowup" ,latestFollowup )
           if (latestFollowup?.parent_ref == support_item.name) {
             switch (latestFollowup.follow_up_status) {
               case "Interested":
@@ -288,11 +289,13 @@ frappe.ui.form.on("Beneficiary Profiling", {
                 support_item.completion_certificate = latestFollowup.completion_certificate || support_item.completion_certificate
                 break;
               case "Not reachable":
-                support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
-                if (latestFollowup.to_close_status) {
-                  support_item.status = latestFollowup.to_close_status
-                  console.log("closed")
+                if(support_item.status != "Closed"){
+                  if (latestFollowup.to_close_status) {
+                    support_item.status = latestFollowup.to_close_status
+                  }else{
+                  support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
                 }
+              }
                 break;
               default:
                 support_item.status = "Under process"
