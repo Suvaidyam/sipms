@@ -31,7 +31,7 @@ def execute(filters=None):
             `tabScheme Child`
         WHERE
             status = 'Completed'
-        {condition_str}
+       # {condition_str}
     """
 
     data = frappe.db.sql(sql_query, as_dict=True)

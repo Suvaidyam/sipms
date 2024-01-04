@@ -32,7 +32,7 @@ def execute(filters=None):
         WHERE
             status = 'Under Process'
             AND application_submitted = 'Yes'
-        {condition_str}
+        # {condition_str}
         GROUP BY
             application_submitted
     """
