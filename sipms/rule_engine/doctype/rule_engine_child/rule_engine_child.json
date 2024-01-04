@@ -69,18 +69,18 @@
    "mandatory_depends_on": "eval:doc.type==\"Link\" || doc.type==\"Select\""
   },
   {
-   "depends_on": "eval:(doc.type==\"Int\")",
+   "depends_on": "eval:(doc.type==\"Int\" || doc.type==\"Currency\")",
    "fieldname": "value",
    "fieldtype": "Int",
    "label": "Value",
-   "mandatory_depends_on": "eval:(doc.type==\"Int\")",
+   "mandatory_depends_on": "eval:(doc.type==\"Int\" || doc.type==\"Currency\")",
    "non_negative": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-04 16:10:50.942447",
+ "modified": "2024-01-04 18:21:25.611209",
  "modified_by": "Administrator",
  "module": "Rule Engine",
  "name": "Rule Engine Child",
