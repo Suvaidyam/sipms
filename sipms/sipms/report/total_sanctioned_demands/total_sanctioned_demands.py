@@ -4,12 +4,17 @@ from sipms.utils.filter import Filter
 def execute(filters=None):
     columns = [
         {
-            "fieldname": "status",
-            "label": "Total ascertaining demands",
-            "fieldtype": "Int",
+            "fieldname": "application_submitted",
+            "label": "Application Submitted",
+            "fieldtype": "Data",
             "width": 400,
         },
-   
+        {
+            "fieldname": "count",
+            "label": "Count",
+            "fieldtype": "Int",
+            "width": 200
+        }
     ]
 
     condition_str = Filter.set_report_filters(filters, 'creation', True)
@@ -20,9 +25,13 @@ def execute(filters=None):
 
     sql_query = f"""
         SELECT
-            COUNT(status) as status
+            application_submitted,
+            COUNT(name) as count
         FROM
             `tabScheme Child`
+        WHERE
+            status = 'Completed'
+        {condition_str}
     """
 
     data = frappe.db.sql(sql_query, as_dict=True)
