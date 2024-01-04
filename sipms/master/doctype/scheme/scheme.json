@@ -133,7 +133,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-04 09:30:27.241968",
+ "modified": "2024-01-04 12:10:15.537484",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
@@ -153,7 +153,6 @@
    "write": 1
   },
   {
-   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
