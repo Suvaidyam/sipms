@@ -30,11 +30,8 @@ def execute(filters=None):
         FROM
             `tabScheme Child`
         WHERE
-            status = 'Under Process'
-            AND application_submitted = 'Yes'
-        # {condition_str}
-        GROUP BY
-            application_submitted
+            status = 'Completed'
+       # {condition_str}
     """
 
     data = frappe.db.sql(sql_query, as_dict=True)

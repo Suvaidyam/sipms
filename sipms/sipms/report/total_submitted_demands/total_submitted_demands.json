@@ -6,10 +6,10 @@
  "docstatus": 0,
  "doctype": "Report",
  "filters": [],
- "idx": 0,
+ "idx": 3,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2023-12-29 10:32:28.830322",
+ "modified": "2024-01-04 11:11:28.319730",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Total Submitted Demands",
@@ -27,6 +27,12 @@
   },
   {
    "role": "MIS executive"
+  },
+  {
+   "role": "Help-desk member"
+  },
+  {
+   "role": "CSC Member"
   }
  ]
 }
