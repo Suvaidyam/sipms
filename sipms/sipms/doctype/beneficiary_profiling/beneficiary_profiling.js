@@ -597,7 +597,7 @@ frappe.ui.form.on('Follow Up Child', {
     } else if (row.follow_up_status === "Not reachable" && latestSupport.status != "Closed") {
       let followups = frm.doc.follow_up_table.filter(f => f.parent_ref == row.parent_ref && f.support_name == row.support_name && f.follow_up_status == "Not reachable")
       if (followups.length >= 2) {
-        frappe.warn('Do you want to close the support?',
+        frappe.warn('Do you want to close the scheme?',
           `The follow-up status is "Not reachable" ${followups.length} times`,
           () => {
             row.to_close_status = "Closed"
