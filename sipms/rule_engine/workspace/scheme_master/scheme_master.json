@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Scheme Master",
  "links": [],
- "modified": "2023-12-27 15:31:06.847491",
+ "modified": "2024-01-04 09:29:05.654570",
  "modified_by": "Administrator",
  "module": "Rule Engine",
  "name": "Scheme Master",
@@ -31,6 +31,12 @@
   },
   {
    "role": "MIS executive"
+  },
+  {
+   "role": "CSC Member"
+  },
+  {
+   "role": "Help-desk member"
   }
  ],
  "sequence_id": 5.0,
