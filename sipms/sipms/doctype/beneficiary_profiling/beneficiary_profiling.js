@@ -226,9 +226,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
   before_save: function (frm) {
     // fill into hidden fields
-    for (_doc of frm.doc.scheme_table) {
-      _doc.scheme = _doc.name_of_the_scheme;
-      _doc.milestone = _doc.milestone_category;
+    if (frm.doc?.scheme_table && frm.doc?.scheme_table?.length) {
+      for (_doc of frm.doc.scheme_table) {
+        _doc.scheme = _doc.name_of_the_scheme;
+        _doc.milestone = _doc.milestone_category;
+      }
     }
     // check alternate mobile number digits
     if (frm.doc.alternate_contact_number < 4) {
