@@ -4,8 +4,8 @@ from sipms.utils.filter import Filter
 def execute(filters=None):
     columns = [
         {
-            "fieldname": "application_submitted",
-            "label": "Application Submitted",
+            "fieldname": "status",
+            "label": "Current status",
             "fieldtype": "Data",
             "width": 400,
         },
@@ -25,7 +25,7 @@ def execute(filters=None):
 
     sql_query = f"""
         SELECT
-            application_submitted,
+            status,
             COUNT(name) as count
         FROM
             `tabScheme Child`
