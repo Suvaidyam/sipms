@@ -8,10 +8,10 @@
   "name_of_the_scheme",
   "follow_up_date",
   "follow_up_with",
+  "follow_up_mode",
   "follow_up_status",
   "remark",
   "follow",
-  "follow_up_mode",
   "parent_ref"
  ],
  "fields": [
@@ -75,13 +75,14 @@
    "fieldtype": "Select",
    "label": "Follow up mode",
    "mandatory_depends_on": "eval:doc.follow_up_with == \"Beneficiary\"",
-   "options": "\nPhone call\nHome visit"
+   "options": "\nPhone call\nHome visit",
+   "set_only_once": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-04 09:04:57.917418",
+ "modified": "2024-01-04 12:50:58.598416",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Follow Up Child",

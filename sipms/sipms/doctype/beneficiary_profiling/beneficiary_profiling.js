@@ -260,7 +260,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
         if (!['Completed'].includes(support_item.status)) {
           let followups = frm.selected_doc.follow_up_table.filter(f => f.parent_ref == support_item?.name)
           let latestFollowup = followups.length ? followups[(followups.length - 1)] : null
-          if (latestFollowup) {
+          console.log("latestFollowup" ,latestFollowup )
+          if (latestFollowup?.parent_ref == support_item.name) {
             switch (latestFollowup.follow_up_status) {
               case "Interested":
                 support_item.status = "Open"
@@ -538,20 +539,17 @@ frappe.ui.form.on('Follow Up Child', {
   follow_up_table_add(frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     row.follow = frappe.session.user_fullname
-    console.log("kkkk")
     let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
     row.follow_up_date = frappe.datetime.get_today()
     frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },
   name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
-    let latestSupport = supports.length ? supports[supports.length - 1] : null;
-    if (latestSupport) {
-      row.parent_ref = latestSupport.name
-    }
+    let supports = frm.doc.scheme_table.filter(f => f.scheme == row.name_of_the_scheme);
+    console.log(supports , "supports")
+    row.parent_ref = supports[0].name
     for (support_items of frm.doc.scheme_table) {
-      if (row.support_name == support_items.specific_support_type) {
+      if (row.name_of_the_scheme == support_items.name_of_the_scheme) {
         if (support_items.status === "Open" && support_items.application_submitted == "No") {
           frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_with", "options", ["Beneficiary"]);
           row.follow_up_with = "Beneficiary"
