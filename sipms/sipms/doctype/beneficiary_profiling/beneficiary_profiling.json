@@ -106,8 +106,6 @@
    "default": "+91-",
    "fieldname": "contact_number",
    "fieldtype": "Phone",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Contact number",
    "reqd": 1
   },
@@ -179,11 +177,9 @@
    "options": "Social vulnerable category"
   },
   {
-   "depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
    "fieldname": "name_of_the_concerned_help_desk_member",
    "fieldtype": "Data",
-   "label": "Name of the concerned Help-desk member",
-   "mandatory_depends_on": "eval:frappe.user_roles.includes(\"Admin\")"
+   "label": "Name of the concerned Help-desk member"
   },
   {
    "fieldname": "column_break_tgpw",
@@ -371,11 +367,8 @@
   },
   {
    "fieldname": "overall_status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Overall status",
-   "options": "\nOpen\nCompleted\nPartially completed"
+   "fieldtype": "Data",
+   "label": "Overall status"
   },
   {
    "fieldname": "numeric_overall_status",
@@ -411,19 +404,19 @@
    "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
   },
   {
-   "depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
+   "depends_on": "eval:(!frappe.user_roles.filter(f=> [\"MIS executive\",\"CSC Member\",\"Help-desk member\"].includes(f)).length)",
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single Window",
-   "mandatory_depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.filter(f=> [\"MIS executive\",\"CSC Member\",\"Help-desk member\"].includes(f)).length)",
    "options": "Single Window"
   },
   {
-   "depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
+   "depends_on": "eval:(!frappe.user_roles.filter(f=> [\"MIS executive\",\"CSC Member\",\"Help-desk member\"].includes(f)).length)",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
-   "mandatory_depends_on": "eval:frappe.user_roles.includes(\"Admin\")",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.filter(f=> [\"MIS executive\",\"CSC Member\",\"Help-desk member\"].includes(f)).length)",
    "options": "Help Desk"
   },
   {
@@ -453,7 +446,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-04 21:09:18.095027",
+ "modified": "2024-01-05 01:40:04.102372",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
@@ -511,18 +504,6 @@
    "read": 1,
    "report": 1,
    "role": "MIS executive",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Administrator",
    "share": 1,
    "write": 1
   }

@@ -9,12 +9,12 @@ class Filter:
             cond_str = ""
             if "Admin" in roles:
                 cond_str = "state"
+            elif "MIS executive" in roles:
+                cond_str = "single_window"
             elif "CSC Member" in roles:
                 cond_str = "single_window"
             elif "Help-desk member" in roles:
                 cond_str = "help_desk"
-            elif "MIS executive" in roles:
-                cond_str = "single_window"
             value = Cache.get_csc()
             return f"(`tab{doctype}`.{cond_str} = '{value}')"
         return ""

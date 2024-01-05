@@ -18,7 +18,7 @@ fixtures=[
     "Occupational Category",
     "Role Profile",
     "Source Of Information",
-    "House Types",
+    # "House Types",
     "Gender",
     "Role",
 ]
