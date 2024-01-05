@@ -246,7 +246,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
     if (frm.selected_doc.scheme_table) {
       for (support_items of frm.selected_doc.scheme_table) {
         if (support_items.application_submitted == "No") {
-          support_items.status = 'Open'
+          if(support_items.status != 'Closed'){
+            support_items.status = 'Open'
+          }
         } else if (support_items.application_submitted == "Yes") {
           if(support_items.status != 'Closed'){
             support_items.status = 'Under process'
