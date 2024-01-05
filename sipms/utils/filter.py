@@ -16,7 +16,8 @@ class Filter:
             elif "Help-desk member" in roles:
                 cond_str = "help_desk"
             value = Cache.get_csc()
-            return f"(`tab{doctype}`.{cond_str} = '{value}')"
+            return """(`tab{0}`.help_desk = '{1}')""".format(doctype , value)
+            # return f"""`tab{doctype}`.{cond_str} = '{value}'"""
         return ""
 
     def set_report_filters(filters=None, date_column='creation', str=False, table_name='', csc_filter=True):
