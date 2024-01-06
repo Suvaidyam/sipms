@@ -8,8 +8,8 @@ def execute(filters=None):
 	# frappe.errprint(filters)
 	columns = [
 		{
-		"fieldname":"gender",
-		"label":"Gender",
+		"fieldname":"bank_account",
+		"label":"Bank account status of Beneficiaries",
 		"fieldtype":"Data",
 		"width":300
 		},
@@ -28,14 +28,14 @@ def execute(filters=None):
 	
 	sql_query = f"""
 		SELECT
-			gender as gender,
-			COUNT(gender) as count
+			do_you_have_any_bank_account as bank_account,
+			COUNT(do_you_have_any_bank_account) as count
 		FROM
 			`tabBeneficiary Profiling`
 		WHERE
 		1=1 {condition_str}
 		GROUP BY
-		gender;
+		do_you_have_any_bank_account;
 	"""
 	data = frappe.db.sql(sql_query, as_dict=True)
 	return columns, data
