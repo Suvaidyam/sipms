@@ -33,7 +33,7 @@ def execute(filters=None):
 		COUNT(t1.state) as count
 	FROM
 		`tabBeneficiary Profiling` AS t1
-	LEFT OUTER JOIN
+	LEFT JOIN
 		`tabState` AS t2 ON t1.state = t2.name
 	WHERE
 		1=1 {condition_str}

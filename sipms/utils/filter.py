@@ -3,7 +3,7 @@ from sipms.utils.cache import Cache
 
 
 class Filter:
-    def set_query_filters(doctype=None):
+    def set_query_filters(doctype=None , obj=False):
         roles = frappe.get_roles(frappe.session.user)
         if("Administrator" not in roles):
             cond_str = ""
@@ -17,5 +17,8 @@ class Filter:
                 cond_str = "help_desk"
             value = Cache.get_csc()
             # return """(`tab{0}`.help_desk = '{1}')""".format(doctype , value)
+            if obj:
+                return [cond_str , value]
             return f"""{cond_str} = '{value}'""" 
         return ""
+

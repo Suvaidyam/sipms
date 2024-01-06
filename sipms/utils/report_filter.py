@@ -34,13 +34,10 @@ class ReportFilter:
                 else:
                     new_filters[filter_key] = filters[filter_key]
 
-        csc = None
-
-        csc_key = f"single_window"
-        query_filter = Filter.set_query_filters(None)
+        query_filter = Filter.set_query_filters(None, False)
         if table_name:
             # new_filters.append(f"({query_filter})")
-            csc_key = f"{table_name}.{csc_key}"
+            csc_key = f"{table_name}.{query_filter[0]}"
         user = frappe.session.user
         if csc_filter and ("Administrator" not in frappe.get_roles(user)):
             if str:
