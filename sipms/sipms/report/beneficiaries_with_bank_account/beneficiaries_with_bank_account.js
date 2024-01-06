@@ -1,6 +1,5 @@
-// Copyright (c) 2023, suvaidyam and contributors
+// Copyright (c) 2024, suvaidyam and contributors
 // For license information, please see license.txt
-
 var filters = [
 	{
 		"fieldname": "from_date",
@@ -16,12 +15,12 @@ var filters = [
 ];
 if (!frappe.user_roles.includes("MIS executive") || frappe.user_roles.includes("Administrator")) {
 	filters.push({
-		"fieldname": "single_window",
+		"fieldname": "state",
 		"fieldtype": "Link",
-		"label": "Single Window",
-		"options": "Single Window"
+		"label": "State",
+		"options": "State"
 	})
 }
-frappe.query_reports["State of origin"] = {
+frappe.query_reports["Beneficiaries with Bank Account"] = {
 	filters: filters
 };
