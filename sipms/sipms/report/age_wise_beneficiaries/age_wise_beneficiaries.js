@@ -10,6 +10,12 @@ var filters = [
 		"fieldname": "to_date",
 		"fieldtype": "Date",
 		"label": "To Date"
+	},
+	{
+		"fieldname": "single_window",
+		"fieldtype": "Link",
+		"label": "Single Window",
+		"options": "Single Window"
 	}
 	
 ];
