@@ -21,11 +21,25 @@ def execute(filters=None):
 		}
 	]
 
-	new_filters = ReportFilter.set_report_filters(filters, 'creation')
+	condition_str = ReportFilter.set_report_filters(filters, 'creation', True)
+	if condition_str:
+		condition_str = f"AND {condition_str}"
+	else:
+		condition_str = ""
 
-	data = frappe.get_all("Beneficiary Profiling",
-	filters=new_filters,
-	fields=["state_of_origin.state_name as state",'count(`tabBeneficiary Profiling`.name) as count'],
-	group_by='state')
+	sql_query = f"""
+	SELECT
+		t2.state_name as state,
+		COUNT(t1.state) as count
+	FROM
+		`tabBeneficiary Profiling` AS t1
+	LEFT OUTER JOIN
+		`tabState` AS t2 ON t1.state = t2.name
+	WHERE
+		1=1 {condition_str}
+	GROUP BY
+		t1.state;
+	"""
+	data = frappe.db.sql(sql_query, as_dict=True)
 
 	return columns, data
