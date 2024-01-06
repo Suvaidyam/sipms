@@ -2,7 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
-from sipms.utils.filter import Filter
+from sipms.utils.report_filter import ReportFilter
 
 def execute(filters=None):
 	# frappe.errprint(filters)
@@ -21,7 +21,7 @@ def execute(filters=None):
 		}
 	]
 
-	new_filters = Filter.set_report_filters(filters, 'creation')
+	new_filters = ReportFilter.set_report_filters(filters, 'creation')
 
 	data = frappe.get_all("Beneficiary Profiling",
 	filters=new_filters,
