@@ -167,7 +167,7 @@
    "fieldname": "social_vulnerable",
    "fieldtype": "Select",
    "label": "Are you a part any social vulnerable category?",
-   "options": "No\nYes",
+   "options": "\nNo\nYes",
    "reqd": 1
   },
   {
@@ -453,7 +453,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-05 14:17:45.768650",
+ "modified": "2024-01-07 20:35:47.184004",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
