@@ -513,7 +513,7 @@ frappe.ui.form.on('Scheme Child', {
 
     if (scheme) {
       row.milestone_category = scheme.milestone;
-      row.mode_of_application = scheme.mode_of_application;
+      // row.mode_of_application = scheme.mode_of_application;
       row.name_of_the_department = scheme.name_of_department;
     }
     frm.refresh()
