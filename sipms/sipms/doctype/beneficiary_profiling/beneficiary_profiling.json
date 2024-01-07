@@ -163,7 +163,6 @@
    "mandatory_depends_on": "eval:doc.marital_status ==\"Married\""
   },
   {
-   "default": "No",
    "fieldname": "social_vulnerable",
    "fieldtype": "Select",
    "label": "Are you a part any social vulnerable category?",
@@ -453,7 +452,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-07 20:35:47.184004",
+ "modified": "2024-01-07 20:36:57.181635",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
