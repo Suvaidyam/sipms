@@ -55,7 +55,6 @@
    "fieldtype": "Select",
    "label": "Mode of application",
    "options": "\nOnline\nOffline",
-   "read_only": 1,
    "set_only_once": 1
   },
   {
@@ -176,7 +175,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-03 16:39:39.630177",
+ "modified": "2024-01-07 20:25:25.185710",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Scheme Child",

@@ -14,11 +14,9 @@
   "state",
   "name_of_the_scheme",
   "milestone",
-  "mode_of_application",
   "column_break_pwlq",
   "name_of_department",
   "department_urlwebsite",
-  "remarks",
   "information_materials",
   "scheme_objectives_and_documents_tab",
   "objective_of_the_scheme",
@@ -76,21 +74,9 @@
    "reqd": 1
   },
   {
-   "fieldname": "mode_of_application",
-   "fieldtype": "Select",
-   "label": "Mode of application",
-   "options": "\nOnline\nOffline",
-   "reqd": 1
-  },
-  {
    "fieldname": "department_urlwebsite",
    "fieldtype": "Data",
    "label": "Department URL/Website"
-  },
-  {
-   "fieldname": "remarks",
-   "fieldtype": "Data",
-   "label": "Remarks"
   },
   {
    "fieldname": "information_materials",
@@ -133,7 +119,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-04 12:10:15.537484",
+ "modified": "2024-01-07 20:22:13.510141",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
