@@ -15,10 +15,10 @@ def execute(filters=None):
             "fieldtype": "Int",
             "width": 400,
         },
-   
+
     ]
 
-    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True)
+    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True, 'ben_table')
     if condition_str:
         condition_str = f"AND {condition_str}"
     else:
@@ -26,14 +26,14 @@ def execute(filters=None):
 
     sql_query = f"""
         SELECT
-            status as current_status,
-            COUNT(status) as status
+            _sc.status as current_status,
+            COUNT(_sc.status) as status
         FROM
-            `tabScheme Child`
-        # -- WHERE
-        # -- {condition_str} OR 1=1
+            `tabScheme Child` as _sc
+        INNER JOIN `tabBeneficiary Profiling` as ben_table on (ben_table.name =  _sc.parent and _sc.parenttype ='Beneficiary Profiling')
+        WHERE 1=1 {condition_str}
         GROUP BY
-            status;
+            _sc.status;
     """
     # sql_query = """
     # SELECT
@@ -48,6 +48,6 @@ def execute(filters=None):
     # GROUP BY
     #     `tabScheme Child`.status;
     # """
-
+    print("sql_query",sql_query)
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
