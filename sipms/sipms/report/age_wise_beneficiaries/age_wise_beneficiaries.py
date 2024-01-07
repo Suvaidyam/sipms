@@ -3,7 +3,7 @@
 
 
 import frappe
-from sipms.utils.filter import Filter
+from sipms.utils.report_filter import ReportFilter
 
 
 def execute(filters=None):
@@ -21,7 +21,7 @@ def execute(filters=None):
             "width": 300
         }
     ]
-    condition_str = Filter.set_report_filters(
+    condition_str = ReportFilter.set_report_filters(
         filters, 'creation', True)
     if condition_str:
         condition_str = f"WHERE {condition_str}"

@@ -106,6 +106,8 @@
    "default": "+91-",
    "fieldname": "contact_number",
    "fieldtype": "Phone",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Contact number",
    "reqd": 1
   },
@@ -367,13 +369,18 @@
   },
   {
    "fieldname": "overall_status",
-   "fieldtype": "Data",
-   "label": "Overall status"
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Overall status",
+   "options": "\nOpen\nPartially completed\nCompleted",
+   "read_only": 1
   },
   {
    "fieldname": "numeric_overall_status",
    "fieldtype": "Data",
-   "label": "Numeric overall status"
+   "label": "Numeric overall status",
+   "read_only": 1
   },
   {
    "depends_on": "eval:doc.source_of_information == \"Others\"",
@@ -446,7 +453,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-05 01:40:04.102372",
+ "modified": "2024-01-05 14:17:45.768650",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

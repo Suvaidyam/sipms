@@ -41,9 +41,11 @@ class BeneficiaryProfiling(Document):
 		print("Ben[after_insert]")
 		if not self.single_window:
 			single_window = LoginUser.get_single_windows()
+			self.single_window = single_window
 			frappe.db.set_value('Beneficiary Profiling', self.name, 'single_window', single_window, update_modified=False)
 		if not self.help_desk:
 			help_desk = LoginUser.get_helpdesk()
+			self.help_desk = help_desk
 			frappe.db.set_value('Beneficiary Profiling', self.name, 'help_desk', help_desk, update_modified=False)
 		if(self.new_source_of_information):
 			new_source_of_information_doc = frappe.new_doc("Source Of Information")
@@ -69,6 +71,7 @@ class BeneficiaryProfiling(Document):
 						frappe.db.set_value('Beneficiary Profiling', self.name, 'select_primary_member', family_doc.name, update_modified=False)
 					else:
 						family_doc = family.update(self)
+						frappe.db.set_value('Beneficiary Profiling', self.name, 'select_primary_member', family_doc.name, update_modified=False)
 			else: # handle if No -> Yes
 				if self.get('_doc_before_save', None):
 					_doc_before_save = self.get('_doc_before_save')

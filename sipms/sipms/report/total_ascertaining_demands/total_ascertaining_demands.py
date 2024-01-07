@@ -1,5 +1,5 @@
 import frappe
-from sipms.utils.filter import Filter
+from sipms.utils.report_filter import ReportFilter
 
 def execute(filters=None):
     columns = [
@@ -18,7 +18,7 @@ def execute(filters=None):
    
     ]
 
-    condition_str = Filter.set_report_filters(filters, 'creation', True)
+    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True)
     if condition_str:
         condition_str = f"AND {condition_str}"
     else:
@@ -30,9 +30,24 @@ def execute(filters=None):
             COUNT(status) as status
         FROM
             `tabScheme Child`
-            GROUP BY
-    status;
+        # -- WHERE
+        # -- {condition_str} OR 1=1
+        GROUP BY
+            status;
     """
+    # sql_query = """
+    # SELECT
+    #     `tabScheme Child`.status AS current_status,
+    #     COUNT(`tabScheme Child`.status) AS status
+    # FROM
+    #     `tabScheme Child`
+    # LEFT JOIN
+    #     `tabBeneficiary Profiling` ON `tabScheme Child`.parent = `tabBeneficiary Profiling`.name
+    #  WHERE
+    #     {condition_str} OR 1=1
+    # GROUP BY
+    #     `tabScheme Child`.status;
+    # """
 
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
