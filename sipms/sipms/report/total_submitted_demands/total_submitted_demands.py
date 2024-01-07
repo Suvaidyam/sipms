@@ -29,9 +29,9 @@ def execute(filters=None):
             COUNT(_sc.name) as count
         FROM
             `tabScheme Child` as _sc
-         INNER JOIN `tabBeneficiary Profiling` as ben_table on (ben_table.name =  _sc.parent and _sc.parenttype ='Beneficiary Profiling')
+        INNER JOIN `tabBeneficiary Profiling` as ben_table on (ben_table.name =  _sc.parent and _sc.parenttype ='Beneficiary Profiling')
         WHERE
-            status = 'Under Process'AND
+            _sc.status = 'Under Process' AND
         1=1 {condition_str}
         GROUP BY
             _sc.application_submitted
