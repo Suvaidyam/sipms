@@ -289,15 +289,13 @@
    "fieldname": "district_of_origin",
    "fieldtype": "Link",
    "label": "District of origin",
-   "options": "District",
-   "reqd": 1
+   "options": "District"
   },
   {
    "fieldname": "block",
    "fieldtype": "Link",
    "label": "Ward/Tehsil/Block",
-   "options": "Block",
-   "reqd": 1
+   "options": "Block"
   },
   {
    "default": "No",
@@ -464,7 +462,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-08 12:44:25.301463",
+ "modified": "2024-01-08 12:47:00.243336",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
