@@ -2,6 +2,7 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "format:{name_of_the_settlement}-{####}",
  "creation": "2023-11-04 10:29:07.053188",
  "default_view": "List",
  "doctype": "DocType",
@@ -412,11 +413,9 @@
    "options": "Single Window"
   },
   {
-   "depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
-   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "options": "Help Desk"
   },
   {
@@ -447,7 +446,6 @@
    "fieldname": "added_by",
    "fieldtype": "Data",
    "label": "Added by",
-   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "options": "Sipms User",
    "read_only": 1
   },
@@ -462,11 +460,11 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-08 12:47:00.243336",
+ "modified": "2024-01-08 15:57:38.349653",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
- "naming_rule": "By script",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

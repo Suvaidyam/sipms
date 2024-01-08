@@ -14,7 +14,6 @@
   "column_break_itbc",
   "state",
   "single_window",
-  "help_desk",
   "password",
   "confirm_password"
  ],
@@ -81,14 +80,6 @@
    "options": "Single Window"
   },
   {
-   "depends_on": "eval:(doc.role_profile ==\"Help-desk member\")",
-   "fieldname": "help_desk",
-   "fieldtype": "Link",
-   "label": "Help-desk",
-   "mandatory_depends_on": "eval:(doc.role_profile ==\"Help-desk member\")",
-   "options": "Help Desk"
-  },
-  {
    "fieldname": "user_image",
    "fieldtype": "Attach Image",
    "hidden": 1,
@@ -99,7 +90,7 @@
  "image_field": "user_image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-05 01:05:35.679087",
+ "modified": "2024-01-08 15:25:36.338118",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms User",
