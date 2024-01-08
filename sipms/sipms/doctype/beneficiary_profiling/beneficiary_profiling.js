@@ -473,38 +473,25 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth;
-    
     if (dob) {
         let today = frappe.datetime.get_today();
         let birthDate = new Date(dob);
         let currentDate = new Date(today);
-
         let years = currentDate.getFullYear() - birthDate.getFullYear();
         let months = currentDate.getMonth() - birthDate.getMonth();
-
         if (months < 0 || (months === 0 && currentDate.getDate() < birthDate.getDate())) {
             years--;
-            months += 12;
         }
-
-        let ageString = '';
-
+        let ageString = '0';
         if (years > 0) {
             ageString += years + (years === 1 ? ' year' : ' years');
-        }
-
-        if (months > 0) {
-            if (ageString !== '') {
-                ageString += ' and ';
-            }
-            ageString += months + (months === 1 ? ' month' : ' months');
         }
 
         frm.set_value('completed_age', ageString);
         frm.set_df_property('completed_age', 'read_only', 1);
     } else {
         frm.set_df_property('completed_age', 'read_only', 0);
-        frm.set_value('completed_age', null);
+        frm.set_value('completed_age', 0);
     }
 },
   same_as_above: function (frm) {
