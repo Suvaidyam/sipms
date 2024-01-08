@@ -43,10 +43,10 @@ class BeneficiaryProfiling(Document):
 			single_window = LoginUser.get_single_windows()
 			self.single_window = single_window
 			frappe.db.set_value('Beneficiary Profiling', self.name, 'single_window', single_window, update_modified=False)
-		if not self.help_desk:
-			help_desk = LoginUser.get_helpdesk()
-			self.help_desk = help_desk
-			frappe.db.set_value('Beneficiary Profiling', self.name, 'help_desk', help_desk, update_modified=False)
+		# if not self.help_desk:
+		# 	help_desk = LoginUser.get_helpdesk()
+		# 	self.help_desk = help_desk
+		# 	frappe.db.set_value('Beneficiary Profiling', self.name, 'help_desk', help_desk, update_modified=False)
 		if(self.new_source_of_information):
 			new_source_of_information_doc = frappe.new_doc("Source Of Information")
 			new_source_of_information_doc.source_name = self.new_source_of_information
