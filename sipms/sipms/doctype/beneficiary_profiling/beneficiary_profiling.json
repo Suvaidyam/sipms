@@ -27,6 +27,7 @@
   "spouses_name",
   "social_vulnerable",
   "social_vulnerable_category",
+  "other_social_vulnerable_category",
   "added_by",
   "column_break_tgpw",
   "are_you_a_person_with_disability_pwd",
@@ -446,17 +447,24 @@
   {
    "depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "fieldname": "added_by",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Added by",
    "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "options": "Sipms User",
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.social_vulnerable_category ==\"Others\"",
+   "fieldname": "other_social_vulnerable_category",
+   "fieldtype": "Data",
+   "label": "Other social vulnerable category",
+   "mandatory_depends_on": "eval:doc.social_vulnerable_category ==\"Others\""
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-08 11:43:11.243271",
+ "modified": "2024-01-08 11:56:11.129899",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
