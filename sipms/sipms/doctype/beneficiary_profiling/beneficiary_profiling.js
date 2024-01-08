@@ -445,7 +445,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
     frm.doc.ward ? apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward) : defult_filter('name_of_the_settlement', "Block", frm);
     frm.doc.state_of_origin ? apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin) : defult_filter('block', "District", frm);
     frm.doc.district_of_origin ? apply_filter("block", "District", frm, frm.doc.district_of_origin) : defult_filter('district_of_origin', "State", frm);
-    // frm.doc.single_window ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
+    if(frappe.user_roles.includes("Admin")){
+      frm.doc.single_window ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
+    }
   },
   validate(frm) {
     console.log("validate:", frm.doc);
@@ -465,9 +467,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
   district_of_origin: function (frm) {
     apply_filter("block", "District", frm, frm.doc.district_of_origin)
   },
-  // single_window: function (frm) {
-  //   apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
-  // },
+  single_window: function (frm) {
+    apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
+  },
 
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth;

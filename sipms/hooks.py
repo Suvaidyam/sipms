@@ -28,7 +28,7 @@ fixtures = [
 permission_query_conditions = {
     "Beneficiary Profiling": "sipms.middlewares.beneficiary.list_query",
     "Primary Member": "sipms.middlewares.family.list_query",
-    # "Current location":"epms.middlewares.current_location.list_query",
+    "Help Desk":"sipms.middlewares.helpdesk.list_query",
     "Sipms User":"sipms.middlewares.sipms_user.list_query",
     "Role Profile":"sipms.middlewares.role_profile.list_query",
     "User":"sipms.middlewares.user.list_query",
