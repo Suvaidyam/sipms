@@ -56,6 +56,7 @@
   "same_as_above",
   "origin_details_section",
   "state_of_origin",
+  "column_break_igyv",
   "district_of_origin",
   "column_break_htmx",
   "block",
@@ -456,12 +457,16 @@
    "fieldtype": "Data",
    "label": "Other social vulnerable category",
    "mandatory_depends_on": "eval:doc.social_vulnerable_category ==\"Others\""
+  },
+  {
+   "fieldname": "column_break_igyv",
+   "fieldtype": "Column Break"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-08 17:35:43.886382",
+ "modified": "2024-01-08 19:33:54.633490",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
