@@ -28,8 +28,9 @@
  "fields": [
   {
    "fieldname": "name_of_department",
-   "fieldtype": "Data",
-   "label": "Name of department"
+   "fieldtype": "Link",
+   "label": "Name of department",
+   "options": "Name of the Department"
   },
   {
    "fieldname": "basic_details_tab",
@@ -74,6 +75,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "name_of_department.department_urlwebsite",
    "fieldname": "department_urlwebsite",
    "fieldtype": "Data",
    "label": "Department URL/Website"
@@ -119,7 +121,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-07 20:22:13.510141",
+ "modified": "2024-01-08 10:35:53.184952",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
