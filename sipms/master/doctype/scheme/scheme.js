@@ -82,11 +82,14 @@ frappe.ui.form.on("Scheme", {
     refresh(frm) {
         console.log("Scheme[refresh]");
         frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
-        frm.add_web_link(frm?.doc?.department_urlwebsite)
+        if(frm.doc.department_urlwebsite){
+            frm.add_web_link(frm?.doc?.department_urlwebsite)
+        }
     },
     name_of_department:function(frm){
-        console.log(frm)
-        frm.add_web_link(frm?.doc?.department_urlwebsite)
+        if(frm.doc.department_urlwebsite){
+            frm.add_web_link(frm?.doc?.department_urlwebsite)
+        }
     }
 });
 // CHILD TABLE
