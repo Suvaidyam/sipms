@@ -10,9 +10,9 @@
  "engine": "InnoDB",
  "field_order": [
   "state",
-  "block_name",
-  "column_break_gqrn",
   "district",
+  "column_break_gqrn",
+  "block_name",
   "block_code"
  ],
  "fields": [
@@ -54,7 +54,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-24 15:44:01.727831",
+ "modified": "2024-01-08 14:42:35.594483",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Block",
