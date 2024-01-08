@@ -416,7 +416,8 @@
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
-   "options": "Help Desk"
+   "options": "Help Desk",
+   "reqd": 1
   },
   {
    "depends_on": "eval:!doc.__islocal",
@@ -460,7 +461,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-08 15:57:38.349653",
+ "modified": "2024-01-08 17:35:43.886382",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
