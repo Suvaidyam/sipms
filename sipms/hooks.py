@@ -6,7 +6,7 @@ app_email = "teach@suvaidyam.com"
 app_license = "mit"
 # required_apps = []
 
-fixtures=[
+fixtures = [
     "Caste category",
     "Religion",
     "Education",
@@ -21,6 +21,7 @@ fixtures=[
     # "House Types",
     "Gender",
     "Role",
+    "Name of the Department"
 ]
 # Includes in <head>
 # ------------------
