@@ -27,7 +27,7 @@
   "spouses_name",
   "social_vulnerable",
   "social_vulnerable_category",
-  "name_of_the_concerned_help_desk_member",
+  "added_by",
   "column_break_tgpw",
   "are_you_a_person_with_disability_pwd",
   "what_is_the_extent_of_your_disability",
@@ -176,11 +176,6 @@
    "label": "Social vulnerable category",
    "mandatory_depends_on": "eval:doc.social_vulnerable=='Yes'",
    "options": "Social vulnerable category"
-  },
-  {
-   "fieldname": "name_of_the_concerned_help_desk_member",
-   "fieldtype": "Data",
-   "label": "Name of the concerned Help-desk member"
   },
   {
    "fieldname": "column_break_tgpw",
@@ -410,19 +405,19 @@
    "mandatory_depends_on": "eval:doc.current_house_type ==\"Others\""
   },
   {
-   "depends_on": "eval:(!frappe.user_roles.filter(f=> [\"MIS executive\",\"CSC Member\",\"Help-desk member\"].includes(f)).length)",
+   "depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single Window",
-   "mandatory_depends_on": "eval:(!frappe.user_roles.filter(f=> [\"MIS executive\",\"CSC Member\",\"Help-desk member\"].includes(f)).length)",
+   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "options": "Single Window"
   },
   {
-   "depends_on": "eval:(!frappe.user_roles.filter(f=> [\"MIS executive\",\"CSC Member\",\"Help-desk member\"].includes(f)).length)",
+   "depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
-   "mandatory_depends_on": "eval:(!frappe.user_roles.filter(f=> [\"MIS executive\",\"CSC Member\",\"Help-desk member\"].includes(f)).length)",
+   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "options": "Help Desk"
   },
   {
@@ -447,12 +442,21 @@
    "label": "Do you have any bank account?",
    "options": "\nYes\nNo",
    "reqd": 1
+  },
+  {
+   "depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
+   "fieldname": "added_by",
+   "fieldtype": "Link",
+   "label": "Added by",
+   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
+   "options": "Sipms User",
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-07 20:36:57.181635",
+ "modified": "2024-01-08 11:43:11.243271",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

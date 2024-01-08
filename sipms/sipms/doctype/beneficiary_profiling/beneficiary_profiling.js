@@ -362,7 +362,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
         frm.set_df_property('follow_up_table', 'cannot_delete_all_rows', true);
       }
     }
-    frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user_fullname
+
     extend_options_length(frm, ["what_is_the_extent_of_your_disability", "single_window", "help_desk",
       "source_of_information", "current_occupation", "current_house_type", "state", "district",
       "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin", "social_vulnerable_category"])
@@ -413,8 +413,12 @@ frappe.ui.form.on("Beneficiary Profiling", {
     const datatable = new DataTable(container, { columns: tableConf.columns });
     datatable.refresh(tableConf.rows);
     datatable.style.setStyle(`.dt-scrollable`, { 'overflow': 'scroll' });
+    // if not is local
+    if(frm.doc.__islocal){
+      frm.doc.added_by = frappe.session.user
+      refresh_field("added_by")
+    }
 
-    refresh_field("name_of_the_concerned_help_desk_member")
     // set  defult date of visit
     if (frm.doc.__islocal) {
       frm.set_value('date_of_visit', frappe.datetime.get_today());
