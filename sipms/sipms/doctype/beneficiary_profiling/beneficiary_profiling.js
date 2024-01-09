@@ -18,6 +18,20 @@ const dialogsConfig = {
         _doc: true
       },
       {
+        label: 'Mode of application',
+        fieldname: 'mode_of_application',
+        fieldtype: 'Select',
+        reqd: 1,
+        options:["Online", "Offline"],
+        _doc: true
+      },
+      {
+        label: 'Reason of application',
+        fieldname: 'reason_of_application',
+        fieldtype: 'Data',
+        _doc: true
+      },
+      {
         label: 'Amount paid',
         fieldname: 'amount_paid',
         fieldtype: 'Int',
@@ -52,6 +66,20 @@ const dialogsConfig = {
       {
         label: 'Application number',
         fieldname: 'application_number',
+        fieldtype: 'Data',
+        _doc: true
+      },
+      {
+        label: 'Mode of application',
+        fieldname: 'mode_of_application',
+        fieldtype: 'Select',
+        reqd: 1,
+        options:["Online", "Offline"],
+        _doc: true
+      },
+      {
+        label: 'Reason of application',
+        fieldname: 'reason_of_application',
         fieldtype: 'Data',
         _doc: true
       },
