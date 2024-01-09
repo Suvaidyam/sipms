@@ -38,6 +38,8 @@
   "fathers_name",
   "mothers_name",
   "source_of_information",
+  "name_of_the_camp",
+  "new_camp",
   "new_source_of_information",
   "has_anyone_from_your_family_visisted_before",
   "select_primary_member",
@@ -461,12 +463,27 @@
   {
    "fieldname": "column_break_igyv",
    "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.source_of_information ==\"Camp\"",
+   "fieldname": "name_of_the_camp",
+   "fieldtype": "Link",
+   "label": "Name of the camp",
+   "mandatory_depends_on": "eval:doc.source_of_information ==\"Camp\"",
+   "options": "Camp"
+  },
+  {
+   "depends_on": "eval:doc.name_of_the_camp ==\"Others\"",
+   "fieldname": "new_camp",
+   "fieldtype": "Data",
+   "label": "New camp",
+   "mandatory_depends_on": "eval:doc.name_of_the_camp ==\"Others\""
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-08 19:33:54.633490",
+ "modified": "2024-01-09 10:17:12.444362",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

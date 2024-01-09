@@ -55,6 +55,10 @@ class BeneficiaryProfiling(Document):
 			current_house_type_doc = frappe.new_doc("House Types")
 			current_house_type_doc.house_type_name = self.add_house_type
 			current_house_type_doc.save()
+		if(self.new_camp):
+			camp_doc = frappe.new_doc("Camp")
+			camp_doc.name_of_the_camp = self.new_camp
+			camp_doc.save()
 		if(self.other_social_vulnerable_category):
 			scc_doc = frappe.new_doc("Social vulnerable category")
 			scc_doc.social_vulnerable_category = self.other_social_vulnerable_category
