@@ -504,7 +504,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frm.doc.district_of_origin = '';
       frm.doc.block = '';
     }
-    frm.refresh()
+    refresh_field("state_of_origin")
+    refresh_field("district_of_origin")
+    refresh_field("block")
   }
 
 });
@@ -533,7 +535,7 @@ frappe.ui.form.on('Scheme Child', {
       // row.mode_of_application = scheme.mode_of_application;
       row.name_of_the_department = scheme.name_of_department;
     }
-    frm.refresh()
+    refresh_field("scheme_table")
   },
   milestone_category: (frm, cdt, cdn) => {
     let row = frappe.get_doc(cdt, cdn);
