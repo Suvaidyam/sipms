@@ -483,7 +483,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-09 10:17:12.444362",
+ "modified": "2024-01-09 10:36:30.535131",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
@@ -509,7 +509,8 @@
    "read": 1,
    "report": 1,
    "role": "Admin",
-   "share": 1
+   "share": 1,
+   "write": 1
   },
   {
    "create": 1,
