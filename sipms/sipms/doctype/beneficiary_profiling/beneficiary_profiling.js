@@ -216,7 +216,7 @@ function hide_advance_search(frm, list) {
     frm.set_df_property(item, 'only_select', true);
   }
 };
-const get_ordered_list = async (doctype, other_in_last = true) => {
+const get_ordered_list = async (doctype, optionsToSort) => {
   let list = await callAPI({
     method: 'frappe.desk.search.search_link',
     freeze: true,
@@ -227,13 +227,16 @@ const get_ordered_list = async (doctype, other_in_last = true) => {
     },
     freeze_message: __("Getting list ..."),
   })
-  if (other_in_last) {
-    const exceptArray = ["Own", "Rented", "Relative's home", "Government quarter", "Others"];
+  if (optionsToSort) {
     let reOrderedList = [];
-    exceptArray.forEach(async (option) => {
+    optionsToSort.forEach(async (option) => {
       const requiredOption = await list.find(item => item.value === option);
       reOrderedList.push(requiredOption);
     });
+    const exceptionList = await list.filter(item => !optionsToSort.some(item2 => item.value === item2));
+    exceptionList.forEach(async (option) => {
+      reOrderedList = [...reOrderedList, option];
+    })
     list = reOrderedList;
     return list;
     // const otherOption = list.find(item => item.value === 'Others');
@@ -384,8 +387,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   },
   async refresh(frm) {
-    // set dropdown value
-    frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", true));
+    // set dropdown value by ordering
+    frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 
     // hide delete options for helpdesk and csc member
     apply_filter('select_primary_member', 'name_of_head_of_family', frm, ['!=', frm.doc.name])
