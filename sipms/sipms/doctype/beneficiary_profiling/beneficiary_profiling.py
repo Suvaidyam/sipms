@@ -25,11 +25,11 @@ class BeneficiaryProfiling(Document):
 		# BeneficiaryProfiling.printKeys(self)
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
 			if self.get('_doc_before_save', None): # Update
+				family_doc = BeneficiaryProfiling.get_family(self.contact_number)
+				if family_doc and not (family_doc.name_of_head_of_family == self.name):
+					frappe.throw(f"Primary member exist with name <a target='_blank' href='/app/primary-member/{family_doc.name}'><b>{family_doc.name_of_the_beneficiary}</b> [{self.contact_number}]</a>, Please Select Primary Member")
+					return
 				if self.get('_doc_before_save').get('has_anyone_from_your_family_visisted_before') == 'Yes':
-					family_doc = BeneficiaryProfiling.get_family(self.contact_number)
-					if family_doc:
-						frappe.throw(f"Primary member exist with name <a target='_blank' href='/app/primary-member/{family_doc.name}'><b>{family_doc.name_of_the_beneficiary}</b> [{self.contact_number}]</a>, Please Select Primary Member")
-						return
 					self.select_primary_member = None # set family to None
 			else: # Create
 				family_doc = BeneficiaryProfiling.get_family(self.contact_number)
