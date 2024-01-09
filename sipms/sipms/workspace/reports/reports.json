@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"57OiTjigcG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports</span>\",\"col\":12}},{\"id\":\"M7NDzjasg-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State of origin\",\"col\":3}},{\"id\":\"blDeDcTYVu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Place of origin\",\"col\":3}},{\"id\":\"eCkvl_KIaB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Education composition\",\"col\":3}},{\"id\":\"kPH4cDiWK2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Gender composition\",\"col\":3}},{\"id\":\"VQsrdIAOBU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Age Wise Beneficiaries\",\"col\":3}},{\"id\":\"l1aIVwbTUx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Religion Wise Beneficaries\",\"col\":3}},{\"id\":\"1nhjHlMAvt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Occupation Wise Beneficiaries\",\"col\":3}},{\"id\":\"ZULovgUpIG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"House Type Wise Beneficiaries\",\"col\":3}},{\"id\":\"AbqRaxqmYH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Total Demands\",\"col\":3}},{\"id\":\"1ai-WmhJ6G\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Total Submitted Demands\",\"col\":3}},{\"id\":\"Y-l_7H3d6J\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Total Approved Demands\",\"col\":3}},{\"id\":\"KCHBDcCYT3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Status wise support category\",\"col\":3}},{\"id\":\"lyjUvA3a5Q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State wise support status\",\"col\":3}},{\"id\":\"nr1xOXIOP-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Beneficiaries With Bank Account\",\"col\":3}},{\"id\":\"YRUKFNIyyI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"District wise support status\",\"col\":3}},{\"id\":\"vmBDpMorDx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Help-desk wise support status\",\"col\":3}},{\"id\":\"SKfg2rMNrG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Single-window wise support status\",\"col\":3}}]",
+ "content": "[{\"id\":\"57OiTjigcG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports</span>\",\"col\":12}},{\"id\":\"M7NDzjasg-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State of origin\",\"col\":3}},{\"id\":\"blDeDcTYVu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Place of origin\",\"col\":3}},{\"id\":\"eCkvl_KIaB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Education composition\",\"col\":3}},{\"id\":\"VQsrdIAOBU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Age Wise Beneficiaries\",\"col\":3}},{\"id\":\"l1aIVwbTUx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Religion Wise Beneficaries\",\"col\":3}},{\"id\":\"1nhjHlMAvt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Occupation Wise Beneficiaries\",\"col\":3}},{\"id\":\"ZULovgUpIG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"House Type Wise Beneficiaries\",\"col\":3}},{\"id\":\"KCHBDcCYT3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Status wise support category\",\"col\":3}},{\"id\":\"lyjUvA3a5Q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State wise support status\",\"col\":3}},{\"id\":\"YRUKFNIyyI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"District wise support status\",\"col\":3}},{\"id\":\"vmBDpMorDx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Help-desk wise support status\",\"col\":3}},{\"id\":\"SKfg2rMNrG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Single-window wise support status\",\"col\":3}}]",
  "creation": "2023-12-21 19:09:40.349725",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Reports",
  "links": [],
- "modified": "2024-01-06 18:07:24.452118",
+ "modified": "2024-01-09 15:07:20.543243",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Reports",
@@ -28,22 +28,8 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Beneficiaries With Bank Account",
-   "link_to": "Beneficiaries with Bank Account",
-   "type": "Report"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
    "label": "Help-desk wise support status",
    "link_to": "Help-desk wise support status",
-   "type": "Report"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Total Demands",
-   "link_to": "Total Demands",
    "type": "Report"
   },
   {
@@ -77,22 +63,8 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Total Submitted Demands",
-   "link_to": "Total Submitted Demands",
-   "type": "Report"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
    "label": "State wise support status",
    "link_to": "State wise support status",
-   "type": "Report"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Total Approved Demands",
-   "link_to": "Total Approved Demands",
    "type": "Report"
   },
   {
@@ -128,13 +100,6 @@
    "doc_view": "List",
    "label": "Religion Wise Beneficaries",
    "link_to": "Religion Wise Beneficaries",
-   "type": "Report"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Gender composition",
-   "link_to": "Gender composition",
    "type": "Report"
   },
   {
