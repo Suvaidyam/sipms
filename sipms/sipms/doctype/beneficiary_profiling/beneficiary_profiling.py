@@ -36,7 +36,12 @@ class BeneficiaryProfiling(Document):
 				if family_doc:
 					frappe.throw(f"Primary member exist with name <a target='_blank' href='/app/primary-member/{family_doc.name}'><b>{family_doc.name_of_the_beneficiary}</b> [{self.contact_number}]</a>, Please Select Primary Member")
 					return
-
+		else:
+			_doc_before_save = self.get('_doc_before_save', None)
+			if _doc_before_save and self.select_primary_member and _doc_before_save.get('has_anyone_from_your_family_visisted_before') == 'No':
+				self.select_primary_member = None
+				frappe.throw(f"Please select other primary member")
+				return
 	def after_insert(self):
 		print("Ben[after_insert]")
 		if not self.single_window:
