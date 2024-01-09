@@ -1,33 +1,29 @@
 {
  "actions": [],
- "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:social_vulnerable_category",
- "creation": "2023-11-04 11:06:34.668947",
- "default_view": "List",
+ "autoname": "field:name_of_the_camp",
+ "creation": "2024-01-09 10:10:44.747261",
  "doctype": "DocType",
- "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "social_vulnerable_category"
+  "name_of_the_camp"
  ],
  "fields": [
   {
-   "fieldname": "social_vulnerable_category",
+   "fieldname": "name_of_the_camp",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Social vulnerable category",
+   "label": "Name of the camp",
    "reqd": 1,
    "unique": 1
   }
  ],
- "force_re_route_to_default_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-08 13:07:13.579216",
+ "modified": "2024-01-09 10:39:12.593696",
  "modified_by": "Administrator",
  "module": "Master",
- "name": "Social vulnerable category",
+ "name": "Camp",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -57,6 +53,18 @@
   },
   {
    "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "MIS executive",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -76,20 +84,9 @@
    "role": "Help-desk member",
    "share": 1,
    "write": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "MIS executive",
-   "share": 1,
-   "write": 1
   }
  ],
- "sort_field": "social_vulnerable_category",
+ "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
 }

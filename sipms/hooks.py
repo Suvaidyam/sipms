@@ -6,7 +6,7 @@ app_email = "teach@suvaidyam.com"
 app_license = "mit"
 # required_apps = []
 
-fixtures=[
+fixtures = [
     "Caste category",
     "Religion",
     "Education",
@@ -21,13 +21,14 @@ fixtures=[
     # "House Types",
     "Gender",
     "Role",
+    "Name of the Department"
 ]
 # Includes in <head>
 # ------------------
 permission_query_conditions = {
     "Beneficiary Profiling": "sipms.middlewares.beneficiary.list_query",
     "Primary Member": "sipms.middlewares.family.list_query",
-    # "Current location":"epms.middlewares.current_location.list_query",
+    "Help Desk":"sipms.middlewares.helpdesk.list_query",
     "Sipms User":"sipms.middlewares.sipms_user.list_query",
     "Role Profile":"sipms.middlewares.role_profile.list_query",
     "User":"sipms.middlewares.user.list_query",

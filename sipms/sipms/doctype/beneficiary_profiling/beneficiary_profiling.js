@@ -18,6 +18,20 @@ const dialogsConfig = {
         _doc: true
       },
       {
+        label: 'Mode of application',
+        fieldname: 'mode_of_application',
+        fieldtype: 'Select',
+        reqd: 1,
+        options:["Online", "Offline"],
+        _doc: true
+      },
+      {
+        label: 'Reason of application',
+        fieldname: 'reason_of_application',
+        fieldtype: 'Data',
+        _doc: true
+      },
+      {
         label: 'Amount paid',
         fieldname: 'amount_paid',
         fieldtype: 'Int',
@@ -52,6 +66,20 @@ const dialogsConfig = {
       {
         label: 'Application number',
         fieldname: 'application_number',
+        fieldtype: 'Data',
+        _doc: true
+      },
+      {
+        label: 'Mode of application',
+        fieldname: 'mode_of_application',
+        fieldtype: 'Select',
+        reqd: 1,
+        options:["Online", "Offline"],
+        _doc: true
+      },
+      {
+        label: 'Reason of application',
+        fieldname: 'reason_of_application',
         fieldtype: 'Data',
         _doc: true
       },
@@ -362,10 +390,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
         frm.set_df_property('follow_up_table', 'cannot_delete_all_rows', true);
       }
     }
-    frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user_fullname
+
     extend_options_length(frm, ["what_is_the_extent_of_your_disability", "single_window", "help_desk",
       "source_of_information", "current_occupation", "current_house_type", "state", "district",
-      "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin", "social_vulnerable_category"])
+      "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
     frm.set_query('religion', () => {
       return {
         order_by: 'religion.religion ASC'
@@ -413,8 +441,12 @@ frappe.ui.form.on("Beneficiary Profiling", {
     const datatable = new DataTable(container, { columns: tableConf.columns });
     datatable.refresh(tableConf.rows);
     datatable.style.setStyle(`.dt-scrollable`, { 'overflow': 'scroll' });
+    // if not is local
+    if(frm.doc.__islocal){
+      frm.doc.added_by = frappe.session.user
+      refresh_field("added_by")
+    }
 
-    refresh_field("name_of_the_concerned_help_desk_member")
     // set  defult date of visit
     if (frm.doc.__islocal) {
       frm.set_value('date_of_visit', frappe.datetime.get_today());
@@ -424,7 +456,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
       "district_of_origin", "block", "gender",
       "current_occupation", "social_vulnerable_category", "pwd_category", "family",
       "help_desk", "single_window", "what_is_the_extent_of_your_disability", "source_of_information",
-      "current_house_type", "name_of_the_settlement", ""
+      "current_house_type", "name_of_the_settlement", "name_of_the_camp"
     ])
 
     // Increase Defult Limit of link field
@@ -441,7 +473,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
     frm.doc.ward ? apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward) : defult_filter('name_of_the_settlement', "Block", frm);
     frm.doc.state_of_origin ? apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin) : defult_filter('block', "District", frm);
     frm.doc.district_of_origin ? apply_filter("block", "District", frm, frm.doc.district_of_origin) : defult_filter('district_of_origin', "State", frm);
-    frm.doc.single_window ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
+    if(frappe.user_roles.includes("Admin")){
+      frm.doc.single_window ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
+    }
   },
   validate(frm) {
     console.log("validate:", frm.doc);
@@ -466,17 +500,28 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
 
   date_of_birth: function (frm) {
-    let dob = frm.doc.date_of_birth
+    let dob = frm.doc.date_of_birth;
     if (dob) {
-      let year = frappe.datetime.get_today()
-      let age = year.split('-')[0] - dob.split('-')[0]
-      frm.set_value('completed_age', age)
-      frm.set_df_property('completed_age', 'read_only', 1);
+        let today = frappe.datetime.get_today();
+        let birthDate = new Date(dob);
+        let currentDate = new Date(today);
+        let years = currentDate.getFullYear() - birthDate.getFullYear();
+        let months = currentDate.getMonth() - birthDate.getMonth();
+        if (months < 0 || (months === 0 && currentDate.getDate() < birthDate.getDate())) {
+            years--;
+        }
+        let ageString = '0';
+        if (years > 0) {
+            ageString += years + (years === 1 ? ' year' : ' years');
+        }
+
+        frm.set_value('completed_age', ageString);
+        frm.set_df_property('completed_age', 'read_only', 1);
     } else {
-      frm.set_df_property('completed_age', 'read_only', 0);
-      frm.set_value('completed_age', null)
+        frm.set_df_property('completed_age', 'read_only', 0);
+        frm.set_value('completed_age', 0);
     }
-  },
+},
   same_as_above: function (frm) {
     if (frm.doc.same_as_above == '1') {
       frm.doc.state_of_origin = frm.doc.state;
@@ -487,7 +532,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frm.doc.district_of_origin = '';
       frm.doc.block = '';
     }
-    frm.refresh()
+    refresh_field("state_of_origin")
+    refresh_field("district_of_origin")
+    refresh_field("block")
   }
 
 });
@@ -513,10 +560,10 @@ frappe.ui.form.on('Scheme Child', {
 
     if (scheme) {
       row.milestone_category = scheme.milestone;
-      row.mode_of_application = scheme.mode_of_application;
+      // row.mode_of_application = scheme.mode_of_application;
       row.name_of_the_department = scheme.name_of_department;
     }
-    frm.refresh()
+    refresh_field("scheme_table")
   },
   milestone_category: (frm, cdt, cdn) => {
     let row = frappe.get_doc(cdt, cdn);
