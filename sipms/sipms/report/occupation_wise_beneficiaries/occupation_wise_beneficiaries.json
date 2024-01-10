@@ -9,7 +9,7 @@
  "idx": 6,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2024-01-05 11:36:20.987892",
+ "modified": "2024-01-10 09:37:09.832570",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Occupation Wise Beneficiaries",
@@ -30,6 +30,9 @@
   },
   {
    "role": "Help-desk member"
+  },
+  {
+   "role": "CSC Member"
   }
  ]
 }
