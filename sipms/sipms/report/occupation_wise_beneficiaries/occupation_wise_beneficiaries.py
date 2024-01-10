@@ -7,7 +7,7 @@ def execute(filters=None):
     columns = [
         {
             "fieldname": "Occupation",
-            "label": "Occupation",
+            "label": "Occupation category",
             "fieldtype": "Data",
             "width": 200
         },
@@ -28,13 +28,13 @@ def execute(filters=None):
 
     sql_query = f"""
         SELECT
-            current_occupation AS Occupation,
+            occupational_category AS Occupation,
             COUNT(*) AS Number_of_Beneficiaries
         FROM
             `tabBeneficiary Profiling`
         {condition_str}
         GROUP BY
-            current_occupation
+            occupational_category
     """
 
     data = frappe.db.sql(sql_query, as_dict=True)

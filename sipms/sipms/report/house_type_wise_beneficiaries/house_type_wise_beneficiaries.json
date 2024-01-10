@@ -9,7 +9,7 @@
  "idx": 18,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2024-01-05 11:38:13.234240",
+ "modified": "2024-01-10 09:35:27.174898",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "House Type Wise Beneficiaries",
@@ -21,6 +21,18 @@
  "roles": [
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "Help-desk member"
+  },
+  {
+   "role": "CSC Member"
+  },
+  {
+   "role": "MIS executive"
   }
  ]
 }
