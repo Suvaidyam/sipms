@@ -73,6 +73,7 @@ SELECT
     FROM
         `tabBeneficiary Profiling`
     {condition_str}
+    ORDER BY Number_of_People DESC
 	"""
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
