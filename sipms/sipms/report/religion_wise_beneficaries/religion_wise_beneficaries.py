@@ -36,6 +36,7 @@ def execute(filters=None):
         {condition_str}
         GROUP BY
             religion
+        ORDER BY Number_of_Beneficiaries DESC
     """
 
     data = frappe.db.sql(sql_query, as_dict=True)
