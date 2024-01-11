@@ -531,9 +531,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
       if (months < 0 || (months === 0 && currentDate.getDate() < birthDate.getDate())) {
         years--;
       }
-      let ageString = '0';
+      let ageString = 0;
       if (years > 0) {
-        ageString += years + (years === 1 ? ' year' : ' years');
+        ageString += years;
       }
 
       frm.set_value('completed_age', ageString);
