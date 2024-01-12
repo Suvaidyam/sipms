@@ -494,9 +494,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
   ////////////////////DATE VALIDATION/////////////////////////////////////////
   date_of_visit: function (frm) {
     if (new Date(frm.doc.date_of_visit) > new Date(frappe.datetime.get_today())) {
-      // console.log("error")
+      frm.doc.date_of_visit = ''
+      refresh_field('date_of_visit')
       frappe.throw("Date of visit can't be greater than today's date")
-    }
+    } 
   },
 
   state: function (frm) {
@@ -521,6 +522,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth;
     if (new Date(dob) > new Date(frappe.datetime.get_today())) {
+      frm.doc.date_of_birth = ''
+      refresh_field('date_of_birth')
       frappe.throw("Date of birth can't be greater than today's date")
     }
     if (dob) {
