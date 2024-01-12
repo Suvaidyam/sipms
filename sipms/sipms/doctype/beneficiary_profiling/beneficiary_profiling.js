@@ -442,7 +442,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     for (let scheme of scheme_list) {
       tableConf.rows.push({
         name: scheme.name,
-        matches: `${scheme.matching_rules}/${scheme.total_rules}`,
+        matches: `<a href="/app/scheme/${scheme.name}">${scheme.matching_rules}/${scheme.total_rules}</a>`,
         rules: scheme.rules
       })
     }
