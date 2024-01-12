@@ -13,7 +13,7 @@ var filters = [
 	}
 
 ];
-if (!frappe.user_roles.includes("MIS executive") || frappe.user_roles.includes("Administrator")) {
+if (frappe.user_roles.includes("Administrator")) {
 	filters.push({
 		"fieldname": "state",
 		"fieldtype": "Link",
