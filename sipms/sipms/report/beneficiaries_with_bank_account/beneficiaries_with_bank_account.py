@@ -33,9 +33,9 @@ def execute(filters=None):
 		FROM
 			`tabBeneficiary Profiling`
 		WHERE
-		1=1 {condition_str}
+		do_you_have_any_bank_account IS NOT NULL {condition_str}
 		GROUP BY
-		do_you_have_any_bank_account;
+		bank_account;
 	"""
 	data = frappe.db.sql(sql_query, as_dict=True)
 	return columns, data

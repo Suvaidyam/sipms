@@ -59,7 +59,7 @@ def execute(filters=None):
         }
     ]
 
-    condition_str = ReportFilter.set_report_filters(filters, '', True)
+    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True , 'ben_table')
     if condition_str:
         condition_str = f"AND {condition_str}"
     else:
@@ -76,7 +76,8 @@ def execute(filters=None):
         SUM(CASE WHEN (status = 'Rejected' AND application_submitted = 'Yes') THEN 1 ELSE 0 END) as rejected_demands,
         SUM(CASE WHEN (application_submitted = 'No' AND status = 'Open') OR (application_submitted = 'Yes' AND status = 'Under process') THEN 1 ELSE 0 END) as total_demands
     FROM
-        `tabScheme Child`
+        `tabScheme Child` as _sc
+    INNER JOIN `tabBeneficiary Profiling` as ben_table on (ben_table.name =  _sc.parent and _sc.parenttype ='Beneficiary Profiling')
     WHERE
         1=1 {condition_str}
     GROUP BY

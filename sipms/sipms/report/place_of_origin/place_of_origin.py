@@ -26,7 +26,7 @@ def execute(filters=None):
             "width": 200
         }
     ]
-    condition_str = ReportFilter.set_report_filters(filters, 'creation')
+    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True, 'b')
     if condition_str:
         condition_str = f"{condition_str}"
     else:
@@ -47,5 +47,6 @@ def execute(filters=None):
     ORDER BY
         b.state_of_origin, b.district_of_origin;
 """
+    
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data

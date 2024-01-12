@@ -16,7 +16,7 @@ class BeneficiaryProfiling(Document):
 				print(key,obj.get(key, None))
 
 	def get_family(contact_number):
-		docs = frappe.db.get_list(doctype='Primary Member', filters={'name':contact_number}, fields=["name",'name_of_head_of_family.name_of_the_beneficiary as name_of_the_beneficiary'])
+		docs = frappe.db.get_list(doctype='Primary Member', filters={'name':contact_number}, fields=["name", "name_of_head_of_family",'name_of_head_of_family.name_of_the_beneficiary as name_of_the_beneficiary'])
 		if len(docs):
 			return docs[0]
 		return None
@@ -26,6 +26,7 @@ class BeneficiaryProfiling(Document):
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
 			if self.get('_doc_before_save', None): # Update
 				family_doc = BeneficiaryProfiling.get_family(self.contact_number)
+				# akndcjkdxckjvbxjbvkjcxbvkjcxbkjvbckj
 				if family_doc and not (family_doc.name_of_head_of_family == self.name):
 					frappe.throw(f"Primary member exist with name <a target='_blank' href='/app/primary-member/{family_doc.name}'><b>{family_doc.name_of_the_beneficiary}</b> [{self.contact_number}]</a>, Please Select Primary Member")
 					return

@@ -16,10 +16,10 @@ var filters = [
 ];
 if (!frappe.user_roles.includes("MIS executive") || frappe.user_roles.includes("Administrator")) {
 	filters.push({
-		"fieldname": "state",
+		"fieldname": "single_window",
 		"fieldtype": "Link",
-		"label": "State",
-		"options": "State"
+		"label": "Single Window",
+		"options": "Single Window"
 	})
 }
 frappe.query_reports["Education composition"] = {

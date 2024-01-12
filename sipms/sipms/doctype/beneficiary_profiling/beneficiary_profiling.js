@@ -318,6 +318,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
               case "Document submitted":
                 support_item.application_submitted = "Yes"
                 support_item.status = "Under process"
+                support_item.mode_of_application = latestFollowup.mode_of_application || support_item.mode_of_application
                 support_item.date_of_application = latestFollowup.date_of_application || support_item.date_of_application
                 support_item.application_number = latestFollowup.application_number || support_item.application_number
                 support_item.amount_paid = latestFollowup.amount_paid || support_item.amount_paid
@@ -442,7 +443,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     for (let scheme of scheme_list) {
       tableConf.rows.push({
         name: scheme.name,
-        matches: `${scheme.matching_rules}/${scheme.total_rules}`,
+        matches: `<a href="/app/scheme/${scheme.name}">${scheme.matching_rules}/${scheme.total_rules}</a>`,
         rules: scheme.rules
       })
     }
@@ -490,6 +491,14 @@ frappe.ui.form.on("Beneficiary Profiling", {
   validate(frm) {
     console.log("validate:", frm.doc);
   },
+  ////////////////////DATE VALIDATION/////////////////////////////////////////
+  date_of_visit: function (frm) {
+    if (new Date(frm.doc.date_of_visit) > new Date(frappe.datetime.get_today())) {
+      // console.log("error")
+      frappe.throw("Date of visit can't be greater than today's date")
+    }
+  },
+
   state: function (frm) {
     apply_filter("district", "State", frm, frm.doc.state)
   },
@@ -511,6 +520,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth;
+    if (new Date(dob) > new Date(frappe.datetime.get_today())) {
+      frappe.throw("Date of birth can't be greater than today's date")
+    }
     if (dob) {
       let today = frappe.datetime.get_today();
       let birthDate = new Date(dob);
@@ -520,9 +532,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
       if (months < 0 || (months === 0 && currentDate.getDate() < birthDate.getDate())) {
         years--;
       }
-      let ageString = '0';
+      let ageString = 0;
       if (years > 0) {
-        ageString += years + (years === 1 ? ' year' : ' years');
+        ageString += years;
       }
 
       frm.set_value('completed_age', ageString);

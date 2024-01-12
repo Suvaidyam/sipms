@@ -17,10 +17,10 @@ var filters = [
 ];
 if (!frappe.user_roles.includes("MIS executive") || frappe.user_roles.includes("Administrator")) {
 	filters.push({
-		"fieldname":"state",
-		"fieldtype":"Link",
-		"label":"State",
-		"options":"State"
+		"fieldname": "single_window",
+		"fieldtype": "Link",
+		"label": "Single Window",
+		"options": "Single Window"
 	})
 }
 frappe.query_reports["Place of origin"] = {

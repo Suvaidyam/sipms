@@ -7,7 +7,7 @@ def execute(filters=None):
     columns = [
         {
             "fieldname": "Occupation",
-            "label": "Occupation",
+            "label": "Occupation category",
             "fieldtype": "Data",
             "width": 200
         },
@@ -19,7 +19,7 @@ def execute(filters=None):
         }
     ]
 
-    condition_str = ReportFilter.set_report_filters(filters, 'creation', True)
+    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True)
 
     if condition_str:
         condition_str = f"WHERE {condition_str}"
@@ -28,13 +28,14 @@ def execute(filters=None):
 
     sql_query = f"""
         SELECT
-            current_occupation AS Occupation,
+            occupational_category AS Occupation,
             COUNT(*) AS Number_of_Beneficiaries
         FROM
             `tabBeneficiary Profiling`
         {condition_str}
         GROUP BY
-            current_occupation
+            occupational_category
+        ORDER BY Number_of_Beneficiaries DESC
     """
 
     data = frappe.db.sql(sql_query, as_dict=True)

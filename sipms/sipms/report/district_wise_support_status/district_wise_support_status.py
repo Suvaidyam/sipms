@@ -59,7 +59,7 @@ def execute(filters=None):
         }
     ]
 
-    condition_str = ReportFilter.set_report_filters(filters, '', True)
+    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True , 'bp')
     if condition_str:
         condition_str = f"WHERE {condition_str}"
     else:
