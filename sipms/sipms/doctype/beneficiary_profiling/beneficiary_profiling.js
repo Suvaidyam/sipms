@@ -43,6 +43,12 @@ const dialogsConfig = {
         fieldtype: 'Select',
         options: ["Self", "CSC"],
         _doc: true
+      },
+      {
+        label: 'Remarks',
+        fieldname: 'remarks',
+        fieldtype: 'Data',
+        _doc: true
       }
     ]
   },
@@ -101,6 +107,12 @@ const dialogsConfig = {
         fieldname: 'completion_certificate',
         fieldtype: 'Attach',
         _doc: true
+      },
+      {
+        label: 'Remarks',
+        fieldname: 'remarks',
+        fieldtype: 'Data',
+        _doc: true
       }
     ]
   },
@@ -118,6 +130,12 @@ const dialogsConfig = {
         label: 'Completion certificate',
         fieldname: 'completion_certificate',
         fieldtype: 'Attach',
+        _doc: true
+      },
+      {
+        label: 'Remarks',
+        fieldname: 'remark',
+        fieldtype: 'Data',
         _doc: true
       }
     ]
