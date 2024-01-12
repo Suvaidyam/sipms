@@ -134,7 +134,7 @@ const dialogsConfig = {
       },
       {
         label: 'Remarks',
-        fieldname: 'remark',
+        fieldname: 'remarks',
         fieldtype: 'Data',
         _doc: true
       }
@@ -155,6 +155,12 @@ const dialogsConfig = {
         fieldname: 'reason_of_rejection',
         fieldtype: 'Data',
         reqd: 1,
+        _doc: true
+      },
+      {
+        label: 'Remarks',
+        fieldname: 'remarks',
+        fieldtype: 'Data',
         _doc: true
       }
     ]
