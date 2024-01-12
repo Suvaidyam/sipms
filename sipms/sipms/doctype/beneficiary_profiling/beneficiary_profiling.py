@@ -39,10 +39,10 @@ class BeneficiaryProfiling(Document):
 					return
 		else:
 			_doc_before_save = self.get('_doc_before_save', None)
-			if _doc_before_save and self.select_primary_member and _doc_before_save.get('has_anyone_from_your_family_visisted_before') == 'No':
-				self.select_primary_member = None
-				frappe.throw(f"Please select other primary member")
-				return
+			if _doc_before_save is not None:
+				if self.select_primary_member == _doc_before_save.get('select_primary_member'):
+					frappe.throw(f"Please select other primary member")
+					return
 	def after_insert(self):
 		print("Ben[after_insert]")
 		if not self.single_window:
