@@ -121,7 +121,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-09 17:58:31.414437",
+ "modified": "2024-01-12 15:53:29.314909",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
@@ -152,15 +152,13 @@
    "write": 1
   },
   {
-   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "MIS executive",
-   "share": 1,
-   "write": 1
+   "share": 1
   },
   {
    "email": 1,
