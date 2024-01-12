@@ -318,6 +318,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
               case "Document submitted":
                 support_item.application_submitted = "Yes"
                 support_item.status = "Under process"
+                support_item.mode_of_application = latestFollowup.mode_of_application || support_item.mode_of_application
                 support_item.date_of_application = latestFollowup.date_of_application || support_item.date_of_application
                 support_item.application_number = latestFollowup.application_number || support_item.application_number
                 support_item.amount_paid = latestFollowup.amount_paid || support_item.amount_paid
