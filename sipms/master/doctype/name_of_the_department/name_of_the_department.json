@@ -22,13 +22,12 @@
   {
    "fieldname": "department_urlwebsite",
    "fieldtype": "Data",
-   "label": "Department URL/Website",
-   "reqd": 1
+   "label": "Department URL/Website"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-08 10:40:30.900714",
+ "modified": "2024-01-12 16:22:27.683491",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Name of the Department",
