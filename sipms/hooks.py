@@ -32,6 +32,7 @@ permission_query_conditions = {
     "Sipms User":"sipms.middlewares.sipms_user.list_query",
     "Role Profile":"sipms.middlewares.role_profile.list_query",
     "User":"sipms.middlewares.user.list_query",
+    "Single Window":"sipms.middlewares.single_windows.list_query",
 
 }
 
