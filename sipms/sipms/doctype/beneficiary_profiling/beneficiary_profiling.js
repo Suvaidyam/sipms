@@ -12,12 +12,6 @@ const dialogsConfig = {
         _doc: true
       },
       {
-        label: 'Application number',
-        fieldname: 'application_number',
-        fieldtype: 'Data',
-        _doc: true
-      },
-      {
         label: 'Mode of application',
         fieldname: 'mode_of_application',
         fieldtype: 'Select',
@@ -28,6 +22,12 @@ const dialogsConfig = {
       {
         label: 'Reason of application',
         fieldname: 'reason_of_application',
+        fieldtype: 'Data',
+        _doc: true
+      },
+      {
+        label: 'Application number',
+        fieldname: 'application_number',
         fieldtype: 'Data',
         _doc: true
       },
@@ -70,12 +70,6 @@ const dialogsConfig = {
         _doc: true
       },
       {
-        label: 'Application number',
-        fieldname: 'application_number',
-        fieldtype: 'Data',
-        _doc: true
-      },
-      {
         label: 'Mode of application',
         fieldname: 'mode_of_application',
         fieldtype: 'Select',
@@ -86,6 +80,12 @@ const dialogsConfig = {
       {
         label: 'Reason of application',
         fieldname: 'reason_of_application',
+        fieldtype: 'Data',
+        _doc: true
+      },
+      {
+        label: 'Application number',
+        fieldname: 'application_number',
         fieldtype: 'Data',
         _doc: true
       },
