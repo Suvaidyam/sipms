@@ -68,7 +68,7 @@ def execute(filters=None):
     sql_query = f"""
     SELECT
         milestone_category,
-        COUNT(*) as count,
+        COUNT(name) as count,
         SUM(CASE WHEN (application_submitted = 'No' AND status = 'Open') THEN 1 ELSE 0 END) as open_demands,
         SUM(CASE WHEN (status = 'Completed' AND application_submitted = 'Yes') THEN 1 ELSE 0 END) as completed_demands,
         SUM(CASE WHEN (status = 'Completed' AND application_submitted = 'Yes') THEN 1 ELSE 0 END) as closed_demands,
