@@ -160,13 +160,13 @@ permission_query_conditions = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+scheduler_events = {
 #	"all": [
 #		"sipms.tasks.all"
 #	],
-#	"daily": [
-#		"sipms.tasks.daily"
-#	],
+	"daily": [
+		# "sipms.scheduler_events.ben_dob_update.update_dob_of_ben"
+	],
 #	"hourly": [
 #		"sipms.tasks.hourly"
 #	],
@@ -176,7 +176,7 @@ permission_query_conditions = {
 #	"monthly": [
 #		"sipms.tasks.monthly"
 #	],
-# }
+}
 
 # Testing
 # -------
