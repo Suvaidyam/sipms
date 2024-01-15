@@ -1,6 +1,5 @@
-// Copyright (c) 2023, suvaidyam and contributors
+// Copyright (c) 2024, suvaidyam and contributors
 // For license information, please see license.txt
-
 var filters = [
 	{
 		"fieldname": "from_date",
@@ -37,6 +36,6 @@ if (!frappe.user_roles.includes("MIS executive") || frappe.user_roles.includes("
 	}
 	)
 }
-frappe.query_reports["Occupation Wise Beneficiaries"] = {
+frappe.query_reports["Occupational category-wise beneficiaries"] = {
 	filters: filters
 };

@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Reports",
  "links": [],
- "modified": "2024-01-13 10:55:51.417808",
+ "modified": "2024-01-15 21:35:15.037831",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Reports",
@@ -29,7 +29,7 @@
    "color": "Grey",
    "doc_view": "List",
    "label": "Occupational category-wise beneficiaries",
-   "link_to": "Occupation Wise Beneficiaries",
+   "link_to": "Occupational category-wise beneficiaries",
    "type": "Report"
   },
   {
