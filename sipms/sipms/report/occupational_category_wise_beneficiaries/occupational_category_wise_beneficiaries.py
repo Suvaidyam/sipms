@@ -29,7 +29,7 @@ def execute(filters=None):
     sql_query = f"""
         SELECT
             occupational_category AS Occupation,
-            COUNT(*) AS Number_of_Beneficiaries
+            COUNT(name) AS Number_of_Beneficiaries
         FROM
             `tabBeneficiary Profiling`
         {condition_str}
