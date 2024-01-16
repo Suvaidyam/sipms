@@ -1,4 +1,4 @@
-// Copyright (c) 2023, suvaidyam and contributors
+// Copyright (c) 2024, suvaidyam and contributors
 // For license information, please see license.txt
 var filters = [
 	{
@@ -36,6 +36,6 @@ if (frappe.user_roles.includes("Administrator")) {
 	}
 	)
 }
-frappe.query_reports["Religion Wise Beneficaries"] = {
+frappe.query_reports["Religion-wise beneficiaries"] = {
 	filters: filters
 };
