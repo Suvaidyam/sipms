@@ -678,7 +678,9 @@ frappe.ui.form.on('Follow Up Child', {
   name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     let supports = frm.doc.scheme_table.filter(f => f.scheme == row.name_of_the_scheme);
-    console.log(supports, "supports")
+    row.date_of_application = supports[0].date_of_application
+    // console.log(supports, "supports")
+    // console.log(row, "row")
     row.parent_ref = supports[0].name
     for (support_items of frm.doc.scheme_table) {
       if (row.name_of_the_scheme == support_items.name_of_the_scheme) {
@@ -700,6 +702,17 @@ frappe.ui.form.on('Follow Up Child', {
         }
       }
     }
+  },
+  follow_up_date:function (frm, cdt , cdn){
+    let row = frappe.get_doc(cdt, cdn);
+    if (row.follow_up_date > frappe.datetime.get_today()) {
+      row.follow_up_date = null
+      frappe.throw(__("You can not select future date in Follow-up date"));
+  }
+  if(row.follow_up_date < row.date_of_application){
+    row.follow_up_date = null
+    frappe.throw(__("Follow-up date should not be less than date of application"));
+  }
   },
   follow_up_with: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
