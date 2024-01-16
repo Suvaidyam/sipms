@@ -1,5 +1,7 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // For license information, please see license.txt
+let _frm;
+// global variable
 const dialogsConfig = {
   document_submitted: {
     title: 'Enter details for Support',
@@ -166,7 +168,25 @@ const dialogsConfig = {
     ]
   }
 }
-const createDialog = (_doc, config) => {
+const complete_validate = (_doc)=>{
+  console.log("doc ////////////////////" , _doc , _frm)
+  if(_doc.date_of_application <= _frm.date_of_visit){
+    return{
+      status: false,
+      message:"Date of application should not be less than date of visit"
+    }
+  }else{
+    return{
+      status: true,
+        // message:"Invalid "
+    }
+  }
+  // return{
+  //   status: false,
+  //   message:"Invalid "
+  // }
+}
+const createDialog = (_doc, config ,validator = null) => {
   return new frappe.ui.Dialog({
     title: config.title,
     fields: config.fields,
@@ -178,14 +198,20 @@ const createDialog = (_doc, config) => {
         if (obj[field])
           _doc[field] = obj[field]
       }
-      // console.log("/////////////////", config)
-      // if(){
-
-      // }
-      this.hide()
+      if(validator){
+        let valid = validator(_doc)
+        if(valid.status){
+          this.hide()
+        }else{
+          frappe.throw(valid.message)
+        }
+      }else{
+        this.hide()
+      }
     }
   });
 }
+
 //  COMMON FUNCTION FOR DEFULT FILTER
 function defult_filter(field_name, filter_on, frm) {
   frm.fields_dict[field_name].get_query = function (doc) {
@@ -416,6 +442,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   },
   async refresh(frm) {
+    _frm = frm.doc
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 
@@ -632,7 +659,7 @@ frappe.ui.form.on('Scheme Child', {
       row.status = ''
       createDialog(row, dialogsConfig.document_submitted).show();
     } else if (row.application_submitted == "Completed") {
-      createDialog(row, dialogsConfig.document_completed_frm_support).show();
+      createDialog(row, dialogsConfig.document_completed_frm_support , complete_validate).show();
     }
   },
 
