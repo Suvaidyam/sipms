@@ -53,7 +53,7 @@ def execute(filters=None):
 
         {
             "fieldname": "count",
-            "label": " Total Count",
+            "label": "Total Count",
             "fieldtype": "Int",
             "width": 140
         }

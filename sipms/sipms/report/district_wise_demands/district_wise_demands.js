@@ -1,4 +1,4 @@
-// Copyright (c) 2023, suvaidyam and contributors
+// Copyright (c) 2024, suvaidyam and contributors
 // For license information, please see license.txt
 var filters = [
 	{
@@ -13,7 +13,7 @@ var filters = [
 	}
 	
 ];
-if (frappe.user_roles.includes("Administrator")) {
+if (!frappe.user_roles.includes("MIS executive") || frappe.user_roles.includes("Administrator")) {
 	filters.push({
 		"fieldname": "state",
 		"fieldtype": "Link",
@@ -36,6 +36,6 @@ if (frappe.user_roles.includes("Administrator")) {
 	}
 	)
 }
-frappe.query_reports["Religion Wise Beneficaries"] = {
-	filters: filters
+frappe.query_reports["District-wise demands"] = {
+	filters: filters,
 };

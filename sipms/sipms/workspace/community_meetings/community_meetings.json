@@ -1,0 +1,51 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"1bIB5RChSt\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Community meeting</span>\",\"col\":12}},{\"id\":\"uXyRFsMjUJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Community Meeting\",\"col\":3}}]",
+ "creation": "2024-01-16 09:45:10.233696",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "color-monthly-rank",
+ "idx": 0,
+ "indicator_color": "",
+ "is_hidden": 0,
+ "label": "Community meetings",
+ "links": [],
+ "modified": "2024-01-16 09:54:21.337810",
+ "modified_by": "Administrator",
+ "module": "SIPMS",
+ "name": "Community meetings",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Help-desk member"
+  },
+  {
+   "role": "CSC Member"
+  },
+  {
+   "role": "MIS executive"
+  },
+  {
+   "role": "Admin"
+  }
+ ],
+ "sequence_id": 4.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Community Meeting",
+   "link_to": "Community meeting",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Community meetings"
+}

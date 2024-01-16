@@ -178,6 +178,10 @@ const createDialog = (_doc, config) => {
         if (obj[field])
           _doc[field] = obj[field]
       }
+      // console.log("/////////////////", config)
+      // if(){
+
+      // }
       this.hide()
     }
   });

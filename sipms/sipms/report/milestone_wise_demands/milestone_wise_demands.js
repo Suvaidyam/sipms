@@ -1,4 +1,4 @@
-// Copyright (c) 2023, suvaidyam and contributors
+// Copyright (c) 2024, suvaidyam and contributors
 // For license information, please see license.txt
 var filters = [
 	{
@@ -36,6 +36,6 @@ var filters = [
 // 	}
 // 	)
 // }
-frappe.query_reports["Status Wise Support Category"] = {
+frappe.query_reports["Milestone-wise demands"] = {
 	filters: filters,
 };
