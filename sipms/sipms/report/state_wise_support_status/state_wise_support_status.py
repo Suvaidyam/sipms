@@ -67,12 +67,13 @@ def execute(filters=None):
 SELECT
     s.state_name,
     COUNT(*) as count,
+     SUM(CASE WHEN (sc.application_submitted = 'No') AND (sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as total_demands,
     SUM(CASE WHEN (sc.application_submitted = 'No' AND sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
     SUM(CASE WHEN (sc.status = 'Completed' AND sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as completed_demands,
     SUM(CASE WHEN (sc.status = 'Completed' AND sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as closed_demands,
     SUM(CASE WHEN (sc.status = 'Under process' AND sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as submitted_demands,
     SUM(CASE WHEN (sc.status = 'Rejected' AND sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as rejected_demands,
-    SUM(CASE WHEN (sc.application_submitted) OR (sc.application_submitted = 'Yes' AND sc.status = 'Under process') THEN 1 ELSE 0 END) as total_demands
+   
 FROM
     `tabBeneficiary Profiling` bp
 LEFT JOIN
