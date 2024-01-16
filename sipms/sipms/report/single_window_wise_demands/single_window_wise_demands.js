@@ -1,6 +1,5 @@
-// Copyright (c) 2023, suvaidyam and contributors
+// Copyright (c) 2024, suvaidyam and contributors
 // For license information, please see license.txt
-
 var filters = [
 	{
 		"fieldname": "from_date",
@@ -25,6 +24,6 @@ if (frappe.user_roles.includes("Administrator")) {
 
 	)
 }
-frappe.query_reports["Single-window wise support status"] = {
+frappe.query_reports["Single-window wise demands"] = {
 	filters: filters,
 };

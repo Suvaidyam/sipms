@@ -1,4 +1,4 @@
-// Copyright (c) 2023, suvaidyam and contributors
+// Copyright (c) 2024, suvaidyam and contributors
 // For license information, please see license.txt
 var filters = [
 	{
@@ -24,6 +24,6 @@ if (frappe.user_roles.includes("Administrator")) {
 
 	)
 }
-frappe.query_reports["Help-desk wise support status"] = {
+frappe.query_reports["Help-desk wise demands"] = {
 	filters: filters,
 };
