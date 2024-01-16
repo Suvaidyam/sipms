@@ -8,11 +8,11 @@ from sipms.utils.report_filter import ReportFilter
 def execute(filters=None):
     columns = [
         {
-            "fieldname": "milestone_category",
-            "label": "Milestone ",
+            "fieldname": "state_name",
+            "label": " Name Of State ",
             "fieldtype": "Data",
             "width": 200,
-            
+
         },
         {
             "fieldname": "total_demands",
@@ -53,37 +53,36 @@ def execute(filters=None):
 
         {
             "fieldname": "count",
-            "label": "Total Count",
+            "label": " Total Count",
             "fieldtype": "Int",
             "width": 140
         }
-    ]
+    ]                 
+    
 
-    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True , 'ben_table')
-    if condition_str:
-        condition_str = f"AND {condition_str}"
-    else:
-        condition_str = ""
+    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True , 'bp')
+    condition_str = f"WHERE {condition_str}" if condition_str else ""
 
     sql_query = f"""
-    SELECT
-        milestone_category,
-        COUNT(_sc.name) as count,
-        SUM(CASE WHEN (application_submitted = 'No' AND status = 'Open') THEN 1 ELSE 0 END) as open_demands,
-        SUM(CASE WHEN (status = 'Completed' AND application_submitted = 'Yes') THEN 1 ELSE 0 END) as completed_demands,
-        SUM(CASE WHEN (status = 'Completed' AND application_submitted = 'Yes') THEN 1 ELSE 0 END) as closed_demands,
-        SUM(CASE WHEN (status = 'Under process' AND application_submitted = 'Yes') THEN 1 ELSE 0 END) as submitted_demands,
-        SUM(CASE WHEN (status = 'Rejected' AND application_submitted = 'Yes') THEN 1 ELSE 0 END) as rejected_demands,
-        SUM(CASE WHEN (application_submitted = 'No' AND status = 'Open') OR (application_submitted = 'Yes' AND status = 'Under process') THEN 1 ELSE 0 END) as total_demands
-    FROM
-        `tabScheme Child` as _sc
-    INNER JOIN `tabBeneficiary Profiling` as ben_table on (ben_table.name =  _sc.parent and _sc.parenttype ='Beneficiary Profiling')
-    WHERE
-        1=1 {condition_str}
-    GROUP BY
-        milestone_category;
+SELECT
+    s.state_name,
+    COUNT(*) as count,
+    SUM(CASE WHEN (sc.application_submitted = 'No' AND sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
+    SUM(CASE WHEN (sc.status = 'Completed' AND sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as completed_demands,
+    SUM(CASE WHEN (sc.status = 'Completed' AND sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as closed_demands,
+    SUM(CASE WHEN (sc.status = 'Under process' AND sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as submitted_demands,
+    SUM(CASE WHEN (sc.status = 'Rejected' AND sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as rejected_demands,
+    SUM(CASE WHEN (sc.application_submitted) OR (sc.application_submitted = 'Yes' AND sc.status = 'Under process') THEN 1 ELSE 0 END) as total_demands
+FROM
+    `tabBeneficiary Profiling` bp
+LEFT JOIN
+    `tabScheme Child` sc ON bp.name = sc.parent
+LEFT JOIN
+    `tabState` s ON bp.state = s.name
+{condition_str}
+GROUP BY
+    s.state_name;
 """
-
 
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
