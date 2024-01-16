@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"57OiTjigcG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports</span>\",\"col\":12}},{\"id\":\"M7NDzjasg-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State of origin\",\"col\":3}},{\"id\":\"blDeDcTYVu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Place of origin\",\"col\":3}},{\"id\":\"eCkvl_KIaB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Education composition\",\"col\":3}},{\"id\":\"VQsrdIAOBU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Age-wise beneficiaries\",\"col\":3}},{\"id\":\"l1aIVwbTUx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Religion-wise beneficiaries\",\"col\":3}},{\"id\":\"1nhjHlMAvt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Occupational category-wise beneficiaries\",\"col\":3}},{\"id\":\"ZULovgUpIG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"House type-wise beneficiaries\",\"col\":3}},{\"id\":\"KCHBDcCYT3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Milestone-wise demands\",\"col\":3}},{\"id\":\"lyjUvA3a5Q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State-wise demands\",\"col\":3}},{\"id\":\"YRUKFNIyyI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"District-wise demands\",\"col\":3}},{\"id\":\"vmBDpMorDx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Help-desk wise demands\",\"col\":3}},{\"id\":\"SKfg2rMNrG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Single-window wise demands\",\"col\":3}}]",
+ "content": "[{\"id\":\"57OiTjigcG\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Reports</span>\",\"col\":12}},{\"id\":\"M7NDzjasg-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State of origin\",\"col\":12}},{\"id\":\"blDeDcTYVu\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Place of origin\",\"col\":12}},{\"id\":\"eCkvl_KIaB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Education composition\",\"col\":12}},{\"id\":\"VQsrdIAOBU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Age-wise beneficiaries\",\"col\":12}},{\"id\":\"l1aIVwbTUx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Religion-wise beneficiaries\",\"col\":12}},{\"id\":\"1nhjHlMAvt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Occupational category-wise beneficiaries\",\"col\":12}},{\"id\":\"ZULovgUpIG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"House type-wise beneficiaries\",\"col\":12}},{\"id\":\"KCHBDcCYT3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Milestone-wise demands\",\"col\":12}},{\"id\":\"lyjUvA3a5Q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"State-wise demands\",\"col\":12}},{\"id\":\"YRUKFNIyyI\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"District-wise demands\",\"col\":12}},{\"id\":\"vmBDpMorDx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Help-desk wise demands\",\"col\":12}},{\"id\":\"SKfg2rMNrG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Single-window wise demands\",\"col\":12}}]",
  "creation": "2023-12-21 19:09:40.349725",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Reports",
  "links": [],
- "modified": "2024-01-16 10:51:29.926384",
+ "modified": "2024-01-16 15:19:00.872709",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Reports",
