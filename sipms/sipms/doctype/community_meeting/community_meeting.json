@@ -5,26 +5,156 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "state",
-  "single_windows"
+  "name_of_the_beneficiary",
+  "gender",
+  "completed_age",
+  "contact_number",
+  "caste_category",
+  "education",
+  "current_occupation",
+  "marital_status",
+  "spouses_name",
+  "single_windows",
+  "column_break_woch",
+  "fathers_name",
+  "mothers_name",
+  "source_of_information",
+  "name_of_the_camp",
+  "state_of_origin",
+  "current_house_type",
+  "address",
+  "how_long_have_you_been_living_in_delhi",
+  "name_of_scheme",
+  "remarks"
  ],
  "fields": [
-  {
-   "fieldname": "state",
-   "fieldtype": "Link",
-   "label": "State",
-   "options": "State"
-  },
   {
    "fieldname": "single_windows",
    "fieldtype": "Link",
    "label": "Single-windows",
    "options": "Single Window"
+  },
+  {
+   "fieldname": "name_of_the_beneficiary",
+   "fieldtype": "Data",
+   "label": "Name of the beneficiary"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "\nMale\nFemale\nTransgender\nOthers"
+  },
+  {
+   "fieldname": "completed_age",
+   "fieldtype": "Int",
+   "label": "Completed age"
+  },
+  {
+   "default": "+91-",
+   "fieldname": "contact_number",
+   "fieldtype": "Phone",
+   "label": "Contact number"
+  },
+  {
+   "fieldname": "caste_category",
+   "fieldtype": "Link",
+   "label": "Caste category",
+   "options": "Caste category"
+  },
+  {
+   "fieldname": "column_break_woch",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "education",
+   "fieldtype": "Link",
+   "label": "Education",
+   "options": "Education"
+  },
+  {
+   "fieldname": "current_occupation",
+   "fieldtype": "Link",
+   "label": "Current occupation",
+   "link_filters": "[[{\"fieldname\":\"current_occupation\",\"field_option\":\"Occupation\"},\"occupation\",\"!=\",\"Others\"]]",
+   "options": "Occupation"
+  },
+  {
+   "fieldname": "marital_status",
+   "fieldtype": "Select",
+   "label": "Marital status",
+   "options": "\nChild\nSingle (unmarried)\nMarried\nDivorced\nWidow\nSeparated\nAbandoned"
+  },
+  {
+   "depends_on": "eval:doc.marital_status ==\"Married\"",
+   "fieldname": "spouses_name",
+   "fieldtype": "Data",
+   "label": "Spouse's name",
+   "mandatory_depends_on": "eval:doc.marital_status ==\"Married\""
+  },
+  {
+   "fieldname": "fathers_name",
+   "fieldtype": "Data",
+   "label": "Father's name"
+  },
+  {
+   "fieldname": "mothers_name",
+   "fieldtype": "Data",
+   "label": "Mother's name"
+  },
+  {
+   "fieldname": "source_of_information",
+   "fieldtype": "Select",
+   "label": "Source of information",
+   "options": "\nCommunity meeting\nCamps"
+  },
+  {
+   "depends_on": "eval:doc.source_of_information ==\"Camps\"",
+   "fieldname": "name_of_the_camp",
+   "fieldtype": "Link",
+   "label": "Name of the camp",
+   "link_filters": "[[{\"fieldname\":\"name_of_the_camp\",\"field_option\":\"Camp\"},\"name_of_the_camp\",\"!=\",\"Others\"]]",
+   "mandatory_depends_on": "eval:doc.source_of_information ==\"Camps\"",
+   "options": "Camp"
+  },
+  {
+   "fieldname": "current_house_type",
+   "fieldtype": "Link",
+   "label": "Current house type",
+   "link_filters": "[[{\"fieldname\":\"current_house_type\",\"field_option\":\"House Types\"},\"house_type_name\",\"!=\",\"Others\"]]",
+   "options": "House Types"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "state_of_origin",
+   "fieldtype": "Link",
+   "label": "State of origin",
+   "options": "State"
+  },
+  {
+   "fieldname": "how_long_have_you_been_living_in_delhi",
+   "fieldtype": "Data",
+   "label": "How long have you been living in Delhi?"
+  },
+  {
+   "fieldname": "name_of_scheme",
+   "fieldtype": "Link",
+   "label": "Name of scheme",
+   "options": "Scheme"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "label": "Remarks"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-16 09:49:57.955123",
+ "modified": "2024-01-16 14:46:56.764198",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Community meeting",
