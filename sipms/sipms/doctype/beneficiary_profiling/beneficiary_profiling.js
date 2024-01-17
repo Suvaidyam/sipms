@@ -559,11 +559,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
     console.log("tableConf", tableConf)
     const container = document.getElementById('all_schemes');
-    container.style.height = '350px';
-    container.style.overflowY = 'auto';
     const datatable = new DataTable(container, { columns: tableConf.columns });
+    datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });
     datatable.refresh(tableConf.rows);
-    datatable.style.setStyle(`.dt-scrollable`, { 'overflow': 'scroll' });
     // if not is local
     if (frm.doc.__islocal) {
       frm.doc.added_by = frappe.session.user
