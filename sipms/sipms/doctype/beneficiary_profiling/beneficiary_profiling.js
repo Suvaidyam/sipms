@@ -168,8 +168,8 @@ const dialogsConfig = {
     ]
   }
 }
-const complete_validate = (_doc)=>{
-  if(_doc.date_of_application <= _frm.date_of_visit){
+const doc_submitted_validate = (_doc)=>{
+  if(_doc.date_of_application < _frm.date_of_visit){
     return{
       status: false,
       message:"Date of application should not be less than date of visit"
@@ -178,6 +178,34 @@ const complete_validate = (_doc)=>{
     return{
       status: false,
       message:"Date of application should not be greater than today date"
+    }
+  }else{
+    return{
+      status: true,
+        // message:"Invalid "
+    }
+  }
+}
+const date_of_complete_validate = (_doc)=>{
+  if(_doc.date_of_application < _frm.date_of_visit){
+    return{
+      status: false,
+      message:"Date of application should not be less than date of visit"
+    }
+  } else if(_doc.date_of_completion < _frm.date_of_visit){
+    return{
+      status: false,
+      message:"Date of completion should not be less than date of visit"
+    }
+  } else if(_doc.date_of_completion > frappe.datetime.get_today()){
+    return{
+      status: false,
+      message:"Date of completion should not be greater than today date"
+    }
+  }else if(_doc.date_of_completion < _doc.date_of_application){
+    return{
+      status: false,
+      message:"Date of completion should not be greater than date date of application"
     }
   }else{
     return{
@@ -657,9 +685,9 @@ frappe.ui.form.on('Scheme Child', {
     let row = frappe.get_doc(cdt, cdn);
     if (row.application_submitted == "Yes") {
       row.status = ''
-      createDialog(row, dialogsConfig.document_submitted).show();
+      createDialog(row, dialogsConfig.document_submitted , doc_submitted_validate).show();
     } else if (row.application_submitted == "Completed") {
-      createDialog(row, dialogsConfig.document_completed_frm_support , complete_validate).show();
+      createDialog(row, dialogsConfig.document_completed_frm_support , date_of_complete_validate).show();
     }
   },
 
@@ -731,9 +759,9 @@ frappe.ui.form.on('Follow Up Child', {
     let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
     let latestSupport = supports.length ? supports[supports.length - 1] : null;
     if (row.follow_up_status === "Document submitted") {
-      createDialog(row, dialogsConfig.document_submitted , complete_validate).show();
+      createDialog(row, dialogsConfig.document_submitted , doc_submitted_validate).show();
     } else if (row.follow_up_status === "Completed") {
-      createDialog(row, dialogsConfig.document_completed).show();
+      createDialog(row, dialogsConfig.document_completed , date_of_complete_validate).show();
     } else if (row.follow_up_status === "Rejected") {
       createDialog(row, dialogsConfig.document_rejected).show();
     } else if (row.follow_up_status === "Not reachable" && latestSupport.status != "Closed") {
