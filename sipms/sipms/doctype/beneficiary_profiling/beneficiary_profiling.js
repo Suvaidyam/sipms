@@ -170,11 +170,14 @@ const dialogsConfig = {
 }
 const doc_submitted_validate = (_doc)=>{
   if(_doc.date_of_application < _frm.date_of_visit){
+    _doc.date_of_application = ''
     return{
       status: false,
-      message:"Date of application should not be less than date of visit"
-    }
+      message:"Date of application should not be less than date of visit",
+      date_of_application:''
+    } 
   } else if(_doc.date_of_application > frappe.datetime.get_today()){
+    _doc.date_of_application = ''
     return{
       status: false,
       message:"Date of application should not be greater than today date"
@@ -214,6 +217,7 @@ const date_of_complete_validate = (_doc)=>{
     return{
       status: false,
       message:"Date of application should not be less than date of visit"
+      
     }
   } else if(_doc.date_of_completion < _frm.date_of_visit){
     return{
@@ -509,7 +513,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
 
     extend_options_length(frm, ["what_is_the_extent_of_your_disability", "single_window", "help_desk",
-      "source_of_information", "current_occupation", "current_house_type", "state", "district",
+      "source_of_information", "current_house_type", "state", "district",
       "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
     frm.set_query('religion', () => {
       return {
@@ -624,6 +628,15 @@ frappe.ui.form.on("Beneficiary Profiling", {
   single_window: function (frm) {
     apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
   },
+  // current_occupation:function (frm){
+  //   console.log("frm")
+  //   frm.fields_dict['current_occupation'].get_query = function(doc) {
+  //     return {
+  //       // query: 'sipms.api.occupation',
+  //       order_by: 'occupation DESC'  
+  //     };
+  // };
+  // },
 
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth;
