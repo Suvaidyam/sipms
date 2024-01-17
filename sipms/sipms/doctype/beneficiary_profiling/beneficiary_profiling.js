@@ -169,11 +169,15 @@ const dialogsConfig = {
   }
 }
 const complete_validate = (_doc)=>{
-  console.log("doc ////////////////////" , _doc , _frm)
   if(_doc.date_of_application <= _frm.date_of_visit){
     return{
       status: false,
       message:"Date of application should not be less than date of visit"
+    }
+  } else if(_doc.date_of_application > frappe.datetime.get_today()){
+    return{
+      status: false,
+      message:"Date of application should not be greater than today date"
     }
   }else{
     return{
@@ -181,10 +185,6 @@ const complete_validate = (_doc)=>{
         // message:"Invalid "
     }
   }
-  // return{
-  //   status: false,
-  //   message:"Invalid "
-  // }
 }
 const createDialog = (_doc, config ,validator = null) => {
   return new frappe.ui.Dialog({
@@ -731,7 +731,7 @@ frappe.ui.form.on('Follow Up Child', {
     let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
     let latestSupport = supports.length ? supports[supports.length - 1] : null;
     if (row.follow_up_status === "Document submitted") {
-      createDialog(row, dialogsConfig.document_submitted).show();
+      createDialog(row, dialogsConfig.document_submitted , complete_validate).show();
     } else if (row.follow_up_status === "Completed") {
       createDialog(row, dialogsConfig.document_completed).show();
     } else if (row.follow_up_status === "Rejected") {
