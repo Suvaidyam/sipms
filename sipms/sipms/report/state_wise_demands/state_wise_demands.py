@@ -50,13 +50,6 @@ def execute(filters=None):
             "fieldtype": "Data",
             "width": 130,
         },
-
-        # {
-        #     "fieldname": "count",
-        #     "label": " Total Count",
-        #     "fieldtype": "Int",
-        #     "width": 140
-        # }
     ]                 
     
 
@@ -69,7 +62,7 @@ SELECT
     SUM(CASE WHEN (sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
     SUM(CASE WHEN (sc.status = 'Completed') THEN 1 ELSE 0 END) as completed_demands,
     SUM(CASE WHEN (sc.status = 'Closed') THEN 1 ELSE 0 END) as closed_demands,
-    SUM(CASE WHEN (sc.application_submitted = 'Yes') THEN 1 ELSE 0 END) as submitted_demands,
+    SUM(CASE WHEN (sc.status = 'Under process') THEN 1 ELSE 0 END) as submitted_demands,
     SUM(CASE WHEN (sc.status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands,
     COUNT(sc.status) as total_demands
 FROM
