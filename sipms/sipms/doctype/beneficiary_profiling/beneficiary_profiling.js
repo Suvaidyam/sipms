@@ -186,6 +186,29 @@ const doc_submitted_validate = (_doc)=>{
     }
   }
 }
+const doc_rejected_validate = (_doc)=>{
+  if(_doc.date_of_rejection < _frm.date_of_visit){
+    return{
+      status: false,
+      message:"Date of rejection should not be less than date of visit"
+    }
+  } else if(_doc.date_of_rejection < _doc.date_of_application ){
+    return{
+      status: false,
+      message:"Date of rejection should not be less than date of application"
+    }
+  } else if(_doc.date_of_rejection > frappe.datetime.get_today()){
+    return{
+      status: false,
+      message:"Date of rejection should not be greater than today date"
+    }
+  }else{
+    return{
+      status: true,
+        // message:"Invalid "
+    }
+  }
+}
 const date_of_complete_validate = (_doc)=>{
   if(_doc.date_of_application < _frm.date_of_visit){
     return{
@@ -763,7 +786,7 @@ frappe.ui.form.on('Follow Up Child', {
     } else if (row.follow_up_status === "Completed") {
       createDialog(row, dialogsConfig.document_completed , date_of_complete_validate).show();
     } else if (row.follow_up_status === "Rejected") {
-      createDialog(row, dialogsConfig.document_rejected).show();
+      createDialog(row, dialogsConfig.document_rejected , doc_rejected_validate).show();
     } else if (row.follow_up_status === "Not reachable" && latestSupport.status != "Closed") {
       let followups = frm.doc.follow_up_table.filter(f => f.parent_ref == row.parent_ref && f.support_name == row.support_name && f.follow_up_status == "Not reachable")
       if (followups.length >= 2) {
