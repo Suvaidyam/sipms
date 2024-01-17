@@ -10,7 +10,7 @@
   "follow_up_with",
   "follow_up_mode",
   "follow_up_status",
-  "remark",
+  "remarks",
   "follow",
   "parent_ref"
  ],
@@ -30,13 +30,6 @@
    "in_list_view": 1,
    "label": "Follow-up date",
    "reqd": 1,
-   "set_only_once": 1
-  },
-  {
-   "fieldname": "remark",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Remark",
    "set_only_once": 1
   },
   {
@@ -77,12 +70,19 @@
    "mandatory_depends_on": "eval:doc.follow_up_with == \"Beneficiary\"",
    "options": "\nPhone call\nHome visit\nCentre visit",
    "set_only_once": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Remark",
+   "set_only_once": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-07 20:33:08.427687",
+ "modified": "2024-01-12 16:47:12.016685",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Follow Up Child",

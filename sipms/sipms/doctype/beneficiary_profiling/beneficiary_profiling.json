@@ -432,9 +432,9 @@
   {
    "fetch_from": "current_occupation.occupational_category",
    "fieldname": "occupational_category",
-   "fieldtype": "Autocomplete",
+   "fieldtype": "Link",
    "label": "Occupational category",
-   "options": "Occupation",
+   "options": "Occupational Category",
    "read_only": 1,
    "reqd": 1
   },
@@ -483,25 +483,13 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-12 10:36:16.883044",
+ "modified": "2024-01-15 21:57:16.855615",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
   {
    "delete": 1,
    "email": 1,
@@ -545,6 +533,16 @@
    "role": "MIS executive",
    "share": 1,
    "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1
   }
  ],
  "show_title_field_in_link": 1,

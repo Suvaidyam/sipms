@@ -30,15 +30,15 @@ def execute(filters=None):
 	sql_query = f"""
 	SELECT
 		t2.state_name as state,
-		COUNT(t1.state) as count
+		COUNT(t1.state_of_origin) as count
 	FROM
 		`tabBeneficiary Profiling` AS t1
 	LEFT JOIN
-		`tabState` AS t2 ON t1.state = t2.name
+		`tabState` AS t2 ON t1.state_of_origin = t2.name
 	WHERE
 		1=1 {condition_str}
 	GROUP BY
-		t1.state;
+		t1.state_of_origin;
 	"""
 	data = frappe.db.sql(sql_query, as_dict=True)
 
