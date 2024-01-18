@@ -162,6 +162,7 @@
   {
    "fieldname": "beneficiary",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Beneficiary",
    "options": "Beneficiary Profiling"
   },
@@ -181,7 +182,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-18 09:59:53.344293",
+ "modified": "2024-01-18 10:08:38.739278",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Community meeting",
