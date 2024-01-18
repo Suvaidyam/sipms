@@ -498,6 +498,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   async refresh(frm) {
     _frm = frm.doc
+    if(frm.doc.lead){
+      var contact_no = cur_frm.doc;
+      console.log("lead found", contact_no)
+    }
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 

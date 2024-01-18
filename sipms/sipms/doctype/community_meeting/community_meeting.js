@@ -6,13 +6,12 @@ frappe.ui.form.on("Community meeting", {
 
 	},
     add_to_beneficary:function(frm){
-        // frappe.set_route('List', 'Beneficiary Profiling' , {lead:frm.doc.name});
         frappe.route_options = {
             lead: frm.doc.name,
             date_of_visit: frm.doc.date_of_visit,
             gender: frm.doc.gender,
-            name_of_the_beneficiary: frm.doc.name_of_the_beneficiary,
             completed_age: frm.doc.completed_age,
+            name_of_the_beneficiary: frm.doc.name_of_the_beneficiary,
             contact_number: frm.doc.contact_number,
             caste_category: frm.doc.caste_category,
             education: frm.doc.education,
@@ -25,7 +24,6 @@ frappe.ui.form.on("Community meeting", {
             state_of_origin: frm.doc.state_of_origin,
             current_house_type: frm.doc.current_house_type,
             address: frm.doc.address,
-            // how_long_have_you_been_living_in_delhi: frm.doc.how_long_have_you_been_living_in_delhi,
             name_of_scheme: frm.doc.name_of_scheme,
         };
         
