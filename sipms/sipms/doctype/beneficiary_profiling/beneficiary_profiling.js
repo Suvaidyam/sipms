@@ -168,80 +168,80 @@ const dialogsConfig = {
     ]
   }
 }
-const doc_submitted_validate = (_doc)=>{
-  if(_doc.date_of_application < _frm.date_of_visit){
+const doc_submitted_validate = (_doc) => {
+  if (_doc.date_of_application < _frm.date_of_visit) {
     _doc.date_of_application = ''
-    return{
+    return {
       status: false,
-      message:"Date of application should not be less than date of visit",
-      date_of_application:''
-    } 
-  } else if(_doc.date_of_application > frappe.datetime.get_today()){
+      message: "Date of application should not be less than date of visit",
+      date_of_application: ''
+    }
+  } else if (_doc.date_of_application > frappe.datetime.get_today()) {
     _doc.date_of_application = ''
-    return{
+    return {
       status: false,
-      message:"Date of application should not be greater than today date"
+      message: "Date of application should not be greater than today date"
     }
-  }else{
-    return{
+  } else {
+    return {
       status: true,
-        // message:"Invalid "
+      // message:"Invalid "
     }
   }
 }
-const doc_rejected_validate = (_doc)=>{
-  if(_doc.date_of_rejection < _frm.date_of_visit){
-    return{
+const doc_rejected_validate = (_doc) => {
+  if (_doc.date_of_rejection < _frm.date_of_visit) {
+    return {
       status: false,
-      message:"Date of rejection should not be less than date of visit"
+      message: "Date of rejection should not be less than date of visit"
     }
-  } else if(_doc.date_of_rejection < _doc.date_of_application ){
-    return{
+  } else if (_doc.date_of_rejection < _doc.date_of_application) {
+    return {
       status: false,
-      message:"Date of rejection should not be less than date of application"
+      message: "Date of rejection should not be less than date of application"
     }
-  } else if(_doc.date_of_rejection > frappe.datetime.get_today()){
-    return{
+  } else if (_doc.date_of_rejection > frappe.datetime.get_today()) {
+    return {
       status: false,
-      message:"Date of rejection should not be greater than today date"
+      message: "Date of rejection should not be greater than today date"
     }
-  }else{
-    return{
+  } else {
+    return {
       status: true,
-        // message:"Invalid "
+      // message:"Invalid "
     }
   }
 }
-const date_of_complete_validate = (_doc)=>{
-  if(_doc.date_of_application < _frm.date_of_visit){
-    return{
+const date_of_complete_validate = (_doc) => {
+  if (_doc.date_of_application < _frm.date_of_visit) {
+    return {
       status: false,
-      message:"Date of application should not be less than date of visit"
-      
+      message: "Date of application should not be less than date of visit"
+
     }
-  } else if(_doc.date_of_completion < _frm.date_of_visit){
-    return{
+  } else if (_doc.date_of_completion < _frm.date_of_visit) {
+    return {
       status: false,
-      message:"Date of completion should not be less than date of visit"
+      message: "Date of completion should not be less than date of visit"
     }
-  } else if(_doc.date_of_completion > frappe.datetime.get_today()){
-    return{
+  } else if (_doc.date_of_completion > frappe.datetime.get_today()) {
+    return {
       status: false,
-      message:"Date of completion should not be greater than today date"
+      message: "Date of completion should not be greater than today date"
     }
-  }else if(_doc.date_of_completion < _doc.date_of_application){
-    return{
+  } else if (_doc.date_of_completion < _doc.date_of_application) {
+    return {
       status: false,
-      message:"Date of completion should not be greater than date date of application"
+      message: "Date of completion should not be greater than date date of application"
     }
-  }else{
-    return{
+  } else {
+    return {
       status: true,
-        // message:"Invalid "
+      // message:"Invalid "
     }
   }
 }
-const createDialog = (_doc, config ,validator = null) => {
+const createDialog = (_doc, config, validator = null) => {
   return new frappe.ui.Dialog({
     title: config.title,
     fields: config.fields,
@@ -253,14 +253,14 @@ const createDialog = (_doc, config ,validator = null) => {
         if (obj[field])
           _doc[field] = obj[field]
       }
-      if(validator){
+      if (validator) {
         let valid = validator(_doc)
-        if(valid.status){
+        if (valid.status) {
           this.hide()
-        }else{
+        } else {
           frappe.throw(valid.message)
         }
-      }else{
+      } else {
         this.hide()
       }
     }
@@ -560,8 +560,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
     console.log("tableConf", tableConf)
     const container = document.getElementById('all_schemes');
     const datatable = new DataTable(container, { columns: tableConf.columns });
+    datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });
     datatable.refresh(tableConf.rows);
-    datatable.style.setStyle(`.dt-scrollable`, { 'overflow': 'scroll' });
     // if not is local
     if (frm.doc.__islocal) {
       frm.doc.added_by = frappe.session.user
@@ -607,7 +607,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frm.doc.date_of_visit = ''
       refresh_field('date_of_visit')
       frappe.throw("Date of visit can't be greater than today's date")
-    } 
+    }
   },
 
   state: function (frm) {
@@ -721,9 +721,9 @@ frappe.ui.form.on('Scheme Child', {
     let row = frappe.get_doc(cdt, cdn);
     if (row.application_submitted == "Yes") {
       row.status = ''
-      createDialog(row, dialogsConfig.document_submitted , doc_submitted_validate).show();
+      createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
     } else if (row.application_submitted == "Completed") {
-      createDialog(row, dialogsConfig.document_completed_frm_support , date_of_complete_validate).show();
+      createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
     }
   },
 
@@ -767,16 +767,16 @@ frappe.ui.form.on('Follow Up Child', {
       }
     }
   },
-  follow_up_date:function (frm, cdt , cdn){
+  follow_up_date: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     if (row.follow_up_date > frappe.datetime.get_today()) {
       row.follow_up_date = null
       frappe.throw(__("You can not select future date in Follow-up date"));
-  }
-  if(row.follow_up_date < row.date_of_application){
-    row.follow_up_date = null
-    frappe.throw(__("Follow-up date should not be less than date of application"));
-  }
+    }
+    if (row.follow_up_date < row.date_of_application) {
+      row.follow_up_date = null
+      frappe.throw(__("Follow-up date should not be less than date of application"));
+    }
   },
   follow_up_with: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
@@ -795,11 +795,11 @@ frappe.ui.form.on('Follow Up Child', {
     let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
     let latestSupport = supports.length ? supports[supports.length - 1] : null;
     if (row.follow_up_status === "Document submitted") {
-      createDialog(row, dialogsConfig.document_submitted , doc_submitted_validate).show();
+      createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
     } else if (row.follow_up_status === "Completed") {
-      createDialog(row, dialogsConfig.document_completed , date_of_complete_validate).show();
+      createDialog(row, dialogsConfig.document_completed, date_of_complete_validate).show();
     } else if (row.follow_up_status === "Rejected") {
-      createDialog(row, dialogsConfig.document_rejected , doc_rejected_validate).show();
+      createDialog(row, dialogsConfig.document_rejected, doc_rejected_validate).show();
     } else if (row.follow_up_status === "Not reachable" && latestSupport.status != "Closed") {
       let followups = frm.doc.follow_up_table.filter(f => f.parent_ref == row.parent_ref && f.support_name == row.support_name && f.follow_up_status == "Not reachable")
       if (followups.length >= 2) {
