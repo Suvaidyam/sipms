@@ -49,6 +49,8 @@ class BeneficiaryProfiling(Document):
 			single_window = LoginUser.get_single_windows()
 			self.single_window = single_window
 			frappe.db.set_value('Beneficiary Profiling', self.name, 'single_window', single_window, update_modified=False)
+		if self.lead:
+			frappe.db.set_value('Community meeting', self.lead, 'beneficiary', self.name, update_modified=False)
 		# if not self.help_desk:
 		# 	help_desk = LoginUser.get_helpdesk()
 		# 	self.help_desk = help_desk

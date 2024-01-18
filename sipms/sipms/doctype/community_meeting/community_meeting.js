@@ -6,11 +6,31 @@ frappe.ui.form.on("Community meeting", {
 
 	},
     add_to_beneficary:function(frm){
-        // frappe.new_doc('Beneficiary Profiling', { status: 'Open' })fi
-        // frappe.set_route('List', 'Beneficiary Profiling');
-        // frappe.set_route(`/beneficiary-profiling/new-beneficiary-profiling/?id=${frm.doc.name_of_the_beneficiary}`)
-        // window.print()
-        id = frm.doc.name
-        // frappe.set_route(['List', 'Beneficiary Profiling', 'Beneficiary Profiling'], { status: 'Open' })
+        // frappe.set_route('List', 'Beneficiary Profiling' , {lead:frm.doc.name});
+        frappe.route_options = {
+            lead: frm.doc.name,
+            date_of_visit: frm.doc.date_of_visit,
+            gender: frm.doc.gender,
+            name_of_the_beneficiary: frm.doc.name_of_the_beneficiary,
+            completed_age: frm.doc.completed_age,
+            contact_number: frm.doc.contact_number,
+            caste_category: frm.doc.caste_category,
+            education: frm.doc.education,
+            current_occupation: frm.doc.current_occupation,
+            marital_status: frm.doc.marital_status,
+            single_window: frm.doc.single_window,
+            fathers_name: frm.doc.fathers_name,
+            mothers_name: frm.doc.mothers_name,
+            source_of_information: frm.doc.source_of_information,
+            state_of_origin: frm.doc.state_of_origin,
+            current_house_type: frm.doc.current_house_type,
+            address: frm.doc.address,
+            // how_long_have_you_been_living_in_delhi: frm.doc.how_long_have_you_been_living_in_delhi,
+            name_of_scheme: frm.doc.name_of_scheme,
+        };
+        
+        // Open a new form for the desired DocType
+        frappe.new_doc('Beneficiary Profiling');
+        
     }
 });

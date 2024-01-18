@@ -28,7 +28,8 @@
   "how_long_have_you_been_living_in_delhi",
   "name_of_scheme",
   "remarks",
-  "add_to_beneficary"
+  "add_to_beneficary",
+  "views_beneficary"
  ],
  "fields": [
   {
@@ -153,6 +154,7 @@
    "label": "Remarks"
   },
   {
+   "depends_on": "eval:(!doc.beneficiary)",
    "fieldname": "add_to_beneficary",
    "fieldtype": "Button",
    "label": "Add to Beneficary"
@@ -160,7 +162,6 @@
   {
    "fieldname": "beneficiary",
    "fieldtype": "Link",
-   "hidden": 1,
    "label": "Beneficiary",
    "options": "Beneficiary Profiling"
   },
@@ -169,12 +170,18 @@
    "fieldtype": "Link",
    "label": "Single-window",
    "options": "Single Window"
+  },
+  {
+   "depends_on": "eval:(doc.beneficiary)",
+   "fieldname": "views_beneficary",
+   "fieldtype": "Button",
+   "label": "Views Beneficary"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-17 19:18:43.069958",
+ "modified": "2024-01-18 09:59:53.344293",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Community meeting",
