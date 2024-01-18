@@ -15,7 +15,7 @@
   "current_occupation",
   "marital_status",
   "spouses_name",
-  "single_windows",
+  "single_window",
   "beneficiary",
   "column_break_woch",
   "fathers_name",
@@ -31,12 +31,6 @@
   "add_to_beneficary"
  ],
  "fields": [
-  {
-   "fieldname": "single_windows",
-   "fieldtype": "Link",
-   "label": "Single-windows",
-   "options": "Single Window"
-  },
   {
    "fieldname": "name_of_the_beneficiary",
    "fieldtype": "Data",
@@ -169,12 +163,18 @@
    "hidden": 1,
    "label": "Beneficiary",
    "options": "Beneficiary Profiling"
+  },
+  {
+   "fieldname": "single_window",
+   "fieldtype": "Link",
+   "label": "Single-window",
+   "options": "Single Window"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-17 18:35:29.101106",
+ "modified": "2024-01-17 19:18:43.069958",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Community meeting",
