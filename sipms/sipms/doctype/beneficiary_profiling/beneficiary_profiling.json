@@ -18,6 +18,7 @@
   "alternate_contact_number",
   "single_window",
   "help_desk",
+  "lead",
   "column_break_ewit",
   "caste_category",
   "religion",
@@ -478,12 +479,19 @@
    "fieldtype": "Data",
    "label": "New camp",
    "mandatory_depends_on": "eval:doc.name_of_the_camp ==\"Others\""
+  },
+  {
+   "fieldname": "lead",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Lead",
+   "options": "Community meeting"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-15 21:57:16.855615",
+ "modified": "2024-01-17 18:49:17.622971",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
