@@ -578,7 +578,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
     extend_options_length(frm, ["what_is_the_extent_of_your_disability", "single_window", "help_desk",
       "source_of_information", "current_house_type", "state", "district",
-      "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
+      "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "current_occupation","district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
     frm.set_query('religion', () => {
       return {
         order_by: 'religion.religion ASC'
@@ -639,7 +639,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     // Hide Advance search options
     hide_advance_search(frm, ["state", "district", "ward", "state_of_origin",
       "district_of_origin", "block", "gender",
-      "current_occupation", "social_vulnerable_category", "pwd_category", "family",
+     ,"social_vulnerable_category", "pwd_category", "family",
       "help_desk", "single_window", "what_is_the_extent_of_your_disability", "source_of_information",
       "current_house_type", "name_of_the_settlement", "name_of_the_camp"
     ])
@@ -716,19 +716,32 @@ frappe.ui.form.on("Beneficiary Profiling", {
       let currentDate = new Date(today);
       let years = currentDate.getFullYear() - birthDate.getFullYear();
       let months = currentDate.getMonth() - birthDate.getMonth();
+      console.log("currentDate.getMonth()", currentDate.getMonth() , "birthDate.getMonth();", birthDate.getMonth())
       if (months < 0 || (months === 0 && currentDate.getDate() < birthDate.getDate())) {
         years--;
       }
+      var month = (currentDate.getFullYear() - birthDate.getFullYear()) * 12 + (currentDate.getMonth() - birthDate.getMonth());
+      if (currentDate.getDate() < birthDate.getDate()) {
+          month--;
+      }
+      frm.set_value('completed_age_month', month);
       let ageString = 0;
       if (years > 0) {
         ageString += years;
+        
       }
-
       frm.set_value('completed_age', ageString);
       frm.set_df_property('completed_age', 'read_only', 1);
     } else {
       frm.set_df_property('completed_age', 'read_only', 0);
       frm.set_value('completed_age', 0);
+    }
+  },
+  completed_age_month: function(frm){
+    if (frm.doc.completed_age_month > 11) {
+      frm.doc.completed_age_month = ''
+      refresh_field('completed_age_month')
+      frappe.throw("Completed age in month should be less than or equal to 11")
     }
   },
   same_as_above: function (frm) {

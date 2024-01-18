@@ -23,7 +23,9 @@
   "docs_required_to_apply",
   "comments_remarks",
   "rules_tab",
-  "rules"
+  "rules",
+  "beneficiaries_tab",
+  "table"
  ],
  "fields": [
   {
@@ -117,11 +119,22 @@
    "in_list_view": 1,
    "label": "Comments/remarks",
    "options": "Milestone category"
+  },
+  {
+   "fieldname": "beneficiaries_tab",
+   "fieldtype": "Tab Break",
+   "label": "Eligible beneficiaries",
+   "options": "<div><h1>Hello </h1> </div>"
+  },
+  {
+   "fieldname": "table",
+   "fieldtype": "HTML",
+   "label": "Table"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-12 15:53:29.314909",
+ "modified": "2024-01-18 16:28:44.809424",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",

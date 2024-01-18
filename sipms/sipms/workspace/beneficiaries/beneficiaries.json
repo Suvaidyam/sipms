@@ -25,7 +25,7 @@
    "label": "Gender composition"
   }
  ],
- "content": "[{\"id\":\"6vDcYvdR5K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF BENEFICIARIES\",\"col\":6}},{\"id\":\"xdXxm17yLL\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF FAMILIES\",\"col\":6}},{\"id\":\"UPgPfj9Yri\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total ascertaining demands\",\"col\":4}},{\"id\":\"b7jnKBxi2O\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total submitted demands\",\"col\":4}},{\"id\":\"39tTUw4lvS\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total sanctioned demands\",\"col\":4}},{\"id\":\"vNViM96luc\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Gender composition\",\"col\":6}},{\"id\":\"WGPGvENVJA\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Beneficiaries with bank account\",\"col\":6}},{\"id\":\"GxuwfhS5Xu\",\"type\":\"chart\",\"data\":{\"chart_name\":\"House type-wise beneficiaries\",\"col\":12}},{\"id\":\"5n40TSBnHo\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Age-wise beneficiaries\",\"col\":12}},{\"id\":\"WV7Z5jSolP\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Occupational category-wise beneficiaries\",\"col\":12}},{\"id\":\"ZWDsj6v9GU\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Religion-wise beneficiaries\",\"col\":12}}]",
+ "content": "[{\"id\":\"6vDcYvdR5K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF BENEFICIARIES\",\"col\":4}},{\"id\":\"xdXxm17yLL\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"NUMBER OF FAMILIES\",\"col\":4}},{\"id\":\"cxgu8CP1DB\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total outreach\",\"col\":4}},{\"id\":\"UPgPfj9Yri\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total ascertaining demands\",\"col\":4}},{\"id\":\"b7jnKBxi2O\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total submitted demands\",\"col\":4}},{\"id\":\"39tTUw4lvS\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total sanctioned demands\",\"col\":4}},{\"id\":\"vNViM96luc\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Gender composition\",\"col\":6}},{\"id\":\"WGPGvENVJA\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Beneficiaries with bank account\",\"col\":6}},{\"id\":\"GxuwfhS5Xu\",\"type\":\"chart\",\"data\":{\"chart_name\":\"House type-wise beneficiaries\",\"col\":12}},{\"id\":\"5n40TSBnHo\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Age-wise beneficiaries\",\"col\":12}},{\"id\":\"WV7Z5jSolP\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Occupational category-wise beneficiaries\",\"col\":12}},{\"id\":\"ZWDsj6v9GU\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Religion-wise beneficiaries\",\"col\":12}}]",
  "creation": "2023-12-21 19:17:06.822003",
  "custom_blocks": [],
  "docstatus": 0,
@@ -38,11 +38,15 @@
  "is_hidden": 0,
  "label": "Beneficiaries",
  "links": [],
- "modified": "2024-01-16 17:04:50.732233",
+ "modified": "2024-01-18 20:49:08.905565",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiaries",
  "number_cards": [
+  {
+   "label": "Total outreach",
+   "number_card_name": "Total outreach"
+  },
   {
    "label": "Total sanctioned demands",
    "number_card_name": "Sum of Count-1"

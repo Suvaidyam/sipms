@@ -5,6 +5,10 @@ import frappe
 from frappe.model.document import Document
 
 class SipmsUser(Document):
+	def validate(self):
+		if(self.password != self.confirm_password):
+			frappe.throw("Password and Confirm password not matched")
+
 	def after_insert(self):
 		new_user = frappe.new_doc("User")
 		new_user.email = self.email
@@ -27,5 +31,11 @@ class SipmsUser(Document):
 		user_doc.save()
 		
 	def on_trash(self):
-		pass
+		# Check if the user exists
+		if frappe.db.exists("User", self.name):
+			# Delete the user
+			frappe.delete_doc("User", self.name, ignore_permissions=True)
+			frappe.msgprint(f"The user {self.name} has been deleted.")
+		else:
+			frappe.msgprint(f"The user {self.name} does not exist.")
 	

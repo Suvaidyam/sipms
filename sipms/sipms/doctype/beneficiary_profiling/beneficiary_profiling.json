@@ -14,6 +14,7 @@
   "gender",
   "date_of_birth",
   "completed_age",
+  "completed_age_month",
   "contact_number",
   "alternate_contact_number",
   "single_window",
@@ -105,7 +106,7 @@
   {
    "fieldname": "completed_age",
    "fieldtype": "Int",
-   "label": "Completed age",
+   "label": "Completed age (Year)",
    "reqd": 1
   },
   {
@@ -199,6 +200,7 @@
    "fieldtype": "Currency",
    "label": "Annual income",
    "non_negative": 1,
+   "options": "INR",
    "reqd": 1
   },
   {
@@ -486,12 +488,20 @@
    "hidden": 1,
    "label": "Lead",
    "options": "Community meeting"
+  },
+  {
+   "depends_on": "eval:doc.completed_age == 0",
+   "fieldname": "completed_age_month",
+   "fieldtype": "Int",
+   "label": "Completed age (Month)",
+   "mandatory_depends_on": "eval:doc.completed_age == 0",
+   "non_negative": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-18 10:08:54.830673",
+ "modified": "2024-01-18 20:36:51.240671",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
