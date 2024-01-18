@@ -149,13 +149,13 @@ permission_query_conditions = {
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"*": {
+		# "on_update": "sipms.scheduler_events.ben_dob_update.update_dob_of_ben",
+		# "on_cancel": "sipms.scheduler_events.ben_dob_update.update_dob_of_ben",
+		# "on_trash": "sipms.scheduler_events.ben_dob_update.update_dob_of_ben"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
@@ -165,7 +165,7 @@ scheduler_events = {
 #		"sipms.tasks.all"
 #	],
 	"daily": [
-		# "sipms.scheduler_events.ben_dob_update.update_dob_of_ben"
+		"sipms.scheduler_events.ben_dob_update.update_dob_of_ben"
 	],
 #	"hourly": [
 #		"sipms.tasks.hourly"
