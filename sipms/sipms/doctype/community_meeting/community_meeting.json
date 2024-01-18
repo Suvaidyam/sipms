@@ -16,6 +16,7 @@
   "marital_status",
   "spouses_name",
   "single_window",
+  "help_desk",
   "beneficiary",
   "column_break_woch",
   "fathers_name",
@@ -60,9 +61,9 @@
   },
   {
    "fieldname": "caste_category",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Caste category",
-   "options": "Caste category"
+   "options": "\nGeneral\nEWS\nOBC\nSC\nST\nDidn't know\nRefused to share"
   },
   {
    "fieldname": "column_break_woch",
@@ -70,9 +71,9 @@
   },
   {
    "fieldname": "education",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Education",
-   "options": "Education"
+   "options": "\nChild\nIlliterate\nLiterate\nKindergarten\nPrimary (1-5)\nLower secondary (6-8)\nSecondary (9-10)\nHigher secondary (11-12)\nDiploma\nITI/Technical\nUnder graduate\nGraduate\nPost graduate"
   },
   {
    "fieldname": "current_occupation",
@@ -108,7 +109,7 @@
    "fieldname": "source_of_information",
    "fieldtype": "Select",
    "label": "Source of information",
-   "options": "\nCommunity meeting\nCamps"
+   "options": "\nCommunity meeting\nCamp"
   },
   {
    "depends_on": "eval:doc.source_of_information ==\"Camps\"",
@@ -121,10 +122,9 @@
   },
   {
    "fieldname": "current_house_type",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Current house type",
-   "link_filters": "[[{\"fieldname\":\"current_house_type\",\"field_option\":\"House Types\"},\"house_type_name\",\"!=\",\"Others\"]]",
-   "options": "House Types"
+   "link_filters": "[[{\"fieldname\":\"current_house_type\",\"field_option\":\"House Types\"},\"house_type_name\",\"!=\",\"Others\"]]"
   },
   {
    "fieldname": "address",
@@ -177,12 +177,18 @@
    "fieldname": "views_beneficary",
    "fieldtype": "Button",
    "label": "Views Beneficary"
+  },
+  {
+   "fieldname": "help_desk",
+   "fieldtype": "Link",
+   "label": "Name of Help-desk",
+   "options": "Help Desk"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-18 10:08:38.739278",
+ "modified": "2024-01-18 11:52:47.460380",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Community meeting",

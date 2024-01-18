@@ -369,6 +369,64 @@ const get_scheme_list = async (frm) => {
   scheme_list = list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
   return scheme_list
 }
+
+
+const get_lead_date = async (lead_id ,frm)=>{
+var fieldsToFetch = ["completed_age", "contact_number"];
+
+const bulk_refresh_field = async(fields=[]) =>{
+  for (var i = 0; i < fields.length; i++) {
+    refresh_field(fields[i])
+  }
+}
+// Fetch document with name 'your_document_name' from DocType 'YourDocType'
+frappe.call({
+    method: 'frappe.client.get',
+    args: {
+        doctype: 'Community meeting',
+        name: lead_id,
+        fields: fieldsToFetch
+    },
+    callback: function(response) {
+        // Handle the response
+        if (!response.exc) {
+            var doc = response.message;
+            console.log('Fetched Document:', doc);
+            frm.doc.completed_age = doc.completed_age,
+            frm.doc.contact_number = doc.contact_number,
+            // frm.doc.date_of_visit = doc.date_of_visit,
+            frm.doc.gender= doc.gender,
+            frm.doc.name_of_the_beneficiary= doc.name_of_the_beneficiary,
+            frm.doc.caste_category= doc.caste_category,
+            frm.doc.education = doc.education,
+            frm.doc.current_occupation = doc.current_occupation,
+            frm.doc.marital_status =doc.marital_status,
+            frm.doc.spouses_name = doc.spouses_name,
+            frm.doc.single_window = doc.single_window,
+            frm.doc.fathers_name= doc.fathers_name,
+            frm.doc.mothers_name = doc.mothers_name,
+            frm.doc.source_of_information = doc.source_of_information,
+            frm.doc.name_of_the_camp = doc.name_of_the_camp
+            frm.doc.state_of_origin= doc.state_of_origin,
+            frm.doc.current_house_type = doc.current_house_type,
+            // frm.doc.address = frm.doc.address,
+            // frm.doc.name_of_scheme= doc.name_of_scheme,
+            bulk_refresh_field(["completed_age", "contact_number" , "gender" ,"name_of_the_beneficiary"
+            ,"caste_category" ,"education" ,"current_occupation","marital_status","single_window" ,"fathers_name" ,"mothers_name",
+            "source_of_information","state_of_origin","current_house_type","name_of_the_camp","occupational_category"
+          ])
+            // refresh_field("completed_age")
+            // refresh_field("contact_number")
+
+
+            // Now you can access the specific fields, e.g., doc.field1, doc.field2, etc.
+        } else {
+            console.error('Error fetching document:', response.exc);
+        }
+    }
+});
+
+}
 frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
   before_save: function (frm) {
@@ -498,9 +556,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   async refresh(frm) {
     _frm = frm.doc
-    if(frm.doc.lead){
-      var contact_no = cur_frm.doc;
-      console.log("lead found", contact_no)
+    if(frm.doc.lead && frm.doc.__islocal){
+      get_lead_date(frm.doc.lead , frm)
     }
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
