@@ -6,7 +6,7 @@ frappe.ui.form.on("Community meeting", {
 
 	},
     add_to_beneficary:function(frm){
-        // frappe.new_doc('Beneficiary Profiling', { status: 'Open' })
+        // frappe.new_doc('Beneficiary Profiling', { status: 'Open' })fi
         // frappe.set_route('List', 'Beneficiary Profiling');
         // frappe.set_route(`/beneficiary-profiling/new-beneficiary-profiling/?id=${frm.doc.name_of_the_beneficiary}`)
         // window.print()
