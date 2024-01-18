@@ -13,6 +13,7 @@
   "caste_category",
   "education",
   "current_occupation",
+  "occupational_category",
   "marital_status",
   "spouses_name",
   "single_window",
@@ -112,12 +113,12 @@
    "options": "\nCommunity meeting\nCamp"
   },
   {
-   "depends_on": "eval:doc.source_of_information ==\"Camps\"",
+   "depends_on": "eval:doc.source_of_information ==\"Camp\"",
    "fieldname": "name_of_the_camp",
    "fieldtype": "Link",
    "label": "Name of the camp",
    "link_filters": "[[{\"fieldname\":\"name_of_the_camp\",\"field_option\":\"Camp\"},\"name_of_the_camp\",\"!=\",\"Others\"]]",
-   "mandatory_depends_on": "eval:doc.source_of_information ==\"Camps\"",
+   "mandatory_depends_on": "eval:doc.source_of_information ==\"Camp\"",
    "options": "Camp"
   },
   {
@@ -181,18 +182,23 @@
    "label": "Views Beneficary"
   },
   {
-   "depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
-   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "options": "Help Desk"
+  },
+  {
+   "fetch_from": "current_occupation.occupational_category",
+   "fieldname": "occupational_category",
+   "fieldtype": "Autocomplete",
+   "hidden": 1,
+   "label": "Occupational category"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-18 12:03:14.192987",
+ "modified": "2024-01-18 13:02:48.782880",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Community meeting",

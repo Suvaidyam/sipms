@@ -411,11 +411,12 @@ frappe.call({
             frm.doc.current_house_type = doc.current_house_type,
             frm.doc.current_house_type = doc.current_house_type,
             frm.doc.help_desk = doc.help_desk
+            frm.doc.occupational_category = doc.occupational_category
             // frm.doc.address = frm.doc.address,
             // frm.doc.name_of_scheme= doc.name_of_scheme,
             bulk_refresh_field(["completed_age", "contact_number" , "gender" ,"name_of_the_beneficiary"
-            ,"caste_category" ,"education" ,"current_occupation","marital_status","single_window" ,"fathers_name" ,"mothers_name",
-            "source_of_information","state_of_origin","current_house_type","name_of_the_camp","occupational_category"
+            ,"caste_category" ,"education" ,"current_occupation","occupational_category","marital_status","single_window" ,"fathers_name" ,"mothers_name",
+            "source_of_information","state_of_origin","current_house_type","name_of_the_camp"
           ])
             // refresh_field("completed_age")
             // refresh_field("contact_number")
@@ -691,15 +692,16 @@ frappe.ui.form.on("Beneficiary Profiling", {
   single_window: function (frm) {
     apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
   },
-  // current_occupation:function (frm){
-  //   console.log("frm")
-  //   frm.fields_dict['current_occupation'].get_query = function(doc) {
-  //     return {
-  //       // query: 'sipms.api.occupation',
-  //       order_by: 'occupation DESC'  
-  //     };
+  current_occupation:function (frm){
+    refresh_field('occupational_category')
+    // console.log("frm")
+    // frm.fields_dict['current_occupation'].get_query = function(doc) {
+    //   return {
+    //     // query: 'sipms.api.occupation',
+    //     order_by: 'occupation DESC'  
+    //   };
   // };
-  // },
+  },
 
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth;
