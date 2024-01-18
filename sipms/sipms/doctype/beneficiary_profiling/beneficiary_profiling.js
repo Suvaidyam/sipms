@@ -409,6 +409,8 @@ frappe.call({
             frm.doc.name_of_the_camp = doc.name_of_the_camp
             frm.doc.state_of_origin= doc.state_of_origin,
             frm.doc.current_house_type = doc.current_house_type,
+            frm.doc.current_house_type = doc.current_house_type,
+            frm.doc.help_desk = doc.help_desk
             // frm.doc.address = frm.doc.address,
             // frm.doc.name_of_scheme= doc.name_of_scheme,
             bulk_refresh_field(["completed_age", "contact_number" , "gender" ,"name_of_the_beneficiary"
