@@ -167,9 +167,11 @@
    "options": "Beneficiary Profiling"
   },
   {
+   "depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single-window",
+   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "options": "Single Window"
   },
   {
@@ -179,16 +181,18 @@
    "label": "Views Beneficary"
   },
   {
+   "depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
+   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "options": "Help Desk"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-18 11:52:47.460380",
+ "modified": "2024-01-18 12:03:14.192987",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Community meeting",

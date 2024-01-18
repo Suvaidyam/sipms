@@ -46,6 +46,16 @@ frappe.ui.form.on("Community meeting", {
 	async refresh(frm) {
         frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter"]));
 	},
+    single_window:function(frm){
+        frm.fields_dict['help_desk'].get_query = function (doc) {
+            return {
+              filters: {
+                'single_window': frm.doc.single_window,
+              },
+              page_length: 1000
+            };
+          }
+    },
     add_to_beneficary:function(frm){
         frappe.route_options = {
             lead: frm.doc.name,
@@ -71,5 +81,10 @@ frappe.ui.form.on("Community meeting", {
         // Open a new form for the desired DocType
         frappe.new_doc('Beneficiary Profiling');
         
+    },
+    views_beneficary:function(frm){
+        // Redirect to the form view of the specified Beneficiary Profiling document
+        frappe.set_route('Form', 'Beneficiary Profiling', frm.doc.beneficiary);
+
     }
 });
