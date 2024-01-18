@@ -174,7 +174,7 @@ const doc_submitted_validate = (_doc) => {
     return {
       status: false,
       message: "Date of application should not be less than date of visit",
-      date_of_application: ''
+      // date_of_application: ''
     }
   } else if (_doc.date_of_application > frappe.datetime.get_today()) {
     _doc.date_of_application = ''
@@ -191,16 +191,22 @@ const doc_submitted_validate = (_doc) => {
 }
 const doc_rejected_validate = (_doc) => {
   if (_doc.date_of_rejection < _frm.date_of_visit) {
+    _doc.date_of_rejection = ''
+    refresh_field("date_of_rejection")
     return {
       status: false,
       message: "Date of rejection should not be less than date of visit"
     }
   } else if (_doc.date_of_rejection < _doc.date_of_application) {
+    _doc.date_of_rejection = ''
+    refresh_field("date_of_rejection")
     return {
       status: false,
       message: "Date of rejection should not be less than date of application"
     }
   } else if (_doc.date_of_rejection > frappe.datetime.get_today()) {
+    _doc.date_of_rejection = ''
+    refresh_field("date_of_rejection")
     return {
       status: false,
       message: "Date of rejection should not be greater than today date"
@@ -214,22 +220,26 @@ const doc_rejected_validate = (_doc) => {
 }
 const date_of_complete_validate = (_doc) => {
   if (_doc.date_of_application < _frm.date_of_visit) {
+    _doc.date_of_application = ''
     return {
       status: false,
       message: "Date of application should not be less than date of visit"
 
     }
   } else if (_doc.date_of_completion < _frm.date_of_visit) {
+    _doc.date_of_completion = ''
     return {
       status: false,
       message: "Date of completion should not be less than date of visit"
     }
   } else if (_doc.date_of_completion > frappe.datetime.get_today()) {
+    _doc.date_of_completion = ''
     return {
       status: false,
       message: "Date of completion should not be greater than today date"
     }
   } else if (_doc.date_of_completion < _doc.date_of_application) {
+    _doc.date_of_completion = ''
     return {
       status: false,
       message: "Date of completion should not be greater than date date of application"
@@ -498,10 +508,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   async refresh(frm) {
     _frm = frm.doc
-    if(frm.doc.lead){
-      var contact_no = cur_frm.doc;
-      console.log("lead found", contact_no)
-    }
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 
