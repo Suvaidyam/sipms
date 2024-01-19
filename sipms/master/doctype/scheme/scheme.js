@@ -78,13 +78,74 @@ function get_Link_list(doctype_name) {
         });
     })
 }
+function callAPI(options) {
+    return new Promise((resolve, reject) => {
+      frappe.call({
+        ...options,
+        callback: async function (response) {
+          resolve(response?.message || response?.value)
+        }
+      });
+    })
+  }
+  const get_ben_list = async (frm) => {
+    let list = await callAPI({
+      method: 'sipms.api.eligible_beneficiaries',
+      freeze: true,
+      args: {
+        "scheme": frm.doc.name_of_the_scheme
+      },
+      freeze_message: __("Getting beneficiaries..."),
+    })
+    // scheme_list = list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
+    return list
+  }
 frappe.ui.form.on("Scheme", {
-    refresh(frm) {
+    async refresh(frm) {
+        let ben_list = await get_ben_list(frm)
+        let tableConf = {
+            columns: [
+              {
+                name: "Name of beneficiary",
+                id: 'name',
+                editable: false,
+                resizable: false,
+                sortable: false,
+                focusable: false,
+                dropdown: true,
+                width: 400
+              },
+              {
+                name: "Phone number",
+                id: 'phone_number',
+                editable: false,
+                resizable: false,
+                sortable: false,
+                focusable: false,
+                dropdown: false,
+                width: 400,
+              }
+            ],
+            rows: []
+          };
+          for (let scheme of ben_list) {
+            console.log("scheme", scheme)
+            tableConf.rows.push({
+              name: `<a href="/app/beneficiary-profiling/${scheme.name}">${scheme.name_of_the_beneficiary}</a>`,
+              phone_number: scheme.contact_number
+            })
+          }
+          const container = document.getElementById('eligible_beneficiaries');
+          const datatable = new DataTable(container, { columns: tableConf.columns });
+          datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });
+          datatable.refresh(tableConf.rows);
         console.log("Scheme[refresh]");
         frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
         if(frm.doc.department_urlwebsite){
             frm.add_web_link(frm?.doc?.department_urlwebsite)
         }
+
+          
     },
     name_of_department:function(frm){
         if(frm.doc.department_urlwebsite){
