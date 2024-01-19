@@ -138,9 +138,13 @@ frappe.ui.form.on("Scheme", {
           const container = document.getElementById('eligible_beneficiaries');
           const datatable = new DataTable(container, { columns: tableConf.columns });
           datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });
+          datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
           datatable.refresh(tableConf.rows);
-        console.log("Scheme[refresh]");
+          console.log("tableConf.rows", tableConf.rows)
+
         frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
+
+
         if(frm.doc.department_urlwebsite){
             frm.add_web_link(frm?.doc?.department_urlwebsite)
         }
