@@ -13,13 +13,12 @@ def eligible_beneficiaries(scheme=''):
     condition_str =""
     if rules:
         for rule in rules:
-           condition_str = f""" {condition_str} {rule.rule_field} {rule.operator} '{rule.data}'"""
-        condition_str = f"{condition_str} AND"  
+           condition_str = f"""{condition_str} {rule.rule_field} {rule.operator} '{rule.data}' AND"""
+        # condition_str = f"{condition_str} "  
     else:
         condition_str = ""
 
-    # condition_str = f"{condition_str} '1=1'"
-    get_elegible_ben = f""" SELECT * FROM `tabBeneficiary Profiling` WHERE {condition_str} 1=1""" 
+    get_elegible_ben = f""" SELECT * FROM `tabBeneficiary Profiling` WHERE{condition_str} 1=1""" 
     all_ben = frappe.db.sql(get_elegible_ben, as_dict=True)
 
     return all_ben
