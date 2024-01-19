@@ -129,12 +129,13 @@
   {
    "fieldname": "table",
    "fieldtype": "HTML",
-   "label": "Table"
+   "label": "Table",
+   "options": "<div id=\"eligible_beneficiaries\"></div>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-18 16:28:44.809424",
+ "modified": "2024-01-19 23:56:32.969959",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",

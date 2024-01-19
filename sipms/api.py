@@ -18,7 +18,7 @@ def eligible_beneficiaries(scheme=''):
     else:
         condition_str = ""
 
-    get_elegible_ben = f""" SELECT * FROM `tabBeneficiary Profiling` WHERE{condition_str} 1=1""" 
+    get_elegible_ben = f""" SELECT name, name_of_the_beneficiary , contact_number FROM `tabBeneficiary Profiling` WHERE{condition_str} 1=1""" 
     all_ben = frappe.db.sql(get_elegible_ben, as_dict=True)
 
     return all_ben
