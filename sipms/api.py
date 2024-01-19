@@ -7,19 +7,19 @@ def execute(name=None):
 
 
 @frappe.whitelist(allow_guest=True)
-def eligible_beneficiaries():
-    get_rules = """select name_of_the_scheme, rule_field, operator , data  from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name
- where name_of_the_scheme = 'scheam 1';
+def eligible_beneficiaries(scheme=''):
+    get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where name_of_the_scheme ='{scheme}';"""
+    rules = frappe.db.sql(get_rules, as_dict=True)
+    condition_str =""
+    if rules:
+        for rule in rules:
+           condition_str = f""" {condition_str} {rule.rule_field} {rule.operator} '{rule.data}'"""
+        condition_str = f"{condition_str} AND"  
+    else:
+        condition_str = ""
 
+    # condition_str = f"{condition_str} '1=1'"
+    get_elegible_ben = f""" SELECT * FROM `tabBeneficiary Profiling` WHERE {condition_str} 1=1""" 
+    all_ben = frappe.db.sql(get_elegible_ben, as_dict=True)
 
-
-
-
-
-
-
-"""
-    # support rules get
-    #  get list of beneficary according to support rules
-    
-    return ["aaaa", "bbbb" , "cccc"]
+    return all_ben
