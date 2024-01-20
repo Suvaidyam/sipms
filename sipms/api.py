@@ -33,7 +33,7 @@ def most_eligible_ben():
     scheame_query = f"""select name  from `tabScheme` """
     get_all_scheame = frappe.db.sql(scheame_query, as_dict=True)
     for scheme in get_all_scheame:
-        get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where name_of_the_scheme ='{scheme.name}';"""
+        get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where _ts.name_of_the_scheme ='{scheme.name}';"""
         rules = frappe.db.sql(get_rules, as_dict=True)
         condition_str =""
         if rules:
