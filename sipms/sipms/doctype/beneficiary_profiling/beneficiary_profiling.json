@@ -490,7 +490,7 @@
    "options": "Community meeting"
   },
   {
-   "depends_on": "eval:doc.completed_age == 0",
+   "depends_on": "eval:doc.completed_age == 0 || doc.__islocal",
    "fieldname": "completed_age_month",
    "fieldtype": "Int",
    "label": "Completed age (Month)",
@@ -501,7 +501,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-18 20:36:51.240671",
+ "modified": "2024-01-20 10:02:03.957600",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
