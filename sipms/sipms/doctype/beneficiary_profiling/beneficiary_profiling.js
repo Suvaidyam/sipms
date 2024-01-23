@@ -588,7 +588,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
     extend_options_length(frm, ["what_is_the_extent_of_your_disability", "single_window", "help_desk",
       "source_of_information", "current_house_type", "state", "district",
-      "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "current_occupation","district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
+      "education", "ward", "name_of_the_settlement", "proof_of_disability", "block", "state_of_origin", "current_occupation","district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
     frm.set_query('religion', () => {
       return {
         order_by: 'religion.religion ASC'
@@ -651,16 +651,16 @@ frappe.ui.form.on("Beneficiary Profiling", {
       "district_of_origin", "block", "gender",
      ,"social_vulnerable_category", "pwd_category", "family",
       "help_desk", "single_window", "what_is_the_extent_of_your_disability", "source_of_information",
-      "current_house_type", "name_of_the_settlement", "name_of_the_camp"
+      "current_house_type", "name_of_the_settlement", "name_of_the_camp" ,"proof_of_disability"
     ])
 
     // Increase Defult Limit of link field
-    frm.set_query("state", () => { return { page_length: 1000 }; });
-    frm.set_query("district", () => { return { page_length: 1000 }; });
-    frm.set_query("ward", () => { return { page_length: 1000 }; });
-    frm.set_query("state_of_origin", () => { return { page_length: 1000 }; });
-    frm.set_query("district_of_origin", () => { return { page_length: 1000 }; });
-    frm.set_query("block", () => { return { page_length: 1000 }; });
+    // frm.set_query("state", () => { return { page_length: 1000 }; });
+    // frm.set_query("district", () => { return { page_length: 1000 }; });
+    // frm.set_query("ward", () => { return { page_length: 1000 }; });
+    // frm.set_query("state_of_origin", () => { return { page_length: 1000 }; });
+    // frm.set_query("district_of_origin", () => { return { page_length: 1000 }; });
+    // frm.set_query("block", () => { return { page_length: 1000 }; });
 
     // Apply defult filter in doctype
     frm.doc.state ? apply_filter("district", "State", frm, frm.doc.state) : defult_filter('district', "State", frm);
