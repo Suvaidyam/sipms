@@ -513,9 +513,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
                 if (support_item.status != "Closed") {
                   if (latestFollowup.to_close_status) {
                     support_item.status = latestFollowup.to_close_status
-                  } else {
+                  } 
+                  // else {
                     // support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
-                  }
+                  // }
                 }
                 break;
               default:
