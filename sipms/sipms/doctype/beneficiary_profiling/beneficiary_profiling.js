@@ -514,7 +514,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
                   if (latestFollowup.to_close_status) {
                     support_item.status = latestFollowup.to_close_status
                   } else {
-                    support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
+                    // support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
                   }
                 }
                 break;
