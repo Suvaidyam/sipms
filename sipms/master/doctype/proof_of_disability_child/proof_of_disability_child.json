@@ -11,14 +11,16 @@
   {
    "fieldname": "proof_of_disability",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Proof of disability",
-   "options": "Proof of Disability"
+   "options": "Proof of Disability",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-23 09:50:40.173946",
+ "modified": "2024-01-23 12:15:20.901970",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Proof of Disability Child",
