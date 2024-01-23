@@ -2,7 +2,7 @@
  "chart_name": "Top schemes that most beneficiaries of that user are eligible",
  "chart_type": "Report",
  "creation": "2024-01-20 12:59:56.725580",
- "custom_options": "{\"x_field\": \"scheam\", \"chart_type\": \"Bar\", \"y_axis_fields\": [{\"idx\": 1, \"__islocal\": true, \"name\": \"row 1\", \"y_field\": \"bencount\"}], \"y_fields\": [\"bencount\"], \"colors\": [null]}",
+ "custom_options": "{\"x_field\": \"scheme\", \"chart_type\": \"Bar\", \"y_axis_fields\": [{\"idx\": 1, \"__islocal\": true, \"name\": \"row 1\", \"y_field\": \"count\"}], \"y_fields\": [\"count\"], \"colors\": [null]}",
  "docstatus": 0,
  "doctype": "Dashboard Chart",
  "filters_json": "{}",
@@ -10,7 +10,7 @@
  "idx": 0,
  "is_public": 1,
  "is_standard": 1,
- "modified": "2024-01-20 13:00:12.146392",
+ "modified": "2024-01-24 00:16:08.277715",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Top schemes that most beneficiaries of that user are eligible",
@@ -23,10 +23,10 @@
  "timespan": "Last Year",
  "type": "Bar",
  "use_report_chart": 0,
- "x_field": "scheam",
+ "x_field": "scheme",
  "y_axis": [
   {
-   "y_field": "bencount"
+   "y_field": "count"
   }
  ]
 }

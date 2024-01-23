@@ -258,21 +258,18 @@ const createDialog = (_doc, config, validator = null) => {
     size: 'small', // small, large, extra-large
     primary_action_label: 'Save',
     primary_action(obj) {
+      if (validator) {
+        let valid = validator(obj)
+        if (!valid.status) {
+          return frappe.throw(valid.message);
+        }
+      }
       let fields = config.fields.filter(f => f._doc).map(e => e.fieldname)
       for (let field of fields) {
         if (obj[field])
           _doc[field] = obj[field]
       }
-      if (validator) {
-        let valid = validator(_doc)
-        if (valid.status) {
-          this.hide()
-        } else {
-          frappe.throw(valid.message)
-        }
-      } else {
-        this.hide()
-      }
+      this.hide()
     }
   });
 }
@@ -513,9 +510,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
                 if (support_item.status != "Closed") {
                   if (latestFollowup.to_close_status) {
                     support_item.status = latestFollowup.to_close_status
-                  } 
+                  }
                   // else {
-                    // support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
+                  // support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
                   // }
                 }
                 break;
@@ -589,7 +586,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
     extend_options_length(frm, ["single_window", "help_desk",
       "source_of_information", "current_house_type", "state", "district",
-      "education", "ward", "name_of_the_settlement", "proof_of_disability", "block", "state_of_origin", "current_occupation","district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
+      "education", "ward", "name_of_the_settlement", "proof_of_disability", "block", "state_of_origin", "current_occupation", "district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
     frm.set_query('religion', () => {
       return {
         order_by: 'religion.religion ASC'
@@ -650,9 +647,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
     // Hide Advance search options
     hide_advance_search(frm, ["state", "district", "ward", "state_of_origin",
       "district_of_origin", "block", "gender",
-     ,"social_vulnerable_category", "pwd_category", "family",
+      , "social_vulnerable_category", "pwd_category", "family",
       "help_desk", "single_window", "source_of_information",
-      "current_house_type", "name_of_the_settlement", "name_of_the_camp" ,"proof_of_disability"
+      "current_house_type", "name_of_the_settlement", "name_of_the_camp", "proof_of_disability"
     ])
 
     // Increase Defult Limit of link field
@@ -709,7 +706,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     // frm.fields_dict['current_occupation'].get_query = function(doc) {
     //   return {
     //     // query: 'sipms.api.occupation',
-    //     order_by: 'occupation DESC'  
+    //     order_by: 'occupation DESC'
     //   };
     // };
   },
@@ -727,23 +724,23 @@ frappe.ui.form.on("Beneficiary Profiling", {
       let currentDate = new Date(today);
       let years = currentDate.getFullYear() - birthDate.getFullYear();
       let months = currentDate.getMonth() - birthDate.getMonth();
-      console.log("currentDate.getMonth()", currentDate.getMonth() , "birthDate.getMonth();", birthDate.getMonth())
+      console.log("currentDate.getMonth()", currentDate.getMonth(), "birthDate.getMonth();", birthDate.getMonth())
       if (months < 0 || (months === 0 && currentDate.getDate() < birthDate.getDate())) {
         years--;
       }
       var month = (currentDate.getFullYear() - birthDate.getFullYear()) * 12 + (currentDate.getMonth() - birthDate.getMonth());
       if (currentDate.getDate() < birthDate.getDate()) {
-          month--;
+        month--;
       }
-      if(month <= 11){
+      if (month <= 11) {
         frm.set_value('completed_age_month', month);
-      }else{
+      } else {
         frm.set_value('completed_age_month', '');
       }
       let ageString = 0;
       if (years > 0) {
         ageString += years;
-        
+
       }
       frm.set_value('completed_age', ageString);
       frm.set_df_property('completed_age', 'read_only', 1);
@@ -752,7 +749,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frm.set_value('completed_age', 0);
     }
   },
-  completed_age_month: function(frm){
+  completed_age_month: function (frm) {
     if (frm.doc.completed_age_month > 11) {
       frm.doc.completed_age_month = ''
       refresh_field('completed_age_month')
@@ -777,6 +774,13 @@ frappe.ui.form.on("Beneficiary Profiling", {
 });
 // ********************* Support CHILD Table***********************
 frappe.ui.form.on('Scheme Child', {
+  form_render: async function (frm, cdt, cdn) {
+    let row = frappe.get_doc(cdt, cdn);
+    if (row.application_submitted == 'Yes' && (!row.date_of_application || !row.mode_of_application)) {
+      row.status = ''
+      createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
+    }
+  },
   scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
     let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
@@ -817,7 +821,7 @@ frappe.ui.form.on('Scheme Child', {
       createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
     } else if (row.application_submitted == "Completed") {
       createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
-    }else if (row.application_submitted == "No"){
+    } else if (row.application_submitted == "No") {
       row.date_of_application = ''
       row.date_of_completion = ''
       console.log("rrrooowww", row)
@@ -829,7 +833,10 @@ frappe.ui.form.on('Scheme Child', {
 // ********************* FOLLOW UP CHILD Table***********************
 
 frappe.ui.form.on('Follow Up Child', {
-  follow_up_table_add(frm, cdt, cdn) {
+  form_render: async function (frm, cdt, cdn) {
+    let row = frappe.get_doc(cdt, cdn);
+    console.log("row", row);
+  }, follow_up_table_add(frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     row.follow = frappe.session.user_fullname
     let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);

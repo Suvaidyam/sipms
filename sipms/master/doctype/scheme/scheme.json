@@ -24,6 +24,7 @@
   "comments_remarks",
   "rules_tab",
   "rules",
+  "note",
   "beneficiaries_tab",
   "table"
  ],
@@ -131,11 +132,17 @@
    "fieldtype": "HTML",
    "label": "Table",
    "options": "<div id=\"eligible_beneficiaries\"></div>"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "HTML",
+   "label": "Note",
+   "options": "<div align=\"right\">\nNote: Leaving empty group will be consider as two different groups.\n</div>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-19 23:56:32.969959",
+ "modified": "2024-01-23 23:42:15.063631",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
