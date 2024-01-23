@@ -1,11 +1,11 @@
 import frappe
-from sipms.utils.filter import Filter
+from sipms.utils.report_filter import ReportFilter
 
 def execute(filters=None):
     columns = [
         {
-            "fieldname": "application_submitted",
-            "label": "Application Submitted",
+            "fieldname": "status",
+            "label": "Current status",
             "fieldtype": "Data",
             "width": 400,
         },
@@ -17,7 +17,7 @@ def execute(filters=None):
         }
     ]
 
-    condition_str = Filter.set_report_filters(filters, 'creation', True)
+    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True, 'ben_table')
     if condition_str:
         condition_str = f"AND {condition_str}"
     else:
@@ -25,16 +25,16 @@ def execute(filters=None):
 
     sql_query = f"""
         SELECT
-            application_submitted,
-            COUNT(name) as count
+            _sc.status,
+            COUNT(_sc.name) as count
         FROM
-            `tabScheme Child`
+            `tabScheme Child` as _sc
+        INNER JOIN `tabBeneficiary Profiling` as ben_table on (ben_table.name =  _sc.parent and _sc.parenttype ='Beneficiary Profiling')
         WHERE
-            status = 'Under Process'
-            AND application_submitted = 'Yes'
-        {condition_str}
+            _sc.status = 'Under Process' AND
+        1=1 {condition_str}
         GROUP BY
-            application_submitted
+            _sc.application_submitted
     """
 
     data = frappe.db.sql(sql_query, as_dict=True)

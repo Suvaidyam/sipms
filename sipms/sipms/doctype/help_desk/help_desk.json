@@ -7,16 +7,19 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "help_desk_name",
+  "date_of_formation",
   "state",
   "single_window",
-  "help_desk_name"
+  "address"
  ],
  "fields": [
   {
    "fieldname": "state",
    "fieldtype": "Link",
    "label": "State",
-   "options": "State"
+   "options": "State",
+   "reqd": 1
   },
   {
    "fieldname": "single_window",
@@ -29,13 +32,24 @@
   {
    "fieldname": "help_desk_name",
    "fieldtype": "Data",
-   "label": "Help Desk Name",
+   "label": "Name of Help-desk ",
    "reqd": 1
+  },
+  {
+   "fieldname": "date_of_formation",
+   "fieldtype": "Date",
+   "label": "Date of formation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-28 14:25:37.622979",
+ "modified": "2024-01-04 10:37:52.387318",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Help Desk",

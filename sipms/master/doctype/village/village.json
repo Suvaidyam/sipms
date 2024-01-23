@@ -2,7 +2,7 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:village_name",
+ "autoname": "field:village_code",
  "creation": "2023-09-13 08:28:31.462472",
  "default_view": "List",
  "doctype": "DocType",
@@ -61,7 +61,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-25 09:58:17.807565",
+ "modified": "2024-01-15 22:01:29.589671",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Village",
@@ -81,13 +81,15 @@
    "write": 1
   },
   {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Admin",
-   "share": 1
+   "share": 1,
+   "write": 1
   },
   {
    "email": 1,

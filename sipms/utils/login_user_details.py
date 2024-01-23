@@ -6,7 +6,12 @@ class  LoginUser:
         single_window = usr.single_window
         return single_window
 
-    def get_helpdesk():
+    # def get_helpdesk():
+    #     usr = frappe.get_doc("Sipms User", frappe.session.user)
+    #     help_desk = usr.help_desk
+    #     return help_desk
+    
+    def get_state():
         usr = frappe.get_doc("Sipms User", frappe.session.user)
-        help_desk = usr.help_desk
-        return help_desk
+        state = usr.state
+        return state

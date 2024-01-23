@@ -6,6 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "name_of_the_scheme",
+  "scheme",
+  "milestone",
   "milestone_category",
   "application_submitted",
   "date_of_application",
@@ -26,11 +28,9 @@
   {
    "fetch_from": "name_of_the_scheme.milestone",
    "fieldname": "milestone_category",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Milestone category",
-   "options": "Milestone category",
-   "read_only": 1,
    "reqd": 1,
    "set_only_once": 1
   },
@@ -44,18 +44,20 @@
   },
   {
    "default": " ",
+   "depends_on": "eval:doc.application_submitted != 'No'",
    "fieldname": "reason_of_application",
    "fieldtype": "Data",
    "label": "Reason of application",
    "set_only_once": 1
   },
   {
+   "depends_on": "eval:doc.application_submitted != 'No'",
    "fetch_from": "name_of_the_scheme.mode_of_application",
    "fieldname": "mode_of_application",
    "fieldtype": "Select",
    "label": "Mode of application",
+   "mandatory_depends_on": "eval:doc.application_submitted != 'No'",
    "options": "\nOnline\nOffline",
-   "read_only": 1,
    "set_only_once": 1
   },
   {
@@ -157,12 +159,26 @@
    "in_list_view": 1,
    "label": "Remarks",
    "set_only_once": 1
+  },
+  {
+   "fieldname": "scheme",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Scheme",
+   "options": "Scheme"
+  },
+  {
+   "fieldname": "milestone",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Milestone category",
+   "options": "Milestone category"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-02 11:09:36.359336",
+ "modified": "2024-01-08 17:28:55.498961",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Scheme Child",

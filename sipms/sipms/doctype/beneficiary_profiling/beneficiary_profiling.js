@@ -1,5 +1,7 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // For license information, please see license.txt
+let _frm;
+// global variable
 const dialogsConfig = {
   document_submitted: {
     title: 'Enter details for Support',
@@ -9,6 +11,20 @@ const dialogsConfig = {
         fieldname: 'date_of_application',
         fieldtype: 'Date',
         reqd: 1,
+        _doc: true
+      },
+      {
+        label: 'Mode of application',
+        fieldname: 'mode_of_application',
+        fieldtype: 'Select',
+        reqd: 1,
+        options: ["Online", "Offline"],
+        _doc: true
+      },
+      {
+        label: 'Reason of application',
+        fieldname: 'reason_of_application',
+        fieldtype: 'Data',
         _doc: true
       },
       {
@@ -28,6 +44,12 @@ const dialogsConfig = {
         fieldname: 'paid_by',
         fieldtype: 'Select',
         options: ["Self", "CSC"],
+        _doc: true
+      },
+      {
+        label: 'Remarks',
+        fieldname: 'remarks',
+        fieldtype: 'Data',
         _doc: true
       }
     ]
@@ -50,6 +72,20 @@ const dialogsConfig = {
         _doc: true
       },
       {
+        label: 'Mode of application',
+        fieldname: 'mode_of_application',
+        fieldtype: 'Select',
+        reqd: 1,
+        options: ["Online", "Offline"],
+        _doc: true
+      },
+      {
+        label: 'Reason of application',
+        fieldname: 'reason_of_application',
+        fieldtype: 'Data',
+        _doc: true
+      },
+      {
         label: 'Application number',
         fieldname: 'application_number',
         fieldtype: 'Data',
@@ -73,6 +109,12 @@ const dialogsConfig = {
         fieldname: 'completion_certificate',
         fieldtype: 'Attach',
         _doc: true
+      },
+      {
+        label: 'Remarks',
+        fieldname: 'remarks',
+        fieldtype: 'Data',
+        _doc: true
       }
     ]
   },
@@ -90,6 +132,12 @@ const dialogsConfig = {
         label: 'Completion certificate',
         fieldname: 'completion_certificate',
         fieldtype: 'Attach',
+        _doc: true
+      },
+      {
+        label: 'Remarks',
+        fieldname: 'remarks',
+        fieldtype: 'Data',
         _doc: true
       }
     ]
@@ -110,11 +158,100 @@ const dialogsConfig = {
         fieldtype: 'Data',
         reqd: 1,
         _doc: true
+      },
+      {
+        label: 'Remarks',
+        fieldname: 'remarks',
+        fieldtype: 'Data',
+        _doc: true
       }
     ]
   }
 }
-const createDialog = (_doc, config) => {
+const doc_submitted_validate = (_doc) => {
+  if (_doc.date_of_application < _frm.date_of_visit) {
+    _doc.date_of_application = ''
+    return {
+      status: false,
+      message: "Date of application should not be less than date of visit",
+      // date_of_application: ''
+    }
+  } else if (_doc.date_of_application > frappe.datetime.get_today()) {
+    _doc.date_of_application = ''
+    return {
+      status: false,
+      message: "Date of application should not be greater than today date"
+    }
+  } else {
+    return {
+      status: true,
+      // message:"Invalid "
+    }
+  }
+}
+const doc_rejected_validate = (_doc) => {
+  if (_doc.date_of_rejection < _frm.date_of_visit) {
+    _doc.date_of_rejection = ''
+    refresh_field("date_of_rejection")
+    return {
+      status: false,
+      message: "Date of rejection should not be less than date of visit"
+    }
+  } else if (_doc.date_of_rejection < _doc.date_of_application) {
+    _doc.date_of_rejection = ''
+    refresh_field("date_of_rejection")
+    return {
+      status: false,
+      message: "Date of rejection should not be less than date of application"
+    }
+  } else if (_doc.date_of_rejection > frappe.datetime.get_today()) {
+    _doc.date_of_rejection = ''
+    refresh_field("date_of_rejection")
+    return {
+      status: false,
+      message: "Date of rejection should not be greater than today date"
+    }
+  } else {
+    return {
+      status: true,
+      // message:"Invalid "
+    }
+  }
+}
+const date_of_complete_validate = (_doc) => {
+  if (_doc.date_of_application < _frm.date_of_visit) {
+    _doc.date_of_application = ''
+    return {
+      status: false,
+      message: "Date of application should not be less than date of visit"
+
+    }
+  } else if (_doc.date_of_completion < _frm.date_of_visit) {
+    _doc.date_of_completion = ''
+    return {
+      status: false,
+      message: "Date of completion should not be less than date of visit"
+    }
+  } else if (_doc.date_of_completion > frappe.datetime.get_today()) {
+    _doc.date_of_completion = ''
+    return {
+      status: false,
+      message: "Date of completion should not be greater than today date"
+    }
+  } else if (_doc.date_of_completion < _doc.date_of_application) {
+    _doc.date_of_completion = ''
+    return {
+      status: false,
+      message: "Date of completion should not be greater than date date of application"
+    }
+  } else {
+    return {
+      status: true,
+      // message:"Invalid "
+    }
+  }
+}
+const createDialog = (_doc, config, validator = null) => {
   return new frappe.ui.Dialog({
     title: config.title,
     fields: config.fields,
@@ -126,10 +263,20 @@ const createDialog = (_doc, config) => {
         if (obj[field])
           _doc[field] = obj[field]
       }
-      this.hide()
+      if (validator) {
+        let valid = validator(_doc)
+        if (valid.status) {
+          this.hide()
+        } else {
+          frappe.throw(valid.message)
+        }
+      } else {
+        this.hide()
+      }
     }
   });
 }
+
 //  COMMON FUNCTION FOR DEFULT FILTER
 function defult_filter(field_name, filter_on, frm) {
   frm.fields_dict[field_name].get_query = function (doc) {
@@ -188,7 +335,7 @@ function hide_advance_search(frm, list) {
     frm.set_df_property(item, 'only_select', true);
   }
 };
-const get_ordered_list = async (doctype, other_in_last = true) => {
+const get_ordered_list = async (doctype, optionsToSort) => {
   let list = await callAPI({
     method: 'frappe.desk.search.search_link',
     freeze: true,
@@ -199,13 +346,23 @@ const get_ordered_list = async (doctype, other_in_last = true) => {
     },
     freeze_message: __("Getting list ..."),
   })
-  if (other_in_last) {
-    const otherOption = list.find(item => item.value === 'Others');
-    if (otherOption) {
-      list = list.filter(item => item.value !== 'Others');
-      list.push(otherOption);
-    }
-    return list
+  if (optionsToSort) {
+    let reOrderedList = [];
+    optionsToSort.forEach(async (option) => {
+      const requiredOption = await list.find(item => item.value === option);
+      reOrderedList.push(requiredOption);
+    });
+    const exceptionList = await list.filter(item => !optionsToSort.some(item2 => item.value === item2));
+    exceptionList.forEach(async (option) => {
+      reOrderedList = [...reOrderedList, option];
+    })
+    list = reOrderedList;
+    return list;
+    // const otherOption = list.find(item => item.value === 'Others');
+    // if (otherOption) {
+    //   list = list.filter(item => item.value !== 'Others');
+    //   list.push(otherOption);
+    // }
   }
   return list
 
@@ -222,9 +379,77 @@ const get_scheme_list = async (frm) => {
   scheme_list = list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
   return scheme_list
 }
+
+
+const get_lead_date = async (lead_id, frm) => {
+  var fieldsToFetch = ["completed_age", "contact_number"];
+
+  const bulk_refresh_field = async (fields = []) => {
+    for (var i = 0; i < fields.length; i++) {
+      refresh_field(fields[i])
+    }
+  }
+  // Fetch document with name 'your_document_name' from DocType 'YourDocType'
+  frappe.call({
+    method: 'frappe.client.get',
+    args: {
+      doctype: 'Community meeting',
+      name: lead_id,
+      fields: fieldsToFetch
+    },
+    callback: function (response) {
+      // Handle the response
+      if (!response.exc) {
+        var doc = response.message;
+        console.log('Fetched Document:', doc);
+        frm.doc.completed_age = doc.completed_age,
+          frm.doc.contact_number = doc.contact_number,
+          // frm.doc.date_of_visit = doc.date_of_visit,
+          frm.doc.gender = doc.gender,
+          frm.doc.name_of_the_beneficiary = doc.name_of_the_beneficiary,
+          frm.doc.caste_category = doc.caste_category,
+          frm.doc.education = doc.education,
+          frm.doc.current_occupation = doc.current_occupation,
+          frm.doc.marital_status = doc.marital_status,
+          frm.doc.spouses_name = doc.spouses_name,
+          frm.doc.single_window = doc.single_window,
+          frm.doc.fathers_name = doc.fathers_name,
+          frm.doc.mothers_name = doc.mothers_name,
+          frm.doc.source_of_information = doc.source_of_information,
+          frm.doc.name_of_the_camp = doc.name_of_the_camp
+        frm.doc.state_of_origin = doc.state_of_origin,
+          frm.doc.current_house_type = doc.current_house_type,
+          frm.doc.current_house_type = doc.current_house_type,
+          frm.doc.help_desk = doc.help_desk
+        frm.doc.occupational_category = doc.occupational_category
+        // frm.doc.address = frm.doc.address,
+        // frm.doc.name_of_scheme= doc.name_of_scheme,
+        bulk_refresh_field(["completed_age", "contact_number", "gender", "name_of_the_beneficiary"
+          , "caste_category", "education", "current_occupation", "occupational_category", "marital_status", "single_window", "fathers_name", "mothers_name",
+          "source_of_information", "state_of_origin", "current_house_type", "name_of_the_camp"
+        ])
+        // refresh_field("completed_age")
+        // refresh_field("contact_number")
+
+
+        // Now you can access the specific fields, e.g., doc.field1, doc.field2, etc.
+      } else {
+        console.error('Error fetching document:', response.exc);
+      }
+    }
+  });
+
+}
 frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
   before_save: function (frm) {
+    // fill into hidden fields
+    if (frm.doc?.scheme_table && frm.doc?.scheme_table?.length) {
+      for (_doc of frm.doc.scheme_table) {
+        _doc.scheme = _doc.name_of_the_scheme;
+        _doc.milestone = _doc.milestone_category;
+      }
+    }
     // check alternate mobile number digits
     if (frm.doc.alternate_contact_number < 4) {
       frm.doc.alternate_contact_number = ''
@@ -239,9 +464,13 @@ frappe.ui.form.on("Beneficiary Profiling", {
     if (frm.selected_doc.scheme_table) {
       for (support_items of frm.selected_doc.scheme_table) {
         if (support_items.application_submitted == "No") {
-          support_items.status = 'Open'
+          if (support_items.status != 'Closed') {
+            support_items.status = 'Open'
+          }
         } else if (support_items.application_submitted == "Yes") {
-          support_items.status = 'Under process'
+          if (support_items.status != 'Closed') {
+            support_items.status = 'Under process'
+          }
         } else {
           support_items.status = 'Completed'
         }
@@ -253,7 +482,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
         if (!['Completed'].includes(support_item.status)) {
           let followups = frm.selected_doc.follow_up_table.filter(f => f.parent_ref == support_item?.name)
           let latestFollowup = followups.length ? followups[(followups.length - 1)] : null
-          if (latestFollowup) {
+          if (latestFollowup?.parent_ref == support_item.name) {
             switch (latestFollowup.follow_up_status) {
               case "Interested":
                 support_item.status = "Open"
@@ -269,6 +498,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
               case "Document submitted":
                 support_item.application_submitted = "Yes"
                 support_item.status = "Under process"
+                support_item.mode_of_application = latestFollowup.mode_of_application || support_item.mode_of_application
                 support_item.date_of_application = latestFollowup.date_of_application || support_item.date_of_application
                 support_item.application_number = latestFollowup.application_number || support_item.application_number
                 support_item.amount_paid = latestFollowup.amount_paid || support_item.amount_paid
@@ -280,10 +510,13 @@ frappe.ui.form.on("Beneficiary Profiling", {
                 support_item.completion_certificate = latestFollowup.completion_certificate || support_item.completion_certificate
                 break;
               case "Not reachable":
-                support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
-                if (latestFollowup.to_close_status) {
-                  support_item.status = latestFollowup.to_close_status
-                  console.log("closed")
+                if (support_item.status != "Closed") {
+                  if (latestFollowup.to_close_status) {
+                    support_item.status = latestFollowup.to_close_status
+                  } 
+                  // else {
+                    // support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
+                  // }
                 }
                 break;
               default:
@@ -336,8 +569,12 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   },
   async refresh(frm) {
-    // set dropdown value
-    frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", true));
+    _frm = frm.doc
+    if (frm.doc.lead && frm.doc.__islocal) {
+      get_lead_date(frm.doc.lead, frm)
+    }
+    // set dropdown value by ordering
+    frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 
     // hide delete options for helpdesk and csc member
     apply_filter('select_primary_member', 'name_of_head_of_family', frm, ['!=', frm.doc.name])
@@ -349,10 +586,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
         frm.set_df_property('follow_up_table', 'cannot_delete_all_rows', true);
       }
     }
-    frm.doc.name_of_the_concerned_help_desk_member = frappe.session.user_fullname
-    extend_options_length(frm, ["what_is_the_extent_of_your_disability", "single_window", "help_desk",
-      "source_of_information", "current_occupation", "current_house_type", "state", "district",
-      "education", "ward", "name_of_the_settlement", "block", "state_of_origin", "district_of_origin", "social_vulnerable_category"])
+
+    extend_options_length(frm, ["single_window", "help_desk",
+      "source_of_information", "current_house_type", "state", "district",
+      "education", "ward", "name_of_the_settlement", "proof_of_disability", "block", "state_of_origin", "current_occupation","district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
     frm.set_query('religion', () => {
       return {
         order_by: 'religion.religion ASC'
@@ -391,17 +628,21 @@ frappe.ui.form.on("Beneficiary Profiling", {
     for (let scheme of scheme_list) {
       tableConf.rows.push({
         name: scheme.name,
-        matches: `${scheme.matching_rules}/${scheme.total_rules}`,
+        matches: `<a href="/app/scheme/${scheme.name}">${scheme.matching_rules}/${scheme.total_rules}</a>`,
         rules: scheme.rules
       })
     }
     console.log("tableConf", tableConf)
     const container = document.getElementById('all_schemes');
     const datatable = new DataTable(container, { columns: tableConf.columns });
+    datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });
     datatable.refresh(tableConf.rows);
-    datatable.style.setStyle(`.dt-scrollable`, { 'overflow': 'scroll' });
+    // if not is local
+    if (frm.doc.__islocal) {
+      frm.doc.added_by = frappe.session.user
+      refresh_field("added_by")
+    }
 
-    refresh_field("name_of_the_concerned_help_desk_member")
     // set  defult date of visit
     if (frm.doc.__islocal) {
       frm.set_value('date_of_visit', frappe.datetime.get_today());
@@ -409,18 +650,18 @@ frappe.ui.form.on("Beneficiary Profiling", {
     // Hide Advance search options
     hide_advance_search(frm, ["state", "district", "ward", "state_of_origin",
       "district_of_origin", "block", "gender",
-      "current_occupation", "social_vulnerable_category", "pwd_category", "family",
-      "help_desk", "single_window", "what_is_the_extent_of_your_disability", "source_of_information",
-      "current_house_type", "name_of_the_settlement", ""
+     ,"social_vulnerable_category", "pwd_category", "family",
+      "help_desk", "single_window", "source_of_information",
+      "current_house_type", "name_of_the_settlement", "name_of_the_camp" ,"proof_of_disability"
     ])
 
     // Increase Defult Limit of link field
-    frm.set_query("state", () => { return { page_length: 1000 }; });
-    frm.set_query("district", () => { return { page_length: 1000 }; });
-    frm.set_query("ward", () => { return { page_length: 1000 }; });
-    frm.set_query("state_of_origin", () => { return { page_length: 1000 }; });
-    frm.set_query("district_of_origin", () => { return { page_length: 1000 }; });
-    frm.set_query("block", () => { return { page_length: 1000 }; });
+    // frm.set_query("state", () => { return { page_length: 1000 }; });
+    // frm.set_query("district", () => { return { page_length: 1000 }; });
+    // frm.set_query("ward", () => { return { page_length: 1000 }; });
+    // frm.set_query("state_of_origin", () => { return { page_length: 1000 }; });
+    // frm.set_query("district_of_origin", () => { return { page_length: 1000 }; });
+    // frm.set_query("block", () => { return { page_length: 1000 }; });
 
     // Apply defult filter in doctype
     frm.doc.state ? apply_filter("district", "State", frm, frm.doc.state) : defult_filter('district', "State", frm);
@@ -428,8 +669,22 @@ frappe.ui.form.on("Beneficiary Profiling", {
     frm.doc.ward ? apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward) : defult_filter('name_of_the_settlement', "Block", frm);
     frm.doc.state_of_origin ? apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin) : defult_filter('block', "District", frm);
     frm.doc.district_of_origin ? apply_filter("block", "District", frm, frm.doc.district_of_origin) : defult_filter('district_of_origin', "State", frm);
-    frm.doc.single_window ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
+    if (frappe.user_roles.includes("Admin")) {
+      frm.doc.single_window ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
+    }
   },
+  validate(frm) {
+    console.log("validate:", frm.doc);
+  },
+  ////////////////////DATE VALIDATION/////////////////////////////////////////
+  date_of_visit: function (frm) {
+    if (new Date(frm.doc.date_of_visit) > new Date(frappe.datetime.get_today())) {
+      frm.doc.date_of_visit = ''
+      refresh_field('date_of_visit')
+      frappe.throw("Date of visit can't be greater than today's date")
+    }
+  },
+
   state: function (frm) {
     apply_filter("district", "State", frm, frm.doc.state)
   },
@@ -448,17 +703,60 @@ frappe.ui.form.on("Beneficiary Profiling", {
   single_window: function (frm) {
     apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
   },
+  current_occupation: function (frm) {
+    refresh_field('occupational_category')
+    // console.log("frm")
+    // frm.fields_dict['current_occupation'].get_query = function(doc) {
+    //   return {
+    //     // query: 'sipms.api.occupation',
+    //     order_by: 'occupation DESC'  
+    //   };
+    // };
+  },
 
   date_of_birth: function (frm) {
-    let dob = frm.doc.date_of_birth
+    let dob = frm.doc.date_of_birth;
+    if (new Date(dob) > new Date(frappe.datetime.get_today())) {
+      frm.doc.date_of_birth = ''
+      refresh_field('date_of_birth')
+      frappe.throw("Date of birth can't be greater than today's date")
+    }
     if (dob) {
-      let year = frappe.datetime.get_today()
-      let age = year.split('-')[0] - dob.split('-')[0]
-      frm.set_value('completed_age', age)
+      let today = frappe.datetime.get_today();
+      let birthDate = new Date(dob);
+      let currentDate = new Date(today);
+      let years = currentDate.getFullYear() - birthDate.getFullYear();
+      let months = currentDate.getMonth() - birthDate.getMonth();
+      console.log("currentDate.getMonth()", currentDate.getMonth() , "birthDate.getMonth();", birthDate.getMonth())
+      if (months < 0 || (months === 0 && currentDate.getDate() < birthDate.getDate())) {
+        years--;
+      }
+      var month = (currentDate.getFullYear() - birthDate.getFullYear()) * 12 + (currentDate.getMonth() - birthDate.getMonth());
+      if (currentDate.getDate() < birthDate.getDate()) {
+          month--;
+      }
+      if(month <= 11){
+        frm.set_value('completed_age_month', month);
+      }else{
+        frm.set_value('completed_age_month', '');
+      }
+      let ageString = 0;
+      if (years > 0) {
+        ageString += years;
+        
+      }
+      frm.set_value('completed_age', ageString);
       frm.set_df_property('completed_age', 'read_only', 1);
     } else {
       frm.set_df_property('completed_age', 'read_only', 0);
-      frm.set_value('completed_age', null)
+      frm.set_value('completed_age', 0);
+    }
+  },
+  completed_age_month: function(frm){
+    if (frm.doc.completed_age_month > 11) {
+      frm.doc.completed_age_month = ''
+      refresh_field('completed_age_month')
+      frappe.throw("Completed age in month should be less than or equal to 11")
     }
   },
   same_as_above: function (frm) {
@@ -471,7 +769,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frm.doc.district_of_origin = '';
       frm.doc.block = '';
     }
-    frm.refresh()
+    refresh_field("state_of_origin")
+    refresh_field("district_of_origin")
+    refresh_field("block")
   }
 
 });
@@ -480,29 +780,47 @@ frappe.ui.form.on('Scheme Child', {
   scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
     let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
-    let row = frappe.get_doc(cdt, cdn);
-    ops = scheme_list.filter(f => !schemes_op.includes(f.name)).map(e => { return { 'lable': e.name, "value": e.name } })
-    frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
+    let fl_schemes_ops = scheme_list.filter(f => !schemes_op.includes(f.name))
+    let milestones = {};
+    let ops = fl_schemes_ops.map(e => {
+      milestones.hasOwnProperty(e.milestone) ? '' : milestones[e.milestone] = e.milestone
+      return { 'lable': e.name, "value": e.name }
+    })
 
+    frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
+    frm.fields_dict.scheme_table.grid.update_docfield_property("milestone_category", "options", Object.keys(milestones).map(e => { return { 'lable': milestones[e], "value": milestones[e] } }));
   },
   name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
+    row.milestone_category = ''
     let scheme = scheme_list.find(f => row.name_of_the_scheme == f.name)
 
     if (scheme) {
       row.milestone_category = scheme.milestone;
-      row.mode_of_application = scheme.mode_of_application;
+      // row.mode_of_application = scheme.mode_of_application;
       row.name_of_the_department = scheme.name_of_department;
     }
-    frm.refresh()
+    refresh_field("scheme_table")
+  },
+  milestone_category: (frm, cdt, cdn) => {
+    let row = frappe.get_doc(cdt, cdn);
+    row.name_of_the_scheme = ''
+    let schemes = scheme_list.filter(f => row.milestone_category == f.milestone)
+    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
+    let ops = schemes.filter(f => !schemes_op.includes(f.name)).map(e => { return { 'lable': e.name, "value": e.name } })
+    frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
   },
   application_submitted: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     if (row.application_submitted == "Yes") {
       row.status = ''
-      createDialog(row, dialogsConfig.document_submitted).show();
+      createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
     } else if (row.application_submitted == "Completed") {
-      createDialog(row, dialogsConfig.document_completed_frm_support).show();
+      createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
+    }else if (row.application_submitted == "No"){
+      row.date_of_application = ''
+      row.date_of_completion = ''
+      console.log("rrrooowww", row)
     }
   },
 
@@ -514,20 +832,19 @@ frappe.ui.form.on('Follow Up Child', {
   follow_up_table_add(frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     row.follow = frappe.session.user_fullname
-    console.log("kkkk")
     let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
     row.follow_up_date = frappe.datetime.get_today()
     frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },
   name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
-    let latestSupport = supports.length ? supports[supports.length - 1] : null;
-    if (latestSupport) {
-      row.parent_ref = latestSupport.name
-    }
+    let supports = frm.doc.scheme_table.filter(f => f.scheme == row.name_of_the_scheme);
+    row.date_of_application = supports[0].date_of_application
+    // console.log(supports, "supports")
+    // console.log(row, "row")
+    row.parent_ref = supports[0].name
     for (support_items of frm.doc.scheme_table) {
-      if (row.support_name == support_items.specific_support_type) {
+      if (row.name_of_the_scheme == support_items.name_of_the_scheme) {
         if (support_items.status === "Open" && support_items.application_submitted == "No") {
           frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_with", "options", ["Beneficiary"]);
           row.follow_up_with = "Beneficiary"
@@ -547,6 +864,17 @@ frappe.ui.form.on('Follow Up Child', {
       }
     }
   },
+  follow_up_date: function (frm, cdt, cdn) {
+    let row = frappe.get_doc(cdt, cdn);
+    if (row.follow_up_date > frappe.datetime.get_today()) {
+      row.follow_up_date = null
+      frappe.throw(__("You can not select future date in Follow-up date"));
+    }
+    if (row.follow_up_date < row.date_of_application) {
+      row.follow_up_date = null
+      frappe.throw(__("Follow-up date should not be less than date of application"));
+    }
+  },
   follow_up_with: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
@@ -564,15 +892,15 @@ frappe.ui.form.on('Follow Up Child', {
     let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
     let latestSupport = supports.length ? supports[supports.length - 1] : null;
     if (row.follow_up_status === "Document submitted") {
-      createDialog(row, dialogsConfig.document_submitted).show();
+      createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
     } else if (row.follow_up_status === "Completed") {
-      createDialog(row, dialogsConfig.document_completed).show();
+      createDialog(row, dialogsConfig.document_completed, date_of_complete_validate).show();
     } else if (row.follow_up_status === "Rejected") {
-      createDialog(row, dialogsConfig.document_rejected).show();
+      createDialog(row, dialogsConfig.document_rejected, doc_rejected_validate).show();
     } else if (row.follow_up_status === "Not reachable" && latestSupport.status != "Closed") {
       let followups = frm.doc.follow_up_table.filter(f => f.parent_ref == row.parent_ref && f.support_name == row.support_name && f.follow_up_status == "Not reachable")
       if (followups.length >= 2) {
-        frappe.warn('Do you want to close the support?',
+        frappe.warn('Do you want to close the scheme?',
           `The follow-up status is "Not reachable" ${followups.length} times`,
           () => {
             row.to_close_status = "Closed"

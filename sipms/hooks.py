@@ -6,7 +6,7 @@ app_email = "teach@suvaidyam.com"
 app_license = "mit"
 # required_apps = []
 
-fixtures=[
+fixtures = [
     "Caste category",
     "Religion",
     "Education",
@@ -18,19 +18,21 @@ fixtures=[
     "Occupational Category",
     "Role Profile",
     "Source Of Information",
-    "House Types",
+    # "House Types",
     "Gender",
     "Role",
+    "Name of the Department"
 ]
 # Includes in <head>
 # ------------------
 permission_query_conditions = {
     "Beneficiary Profiling": "sipms.middlewares.beneficiary.list_query",
     "Primary Member": "sipms.middlewares.family.list_query",
-    # "Current location":"epms.middlewares.current_location.list_query",
+    "Help Desk":"sipms.middlewares.helpdesk.list_query",
     "Sipms User":"sipms.middlewares.sipms_user.list_query",
     "Role Profile":"sipms.middlewares.role_profile.list_query",
     "User":"sipms.middlewares.user.list_query",
+    "Single Window":"sipms.middlewares.single_windows.list_query",
 
 }
 
@@ -147,24 +149,24 @@ permission_query_conditions = {
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"*": {
+		# "on_update": "sipms.scheduler_events.ben_dob_update.update_dob_of_ben",
+		# "on_cancel": "sipms.scheduler_events.ben_dob_update.update_dob_of_ben",
+		# "on_trash": "sipms.scheduler_events.ben_dob_update.update_dob_of_ben"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+scheduler_events = {
 #	"all": [
 #		"sipms.tasks.all"
 #	],
-#	"daily": [
-#		"sipms.tasks.daily"
-#	],
+	"daily": [
+		"sipms.scheduler_events.ben_dob_update.update_dob_of_ben"
+	],
 #	"hourly": [
 #		"sipms.tasks.hourly"
 #	],
@@ -174,7 +176,7 @@ permission_query_conditions = {
 #	"monthly": [
 #		"sipms.tasks.monthly"
 #	],
-# }
+}
 
 # Testing
 # -------

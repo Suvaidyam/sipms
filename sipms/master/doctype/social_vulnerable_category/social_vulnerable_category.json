@@ -24,7 +24,7 @@
  "force_re_route_to_default_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-29 10:06:01.561413",
+ "modified": "2024-01-08 13:07:13.579216",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Social vulnerable category",
@@ -44,40 +44,49 @@
    "write": 1
   },
   {
+   "create": 1,
+   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Admin",
-   "share": 1
+   "share": 1,
+   "write": 1
   },
   {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "CSC Member",
-   "share": 1
+   "share": 1,
+   "write": 1
   },
   {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Help-desk member",
-   "share": 1
+   "share": 1,
+   "write": 1
   },
   {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "MIS executive",
-   "share": 1
+   "share": 1,
+   "write": 1
   }
  ],
  "sort_field": "social_vulnerable_category",

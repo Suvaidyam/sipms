@@ -10,9 +10,8 @@
   "follow_up_with",
   "follow_up_mode",
   "follow_up_status",
-  "remark",
+  "remarks",
   "follow",
-  "follow_up_mode",
   "parent_ref"
  ],
  "fields": [
@@ -34,18 +33,12 @@
    "set_only_once": 1
   },
   {
-   "fieldname": "remark",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Remark",
-   "set_only_once": 1
-  },
-  {
    "fieldname": "follow_up_with",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Follow-up with",
    "options": "\nBeneficiary\nGovernment department\nGovernment website",
+   "reqd": 1,
    "set_only_once": 1
   },
   {
@@ -75,13 +68,21 @@
    "fieldtype": "Select",
    "label": "Follow up mode",
    "mandatory_depends_on": "eval:doc.follow_up_with == \"Beneficiary\"",
-   "options": "\nPhone call\nHome visit"
+   "options": "\nPhone call\nHome visit\nCentre visit",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Remark",
+   "set_only_once": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-12-30 11:47:27.176114",
+ "modified": "2024-01-12 16:47:12.016685",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Follow Up Child",
