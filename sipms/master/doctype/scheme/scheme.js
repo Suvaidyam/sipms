@@ -40,7 +40,6 @@ function generateQueryString(rows, __expression) {
 }
 var field_list = []
 function get_field_list(child_table_field, frm) {
-    console.log("called");
     frappe.call({
         method: "sipms.rule_engine.apis.get_meta_api.get_field_lists",
         args: {
@@ -102,6 +101,7 @@ function callAPI(options) {
   }
 frappe.ui.form.on("Scheme", {
     async refresh(frm) {
+        get_field_list('rules', frm)
         let ben_list = await get_ben_list(frm)
         let tableConf = {
             columns: [
@@ -175,6 +175,7 @@ const form_events = {
 frappe.ui.form.on('Rule Engine Child', {
     refresh(frm) {
         console.log("refresh");
+        
     },
     ...form_events,
     rule_field: async function (frm, cdt, cdn) {
