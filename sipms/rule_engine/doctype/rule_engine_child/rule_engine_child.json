@@ -13,7 +13,8 @@
   "date",
   "select",
   "value",
-  "code"
+  "code",
+  "group"
  ],
  "fields": [
   {
@@ -75,12 +76,17 @@
    "label": "Value",
    "mandatory_depends_on": "eval:(doc.type==\"Int\" || doc.type==\"Currency\")",
    "non_negative": 1
+  },
+  {
+   "fieldname": "group",
+   "fieldtype": "Data",
+   "label": "Group"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-04 18:21:25.611209",
+ "modified": "2024-01-18 00:49:38.113287",
  "modified_by": "Administrator",
  "module": "Rule Engine",
  "name": "Rule Engine Child",
