@@ -817,6 +817,10 @@ frappe.ui.form.on('Scheme Child', {
       createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
     } else if (row.application_submitted == "Completed") {
       createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
+    }else if (row.application_submitted == "No"){
+      row.date_of_application = ''
+      row.date_of_completion = ''
+      console.log("rrrooowww", row)
     }
   },
 
