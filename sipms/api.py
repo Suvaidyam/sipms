@@ -1,31 +1,26 @@
 import frappe
 from sipms.services.beneficiary_scheme import BeneficaryScheme
+from sipms.utils.misc import Misc
 @frappe.whitelist(allow_guest=True)
 def execute(name=None):
     return BeneficaryScheme.run(name)
 
-
-
 @frappe.whitelist(allow_guest=True)
-def eligible_beneficiaries(scheme=''):
-    get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where name_of_the_scheme ='{scheme}';"""
-    rules = frappe.db.sql(get_rules, as_dict=True)
-    condition_str =""
-    if rules:
-        for rule in rules:
-           condition_str = f"""{condition_str} {rule.rule_field} {rule.operator} '{rule.data}' AND"""
-        # condition_str = f"{condition_str} "  
-    else:
-        condition_str = ""
-
-    get_elegible_ben = f""" SELECT name, name_of_the_beneficiary , contact_number FROM `tabBeneficiary Profiling` WHERE{condition_str} 1=1""" 
-
+def eligible_beneficiaries(scheme=None):
+    if scheme is None:
+        return frappe.throw('Scheme not found.')
+    cond_str= Misc.scheme_rules_to_condition(scheme)
+    get_elegible_ben = f"""
+        SELECT
+            name,
+            name_of_the_beneficiary,
+            contact_number
+        FROM
+            `tabBeneficiary Profiling`
+        {('WHERE'+ cond_str) if cond_str else "" }
+    """
     all_ben = frappe.db.sql(get_elegible_ben, as_dict=True)
-
     return all_ben
-
-
-
 
 @frappe.whitelist(allow_guest=True)
 def most_eligible_ben():
@@ -41,7 +36,7 @@ def most_eligible_ben():
         if rules:
             for rule in rules:
                 condition_str = f"""{condition_str} {rule.rule_field} {rule.operator} '{rule.data}' AND"""
-            # condition_str = f"{condition_str} "  
+            # condition_str = f"{condition_str} "
         else:
             condition_str = ""
         get_elegible_ben = f""" SELECT count(name) as abc FROM `tabBeneficiary Profiling` WHERE{condition_str} 1=1 order by abc DESC"""

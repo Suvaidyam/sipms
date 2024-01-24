@@ -3,51 +3,46 @@
 
 import frappe
 from sipms.utils.report_filter import ReportFilter
-
+from sipms.utils.misc import Misc
 def execute(filters=None):
 	# frappe.errprint(filters)
 	columns = [
 		{
-			"fieldname":"scheam",
-			"label":"scheam",
+			"fieldname":"scheme",
+			"label":"Scheme",
 			"fieldtype":"Data",
 			"width":400
 		},
 		{
-			"fieldname":"bencount",
+			"fieldname":"count",
 			"label":"Count",
 			"fieldtype":"int",
 			"width":200
 		}
 	]
 
-	condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True, 't1')
-	if condition_str:
-		condition_str = f"AND {condition_str}"
-	else:
-		condition_str = ""
-
-	scheam_ben_count =[]
-	scheame_query = f"""select name  from `tabScheme` """
-	get_all_scheame = frappe.db.sql(scheame_query, as_dict=True)
+	filter_condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True, 't1')
+	get_all_scheame = frappe.db.sql(f"select name  from `tabScheme`", as_dict=True)
+	scheme_ben_count_list =[]
 	for scheme in get_all_scheame:
-			get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where _ts.name_of_the_scheme ='{scheme.name.replace("'", "''")}';"""
-
-			# get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where _ts.name_of_the_scheme ='{scheme.name}';"""
-			rules = frappe.db.sql(get_rules, as_dict=True)
-			condition_str =""
-			if rules:
-				for rule in rules:
-					condition_str = f"""{condition_str} {rule.rule_field} {rule.operator} '{rule.data}' AND"""
-				# condition_str = f"{condition_str} "  
-			else:
-				condition_str = ""
-			get_elegible_ben = f""" SELECT count(name) as abc FROM `tabBeneficiary Profiling` WHERE{condition_str} 1=1 order by abc DESC"""
-			all_ben = frappe.db.sql(get_elegible_ben, as_dict=True)
-			sch_ben = {"scheam": scheme.name , "bencount": all_ben[0].abc}
-			scheam_ben_count.append(sch_ben)
-	sorted_schemes = sorted(scheam_ben_count, key=lambda x: x["bencount"], reverse=True)
+			conditions = []
+			rule_cond_str = Misc.scheme_rules_to_condition(scheme.name)
+			if rule_cond_str:
+				conditions.append(rule_cond_str)
+			if filter_condition_str:
+				conditions.append(filter_condition_str)
+			get_elegible_ben = f"""
+				SELECT
+					count(name) as count
+				FROM
+					`tabBeneficiary Profiling`
+				{('WHERE '+' AND '.join(conditions)) if len(conditions) else ""}
+			"""
+			ben_result = frappe.db.sql(get_elegible_ben, as_dict=True)
+			scheme_ben_count_list.append({"scheme": scheme.name , "count": (ben_result[0].count if len(ben_result) else 0)})
+	sorted_schemes = sorted(scheme_ben_count_list, key=lambda x: x["count"], reverse=True)
 		# Get the top 5 schemes
 	top_5_schemes = sorted_schemes[:5]
 		# data = frappe.db.sql(sql_query, as_dict=True)
+	# print(columns, top_5_schemes)
 	return columns, top_5_schemes
