@@ -258,21 +258,18 @@ const createDialog = (_doc, config, validator = null) => {
     size: 'small', // small, large, extra-large
     primary_action_label: 'Save',
     primary_action(obj) {
+      if (validator) {
+        let valid = validator(obj)
+        if (!valid.status) {
+          return frappe.throw(valid.message);
+        }
+      }
       let fields = config.fields.filter(f => f._doc).map(e => e.fieldname)
       for (let field of fields) {
         if (obj[field])
           _doc[field] = obj[field]
       }
-      if (validator) {
-        let valid = validator(_doc)
-        if (valid.status) {
-          this.hide()
-        } else {
-          frappe.throw(valid.message)
-        }
-      } else {
         this.hide()
-      }
     }
   });
 }
@@ -777,6 +774,15 @@ frappe.ui.form.on("Beneficiary Profiling", {
 });
 // ********************* Support CHILD Table***********************
 frappe.ui.form.on('Scheme Child', {
+  form_render: async function (frm, cdt, cdn) {
+    let row = frappe.get_doc(cdt, cdn);
+    if (row.application_submitted == 'Yes' && (!row.date_of_application || !row.mode_of_application)) {
+      row.status = ''
+      createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
+    }else if(row.application_submitted == 'Completed' &&  (!row.date_of_application || !row.mode_of_application)){
+      createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
+    }
+  },
   scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
     let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
@@ -813,7 +819,8 @@ frappe.ui.form.on('Scheme Child', {
   application_submitted: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     if (row.application_submitted == "Yes") {
-      row.status = ''
+      row.status = '';row.date_of_completion='';
+      frm.refresh_fields('status', 'date_of_completion')
       createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
     } else if (row.application_submitted == "Completed") {
       createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
@@ -828,6 +835,18 @@ frappe.ui.form.on('Scheme Child', {
 // ********************* FOLLOW UP CHILD Table***********************
 
 frappe.ui.form.on('Follow Up Child', {
+  form_render: async function (frm, cdt, cdn) {
+    let row = frappe.get_doc(cdt, cdn);
+    if (row.follow_up_status == 'Document submitted' && (!row.date_of_application || !row.mode_of_application)) {
+      row.status = ''
+      createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
+    }else if(row.follow_up_status == 'Completed' &&  !row.date_of_completion){
+      createDialog(row, dialogsConfig.document_completed, date_of_complete_validate).show();
+    }else if (row.follow_up_status == 'Rejected' &&  (!row.date_of_rejection || !row.reason_of_rejection)){
+      createDialog(row, dialogsConfig.document_rejected, doc_rejected_validate).show();
+    }
+    // reject same logic hear
+  },
   follow_up_table_add(frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     row.follow = frappe.session.user_fullname

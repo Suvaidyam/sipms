@@ -31,6 +31,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Milestone category",
+   "read_only": 1,
    "reqd": 1,
    "set_only_once": 1
   },
@@ -178,7 +179,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-08 17:28:55.498961",
+ "modified": "2024-01-24 11:34:34.097354",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Scheme Child",
