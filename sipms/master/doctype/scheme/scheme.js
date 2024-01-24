@@ -101,8 +101,11 @@ function callAPI(options) {
   }
 frappe.ui.form.on("Scheme", {
     async refresh(frm) {
+        let ben_list =[]
         get_field_list('rules', frm)
-        let ben_list = await get_ben_list(frm)
+        if(!frm?.doc?.__islocal){
+            ben_list = await get_ben_list(frm)
+        }
         let tableConf = {
             columns: [
               {
