@@ -242,7 +242,7 @@ const date_of_complete_validate = (_doc) => {
     _doc.date_of_completion = ''
     return {
       status: false,
-      message: "Date of completion should not be greater than date date of application"
+      message: "Date of Completion shall not be less than Date of Application"
     }
   } else {
     return {
