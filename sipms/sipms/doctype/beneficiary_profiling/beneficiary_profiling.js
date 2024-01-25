@@ -764,6 +764,12 @@ frappe.ui.form.on("Beneficiary Profiling", {
       
     }
   },
+  what_is_the_extent_of_your_disability:function(frm){
+    if(frm.doc.what_is_the_extent_of_your_disability != "Above 40%"){
+      frm.doc.proof_of_disability = [];
+      frm.refresh_fields('proof_of_disability')
+    }
+  },
   same_as_above: function (frm) {
     if (frm.doc.same_as_above == '1') {
       frm.doc.state_of_origin = frm.doc.state;
