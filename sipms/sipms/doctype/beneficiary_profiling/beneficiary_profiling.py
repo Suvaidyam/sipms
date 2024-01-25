@@ -22,6 +22,9 @@ class BeneficiaryProfiling(Document):
 		return None
 
 	def validate(self):
+		if(self.what_is_the_extent_of_your_disability == "Above 40%"):
+			if(self.proof_of_disability == []):
+				return frappe.throw("""Mandatory fields required in Beneficiary <br/> <br/>  &#x2022; Profiling Proof of disability""")
 		# BeneficiaryProfiling.printKeys(self)
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
 			if self.get('_doc_before_save', None): # Update
