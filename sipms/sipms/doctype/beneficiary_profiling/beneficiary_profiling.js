@@ -285,7 +285,7 @@ function defult_filter(field_name, filter_on, frm) {
   }
 };
 function extend_options_length(frm, fields) {
-  fields.forEach((field) => {
+  fields?.forEach((field) => {
     frm.set_query(field, () => {
       return { page_length: 1000 };
     });
@@ -345,12 +345,12 @@ const get_ordered_list = async (doctype, optionsToSort) => {
   })
   if (optionsToSort) {
     let reOrderedList = [];
-    optionsToSort.forEach(async (option) => {
-      const requiredOption = await list.find(item => item.value === option);
+    optionsToSort?.forEach(async (option) => {
+      const requiredOption = await list?.find(item => item.value === option);
       reOrderedList.push(requiredOption);
     });
-    const exceptionList = await list.filter(item => !optionsToSort.some(item2 => item.value === item2));
-    exceptionList.forEach(async (option) => {
+    const exceptionList = await list?.filter(item => !optionsToSort.some(item2 => item.value === item2));
+    exceptionList?.forEach(async (option) => {
       reOrderedList = [...reOrderedList, option];
     })
     list = reOrderedList;
