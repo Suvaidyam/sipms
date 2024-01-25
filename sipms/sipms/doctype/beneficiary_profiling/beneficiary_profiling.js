@@ -853,7 +853,6 @@ frappe.ui.form.on('Scheme Child', {
 frappe.ui.form.on('Follow Up Child', {
   form_render: async function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    console.log("row", row)
     if(row.__islocal){
     if (row.follow_up_status == 'Document submitted' && (!row.date_of_application || !row.mode_of_application)) {
       row.status = ''
