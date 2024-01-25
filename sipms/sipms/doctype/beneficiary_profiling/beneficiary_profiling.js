@@ -756,6 +756,14 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frappe.throw("Completed age in month should be less than or equal to 11")
     }
   },
+  are_you_a_person_with_disability_pwd:function(frm){
+    if(frm.doc.are_you_a_person_with_disability_pwd =="No"){
+      console.log("sss")
+      frm.doc.proof_of_disability =[];
+      frm.doc.what_is_the_extent_of_your_disability='';
+      frm.refresh_fields('proof_of_disability')
+    }
+  },
   same_as_above: function (frm) {
     if (frm.doc.same_as_above == '1') {
       frm.doc.state_of_origin = frm.doc.state;
