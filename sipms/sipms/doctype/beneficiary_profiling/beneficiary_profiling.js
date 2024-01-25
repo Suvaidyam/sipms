@@ -790,12 +790,14 @@ frappe.ui.form.on("Beneficiary Profiling", {
 frappe.ui.form.on('Scheme Child', {
   form_render: async function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
+    if(row.__islocal){
     if (row.application_submitted == 'Yes' && (!row.date_of_application || !row.mode_of_application)) {
       row.status = ''
       createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
     }else if(row.application_submitted == 'Completed' &&  (!row.date_of_application || !row.mode_of_application)){
       createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
     }
+  }
   },
   scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
@@ -851,6 +853,7 @@ frappe.ui.form.on('Scheme Child', {
 frappe.ui.form.on('Follow Up Child', {
   form_render: async function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
+    if(row.__islocal){
     if (row.follow_up_status == 'Document submitted' && (!row.date_of_application || !row.mode_of_application)) {
       row.status = ''
       createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
@@ -859,7 +862,7 @@ frappe.ui.form.on('Follow Up Child', {
     }else if (row.follow_up_status == 'Rejected' &&  (!row.date_of_rejection || !row.reason_of_rejection)){
       createDialog(row, dialogsConfig.document_rejected, doc_rejected_validate).show();
     }
-    // reject same logic hear
+  }
   },
   follow_up_table_add(frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
