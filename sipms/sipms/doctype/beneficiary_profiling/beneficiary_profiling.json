@@ -491,12 +491,11 @@
    "options": "Community meeting"
   },
   {
-   "depends_on": "eval:doc.completed_age == 0 || doc.__islocal",
    "fieldname": "completed_age_month",
    "fieldtype": "Int",
    "label": "Completed age (Month)",
-   "mandatory_depends_on": "eval:doc.completed_age == 0",
-   "non_negative": 1
+   "non_negative": 1,
+   "reqd": 1
   },
   {
    "depends_on": "eval:doc.what_is_the_extent_of_your_disability == \"Above 40%\"",
@@ -510,7 +509,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-23 12:15:55.444892",
+ "modified": "2024-01-26 22:15:13.093835",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

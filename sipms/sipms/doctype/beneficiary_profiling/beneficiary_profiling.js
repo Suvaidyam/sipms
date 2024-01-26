@@ -273,6 +273,21 @@ const createDialog = (_doc, config, validator = null) => {
     }
   });
 }
+// generate date of birth
+function generateDOBFromAge(ageInYears=0, ageInMonths=0) {
+  let currentDate = new Date();
+  let birthYear = currentDate.getFullYear() - ageInYears;
+  let birthMonth = currentDate.getMonth() - ageInMonths;
+  if (birthMonth < 0) {
+    birthYear--;
+    birthMonth = 12 + birthMonth;
+  }
+
+  // Create the Date object for the generated date of birth
+  let generatedDOB = new Date(birthYear, birthMonth, currentDate.getDate());
+
+  return generatedDOB;
+}
 
 //  COMMON FUNCTION FOR DEFULT FILTER
 function defult_filter(field_name, filter_on, frm) {
@@ -718,36 +733,39 @@ frappe.ui.form.on("Beneficiary Profiling", {
       refresh_field('date_of_birth')
       frappe.throw("Date of birth can't be greater than today's date")
     }
+    console.log("dob",dob)
     if (dob) {
       let today = frappe.datetime.get_today();
       let birthDate = new Date(dob);
       let currentDate = new Date(today);
       let years = currentDate.getFullYear() - birthDate.getFullYear();
       let months = currentDate.getMonth() - birthDate.getMonth();
-      console.log("currentDate.getMonth()", currentDate.getMonth() , "birthDate.getMonth();", birthDate.getMonth())
       if (months < 0 || (months === 0 && currentDate.getDate() < birthDate.getDate())) {
         years--;
+        months = 12 - birthDate.getMonth() + currentDate.getMonth();
+      } else {
+        months = currentDate.getMonth() - birthDate.getMonth();
       }
-      var month = (currentDate.getFullYear() - birthDate.getFullYear()) * 12 + (currentDate.getMonth() - birthDate.getMonth());
       if (currentDate.getDate() < birthDate.getDate()) {
-          month--;
+        months--;
       }
-      if(month <= 11){
-        frm.set_value('completed_age_month', month);
-      }else{
-        frm.set_value('completed_age_month', '');
-      }
-      let ageString = 0;
-      if (years > 0) {
-        ageString += years;
-        
-      }
+      let ageString = years > 0 ? years.toString() : '0';
+      let completedAgeMonths = months <= 11 ? months : null;
       frm.set_value('completed_age', ageString);
-      frm.set_df_property('completed_age', 'read_only', 1);
+      frm.set_value('completed_age_month', completedAgeMonths);
+      // frm.set_df_property('completed_age', 'read_only', 1);
+      // frm.set_df_property('completed_age_month', 'read_only', 1);
     } else {
-      frm.set_df_property('completed_age', 'read_only', 0);
-      frm.set_value('completed_age', 0);
+      // frm.set_df_property('completed_age', 'read_only', 0);
+      // frm.set_df_property('completed_age_month', 'read_only', 0);
+      // frm.set_value('completed_age', '0');
+      // frm.set_value('completed_age_month', null);
     }
+  },
+  completed_age:function(frm){
+    let dob = generateDOBFromAge(frm.doc?.completed_age , frm.doc?.completed_age_month)
+    frm.set_value("date_of_birth", dob)
+    // console.log("dob", dob)
   },
   completed_age_month: function(frm){
     if (frm.doc.completed_age_month > 11) {
@@ -755,6 +773,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
       refresh_field('completed_age_month')
       frappe.throw("Completed age in month should be less than or equal to 11")
     }
+    let dob = generateDOBFromAge(frm.doc?.completed_age , frm.doc?.completed_age_month)
+    frm.set_value("date_of_birth", dob)
+    // console.log("dob", dob)
   },
   are_you_a_person_with_disability_pwd:function(frm){
     if(frm.doc.are_you_a_person_with_disability_pwd =="No"){

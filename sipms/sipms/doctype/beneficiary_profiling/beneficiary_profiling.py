@@ -42,7 +42,7 @@ class BeneficiaryProfiling(Document):
 			camp_doc.name_of_the_camp = new_camp
 			camp_doc.save()
 # create social_vulnerable_category
-	def other_social_vulnerable_category(other_social_vulnerable_category):
+	def new_social_vulnerable_category(other_social_vulnerable_category):
 		data_exist = frappe.db.exists("Social vulnerable category", other_social_vulnerable_category)
 		if not data_exist:
 			scc_doc = frappe.new_doc("Social vulnerable category")
@@ -96,7 +96,7 @@ class BeneficiaryProfiling(Document):
 		if(self.new_camp):
 			BeneficiaryProfiling.create_new_camp(self.new_camp)
 		if(self.other_social_vulnerable_category):
-			BeneficiaryProfiling.other_social_vulnerable_category(self.other_social_vulnerable_category)
+			BeneficiaryProfiling.new_social_vulnerable_category(self.other_social_vulnerable_category)
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
 			family_doc = family.create(self)
 			frappe.db.set_value('Beneficiary Profiling', self.name, 'select_primary_member', family_doc.name, update_modified=False)
@@ -112,7 +112,7 @@ class BeneficiaryProfiling(Document):
 			if(self.new_camp):
 				BeneficiaryProfiling.create_new_camp(self.new_camp)
 			if(self.other_social_vulnerable_category):
-				BeneficiaryProfiling.other_social_vulnerable_category(self.other_social_vulnerable_category)
+				BeneficiaryProfiling.new_social_vulnerable_category(self.other_social_vulnerable_category)
 			if(self.has_anyone_from_your_family_visisted_before == "No"):
 				if self.get('_doc_before_save', None):
 					_doc_before_save = self.get('_doc_before_save')
