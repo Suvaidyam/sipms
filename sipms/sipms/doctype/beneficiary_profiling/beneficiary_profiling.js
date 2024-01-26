@@ -733,7 +733,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
       refresh_field('date_of_birth')
       frappe.throw("Date of birth can't be greater than today's date")
     }
-    console.log("dob",dob)
     if (dob) {
       let today = frappe.datetime.get_today();
       let birthDate = new Date(dob);
