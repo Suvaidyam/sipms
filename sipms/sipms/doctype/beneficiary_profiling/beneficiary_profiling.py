@@ -103,10 +103,8 @@ class BeneficiaryProfiling(Document):
 
 	def on_update(self):
 		if self.get('localname'):
-			print("on update //////////////////////////////////////")
 			return
 		else:
-			print("on update of previous data//////////////////////////////////////")
 			if(self.new_source_of_information):
 				BeneficiaryProfiling.create_source_of_information(self.new_source_of_information)
 			if(self.add_house_type):
