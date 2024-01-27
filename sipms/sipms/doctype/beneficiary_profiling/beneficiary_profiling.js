@@ -275,6 +275,7 @@ const createDialog = (_doc, config, validator = null) => {
 }
 // generate date of birth
 function generateDOBFromAge(ageInYears=0, ageInMonths=0) {
+  // date of birth of tommorow is not selected in calander
   let currentDate = new Date();
   let birthYear = currentDate.getFullYear() - ageInYears;
   let birthMonth = currentDate.getMonth() - ageInMonths;
@@ -282,11 +283,9 @@ function generateDOBFromAge(ageInYears=0, ageInMonths=0) {
     birthYear--;
     birthMonth = 12 + birthMonth;
   }
-
   // Create the Date object for the generated date of birth
   let generatedDOB = new Date(birthYear, birthMonth, currentDate.getDate());
-
-  return generatedDOB;
+  return generatedDOB;     
 }
 
 //  COMMON FUNCTION FOR DEFULT FILTER
@@ -762,8 +761,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
   },
   completed_age:function(frm){
-    let dob = generateDOBFromAge(frm.doc?.completed_age , frm.doc?.completed_age_month)
-    frm.set_value("date_of_birth", dob)
+    // if(frm.doc.date_of_birth !== frappe.datetime.get_today()){
+    //   frm.doc.manual_update = true
+    //   let dob = generateDOBFromAge(frm.doc?.completed_age , frm.doc?.completed_age_month)
+    //   frm.set_value("date_of_birth", dob)
+    // }
     // console.log("dob", dob)
   },
   completed_age_month: function(frm){
@@ -772,8 +774,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
       refresh_field('completed_age_month')
       frappe.throw("Completed age in month should be less than or equal to 11")
     }
-    let dob = generateDOBFromAge(frm.doc?.completed_age , frm.doc?.completed_age_month)
-    frm.set_value("date_of_birth", dob)
+    // if(frm.doc.date_of_birth !== frappe.datetime.get_today()){
+    //   let dob = generateDOBFromAge(frm.doc?.completed_age , frm.doc?.completed_age_month)
+    //   frm.set_value("date_of_birth", dob)
+    // }
     // console.log("dob", dob)
   },
   are_you_a_person_with_disability_pwd:function(frm){
