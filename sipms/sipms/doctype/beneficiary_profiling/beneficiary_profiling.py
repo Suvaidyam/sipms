@@ -21,28 +21,7 @@ class BeneficiaryProfiling(Document):
 		if len(docs):
 			return docs[0]
 		return None
-	
-#generate age from age and months
-	def generate_dob_from_age(age_in_years=0, age_in_months=0):
-		current_date = datetime.now()
-		birth_year = current_date.year - age_in_years
-		birth_month = current_date.month - age_in_months
-
-		if birth_month < 0:
-			birth_year -= 1
-			birth_month = 12 + birth_month
-
-		# Calculate the maximum day of the month for the generated date of birth
-		max_day_of_month = (current_date - timedelta(days=current_date.day)).replace(day=1) - timedelta(days=1)
-
-		# Choose the minimum of the calculated day and the current day
-		birth_day = min(max_day_of_month.day, current_date.day)
-
-		# Create the datetime object for the generated date of birth
-		generated_dob = datetime(birth_year, birth_month, birth_day)
-		return generated_dob
-	
-
+		
 # create new souource of information
 	def create_source_of_information(new_source_of_information):
 		data_exist = frappe.db.exists("Source Of Information", new_source_of_information)
@@ -125,9 +104,6 @@ class BeneficiaryProfiling(Document):
 			frappe.db.set_value('Beneficiary Profiling', self.name, 'select_primary_member', family_doc.name, update_modified=False)
 
 	def on_update(self):
-		if self.completed_age or self.completed_age_month:
-			dob = BeneficiaryProfiling.generate_dob_from_age(int(self.completed_age) , int(self.completed_age_month))
-			self.date_of_birth = dob
 		if self.get('localname'):
 			return
 		else:
