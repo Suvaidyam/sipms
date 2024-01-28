@@ -37,7 +37,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Follow-up with",
-   "options": "\nBeneficiary\nGovernment department\nGovernment website",
+   "options": "\nBeneficiary\nGovernment department\nGovernment website\nOthers",
    "reqd": 1,
    "set_only_once": 1
   },
@@ -82,7 +82,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-12 16:47:12.016685",
+ "modified": "2024-01-25 13:48:19.568556",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Follow Up Child",

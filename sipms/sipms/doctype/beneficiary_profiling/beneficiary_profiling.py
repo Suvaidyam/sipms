@@ -5,6 +5,7 @@ import frappe
 from frappe.model.document import Document
 from sipms.services.family import family
 from sipms.utils.login_user_details import LoginUser
+from datetime import datetime, timedelta
 
 class BeneficiaryProfiling(Document):
 	def printKeys(obj, f=False):
@@ -14,14 +15,49 @@ class BeneficiaryProfiling(Document):
 		else:
 			for key in obj.__dict__.keys():
 				print(key,obj.get(key, None))
-
+# find family and get family function
 	def get_family(contact_number):
 		docs = frappe.db.get_list(doctype='Primary Member', filters={'name':contact_number}, fields=["name", "name_of_head_of_family",'name_of_head_of_family.name_of_the_beneficiary as name_of_the_beneficiary'])
 		if len(docs):
 			return docs[0]
 		return None
-
+		
+# create new souource of information
+	def create_source_of_information(new_source_of_information):
+		data_exist = frappe.db.exists("Source Of Information", new_source_of_information)
+		if not data_exist:
+			new_source_of_information_doc = frappe.new_doc("Source Of Information")
+			new_source_of_information_doc.source_name = new_source_of_information
+			new_source_of_information_doc.save()
+# create new house_type
+	def create_house_type(add_house_type):
+		data_exist = frappe.db.exists("House Types", add_house_type)
+		if not data_exist:
+			current_house_type_doc = frappe.new_doc("House Types")
+			current_house_type_doc.house_type_name = add_house_type
+			current_house_type_doc.save()
+# create new_camp
+	def create_new_camp(new_camp):
+		data_exist = frappe.db.exists("Camp", new_camp)
+		if not data_exist:
+			camp_doc = frappe.new_doc("Camp")
+			camp_doc.name_of_the_camp = new_camp
+			camp_doc.save()
+# create social_vulnerable_category
+	def new_social_vulnerable_category(other_social_vulnerable_category):
+		data_exist = frappe.db.exists("Social vulnerable category", other_social_vulnerable_category)
+		if not data_exist:
+			scc_doc = frappe.new_doc("Social vulnerable category")
+			scc_doc.social_vulnerable_category = other_social_vulnerable_category
+			scc_doc.save()
+		
 	def validate(self):
+		if(self.date_of_birth and self.date_of_visit):
+			if self.date_of_visit < self.date_of_birth:
+				return frappe.throw("Date of Visit shall not be before the Date of Birth")
+		if(self.what_is_the_extent_of_your_disability == "Above 40%"):
+			if(self.proof_of_disability == []):
+				return frappe.throw("""Mandatory fields required in Beneficiary <br/> <br/>  &#x2022; Profiling Proof of disability""")
 		# BeneficiaryProfiling.printKeys(self)
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
 			if self.get('_doc_before_save', None): # Update
@@ -56,21 +92,13 @@ class BeneficiaryProfiling(Document):
 		# 	self.help_desk = help_desk
 		# 	frappe.db.set_value('Beneficiary Profiling', self.name, 'help_desk', help_desk, update_modified=False)
 		if(self.new_source_of_information):
-			new_source_of_information_doc = frappe.new_doc("Source Of Information")
-			new_source_of_information_doc.source_name = self.new_source_of_information
-			new_source_of_information_doc.save()
+			BeneficiaryProfiling.create_source_of_information(self.new_source_of_information)
 		if(self.add_house_type):
-			current_house_type_doc = frappe.new_doc("House Types")
-			current_house_type_doc.house_type_name = self.add_house_type
-			current_house_type_doc.save()
+			BeneficiaryProfiling.create_house_type(self.add_house_type)
 		if(self.new_camp):
-			camp_doc = frappe.new_doc("Camp")
-			camp_doc.name_of_the_camp = self.new_camp
-			camp_doc.save()
+			BeneficiaryProfiling.create_new_camp(self.new_camp)
 		if(self.other_social_vulnerable_category):
-			scc_doc = frappe.new_doc("Social vulnerable category")
-			scc_doc.social_vulnerable_category = self.other_social_vulnerable_category
-			scc_doc.save()
+			BeneficiaryProfiling.new_social_vulnerable_category(self.other_social_vulnerable_category)
 		if(self.has_anyone_from_your_family_visisted_before == "No"):
 			family_doc = family.create(self)
 			frappe.db.set_value('Beneficiary Profiling', self.name, 'select_primary_member', family_doc.name, update_modified=False)
@@ -79,6 +107,14 @@ class BeneficiaryProfiling(Document):
 		if self.get('localname'):
 			return
 		else:
+			if(self.new_source_of_information):
+				BeneficiaryProfiling.create_source_of_information(self.new_source_of_information)
+			if(self.add_house_type):
+				BeneficiaryProfiling.create_house_type(self.add_house_type)
+			if(self.new_camp):
+				BeneficiaryProfiling.create_new_camp(self.new_camp)
+			if(self.other_social_vulnerable_category):
+				BeneficiaryProfiling.new_social_vulnerable_category(self.other_social_vulnerable_category)
 			if(self.has_anyone_from_your_family_visisted_before == "No"):
 				if self.get('_doc_before_save', None):
 					_doc_before_save = self.get('_doc_before_save')

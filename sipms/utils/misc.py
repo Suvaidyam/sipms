@@ -12,9 +12,9 @@ class Misc:
                 `tabScheme` as _ts
             inner join `tabRule Engine Child` as _tsc on (_tsc.parent = _ts.name and _tsc.parenttype = 'Scheme')
             where
-                _ts.name_of_the_scheme ='{scheme}';
+                _ts.name_of_the_scheme = %s
         """
-        rules = frappe.db.sql(sql, as_dict=True)
+        rules = frappe.db.sql(sql, (scheme,), as_dict=True)
         conditions = []
         if rules is not None and len(rules):
             groups = {}

@@ -242,7 +242,7 @@ const date_of_complete_validate = (_doc) => {
     _doc.date_of_completion = ''
     return {
       status: false,
-      message: "Date of completion should not be greater than date date of application"
+      message: "Date of completion should not be less than Date of Application"
     }
   } else {
     return {
@@ -269,9 +269,23 @@ const createDialog = (_doc, config, validator = null) => {
         if (obj[field])
           _doc[field] = obj[field]
       }
-      this.hide()
+        this.hide()
     }
   });
+}
+// generate date of birth
+function generateDOBFromAge(ageInYears=0, ageInMonths=0) {
+  // date of birth of tommorow is not selected in calander
+  let currentDate = new Date();
+  let birthYear = currentDate.getFullYear() - ageInYears;
+  let birthMonth = currentDate.getMonth() - ageInMonths;
+  if (birthMonth < 0) {
+    birthYear--;
+    birthMonth = 12 + birthMonth;
+  }
+  // Create the Date object for the generated date of birth
+  let generatedDOB = new Date(birthYear, birthMonth, currentDate.getDate());
+  return generatedDOB;     
 }
 
 //  COMMON FUNCTION FOR DEFULT FILTER
@@ -285,7 +299,7 @@ function defult_filter(field_name, filter_on, frm) {
   }
 };
 function extend_options_length(frm, fields) {
-  fields.forEach((field) => {
+  fields?.forEach((field) => {
     frm.set_query(field, () => {
       return { page_length: 1000 };
     });
@@ -345,12 +359,12 @@ const get_ordered_list = async (doctype, optionsToSort) => {
   })
   if (optionsToSort) {
     let reOrderedList = [];
-    optionsToSort.forEach(async (option) => {
-      const requiredOption = await list.find(item => item.value === option);
+    optionsToSort?.forEach(async (option) => {
+      const requiredOption = await list?.find(item => item.value === option);
       reOrderedList.push(requiredOption);
     });
-    const exceptionList = await list.filter(item => !optionsToSort.some(item2 => item.value === item2));
-    exceptionList.forEach(async (option) => {
+    const exceptionList = await list?.filter(item => !optionsToSort.some(item2 => item.value === item2));
+    exceptionList?.forEach(async (option) => {
       reOrderedList = [...reOrderedList, option];
     })
     list = reOrderedList;
@@ -510,9 +524,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
                 if (support_item.status != "Closed") {
                   if (latestFollowup.to_close_status) {
                     support_item.status = latestFollowup.to_close_status
-                  }
+                  } 
                   // else {
-                  // support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
+                    // support_item.status = support_item?.application_submitted == "Yes" ? "Under process" : "Open"
                   // }
                 }
                 break;
@@ -586,7 +600,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
     extend_options_length(frm, ["single_window", "help_desk",
       "source_of_information", "current_house_type", "state", "district",
-      "education", "ward", "name_of_the_settlement", "proof_of_disability", "block", "state_of_origin", "current_occupation", "district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
+      "education", "ward", "name_of_the_settlement", "proof_of_disability", "block", "state_of_origin", "current_occupation","district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
     frm.set_query('religion', () => {
       return {
         order_by: 'religion.religion ASC'
@@ -647,9 +661,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
     // Hide Advance search options
     hide_advance_search(frm, ["state", "district", "ward", "state_of_origin",
       "district_of_origin", "block", "gender",
-      , "social_vulnerable_category", "pwd_category", "family",
+     ,"social_vulnerable_category", "pwd_category", "family",
       "help_desk", "single_window", "source_of_information",
-      "current_house_type", "name_of_the_settlement", "name_of_the_camp", "proof_of_disability"
+      "current_house_type", "name_of_the_settlement", "name_of_the_camp" ,"proof_of_disability"
     ])
 
     // Increase Defult Limit of link field
@@ -706,7 +720,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     // frm.fields_dict['current_occupation'].get_query = function(doc) {
     //   return {
     //     // query: 'sipms.api.occupation',
-    //     order_by: 'occupation DESC'
+    //     order_by: 'occupation DESC'  
     //   };
     // };
   },
@@ -724,36 +738,60 @@ frappe.ui.form.on("Beneficiary Profiling", {
       let currentDate = new Date(today);
       let years = currentDate.getFullYear() - birthDate.getFullYear();
       let months = currentDate.getMonth() - birthDate.getMonth();
-      console.log("currentDate.getMonth()", currentDate.getMonth(), "birthDate.getMonth();", birthDate.getMonth())
       if (months < 0 || (months === 0 && currentDate.getDate() < birthDate.getDate())) {
         years--;
-      }
-      var month = (currentDate.getFullYear() - birthDate.getFullYear()) * 12 + (currentDate.getMonth() - birthDate.getMonth());
-      if (currentDate.getDate() < birthDate.getDate()) {
-        month--;
-      }
-      if (month <= 11) {
-        frm.set_value('completed_age_month', month);
+        months = 12 - birthDate.getMonth() + currentDate.getMonth();
       } else {
-        frm.set_value('completed_age_month', '');
+        months = currentDate.getMonth() - birthDate.getMonth();
       }
-      let ageString = 0;
-      if (years > 0) {
-        ageString += years;
-
+      if (currentDate.getDate() < birthDate.getDate()) {
+        months--;
       }
+      let ageString = years > 0 ? years.toString() : '0';
+      let completedAgeMonths = months <= 11 ? months : null;
       frm.set_value('completed_age', ageString);
-      frm.set_df_property('completed_age', 'read_only', 1);
+      frm.set_value('completed_age_month', completedAgeMonths);
+      // frm.set_df_property('completed_age', 'read_only', 1);
+      // frm.set_df_property('completed_age_month', 'read_only', 1);
     } else {
-      frm.set_df_property('completed_age', 'read_only', 0);
-      frm.set_value('completed_age', 0);
+      // frm.set_df_property('completed_age', 'read_only', 0);
+      // frm.set_df_property('completed_age_month', 'read_only', 0);
+      // frm.set_value('completed_age', '0');
+      // frm.set_value('completed_age_month', null);
     }
   },
-  completed_age_month: function (frm) {
+  completed_age:function(frm){
+    // if(frm.doc.date_of_birth !== frappe.datetime.get_today()){
+    //   frm.doc.manual_update = true
+    //   let dob = generateDOBFromAge(frm.doc?.completed_age , frm.doc?.completed_age_month)
+    //   frm.set_value("date_of_birth", dob)
+    // }
+    // console.log("dob", dob)
+  },
+  completed_age_month: function(frm){
     if (frm.doc.completed_age_month > 11) {
       frm.doc.completed_age_month = ''
       refresh_field('completed_age_month')
       frappe.throw("Completed age in month should be less than or equal to 11")
+    }
+    // if(frm.doc.date_of_birth !== frappe.datetime.get_today()){
+    //   let dob = generateDOBFromAge(frm.doc?.completed_age , frm.doc?.completed_age_month)
+    //   frm.set_value("date_of_birth", dob)
+    // }
+    // console.log("dob", dob)
+  },
+  are_you_a_person_with_disability_pwd:function(frm){
+    if(frm.doc.are_you_a_person_with_disability_pwd =="No"){
+      frm.doc.proof_of_disability = '';
+      frm.doc.what_is_the_extent_of_your_disability='';
+      frm.refresh_fields('what_is_the_extent_of_your_disability', 'proof_of_disability')
+      
+    }
+  },
+  what_is_the_extent_of_your_disability:function(frm){
+    if(frm.doc.what_is_the_extent_of_your_disability != "Above 40%"){
+      frm.doc.proof_of_disability = [];
+      frm.refresh_fields('proof_of_disability')
     }
   },
   same_as_above: function (frm) {
@@ -776,10 +814,14 @@ frappe.ui.form.on("Beneficiary Profiling", {
 frappe.ui.form.on('Scheme Child', {
   form_render: async function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
+    if(row.__islocal){
     if (row.application_submitted == 'Yes' && (!row.date_of_application || !row.mode_of_application)) {
       row.status = ''
       createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
+    }else if(row.application_submitted == 'Completed' &&  (!row.date_of_application || !row.mode_of_application)){
+      createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
     }
+  }
   },
   scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
@@ -817,14 +859,14 @@ frappe.ui.form.on('Scheme Child', {
   application_submitted: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     if (row.application_submitted == "Yes") {
-      row.status = ''
+      row.status = '';row.date_of_completion='';
+      frm.refresh_fields('status', 'date_of_completion')
       createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
     } else if (row.application_submitted == "Completed") {
       createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
-    } else if (row.application_submitted == "No") {
-      row.date_of_application = ''
-      row.date_of_completion = ''
-      console.log("rrrooowww", row)
+    }else if (row.application_submitted == "No"){
+      row.date_of_application = '';row.date_of_completion = ''; row.application_number='';row.amount_paid='';row.paid_by=""; 
+      frm.refresh_fields("date_of_application","date_of_completion", "application_number" , "amount_paid", "paid_by");
     }
   },
 
@@ -835,8 +877,18 @@ frappe.ui.form.on('Scheme Child', {
 frappe.ui.form.on('Follow Up Child', {
   form_render: async function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    console.log("row", row);
-  }, follow_up_table_add(frm, cdt, cdn) {
+    if(row.__islocal){
+    if (row.follow_up_status == 'Document submitted' && (!row.date_of_application || !row.mode_of_application)) {
+      row.status = ''
+      createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
+    }else if(row.follow_up_status == 'Completed' &&  !row.date_of_completion){
+      createDialog(row, dialogsConfig.document_completed, date_of_complete_validate).show();
+    }else if (row.follow_up_status == 'Rejected' &&  (!row.date_of_rejection || !row.reason_of_rejection)){
+      createDialog(row, dialogsConfig.document_rejected, doc_rejected_validate).show();
+    }
+  }
+  },
+  follow_up_table_add(frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     row.follow = frappe.session.user_fullname
     let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
