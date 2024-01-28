@@ -165,9 +165,9 @@ scheduler_events = {
 #		"sipms.tasks.all"
 #	],
 	"daily": [
-		"sipms.scheduler_events.ben_dob_update.update_dob_of_ben",
-        "sipms.scheduler_events.ben_dob_update.update_dob_months"
-        
+        "sipms.scheduler_events.ben_dob_update.update_age",
+        # "sipms.scheduler_events.ben_dob_update.update_dob_of_ben",
+        # "sipms.scheduler_events.ben_dob_update.update_dob_months"
 	],
 #	"hourly": [
 #		"sipms.tasks.hourly"
