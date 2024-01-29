@@ -1004,6 +1004,10 @@ frappe.ui.form.on('Follow Up Child', {
       }
     }
   },
+  follow_up_date:function(frm, cdt , cdn){
+    let row = frappe.get_doc(cdt, cdn);
+    console.log("follow up",row)
+  },
   follow_up_date: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     if (row.follow_up_date > frappe.datetime.get_today()) {
