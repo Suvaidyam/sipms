@@ -839,7 +839,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   marital_status: function (frm) {
     if (frm.doc.marital_status != "Married") {
-      frm.set_value('help_desk', '')
+      frm.set_value('spouses_name', '')
     }
   },
   social_vulnerable: function (frm) {
