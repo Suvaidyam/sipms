@@ -596,7 +596,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   },
   async refresh(frm) {
-    console.log("lower");
     _frm = frm.doc
     if (frm.doc.lead && frm.doc.__islocal) {
       get_lead_date(frm.doc.lead, frm)

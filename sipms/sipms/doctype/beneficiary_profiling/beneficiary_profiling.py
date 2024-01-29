@@ -51,13 +51,6 @@ class BeneficiaryProfiling(Document):
 			scc_doc.social_vulnerable_category = other_social_vulnerable_category
 			scc_doc.save()
 # create social_vulnerable_category
-# create occupation categoary
-	def create_occupation_categoary(new_occupation_category):
-		new_occ_category = frappe.new_doc("Occupational Category")
-		new_occ_category.occupation_category = new_occupation_category
-		new_occ_category.save()
-		return new_occ_category
-
 	def other_new_occupation(new_occupation , occupational_category , new_occupation_category):
 		data_exist = frappe.db.exists("Occupation", new_occupation)
 		if not data_exist:
@@ -78,7 +71,7 @@ class BeneficiaryProfiling(Document):
 	def validate(self):
 		if(self.date_of_birth and self.date_of_visit):
 			if self.date_of_visit < self.date_of_birth:
-				return frappe.throw("Date of Visit shall not be before the Date of Birth")
+				return frappe.throw("Date of visit should not be earlier than the date of birth")
 		if(self.what_is_the_extent_of_your_disability == "Above 40%"):
 			if(self.proof_of_disability == []):
 				return frappe.throw("""Mandatory fields required in Beneficiary <br/> <br/>  &#x2022; Profiling Proof of disability""")
