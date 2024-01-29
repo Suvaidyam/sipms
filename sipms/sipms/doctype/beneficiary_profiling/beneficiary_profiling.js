@@ -1,5 +1,19 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // For license information, please see license.txt
+frappe.ui.form.on("Beneficiary Profiling", {
+  refresh: (frm) => {
+    let link_fields = frm.meta.fields.filter(f => ['Link'].includes(f.fieldtype)).map(e => {
+      return {
+        fieldname: e.fieldname,
+        fieldtype: e.fieldtype,
+        label: e.label,
+        options: e.options
+      }
+    })
+    console.log('Upper', link_fields);
+  }
+})
+
 let _frm;
 // global variable
 const dialogsConfig = {
@@ -289,16 +303,6 @@ function generateDOBFromAge(ageInYears = 0, ageInMonths = 0) {
   return generatedDOB;
 }
 
-//  COMMON FUNCTION FOR DEFULT FILTER
-function defult_filter(field_name, filter_on, frm) {
-  frm.fields_dict[field_name].get_query = function (doc) {
-    return {
-      filters: {
-        [filter_on]: frm.doc.filter_on || `please select ${filter_on}`,
-      },
-    };
-  }
-};
 function extend_options_length(frm, fields) {
   fields?.forEach((field) => {
     frm.set_query(field, () => {
@@ -331,11 +335,17 @@ const showRules = (row) => {
   });
 }
 // COMMON FUNCTON FOR FILTER OF LINK FIELD
-function apply_filter(field_name, filter_on, frm, filter_value) {
-  frm.fields_dict[field_name].get_query = function (doc) {
+function apply_filter(field_name, filter_on, frm, filter_value, withoutFilter = false) {
+  frm.fields_dict[field_name].get_query = () => {
+    if (withoutFilter) {
+      return {
+        filters: {},
+        page_length: 1000
+      };
+    }
     return {
       filters: {
-        [filter_on]: filter_value,
+        [filter_on]: filter_value || frm.doc[filter_on] || `please select ${filter_on}`,
       },
       page_length: 1000
     };
@@ -581,6 +591,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   },
   async refresh(frm) {
+    console.log("lower");
     _frm = frm.doc
     if (frm.doc.lead && frm.doc.__islocal) {
       get_lead_date(frm.doc.lead, frm)
@@ -590,6 +601,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
     // hide delete options for helpdesk and csc member
     apply_filter('select_primary_member', 'name_of_head_of_family', frm, ['!=', frm.doc.name])
+
     if (frappe.user_roles.includes("Help-desk member") || frappe.user_roles.includes("CSC Member")) {
       if (!frappe.user_roles.includes("Administrator")) {
         frm.set_df_property('scheme_table', 'cannot_delete_rows', true); // Hide delete button
@@ -667,22 +679,13 @@ frappe.ui.form.on("Beneficiary Profiling", {
       "current_house_type", "name_of_the_settlement", "name_of_the_camp", "proof_of_disability"
     ])
 
-    // Increase Defult Limit of link field
-    // frm.set_query("state", () => { return { page_length: 1000 }; });
-    // frm.set_query("district", () => { return { page_length: 1000 }; });
-    // frm.set_query("ward", () => { return { page_length: 1000 }; });
-    // frm.set_query("state_of_origin", () => { return { page_length: 1000 }; });
-    // frm.set_query("district_of_origin", () => { return { page_length: 1000 }; });
-    // frm.set_query("block", () => { return { page_length: 1000 }; });
-
-    // Apply defult filter in doctype
-    frm.doc.state ? apply_filter("district", "State", frm, frm.doc.state) : defult_filter('district', "State", frm);
-    frm.doc.district ? apply_filter("ward", "District", frm, frm.doc.district) : defult_filter('ward', "District", frm);
-    frm.doc.ward ? apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward) : defult_filter('name_of_the_settlement', "Block", frm);
-    frm.doc.state_of_origin ? apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin) : defult_filter('block', "District", frm);
-    frm.doc.district_of_origin ? apply_filter("block", "District", frm, frm.doc.district_of_origin) : defult_filter('district_of_origin', "State", frm);
+    apply_filter("district", "State", frm, frm.doc.state)
+    apply_filter("ward", "District", frm, frm.doc.district)
+    apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward)
+    apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin)
+    apply_filter("block", "District", frm, frm.doc.district_of_origin)
     if (frappe.user_roles.includes("Admin")) {
-      frm.doc.single_window ? apply_filter("help_desk", "single_window", frm, frm.doc.single_window) : defult_filter('help_desk', "single_window", frm);
+      apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
     }
   },
   validate(frm) {
@@ -715,15 +718,35 @@ frappe.ui.form.on("Beneficiary Profiling", {
   single_window: function (frm) {
     apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
   },
-  current_occupation: function (frm) {
-    refresh_field('occupational_category')
+  current_occupation: async function (frm) {
+    if (!frm.doc.current_occupation) return;
+    if (frm.doc.current_occupation == 'Others') {
+      frm.set_value('occupational_category', '')
+      apply_filter('occupational_category', 'name', frm, undefined)
+    } else {
+      let doc = await callAPI({
+        method: 'frappe.client.get',
+        freeze: true,
+        args: {
+          doctype: 'Occupation',
+          name: frm.doc.current_occupation
+        },
+        freeze_message: __("Getting schemes..."),
+      })
+      frm.set_value('occupational_category', doc.occupational_category)
+
+      // apply_filter('occupational_category', 'name', frm, ['=', doc.occupational_category])
+    }
+
     // console.log("frm")
-    // frm.fields_dict['current_occupation'].get_query = function(doc) {
+    // frm.fields_dict['occupational_category'].get_query = function(doc) {
     //   return {
-    //     // query: 'sipms.api.occupation',
+    //     filters: 'sipms.api.occupation',
     //     order_by: 'occupation DESC'
     //   };
     // };
+    // refresh_field('occupational_category')
+
   },
 
   date_of_birth: function (frm) {

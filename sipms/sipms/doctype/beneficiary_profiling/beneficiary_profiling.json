@@ -25,7 +25,9 @@
   "religion",
   "education",
   "current_occupation",
+  "new_occupation",
   "occupational_category",
+  "new_occupation_category",
   "marital_status",
   "spouses_name",
   "social_vulnerable",
@@ -434,12 +436,11 @@
    "options": "<h3>Schemes</h3>\n<div id=\"all_schemes\"></div>"
   },
   {
-   "fetch_from": "current_occupation.occupational_category",
+   "fetch_from": ".occupational_category",
    "fieldname": "occupational_category",
    "fieldtype": "Link",
    "label": "Occupational category",
    "options": "Occupational Category",
-   "read_only": 1,
    "reqd": 1
   },
   {
@@ -504,12 +505,28 @@
    "label": "Proof of disability",
    "mandatory_depends_on": "eval:doc.what_is_the_extent_of_your_disability == \"Above 40%\"",
    "options": "Proof of Disability Child"
+  },
+  {
+   "depends_on": "eval:doc.current_occupation == 'Others'",
+   "fieldname": "new_occupation",
+   "fieldtype": "Data",
+   "label": "New occupation",
+   "mandatory_depends_on": "eval:doc.current_occupation == 'Others'",
+   "options": "Occupation"
+  },
+  {
+   "depends_on": "eval:doc.occupational_category == 'Others'",
+   "fetch_from": ".occupational_category",
+   "fieldname": "new_occupation_category",
+   "fieldtype": "Data",
+   "label": "New occupation category",
+   "mandatory_depends_on": "eval:doc.occupational_category == 'Others'"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-26 22:15:13.093835",
+ "modified": "2024-01-28 16:42:46.581836",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
