@@ -738,23 +738,19 @@ frappe.ui.form.on("Beneficiary Profiling", {
     if (frm.doc.current_occupation == 'Others') {
       apply_filter('occupational_category', 'name', frm, '', true)
       frm.set_value('occupational_category', '')
+
     } else {
       let doc = await get_occupation_category(frm)
       apply_filter('occupational_category', 'name', frm, ['=', doc.occupational_category])
       frm.set_value('occupational_category', doc.occupational_category)
+      frm.set_value('new_occupation','')
     }
-
-    // console.log("frm")
-    // frm.fields_dict['occupational_category'].get_query = function(doc) {
-    //   return {
-    //     filters: 'sipms.api.occupation',
-    //     order_by: 'occupation DESC'
-    //   };
-    // };
-    // refresh_field('occupational_category')
-
   },
-
+  occupational_category:function(frm){
+    if(frm.doc.occupational_category != 'Others'){
+      frm.set_value('new_occupation_category','')
+    }
+  },
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth;
     if (new Date(dob) > new Date(frappe.datetime.get_today())) {
