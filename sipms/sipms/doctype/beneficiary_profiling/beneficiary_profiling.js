@@ -824,6 +824,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frm.refresh_fields('proof_of_disability')
     }
   },
+  single_window: function(frm){
+    frm.set_value('help_desk','')
+  },
   same_as_above: function (frm) {
     if (frm.doc.same_as_above == '1') {
       frm.doc.state_of_origin = frm.doc.state;

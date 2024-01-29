@@ -71,7 +71,7 @@ class BeneficiaryProfiling(Document):
 	def validate(self):
 		if(self.date_of_birth and self.date_of_visit):
 			if self.date_of_visit < self.date_of_birth:
-				return frappe.throw("Date of visit should not be earlier than the date of birth")
+				return frappe.throw("Date of Visit shall not be before the <strong>Date of Birth</strong>")
 		if(self.what_is_the_extent_of_your_disability == "Above 40%"):
 			if(self.proof_of_disability == []):
 				return frappe.throw("""Mandatory fields required in Beneficiary <br/> <br/>  &#x2022; Profiling Proof of disability""")
