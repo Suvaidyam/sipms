@@ -716,18 +716,28 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   state: function (frm) {
     apply_filter("district", "State", frm, frm.doc.state)
+    frm.set_value("district", '')
+    frm.set_value("ward", '')
+    frm.set_value("name_of_the_settlement", '')
   },
   district: function (frm) {
     apply_filter("ward", "District", frm, frm.doc.district)
+    frm.set_value("ward", '')
+    frm.set_value("name_of_the_settlement", '')
   },
   ward: function (frm) {
     apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward)
+    frm.set_value("name_of_the_settlement", '')
   },
   state_of_origin: function (frm) {
     apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin)
+    frm.set_value("district_of_origin", '')
+    frm.set_value("block", '')
+    frm.set_value("name_of_the_settlement", '')
   },
   district_of_origin: function (frm) {
     apply_filter("block", "District", frm, frm.doc.district_of_origin)
+    frm.set_value("block", '')
   },
   single_window: function (frm) {
     apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
@@ -826,6 +836,44 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   single_window: function(frm){
     frm.set_value('help_desk','')
+  },
+  marital_status:function(frm){
+    if(frm.doc.marital_status != "Married"){
+      frm.set_value('help_desk','')
+    }
+  },
+  social_vulnerable:function(frm){
+    if(frm.doc.social_vulnerable_category != "Yes"){
+      frm.set_value('social_vulnerable_category','')
+      frm.set_value('other_social_vulnerable_category','')
+    }
+  },
+  social_vulnerable_category:function(frm){
+    if(frm.doc.social_vulnerable_category != "Others"){
+      frm.set_value('other_social_vulnerable_category','')
+    }
+  },
+  source_of_information: function(frm){
+    if(frm.doc.source_of_information != "Others"){
+      frm.set_value('new_source_of_information','')
+      frm.set_value('name_of_the_camp','')
+      frm.set_value('new_camp','')
+    }
+  },
+  name_of_the_camp: function(frm){
+    if(frm.doc.name_of_the_camp != "Others"){
+      frm.set_value('new_camp','')
+    }
+  },
+  has_anyone_from_your_family_visisted_before:function(frm){
+    if(frm.doc.has_anyone_from_your_family_visisted_before == "Yes"){
+      frm.set_value('select_primary_member','')
+    }
+  },
+  current_house_type:function(frm){
+    if(frm.doc.current_house_type != "Others"){
+      frm.set_value('add_house_type','')
+    }
   },
   same_as_above: function (frm) {
     if (frm.doc.same_as_above == '1') {
