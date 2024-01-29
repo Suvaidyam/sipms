@@ -401,16 +401,21 @@ const get_scheme_list = async (frm) => {
   scheme_list = list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
   return scheme_list
 }
-
+const get_occupation_category = async (frm)=>{
+  let list = await callAPI({
+    method: 'frappe.client.get',
+    freeze: true,
+    args: {
+      doctype: 'Occupation',
+      name: frm.doc.current_occupation
+    },
+    freeze_message: __("Getting schemes..."),
+  })
+  return list;
+}
 
 const get_lead_date = async (lead_id, frm) => {
   var fieldsToFetch = ["completed_age", "contact_number"];
-
-  const bulk_refresh_field = async (fields = []) => {
-    for (var i = 0; i < fields.length; i++) {
-      refresh_field(fields[i])
-    }
-  }
   // Fetch document with name 'your_document_name' from DocType 'YourDocType'
   frappe.call({
     method: 'frappe.client.get',
@@ -446,7 +451,7 @@ const get_lead_date = async (lead_id, frm) => {
         frm.doc.occupational_category = doc.occupational_category
         // frm.doc.address = frm.doc.address,
         // frm.doc.name_of_scheme= doc.name_of_scheme,
-        bulk_refresh_field(["completed_age", "contact_number", "gender", "name_of_the_beneficiary"
+        frm.refresh_fields(["completed_age", "contact_number", "gender", "name_of_the_beneficiary"
           , "caste_category", "education", "current_occupation", "occupational_category", "marital_status", "single_window", "fathers_name", "mothers_name",
           "source_of_information", "state_of_origin", "current_house_type", "name_of_the_camp"
         ])
@@ -612,7 +617,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
 
     extend_options_length(frm, ["single_window", "help_desk",
-      "source_of_information", "current_house_type", "state", "district",
+      "source_of_information", "current_house_type", "state", "district","occupational_category",
       "education", "ward", "name_of_the_settlement", "proof_of_disability", "block", "state_of_origin", "current_occupation", "district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
     frm.set_query('religion', () => {
       return {
@@ -673,9 +678,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
     // Hide Advance search options
     hide_advance_search(frm, ["state", "district", "ward", "state_of_origin",
-      "district_of_origin", "block", "gender",
+      "district_of_origin", "block", "gender","current_occupation",
       , "social_vulnerable_category", "pwd_category", "family",
-      "help_desk", "single_window", "source_of_information",
+      "help_desk", "single_window", "source_of_information", "occupational_category",
       "current_house_type", "name_of_the_settlement", "name_of_the_camp", "proof_of_disability"
     ])
 
@@ -684,6 +689,16 @@ frappe.ui.form.on("Beneficiary Profiling", {
     apply_filter("name_of_the_settlement", "block", frm, frm.doc.ward)
     apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin)
     apply_filter("block", "District", frm, frm.doc.district_of_origin)
+    // defult filter on current occupations
+    if(frm.doc?.current_occupation){
+      if (frm.doc.current_occupation == 'Others') {
+        apply_filter('occupational_category', 'name', frm, '' , true)
+      } else {
+        let doc = await get_occupation_category(frm)
+        apply_filter('occupational_category', 'name', frm, ['=', doc.occupational_category])
+        frm.set_value('occupational_category', doc.occupational_category)
+      }
+    }
     if (frappe.user_roles.includes("Admin")) {
       apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
     }
@@ -721,21 +736,12 @@ frappe.ui.form.on("Beneficiary Profiling", {
   current_occupation: async function (frm) {
     if (!frm.doc.current_occupation) return;
     if (frm.doc.current_occupation == 'Others') {
+      apply_filter('occupational_category', 'name', frm, '', true)
       frm.set_value('occupational_category', '')
-      apply_filter('occupational_category', 'name', frm, undefined)
     } else {
-      let doc = await callAPI({
-        method: 'frappe.client.get',
-        freeze: true,
-        args: {
-          doctype: 'Occupation',
-          name: frm.doc.current_occupation
-        },
-        freeze_message: __("Getting schemes..."),
-      })
+      let doc = await get_occupation_category(frm)
+      apply_filter('occupational_category', 'name', frm, ['=', doc.occupational_category])
       frm.set_value('occupational_category', doc.occupational_category)
-
-      // apply_filter('occupational_category', 'name', frm, ['=', doc.occupational_category])
     }
 
     // console.log("frm")

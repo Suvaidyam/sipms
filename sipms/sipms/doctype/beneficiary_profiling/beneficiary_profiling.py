@@ -50,7 +50,31 @@ class BeneficiaryProfiling(Document):
 			scc_doc = frappe.new_doc("Social vulnerable category")
 			scc_doc.social_vulnerable_category = other_social_vulnerable_category
 			scc_doc.save()
-		
+# create social_vulnerable_category
+# create occupation categoary
+	def create_occupation_categoary(new_occupation_category):
+		new_occ_category = frappe.new_doc("Occupational Category")
+		new_occ_category.occupation_category = new_occupation_category
+		new_occ_category.save()
+		return new_occ_category
+
+	def other_new_occupation(new_occupation , occupational_category , new_occupation_category):
+		data_exist = frappe.db.exists("Occupation", new_occupation)
+		if not data_exist:
+			occupation = frappe.new_doc("Occupation")
+			occupation.occupation = new_occupation
+			if new_occupation_category:
+				data_exist = frappe.db.exists("Occupational Category", new_occupation_category)
+				if not data_exist:
+					new_occ_category = frappe.new_doc("Occupational Category")
+					new_occ_category.occupational_category = new_occupation_category
+					data = new_occ_category.save()
+					occupation.occupational_category = data
+					# occupation.save()
+			else:
+				occupation.occupational_category = occupational_category
+			occupation.save()
+
 	def validate(self):
 		if(self.date_of_birth and self.date_of_visit):
 			if self.date_of_visit < self.date_of_birth:
@@ -115,6 +139,8 @@ class BeneficiaryProfiling(Document):
 				BeneficiaryProfiling.create_new_camp(self.new_camp)
 			if(self.other_social_vulnerable_category):
 				BeneficiaryProfiling.new_social_vulnerable_category(self.other_social_vulnerable_category)
+			if(self.new_occupation and self.occupational_category or self.new_occupation_category):
+				BeneficiaryProfiling.other_new_occupation(self.new_occupation , self.occupational_category , self.new_occupation_category)
 			if(self.has_anyone_from_your_family_visisted_before == "No"):
 				if self.get('_doc_before_save', None):
 					_doc_before_save = self.get('_doc_before_save')
