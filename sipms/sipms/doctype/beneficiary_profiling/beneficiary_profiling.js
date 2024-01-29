@@ -401,7 +401,7 @@ const get_scheme_list = async (frm) => {
   scheme_list = list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
   return scheme_list
 }
-const get_occupation_category = async (frm)=>{
+const get_occupation_category = async (frm) => {
   let list = await callAPI({
     method: 'frappe.client.get',
     freeze: true,
@@ -616,7 +616,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
 
     extend_options_length(frm, ["single_window", "help_desk",
-      "source_of_information", "current_house_type", "state", "district","occupational_category",
+      "source_of_information", "current_house_type", "state", "district", "occupational_category",
       "education", "ward", "name_of_the_settlement", "proof_of_disability", "block", "state_of_origin", "current_occupation", "district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
     frm.set_query('religion', () => {
       return {
@@ -677,7 +677,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
     // Hide Advance search options
     hide_advance_search(frm, ["state", "district", "ward", "state_of_origin",
-      "district_of_origin", "block", "gender","current_occupation",
+      "district_of_origin", "block", "gender", "current_occupation",
       , "social_vulnerable_category", "pwd_category", "family",
       "help_desk", "single_window", "source_of_information", "occupational_category",
       "current_house_type", "name_of_the_settlement", "name_of_the_camp", "proof_of_disability"
@@ -689,9 +689,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
     apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin)
     apply_filter("block", "District", frm, frm.doc.district_of_origin)
     // defult filter on current occupations
-    if(frm.doc?.current_occupation){
+    if (frm.doc?.current_occupation) {
       if (frm.doc.current_occupation == 'Others') {
-        apply_filter('occupational_category', 'name', frm, '' , true)
+        apply_filter('occupational_category', 'name', frm, '', true)
       } else {
         let doc = await get_occupation_category(frm)
         apply_filter('occupational_category', 'name', frm, ['=', doc.occupational_category])
@@ -752,12 +752,12 @@ frappe.ui.form.on("Beneficiary Profiling", {
       let doc = await get_occupation_category(frm)
       apply_filter('occupational_category', 'name', frm, ['=', doc.occupational_category])
       frm.set_value('occupational_category', doc.occupational_category)
-      frm.set_value('new_occupation','')
+      frm.set_value('new_occupation', '')
     }
   },
-  occupational_category:function(frm){
-    if(frm.doc.occupational_category != 'Others'){
-      frm.set_value('new_occupation_category','')
+  occupational_category: function (frm) {
+    if (frm.doc.occupational_category != 'Others') {
+      frm.set_value('new_occupation_category', '')
     }
   },
   date_of_birth: function (frm) {
@@ -834,45 +834,45 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frm.refresh_fields('proof_of_disability')
     }
   },
-  single_window: function(frm){
-    frm.set_value('help_desk','')
+  single_window: function (frm) {
+    frm.set_value('help_desk', '')
   },
-  marital_status:function(frm){
-    if(frm.doc.marital_status != "Married"){
-      frm.set_value('help_desk','')
+  marital_status: function (frm) {
+    if (frm.doc.marital_status != "Married") {
+      frm.set_value('help_desk', '')
     }
   },
-  social_vulnerable:function(frm){
-    if(frm.doc.social_vulnerable_category != "Yes"){
-      frm.set_value('social_vulnerable_category','')
-      frm.set_value('other_social_vulnerable_category','')
+  social_vulnerable: function (frm) {
+    if (frm.doc.social_vulnerable_category != "Yes") {
+      frm.set_value('social_vulnerable_category', '')
+      frm.set_value('other_social_vulnerable_category', '')
     }
   },
-  social_vulnerable_category:function(frm){
-    if(frm.doc.social_vulnerable_category != "Others"){
-      frm.set_value('other_social_vulnerable_category','')
+  social_vulnerable_category: function (frm) {
+    if (frm.doc.social_vulnerable_category != "Others") {
+      frm.set_value('other_social_vulnerable_category', '')
     }
   },
-  source_of_information: function(frm){
-    if(frm.doc.source_of_information != "Others"){
-      frm.set_value('new_source_of_information','')
-      frm.set_value('name_of_the_camp','')
-      frm.set_value('new_camp','')
+  source_of_information: function (frm) {
+    if (frm.doc.source_of_information != "Others") {
+      frm.set_value('new_source_of_information', '')
+      frm.set_value('name_of_the_camp', '')
+      frm.set_value('new_camp', '')
     }
   },
-  name_of_the_camp: function(frm){
-    if(frm.doc.name_of_the_camp != "Others"){
-      frm.set_value('new_camp','')
+  name_of_the_camp: function (frm) {
+    if (frm.doc.name_of_the_camp != "Others") {
+      frm.set_value('new_camp', '')
     }
   },
-  has_anyone_from_your_family_visisted_before:function(frm){
-    if(frm.doc.has_anyone_from_your_family_visisted_before == "Yes"){
-      frm.set_value('select_primary_member','')
+  has_anyone_from_your_family_visisted_before: function (frm) {
+    if (frm.doc.has_anyone_from_your_family_visisted_before == "Yes") {
+      frm.set_value('select_primary_member', '')
     }
   },
-  current_house_type:function(frm){
-    if(frm.doc.current_house_type != "Others"){
-      frm.set_value('add_house_type','')
+  current_house_type: function (frm) {
+    if (frm.doc.current_house_type != "Others") {
+      frm.set_value('add_house_type', '')
     }
   },
   same_as_above: function (frm) {
@@ -913,9 +913,8 @@ frappe.ui.form.on('Scheme Child', {
       milestones.hasOwnProperty(e.milestone) ? '' : milestones[e.milestone] = e.milestone
       return { 'lable': e.name, "value": e.name }
     })
-
     frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
-    frm.fields_dict.scheme_table.grid.update_docfield_property("milestone_category", "options", Object.keys(milestones).map(e => { return { 'lable': milestones[e], "value": milestones[e] } }));
+    frm.fields_dict.scheme_table.grid.update_docfield_property("milestone_category", "options", [{ 'lable': "", "value": "" }, ...Object.keys(milestones).map(e => { return { 'lable': milestones[e], "value": milestones[e] } })]);
   },
   name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
@@ -932,7 +931,12 @@ frappe.ui.form.on('Scheme Child', {
   milestone_category: (frm, cdt, cdn) => {
     let row = frappe.get_doc(cdt, cdn);
     row.name_of_the_scheme = ''
-    let schemes = scheme_list.filter(f => row.milestone_category == f.milestone)
+    let schemes;
+    if (row.milestone_category === "") {
+      schemes = scheme_list;
+    } else {
+      schemes = scheme_list.filter(f => row.milestone_category == f.milestone);
+    }
     let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
     let ops = schemes.filter(f => !schemes_op.includes(f.name)).map(e => { return { 'lable': e.name, "value": e.name } })
     frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
@@ -1004,9 +1008,9 @@ frappe.ui.form.on('Follow Up Child', {
       }
     }
   },
-  follow_up_date:function(frm, cdt , cdn){
+  follow_up_date: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    console.log("follow up",row)
+    console.log("follow up", row)
   },
   follow_up_date: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
