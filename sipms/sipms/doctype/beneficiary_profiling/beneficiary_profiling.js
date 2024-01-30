@@ -721,7 +721,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
     apply_filter("district_of_origin", "State", frm, frm.doc.state_of_origin)
     frm.set_value("district_of_origin", '')
     frm.set_value("block", '')
-    frm.set_value("name_of_the_settlement", '')
   },
   district_of_origin: function (frm) {
     apply_filter("block", "District", frm, frm.doc.district_of_origin)
