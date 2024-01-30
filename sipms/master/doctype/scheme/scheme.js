@@ -140,7 +140,7 @@ frappe.ui.form.on("Scheme", {
         }
         const container = document.getElementById('eligible_beneficiaries');
         const datatable = new DataTable(container, { columns: tableConf.columns });
-        datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });
+        datatable.style.setStyle(`.dt-scrollable`, { height: '800px!important', overflow: 'scroll!important' });
         datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
         datatable.refresh(tableConf.rows);
         console.log("tableConf.rows", tableConf.rows)
@@ -153,6 +153,11 @@ frappe.ui.form.on("Scheme", {
         }
 
 
+    },
+    type_of_the_scheme: function (frm) {
+        if (frm.doc.type_of_the_scheme != "State") {
+            frm.set_value("state", "");
+        }
     },
     name_of_department: function (frm) {
         if (frm.doc.department_urlwebsite) {
