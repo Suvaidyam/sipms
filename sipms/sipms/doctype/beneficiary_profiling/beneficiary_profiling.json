@@ -293,7 +293,7 @@
    "fieldtype": "Link",
    "label": "State of origin",
    "options": "State",
-   "read_only_depends_on": "eval:doc.same_as_above",
+   "read_only_depends_on": "eval:doc.same_as_above == 1",
    "reqd": 1
   },
   {
@@ -301,14 +301,14 @@
    "fieldtype": "Link",
    "label": "District of origin",
    "options": "District",
-   "read_only_depends_on": "eval:doc.same_as_above"
+   "read_only_depends_on": "eval:doc.same_as_above == 1"
   },
   {
    "fieldname": "block",
    "fieldtype": "Link",
    "label": "Ward/Tehsil/Block",
    "options": "Block",
-   "read_only_depends_on": "eval:doc.same_as_above"
+   "read_only_depends_on": "eval:doc.same_as_above == 1"
   },
   {
    "default": "No",
@@ -529,7 +529,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-29 13:35:31.618310",
+ "modified": "2024-01-30 14:21:45.207379",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
