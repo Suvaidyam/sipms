@@ -889,7 +889,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
     refresh_field("district_of_origin")
     refresh_field("block")
   }
-
 });
 // ********************* Support CHILD Table***********************
 frappe.ui.form.on('Scheme Child', {
@@ -1021,6 +1020,10 @@ frappe.ui.form.on('Follow Up Child', {
     if (row.follow_up_date < row.date_of_application) {
       row.follow_up_date = null
       frappe.throw(__("Follow-up date should not be less than date of application"));
+    }
+    if (row.follow_up_date < frm.doc.date_of_visit) {
+      row.follow_up_date = null
+      frappe.throw(__("Follow-up date should not be less than date of date of visit"));
     }
   },
   follow_up_with: function (frm, cdt, cdn) {
