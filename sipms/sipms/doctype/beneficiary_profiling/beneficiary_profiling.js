@@ -182,16 +182,13 @@ const dialogsConfig = {
     ]
   }
 }
-const doc_submitted_validate = (_doc) => {
-  if (_doc.date_of_application < _frm.date_of_visit) {
-    _doc.date_of_application = ''
+const doc_submitted_validate = (_doc , _scheme) => {
+  if (_doc.date_of_application < _frm.registration_date) {
     return {
       status: false,
-      message: "Date of application should not be less than date of visit",
-      // date_of_application: ''
+      message: "Date of application should not be less than date of registration",
     }
   } else if (_doc.date_of_application > frappe.datetime.get_today()) {
-    _doc.date_of_application = ''
     return {
       status: false,
       message: "Date of application should not be greater than today date"
@@ -203,24 +200,18 @@ const doc_submitted_validate = (_doc) => {
     }
   }
 }
-const doc_rejected_validate = (_doc) => {
-  if (_doc.date_of_rejection < _frm.date_of_visit) {
-    _doc.date_of_rejection = ''
-    refresh_field("date_of_rejection")
+const doc_rejected_validate = (_doc , _scheme) => {
+  if (_doc.date_of_rejection < _frm.registration_date) {
     return {
       status: false,
-      message: "Date of rejection should not be less than date of visit"
+      message: "Date of rejection should not be less than date of registration"
     }
-  } else if (_doc.date_of_rejection < _doc.date_of_application) {
-    _doc.date_of_rejection = ''
-    refresh_field("date_of_rejection")
+  } else if (_doc.date_of_rejection < _scheme.date_of_application) {
     return {
       status: false,
       message: "Date of rejection should not be less than date of application"
     }
   } else if (_doc.date_of_rejection > frappe.datetime.get_today()) {
-    _doc.date_of_rejection = ''
-    refresh_field("date_of_rejection")
     return {
       status: false,
       message: "Date of rejection should not be greater than today date"
@@ -232,28 +223,25 @@ const doc_rejected_validate = (_doc) => {
     }
   }
 }
-const date_of_complete_validate = (_doc) => {
-  if (_doc.date_of_application < _frm.date_of_visit) {
-    _doc.date_of_application = ''
+const date_of_complete_validate = (_doc , _scheme) => {
+  console.log(_doc , _scheme)
+  if (_doc.date_of_application < _frm.registration_date) {
     return {
       status: false,
-      message: "Date of application should not be less than date of visit"
+      message: "Date of application should not be less than date of registration"
 
     }
-  } else if (_doc.date_of_completion < _frm.date_of_visit) {
-    _doc.date_of_completion = ''
+  } else if (_doc.date_of_completion < _frm.registration_date) {
     return {
       status: false,
-      message: "Date of completion should not be less than date of visit"
+      message: "Date of completion should not be less than date of registration"
     }
   } else if (_doc.date_of_completion > frappe.datetime.get_today()) {
-    _doc.date_of_completion = ''
     return {
       status: false,
       message: "Date of completion should not be greater than today date"
     }
-  } else if (_doc.date_of_completion < _doc.date_of_application) {
-    _doc.date_of_completion = ''
+  } else if ((_doc.date_of_completion <  _doc.date_of_application ) || (_doc.date_of_completion < _scheme?.date_of_application) ) {
     return {
       status: false,
       message: "Date of completion should not be less than Date of Application"
@@ -273,7 +261,7 @@ const createDialog = (_doc, config, validator = null) => {
     primary_action_label: 'Save',
     primary_action(obj) {
       if (validator) {
-        let valid = validator(obj)
+        let valid = validator(obj , _doc)
         if (!valid.status) {
           return frappe.throw(valid.message);
         }
