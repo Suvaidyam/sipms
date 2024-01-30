@@ -1047,7 +1047,7 @@ frappe.ui.form.on('Follow Up Child', {
           },
           'Close',
           true // Sets dialog as minimizable
-        )
+        ) 
 
       }
       //  show popup and continue and close if more than two times
