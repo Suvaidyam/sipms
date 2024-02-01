@@ -75,14 +75,13 @@
    "fieldname": "remarks",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Remark",
-   "set_only_once": 1
+   "label": "Remark"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-25 13:48:19.568556",
+ "modified": "2024-02-01 10:20:19.477704",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Follow Up Child",
