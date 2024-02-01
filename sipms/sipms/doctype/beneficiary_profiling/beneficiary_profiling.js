@@ -345,6 +345,18 @@ function hide_advance_search(frm, list) {
     frm.set_df_property(item, 'only_select', true);
   }
 };
+// const get_helpdesk= async(){
+//   let list = await callAPI({
+//     method: 'frappe.desk.search.search_link',
+//     freeze: true,
+//     args: {
+//       doctype: doctype,
+//       page_length: 1000,
+//       txt: ''
+//     },
+//     freeze_message: __("Getting list ..."),
+//   })
+// }
 const get_ordered_list = async (doctype, optionsToSort) => {
   let list = await callAPI({
     method: 'frappe.desk.search.search_link',
@@ -959,19 +971,26 @@ frappe.ui.form.on('Follow Up Child', {
       }
     }
   },
-  follow_up_table_add(frm, cdt, cdn) {
+  async follow_up_table_add (frm, cdt, cdn)  {
     let row = frappe.get_doc(cdt, cdn);
-    row.follow = frappe.session.user_fullname
+    if (frappe.user_roles.includes("Help-desk member")) {
+      let help_desk = await get_ordered_list("Help Desk", false)
+      // console.log("help_desk", help_desk)
+      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow", "options", help_desk);
+    }else{
+      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow", "options", [`${frappe.session.user_fullname}`]);
+      row.follow = frappe.session.user_fullname
+    }
+    // call api of list of helpdesk with checking roles
     let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
     row.follow_up_date = frappe.datetime.get_today()
     frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },
-  name_of_the_scheme: function (frm, cdt, cdn) {
+  name_of_the_scheme: function  (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     let supports = frm.doc.scheme_table.filter(f => f.scheme == row.name_of_the_scheme);
     row.date_of_application = supports[0].date_of_application
     // console.log(supports, "supports")
-    // console.log(row, "row")
     row.parent_ref = supports[0].name
     for (support_items of frm.doc.scheme_table) {
       if (row.name_of_the_scheme == support_items.name_of_the_scheme) {
