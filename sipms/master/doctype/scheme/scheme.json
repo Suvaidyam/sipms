@@ -25,6 +25,7 @@
   "rules_tab",
   "rules",
   "note",
+  "query",
   "beneficiaries_tab",
   "table"
  ],
@@ -138,11 +139,17 @@
    "fieldtype": "HTML",
    "label": "Note",
    "options": "<div align=\"right\">\nNote: Leaving empty group will be consider as two different groups.\n</div>"
+  },
+  {
+   "fieldname": "query",
+   "fieldtype": "HTML",
+   "label": "Query",
+   "options": "<div id=\"query\">\n</div>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-23 23:42:15.063631",
+ "modified": "2024-02-02 02:34:42.904350",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",

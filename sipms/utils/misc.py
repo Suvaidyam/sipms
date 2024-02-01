@@ -1,6 +1,36 @@
 import frappe
+
 class Misc:
-    def scheme_rules_to_condition(scheme):
+    @staticmethod
+    def rules_to_filters(rules, obj=False):
+        filters = []
+        if rules is not None and len(rules):
+            groups = {}
+            for rule in rules:
+                if groups.get(rule.group) is None:
+                    groups[rule.group] = [
+                        [rule.rule_field, rule.operator, f"{rule.data}"]
+                    ]
+                else:
+                    groups[rule.group].append([rule.rule_field, rule.operator, f"{rule.data}"])
+            if obj:
+                return groups
+            for key in groups.keys():
+                filters.append(groups[key])
+        return filters
+
+    @staticmethod
+    def scheme_rules_to_condition(scheme, queries_groups=False):
+        """
+        Converts scheme rules into SQL conditions.
+
+        Args:
+            scheme (str): Name of the scheme.
+            queries_groups (bool, optional): If True, returns conditions grouped by queries. Defaults to False.
+
+        Returns:
+            str or list: SQL conditions or grouped conditions based on the queries_groups flag.
+        """
         sql = f"""
             select
                 _tsc.rule_field,
@@ -21,13 +51,14 @@ class Misc:
             gIndex = 0
             for rule in rules:
                 if not rule.group:
-                    gIndex = (gIndex+1)
+                    gIndex += 1
                     groups[f"G{gIndex}"] = [f"{rule.rule_field} {rule.operator} '{rule.data}'"]
                 elif groups.get(rule.group) is None:
                     groups[rule.group] = [f"{rule.rule_field} {rule.operator} '{rule.data}'"]
                 else:
                     groups[rule.group].append(f"{rule.rule_field} {rule.operator} '{rule.data}'")
             for key in groups.keys():
-                conditions.append(f"({' OR '.join(groups[key])})")
-
-        return f"{' AND '.join(conditions)}"
+                conditions.append(f"({' AND '.join(groups[key])})")
+        if queries_groups:
+            return conditions
+        return f"{' OR '.join(conditions)}"
