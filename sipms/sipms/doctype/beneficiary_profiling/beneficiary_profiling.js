@@ -182,7 +182,7 @@ const dialogsConfig = {
     ]
   }
 }
-const doc_submitted_validate = (_doc , _scheme) => {
+const doc_submitted_validate = (_doc, _scheme) => {
   if (_doc.date_of_application < _frm.date_of_visit) {
     return {
       status: false,
@@ -200,7 +200,7 @@ const doc_submitted_validate = (_doc , _scheme) => {
     }
   }
 }
-const doc_rejected_validate = (_doc , _scheme) => {
+const doc_rejected_validate = (_doc, _scheme) => {
   if (_doc.date_of_rejection < _frm.date_of_visit) {
     return {
       status: false,
@@ -223,8 +223,8 @@ const doc_rejected_validate = (_doc , _scheme) => {
     }
   }
 }
-const date_of_complete_validate = (_doc , _scheme) => {
-  console.log(_doc , _scheme)
+const date_of_complete_validate = (_doc, _scheme) => {
+  console.log(_doc, _scheme)
   if (_doc.date_of_application < _frm.date_of_visit) {
     return {
       status: false,
@@ -241,7 +241,7 @@ const date_of_complete_validate = (_doc , _scheme) => {
       status: false,
       message: __("Date of completion should not be greater than today date")
     }
-  } else if ((_doc.date_of_completion <  _doc.date_of_application ) || (_doc.date_of_completion < _scheme?.date_of_application) ) {
+  } else if ((_doc.date_of_completion < _doc.date_of_application) || (_doc.date_of_completion < _scheme?.date_of_application)) {
     return {
       status: false,
       message: __("Date of completion should not be less than Date of Application")
@@ -261,7 +261,7 @@ const createDialog = (_doc, config, validator = null) => {
     primary_action_label: 'Save',
     primary_action(obj) {
       if (validator) {
-        let valid = validator(obj , _doc)
+        let valid = validator(obj, _doc)
         if (!valid.status) {
           return frappe.throw(valid.message);
         }
@@ -646,8 +646,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
           dropdown: false,
           width: 200,
           format: (value, columns, ops, row) => {
-            let rules = row?.rules?.map(e => `[${e.rule_field} ${e.operator} ${e.data}] ${e.check ? '&#x2714;' : '&#10060;'}`).join("\n").toString()
-            return `<p title='${rules}'>${row?.matches?.bold()}</p>`
+            let rules = row?.rules?.map(e => `${e.message} ${e.check ? '&#x2714;' : '&#10060;'}`).join("\n").toString()
+            return `<p title="${rules}">${row?.matches?.bold()}</p>`
           }
         }
       ],
@@ -971,13 +971,13 @@ frappe.ui.form.on('Follow Up Child', {
       }
     }
   },
-  async follow_up_table_add (frm, cdt, cdn)  {
+  async follow_up_table_add(frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     if (frappe.user_roles.includes("Help-desk member")) {
       let help_desk = await get_ordered_list("Help Desk", false)
       // console.log("help_desk", help_desk)
       frm.fields_dict.follow_up_table.grid.update_docfield_property("follow", "options", help_desk);
-    }else{
+    } else {
       frm.fields_dict.follow_up_table.grid.update_docfield_property("follow", "options", [`${frappe.session.user_fullname}`]);
       row.follow = frappe.session.user_fullname
     }
@@ -986,7 +986,7 @@ frappe.ui.form.on('Follow Up Child', {
     row.follow_up_date = frappe.datetime.get_today()
     frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },
-  name_of_the_scheme: function  (frm, cdt, cdn) {
+  name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     let supports = frm.doc.scheme_table.filter(f => f.scheme == row.name_of_the_scheme);
     row.date_of_application = supports[0].date_of_application
@@ -1065,7 +1065,7 @@ frappe.ui.form.on('Follow Up Child', {
           },
           'Close',
           true // Sets dialog as minimizable
-        ) 
+        )
 
       }
       //  show popup and continue and close if more than two times

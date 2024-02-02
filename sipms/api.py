@@ -1,20 +1,20 @@
 import frappe
 from sipms.services.beneficiary_scheme import BeneficaryScheme
 from sipms.utils.misc import Misc
+import json
 @frappe.whitelist(allow_guest=True)
 def execute(name=None):
     return BeneficaryScheme.run(name)
 
 @frappe.whitelist(allow_guest=True)
-def eligible_beneficiaries(scheme=None):
+def eligible_beneficiaries(scheme=None, columns=[]):
+    columns = json.loads(columns)
     if scheme is None:
         return frappe.throw('Scheme not found.')
     cond_str= Misc.scheme_rules_to_condition(scheme)
     get_elegible_ben = f"""
         SELECT
-            name,
-            name_of_the_beneficiary,
-            contact_number
+            {','.join(columns)}
         FROM
             `tabBeneficiary Profiling`
         {('WHERE'+ cond_str) if cond_str else "" }
