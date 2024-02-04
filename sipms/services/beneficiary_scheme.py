@@ -6,9 +6,9 @@ class BeneficaryScheme:
     for scheme in schemes:
         doc = frappe.get_doc("Scheme", scheme.name)
         rule_list = []
+        matching_counter = 0
         if doc.rules and len(doc.rules):
             filters = Misc.rules_to_filters(doc.rules,True)
-            matching_counter = 0
             for group in filters:
                 sql_query = ' AND '.join([f"{condition[0]} {condition[1]} {condition[2]}" for condition in filters[group]])
                 filter = filters[group]
