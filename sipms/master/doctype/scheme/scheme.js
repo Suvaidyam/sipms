@@ -30,15 +30,17 @@ function generateQueryString(rows) {
     console.log("generateQueryString[called]", rows);
     let obj = {};
     for (let row of rows) {
-        let val = ['IN', 'NOT IN'].includes(row.operator) ? row.data?.split(',').map(e => `'${e}'`).join(',') : row.data;
-        if (obj[row.group]) {
-            obj[row.group].push(`${row.rule_field} ${row.operator} (${val})`)
-        } else {
-            obj[row.group] = [`${row.rule_field} ${row.operator} (${val})`]
+        if (row.rule_field && row.operator && row.data) {
+            let val = ['IN', 'NOT IN'].includes(row.operator) ? row.data?.split(',').map(e => `'${e}'`).join(',') : row.data;
+            if (obj[row.group]) {
+                obj[row.group].push(`${row.rule_field} ${row.operator} ${val}`)
+            } else {
+                obj[row.group] = [`${row.rule_field} ${row.operator} ${val}`]
+            }
         }
     }
     let cond = Object.keys(obj).map(e => `(${obj[e].join(' AND ')})`).join(' OR ')
-    document.getElementById('query').innerText = 'select * from `tblname`' + cond ? (' where ' + cond) : ''
+    document.getElementById('query').innerText = cond ? cond : 'Rules are not set for this scheme.'
 }
 var field_list = []
 function get_field_list(child_table_field, frm) {
@@ -220,7 +222,6 @@ const form_events = {
 }
 frappe.ui.form.on('Rule Engine Child', {
     refresh(frm) {
-        console.log("refresh");
         generateQueryString(frm.doc[child_table_field])
     },
     form_render(frm) {
@@ -248,21 +249,25 @@ frappe.ui.form.on('Rule Engine Child', {
         // cur_row.toggle_view();
     },
     data: (frm) => {
+        frm.fields_dict[child_table_field].grid.refresh();
         generateQueryString(frm.doc[child_table_field])
     },
     date: function (frm, cdt, cdn) {
         let row = frappe.get_doc(cdt, cdn);
         row.data = row.date
         frm.fields_dict[child_table_field].grid.refresh();
+        generateQueryString(frm.doc[child_table_field])
     },
     select: function (frm, cdt, cdn) {
         let row = frappe.get_doc(cdt, cdn);
         row.data = row.select
         frm.fields_dict[child_table_field].grid.refresh();
+        generateQueryString(frm.doc[child_table_field])
     },
     value: function (frm, cdt, cdn) {
         let row = frappe.get_doc(cdt, cdn);
         row.data = row.value
         frm.fields_dict[child_table_field].grid.refresh();
+        generateQueryString(frm.doc[child_table_field])
     }
 })

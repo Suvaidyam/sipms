@@ -26,7 +26,6 @@
   "rules_tab",
   "rules",
   "note",
-  "query",
   "beneficiaries_tab",
   "table"
  ],
@@ -139,7 +138,7 @@
    "fieldname": "note",
    "fieldtype": "HTML",
    "label": "Note",
-   "options": "<div align=\"right\">\nNote: Leaving empty group will be consider as two different groups.\n</div>"
+   "options": "<style>\n               .query {\n            background-color: #f7f7f7;\n            padding: 10px;\n            border: 1px solid #ddd;\n            border-radius: 5px;\n            margin-bottom: 20px;\n            white-space: pre-wrap;\nfont-family: 'Courier New', Courier, monospace;\n        }\n    </style>\n<h4>Rules:</h4>\n<div id=\"query\" class=\"query\"></div>\n<div style=\"display: flex; width: 100%;\">\n    <div style=\"flex: 1;\">\n        <div id=\"note\" style=\"text-align: right;\">\n            Note: Leaving empty group will be consider as two different groups.\n        </div>\n    </div>\n</div>\n"
   },
   {
    "fieldname": "how_many_times_can_this_scheme_be_availed",
@@ -151,7 +150,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-02 10:48:03.698982",
+ "modified": "2024-02-05 00:40:24.434997",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
