@@ -27,7 +27,15 @@
   "rules",
   "note",
   "beneficiaries_tab",
-  "table"
+  "select_state",
+  "primary_member",
+  "column_break_omlf",
+  "select_district",
+  "column_break_pmxg",
+  "block",
+  "section_break_fwjc",
+  "table",
+  "pagination"
  ],
  "fields": [
   {
@@ -138,7 +146,7 @@
    "fieldname": "note",
    "fieldtype": "HTML",
    "label": "Note",
-   "options": "<style>\n               .query {\n            background-color: #f7f7f7;\n            padding: 10px;\n            border: 1px solid #ddd;\n            border-radius: 5px;\n            margin-bottom: 20px;\n            white-space: pre-wrap;\nfont-family: 'Courier New', Courier, monospace;\n        }\n    </style>\n<h4>Rules:</h4>\n<div id=\"query\" class=\"query\"></div>\n<div style=\"display: flex; width: 100%;\">\n    <div style=\"flex: 1;\">\n        <div id=\"note\" style=\"text-align: right;\">\n            Note: Leaving empty group will be consider as two different groups.\n        </div>\n    </div>\n</div>\n"
+   "options": "\n<style>\nh4 {\n            color: #333;\n            margin-bottom: 10px;\n        }\n        .query {\n            background-color: #f7f7f7;\n            padding: 10px;\n            border: 1px solid #ddd;\n            border-radius: 5px;\n            margin-bottom: 20px;\n            white-space: pre-wrap;\n            font-family: 'Courier New', Courier, monospace;\n        }\n        .note {\n            text-align: right;\n            font-style: italic;\n            margin-top: 10px;\ncolor: red;\n        }\n    </style>\n<div>\n<h4>Rules:</h4>\n    <div id=\"query\" class=\"query\"></div>\n    <div style=\"display: flex;\">\n        <div style=\"flex: 1;\">\n            <div id=\"note\" class=\"note\">\n                Please note that if you leave a group empty, it will be treated as a single group.\n            </div>\n        </div>\n    </div>\n</div>"
   },
   {
    "fieldname": "how_many_times_can_this_scheme_be_availed",
@@ -146,11 +154,55 @@
    "label": "How many times can this scheme be availed?",
    "options": "\nOnce\nInfinite times",
    "reqd": 1
+  },
+  {
+   "fetch_from": ".district_code",
+   "fieldname": "block",
+   "fieldtype": "Link",
+   "label": "Select Block",
+   "options": "Block"
+  },
+  {
+   "fieldname": "column_break_pmxg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "primary_member",
+   "fieldtype": "Link",
+   "label": "Primary Member",
+   "options": "Beneficiary Profiling"
+  },
+  {
+   "fieldname": "section_break_fwjc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "select_state",
+   "fieldtype": "Link",
+   "label": "Select State",
+   "options": "State"
+  },
+  {
+   "fieldname": "column_break_omlf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": ".state_code",
+   "fieldname": "select_district",
+   "fieldtype": "Link",
+   "label": "Select District",
+   "options": "District"
+  },
+  {
+   "fieldname": "pagination",
+   "fieldtype": "HTML",
+   "label": "Pagination",
+   "options": "<div id=\"pagination\">\n<div id=\"total\"></div>\n</div>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-05 00:40:24.434997",
+ "modified": "2024-02-05 02:27:58.273995",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",

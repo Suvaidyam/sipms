@@ -11,7 +11,26 @@ def eligible_beneficiaries(scheme=None, columns=[]):
     columns = json.loads(columns)
     if scheme is None:
         return frappe.throw('Scheme not found.')
+    # doc = frappe.get_doc("Scheme", scheme)
+    # filters = Misc.rules_to_filters(doc.rules,True)
+    # print("filters",filters)
+    # beneficiary_list = frappe.get_list("Beneficiary Profiling", fields=columns, filters={},page_length=100)
+    # return beneficiary_list
+
     cond_str= Misc.scheme_rules_to_condition(scheme)
+    ben_sql = f"""
+        SELECT
+            distinct name as name
+        FROM
+            `tabBeneficiary Profiling`
+        {('WHERE'+ cond_str) if cond_str else "" }
+    """
+    bens = frappe.db.sql(ben_sql, as_dict=True)
+    beneficiary_list = frappe.get_list("Beneficiary Profiling", fields=columns, filters={'name':('in', [ben.get('name') for ben in bens])}, order_by='select_primary_member',page_length=100)
+    return {'data':beneficiary_list, 'total':len(bens)}
+
+
+
     get_elegible_ben = f"""
         SELECT
             {','.join(columns)}

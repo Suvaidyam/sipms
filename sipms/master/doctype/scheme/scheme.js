@@ -106,7 +106,7 @@ const get_ben_list = async (frm, columns) => {
 }
 frappe.ui.form.on("Scheme", {
     async refresh(frm) {
-        let ben_list = []
+        let response = { total: 0, data: [] };
         get_field_list('rules', frm)
         let tableConf = {
             columns: [
@@ -121,14 +121,15 @@ frappe.ui.form.on("Scheme", {
                     width: 200
                 },
                 {
-                    name: "Date of visit",
-                    id: 'date_of_visit',
+                    name: "Primary member",
+                    id: 'name_of_parents',
+                    field: 'select_primary_member.name_of_parents',
                     editable: false,
                     resizable: false,
                     sortable: false,
                     focusable: false,
                     dropdown: false,
-                    width: 150,
+                    width: 200,
                 },
                 {
                     name: "Contact number",
@@ -141,55 +142,41 @@ frappe.ui.form.on("Scheme", {
                     width: 150,
                 },
                 {
-                    name: "Select primary member",
-                    id: 'select_primary_member',
+                    name: "Block",
+                    id: 'block_name',
+                    field: 'ward.block_name',
                     editable: false,
                     resizable: false,
                     sortable: false,
                     focusable: false,
                     dropdown: false,
-                    width: 150,
-                },
-                {
-                    name: "Overall status",
-                    id: 'overall_status',
-                    editable: false,
-                    resizable: false,
-                    sortable: false,
-                    focusable: false,
-                    dropdown: false,
-                    width: 120,
-                },
-                {
-                    name: "Numeric overall status",
-                    id: 'numeric_overall_status',
-                    editable: false,
-                    resizable: false,
-                    sortable: false,
-                    focusable: false,
-                    dropdown: false,
-                    width: 180,
+                    width: 200,
                 }
 
             ],
             rows: []
         };
         if (!frm?.doc?.__islocal) {
-            let columns = tableConf.columns.map(e => e.id)
-            ben_list = await get_ben_list(frm, ['name', ...columns])
+            let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
+            response = await get_ben_list(frm, ['name', ...columns])
         }
 
-        for (let scheme of ben_list) {
+        for (let ben of response.data) {
             tableConf.rows.push({
-                ...scheme,
-                name_of_the_beneficiary: `<a href="/app/beneficiary-profiling/${scheme.name}">${scheme.name_of_the_beneficiary}</a>`
+                ...ben,
+                name_of_the_beneficiary: `<a href="/app/beneficiary-profiling/${ben.name}">${ben.name_of_the_beneficiary}</a>`
             })
         }
         const container = document.getElementById('eligible_beneficiaries');
-        const datatable = new DataTable(container, { columns: tableConf.columns });
+        const datatable = new DataTable(container, {
+            layout: 'fluid',
+            columns: tableConf.columns
+        });
         datatable.style.setStyle(`.dt-scrollable`, { height: '800px!important', overflow: 'scroll!important' });
         datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
         datatable.refresh(tableConf.rows);
+
+        document.getElementById('total') ? document.getElementById('total').innerText = "Total: " + response.total : ''
         frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
         if (frm.doc.department_urlwebsite) {
             frm.add_web_link(frm?.doc?.department_urlwebsite)

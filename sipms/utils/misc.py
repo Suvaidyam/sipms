@@ -44,7 +44,7 @@ class Misc:
             where
                 _ts.name_of_the_scheme = %s
         """
-        rules = frappe.db.sql(sql, (scheme,), as_dict=True)
+        rules = frappe.db.sql(sql, (scheme), as_dict=True)
         conditions = []
         if rules is not None and len(rules):
             groups = {}
