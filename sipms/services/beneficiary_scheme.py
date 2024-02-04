@@ -22,6 +22,7 @@ class BeneficaryScheme:
                     'check':check
                 })
         scheme['rules'] = rule_list
+        
         scheme['total_rules'] = len(rule_list)
         scheme['matching_rules'] = matching_counter
         scheme['matching_rules_per'] = 0

@@ -14,6 +14,7 @@
   "state",
   "name_of_the_scheme",
   "milestone",
+  "how_many_times_can_this_scheme_be_availed",
   "column_break_pwlq",
   "name_of_department",
   "department_urlwebsite",
@@ -141,15 +142,16 @@
    "options": "<div align=\"right\">\nNote: Leaving empty group will be consider as two different groups.\n</div>"
   },
   {
-   "fieldname": "query",
-   "fieldtype": "HTML",
-   "label": "Query",
-   "options": "<div id=\"query\">\n</div>"
+   "fieldname": "how_many_times_can_this_scheme_be_availed",
+   "fieldtype": "Select",
+   "label": "How many times can this scheme be availed?",
+   "options": "\nOnce\nInfinite times",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-02 02:34:42.904350",
+ "modified": "2024-02-02 10:48:03.698982",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
