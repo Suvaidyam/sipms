@@ -290,7 +290,6 @@ function generateDOBFromAge(ageInYears = 0, ageInMonths = 0) {
   let generatedDOB = new Date(birthYear, birthMonth, startOfMonth.getDate());
   return generatedDOB;
 }
-
 function extend_options_length(frm, fields) {
   fields?.forEach((field) => {
     frm.set_query(field, () => {
@@ -722,8 +721,15 @@ frappe.ui.form.on("Beneficiary Profiling", {
   date_of_visit: function (frm) {
     if (new Date(frm.doc.date_of_visit) > new Date(frappe.datetime.get_today())) {
       frm.doc.date_of_visit = ''
+      frm.set_value("date_of_visit",'')
       refresh_field('date_of_visit')
       frappe.throw(__("Date of visit can't be greater than today's date"))
+    }
+    if(frm.doc.date_of_visit  && frm.doc.date_of_birth){
+      if(frm.doc.date_of_visit < frm.doc.date_of_birth){
+        frm.set_value('date_of_visit', '')
+        return frappe.throw("Date of Visit shall not be before the <strong>Date of Birth</strong>")
+      }
     }
   },
 
@@ -774,6 +780,14 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth;
+    if(frm.doc.date_of_visit  && frm.doc.date_of_birth){
+      if(frm.doc.date_of_visit  && frm.doc.date_of_birth){
+        if(frm.doc.date_of_visit < frm.doc.date_of_birth){
+          frm.set_value("date_of_birth",'')
+          return frappe.throw("Date of Visit shall not be before the <strong>Date of Birth</strong>")
+        }
+      }
+    }
     if (new Date(dob) > new Date(frappe.datetime.get_today())) {
       frm.doc.date_of_birth = ''
       refresh_field('date_of_birth')
