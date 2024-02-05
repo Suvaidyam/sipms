@@ -4,7 +4,7 @@ from sipms.utils.misc import Misc
 import json
 @frappe.whitelist(allow_guest=True)
 def execute(name=None):
-    return BeneficaryScheme.run(name)
+    return BeneficaryScheme.get_schemes(name)
 
 @frappe.whitelist(allow_guest=True)
 def eligible_beneficiaries(scheme=None, columns=[]):
