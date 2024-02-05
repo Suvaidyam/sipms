@@ -600,6 +600,19 @@ frappe.ui.form.on("Beneficiary Profiling", {
     if (frm.doc.lead && frm.doc.__islocal) {
       get_lead_date(frm.doc.lead, frm)
     }
+
+    //  APPLY Filter in ID DOCUMENT
+    var child_table = frm.fields_dict['id_table_list'].grid;
+    console.log("child_table", child_table.get_field('which_of_the_following_id_documents_do_you_have'))
+    child_table.get_field('which_of_the_following_id_documents_do_you_have').get_query = function() {
+        return {
+            filters: [
+                ['ID Document', 'document', 'NOT IN', cur_frm.doc.id_table_list.map(function(item) {
+                  return item.which_of_the_following_id_documents_do_you_have;
+              })]
+            ]
+        };
+    };
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 
@@ -889,6 +902,36 @@ frappe.ui.form.on("Beneficiary Profiling", {
     refresh_field("block")
   }
 });
+// ********************* ID documents CHILD Table***********************
+frappe.ui.form.on('ID Document Child', {
+  form_render: async function (frm, cdt, cdn) {
+  },
+  id_table_list_add: async function (frm, cdt, cdn){
+    console.log("hello everyone")
+    // var child = locals[cdt][cdn]
+    // grid_row = cur_frm.fields_dict['id_table_list'].grid.grid_rows_by_docname[child.name]
+    
+    // console.log(grid_row , child)
+    // cur_frm.fields_dict['id_table_list'].grid.get_field('which_of_the_following_id_documents_do_you_have').get_query= function () {
+    //   return {
+    //     filters: {
+    //       "document": "Pan Card"
+    //     }
+    //   }
+    // };
+    // grid_row.refresh_field("which_of_the_following_id_documents_do_you_have");
+    var child_table = frm.fields_dict['id_table_list'].grid;
+    console.log("child_table", child_table.get_field('which_of_the_following_id_documents_do_you_have'))
+    child_table.get_field('which_of_the_following_id_documents_do_you_have').get_query = function() {
+        return {
+            filters: [
+                ['ID Document Child', 'document', '=', 'Pan Card']
+            ]
+        };
+    };
+  }
+})
+
 // ********************* Support CHILD Table***********************
 frappe.ui.form.on('Scheme Child', {
   form_render: async function (frm, cdt, cdn) {
