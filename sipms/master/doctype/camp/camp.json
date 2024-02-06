@@ -20,7 +20,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-09 10:39:12.593696",
+ "modified": "2024-02-06 10:45:11.514046",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Camp",
@@ -82,8 +82,7 @@
    "read": 1,
    "report": 1,
    "role": "Help-desk member",
-   "share": 1,
-   "write": 1
+   "share": 1
   }
  ],
  "sort_field": "modified",
