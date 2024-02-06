@@ -61,8 +61,8 @@ class BeneficaryScheme:
                 scheme['matching_rules_per'] = 0
                 if scheme['matching_rules'] > 0:
                     scheme['matching_rules_per'] = ((scheme['matching_rules']/scheme['total_rules'])*100)
-        res_schemes_denominator_sort = sorted(schemes, key=lambda x: x['total_rules'], reverse=True)
-        res_schemes = sorted(res_schemes_denominator_sort, key=lambda x: x['matching_rules_per'], reverse=True)
+        res_schemes_denominator_sort = sorted(schemes, key=lambda x: x.get('total_rules', 0), reverse=True)
+        res_schemes = sorted(res_schemes_denominator_sort, key=lambda x: x.get('matching_rules_per', 0), reverse=True)
         return res_schemes
             # rule_list = []
 
