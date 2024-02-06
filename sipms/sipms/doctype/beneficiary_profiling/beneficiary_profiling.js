@@ -1091,6 +1091,11 @@ frappe.ui.form.on('Follow Up Child', {
   },
   follow_up_with: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
+    if(row.follow_up_with == "Government department" || row.follow_up_with =="Others"){
+      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_mode", "options", ["Phone call", "In-person visit"]);
+    }else{
+      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_mode", "options", ["Phone call", "Home visit","Centre visit"]);
+    }
     let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
     let latestSupport = supports.length ? supports[supports.length - 1] : null;
     if (row.follow_up_with != "Beneficiary" && latestSupport.application_submitted == "Yes") {
