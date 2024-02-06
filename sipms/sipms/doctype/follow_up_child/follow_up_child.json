@@ -63,7 +63,7 @@
    "set_only_once": 1
   },
   {
-   "depends_on": "eval:doc.follow_up_with == \"Beneficiary\"",
+   "depends_on": "eval:doc.follow_up_with != \"Government website\"",
    "fieldname": "follow_up_mode",
    "fieldtype": "Select",
    "label": "Follow up mode",
@@ -81,7 +81,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-02-01 11:55:26.950269",
+ "modified": "2024-02-06 15:59:30.874026",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Follow Up Child",
