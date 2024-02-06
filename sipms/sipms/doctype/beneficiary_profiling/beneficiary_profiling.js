@@ -603,14 +603,14 @@ frappe.ui.form.on("Beneficiary Profiling", {
     //  APPLY Filter in ID DOCUMENT
     var child_table = frm.fields_dict['id_table_list'].grid;
     console.log("child_table", child_table.get_field('which_of_the_following_id_documents_do_you_have'))
-    child_table.get_field('which_of_the_following_id_documents_do_you_have').get_query = function() {
-        return {
-            filters: [
-                ['ID Document', 'document', 'NOT IN', cur_frm.doc.id_table_list.map(function(item) {
-                  return item.which_of_the_following_id_documents_do_you_have;
-              })]
-            ]
-        };
+    child_table.get_field('which_of_the_following_id_documents_do_you_have').get_query = function () {
+      return {
+        filters: [
+          ['ID Document', 'document', 'NOT IN', cur_frm.doc.id_table_list.map(function (item) {
+            return item.which_of_the_following_id_documents_do_you_have;
+          })]
+        ]
+      };
     };
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
@@ -658,7 +658,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           dropdown: false,
           width: 200,
           format: (value, columns, ops, row) => {
-            let rules = row?.rules?.map(e => `${e.message} ${e.check ? '&#x2714;' : '&#10060;'}`).join("\n").toString()
+            let rules = row?.rules?.map(e => `${e.message} ${e.matched ? '&#x2714;' : '&#10060;'}`).join("\n").toString()
             return `<p title="${rules}">${row?.matches?.bold()}</p>`
           }
         }
@@ -721,12 +721,12 @@ frappe.ui.form.on("Beneficiary Profiling", {
   date_of_visit: function (frm) {
     if (new Date(frm.doc.date_of_visit) > new Date(frappe.datetime.get_today())) {
       frm.doc.date_of_visit = ''
-      frm.set_value("date_of_visit",'')
+      frm.set_value("date_of_visit", '')
       refresh_field('date_of_visit')
       frappe.throw(__("Date of visit can't be greater than today's date"))
     }
-    if(frm.doc.date_of_visit  && frm.doc.date_of_birth){
-      if(frm.doc.date_of_visit < frm.doc.date_of_birth){
+    if (frm.doc.date_of_visit && frm.doc.date_of_birth) {
+      if (frm.doc.date_of_visit < frm.doc.date_of_birth) {
         frm.set_value('date_of_visit', '')
         return frappe.throw("Date of Visit shall not be before the <strong>Date of Birth</strong>")
       }
@@ -780,10 +780,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   date_of_birth: function (frm) {
     let dob = frm.doc.date_of_birth;
-    if(frm.doc.date_of_visit  && frm.doc.date_of_birth){
-      if(frm.doc.date_of_visit  && frm.doc.date_of_birth){
-        if(frm.doc.date_of_visit < frm.doc.date_of_birth){
-          frm.set_value("date_of_birth",'')
+    if (frm.doc.date_of_visit && frm.doc.date_of_birth) {
+      if (frm.doc.date_of_visit && frm.doc.date_of_birth) {
+        if (frm.doc.date_of_visit < frm.doc.date_of_birth) {
+          frm.set_value("date_of_birth", '')
           return frappe.throw("Date of Visit shall not be before the <strong>Date of Birth</strong>")
         }
       }
@@ -920,11 +920,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
 frappe.ui.form.on('ID Document Child', {
   form_render: async function (frm, cdt, cdn) {
   },
-  id_table_list_add: async function (frm, cdt, cdn){
+  id_table_list_add: async function (frm, cdt, cdn) {
     console.log("hello everyone")
     // var child = locals[cdt][cdn]
     // grid_row = cur_frm.fields_dict['id_table_list'].grid.grid_rows_by_docname[child.name]
-    
+
     // console.log(grid_row , child)
     // cur_frm.fields_dict['id_table_list'].grid.get_field('which_of_the_following_id_documents_do_you_have').get_query= function () {
     //   return {
@@ -936,12 +936,12 @@ frappe.ui.form.on('ID Document Child', {
     // grid_row.refresh_field("which_of_the_following_id_documents_do_you_have");
     var child_table = frm.fields_dict['id_table_list'].grid;
     console.log("child_table", child_table.get_field('which_of_the_following_id_documents_do_you_have'))
-    child_table.get_field('which_of_the_following_id_documents_do_you_have').get_query = function() {
-        return {
-            filters: [
-                ['ID Document Child', 'document', '=', 'Pan Card']
-            ]
-        };
+    child_table.get_field('which_of_the_following_id_documents_do_you_have').get_query = function () {
+      return {
+        filters: [
+          ['ID Document Child', 'document', '=', 'Pan Card']
+        ]
+      };
     };
   }
 })
