@@ -36,6 +36,6 @@ if (!frappe.user_roles.includes("MIS executive") || frappe.user_roles.includes("
 	}
 	)
 }
-frappe.query_reports["House Type Wise Beneficiaries"] = {
+frappe.query_reports["House type-wise beneficiaries"] = {
 	filters: filters
 };
