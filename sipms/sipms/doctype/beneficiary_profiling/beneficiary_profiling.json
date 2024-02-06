@@ -443,6 +443,7 @@
    "options": "<h3>Schemes</h3>\n<div id=\"all_schemes\"></div>"
   },
   {
+   "depends_on": "eval:doc.__unsaved || doc.occupational_category == 'Others'",
    "fetch_from": ".occupational_category",
    "fieldname": "occupational_category",
    "fieldtype": "Link",
@@ -535,7 +536,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-06 09:35:27.817614",
+ "modified": "2024-02-06 09:55:43.031920",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
