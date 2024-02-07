@@ -111,7 +111,8 @@
    "fieldname": "completed_age",
    "fieldtype": "Int",
    "label": "Completed age (Year)",
-   "read_only_depends_on": "eval:!doc.date_of_birth && doc.__unsaved || doc.__islocal",
+   "non_negative": 1,
+   "read_only_depends_on": "eval:doc.date_of_birth",
    "reqd": 1
   },
   {
@@ -535,7 +536,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-07 09:41:24.533345",
+ "modified": "2024-02-07 16:12:53.383638",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

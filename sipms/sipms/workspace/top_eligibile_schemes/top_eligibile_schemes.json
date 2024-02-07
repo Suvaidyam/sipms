@@ -1,6 +1,11 @@
 {
- "charts": [],
- "content": "[{\"id\":\"xUIBu5qTK_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Top eligibile schemes</span>\",\"col\":12}}]",
+ "charts": [
+  {
+   "chart_name": "Top schemes that most beneficiaries of that user are eligible",
+   "label": "Top schemes that most beneficiaries of that user are eligible"
+  }
+ ],
+ "content": "[{\"id\":\"xUIBu5qTK_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Top eligibile schemes</span>\",\"col\":12}},{\"id\":\"Q4PbYIxVee\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Top schemes that most beneficiaries of that user are eligible\",\"col\":12}}]",
  "creation": "2024-02-02 10:42:36.564251",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +17,7 @@
  "is_hidden": 0,
  "label": "Top eligibile schemes",
  "links": [],
- "modified": "2024-02-02 10:42:52.120484",
+ "modified": "2024-02-07 10:50:46.417877",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Top eligibile schemes",
