@@ -425,7 +425,7 @@
    "label": "Single Window",
    "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "options": "Single Window",
-   "set_only_once": 1
+   "read_only_depends_on": "eval:(!frappe.user_roles.includes(\"Admin\"))"
   },
   {
    "fieldname": "help_desk",
@@ -535,7 +535,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-06 10:05:04.586393",
+ "modified": "2024-02-07 08:07:57.339080",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
