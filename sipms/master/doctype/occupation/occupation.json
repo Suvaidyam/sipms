@@ -31,7 +31,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-06 10:13:09.967365",
+ "modified": "2024-02-07 10:09:07.215106",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Occupation",
@@ -52,6 +52,7 @@
   },
   {
    "create": 1,
+   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
