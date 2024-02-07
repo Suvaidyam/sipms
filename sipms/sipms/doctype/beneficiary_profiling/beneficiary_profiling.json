@@ -432,6 +432,7 @@
    "fieldtype": "Link",
    "label": "Name of Help-desk",
    "options": "Help Desk",
+   "read_only_depends_on": "eval:(!frappe.user_roles.includes(\"Admin\"))",
    "reqd": 1,
    "set_only_once": 1
   },
@@ -535,7 +536,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-07 08:07:57.339080",
+ "modified": "2024-02-07 08:15:07.918133",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
