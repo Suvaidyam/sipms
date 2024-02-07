@@ -433,8 +433,7 @@
    "label": "Name of Help-desk",
    "options": "Help Desk",
    "read_only_depends_on": "eval:(!frappe.user_roles.includes(\"Admin\"))",
-   "reqd": 1,
-   "set_only_once": 1
+   "reqd": 1
   },
   {
    "depends_on": "eval:!doc.__islocal",
@@ -536,7 +535,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-07 08:15:07.918133",
+ "modified": "2024-02-07 09:41:24.533345",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
