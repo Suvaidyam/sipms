@@ -11,16 +11,29 @@ var filters = [
 		"fieldtype": "Date",
 		"label": "To Date"
 	},
-
-	
-];
-if (frappe.user_roles.includes("Admin")) {
-	filters.push({
+	{
 		"fieldname": "single_window",
 		"fieldtype": "Link",
 		"label": "Single Window",
 		"options": "Single Window"
+	},
+	{
+		"fieldname": "help_desk",
+		"fieldtype": "Link",
+		"label": "Help Desk",
+		"options": "Help Desk"
 	}
+
+	
+];
+if (frappe.user_roles.includes("Admin")) {
+	filters.push(
+	// 	{
+	// 	"fieldname": "single_window",
+	// 	"fieldtype": "Link",
+	// 	"label": "Single Window",
+	// 	"options": "Single Window"
+	// }
 	// {
 	// 	"fieldname": "district",
 	// 	"fieldtype": "Link",

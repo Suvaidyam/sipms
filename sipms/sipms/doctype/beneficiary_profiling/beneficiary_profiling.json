@@ -36,6 +36,7 @@
   "added_by",
   "column_break_tgpw",
   "are_you_a_person_with_disability_pwd",
+  "type_of_disability",
   "what_is_the_extent_of_your_disability",
   "proof_of_disability",
   "annual_income",
@@ -531,12 +532,21 @@
    "fieldtype": "Data",
    "label": "New occupation category",
    "mandatory_depends_on": "eval:doc.occupational_category == 'Others'"
+  },
+  {
+   "depends_on": "eval:doc.are_you_a_person_with_disability_pwd ==\"Yes\"",
+   "fieldname": "type_of_disability",
+   "fieldtype": "Select",
+   "label": "Type of disability",
+   "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd ==\"Yes\"",
+   "options": "\nBlindness\nLow vision\nLeprosy cured persons\nLocomotor disability\nDwarfism\nIntellectual disability\nMental illness\nCerebral Palsy\nSpecific learning disability\nSpeech and Language disability\nHearing impairment\nMuscular dystrophy\nAcid attack victim\nParkinson's disease\nMultiple Sclerosis\nThalassemia\nHemophilia\nSickle cell disease\nAutism spectrum disorder\nChronic neurological conditions\nMultiple disabilities including deaf and blindness.",
+   "reqd": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-07 16:12:53.383638",
+ "modified": "2024-02-08 13:04:36.904858",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

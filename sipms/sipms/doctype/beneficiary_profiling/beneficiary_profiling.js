@@ -848,6 +848,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   are_you_a_person_with_disability_pwd: function (frm) {
     if (frm.doc.are_you_a_person_with_disability_pwd == "No") {
+      frm.set_value("type_of_disability",'')
       frm.doc.proof_of_disability = '';
       frm.doc.what_is_the_extent_of_your_disability = '';
       frm.refresh_fields('what_is_the_extent_of_your_disability', 'proof_of_disability')
