@@ -539,14 +539,13 @@
    "fieldtype": "Select",
    "label": "Type of disability",
    "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd ==\"Yes\"",
-   "options": "\nBlindness\nLow vision\nLeprosy cured persons\nLocomotor disability\nDwarfism\nIntellectual disability\nMental illness\nCerebral Palsy\nSpecific learning disability\nSpeech and Language disability\nHearing impairment\nMuscular dystrophy\nAcid attack victim\nParkinson's disease\nMultiple Sclerosis\nThalassemia\nHemophilia\nSickle cell disease\nAutism spectrum disorder\nChronic neurological conditions\nMultiple disabilities including deaf and blindness.",
-   "reqd": 1
+   "options": "\nBlindness\nLow vision\nLeprosy cured persons\nLocomotor disability\nDwarfism\nIntellectual disability\nMental illness\nCerebral Palsy\nSpecific learning disability\nSpeech and Language disability\nHearing impairment\nMuscular dystrophy\nAcid attack victim\nParkinson's disease\nMultiple Sclerosis\nThalassemia\nHemophilia\nSickle cell disease\nAutism spectrum disorder\nChronic neurological conditions\nMultiple disabilities including deaf and blindness."
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-08 13:04:36.904858",
+ "modified": "2024-02-08 13:09:42.566073",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
