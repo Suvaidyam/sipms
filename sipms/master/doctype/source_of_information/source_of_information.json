@@ -20,7 +20,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-06 10:16:30.849388",
+ "modified": "2024-02-08 13:49:59.421616",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Source Of Information",
@@ -59,8 +59,7 @@
    "read": 1,
    "report": 1,
    "role": "MIS executive",
-   "share": 1,
-   "write": 1
+   "share": 1
   },
   {
    "create": 1,

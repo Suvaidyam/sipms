@@ -20,7 +20,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-06 10:45:11.514046",
+ "modified": "2024-02-08 13:50:57.634984",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Camp",
@@ -53,15 +53,13 @@
   },
   {
    "create": 1,
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "MIS executive",
-   "share": 1,
-   "write": 1
+   "share": 1
   },
   {
    "create": 1,
