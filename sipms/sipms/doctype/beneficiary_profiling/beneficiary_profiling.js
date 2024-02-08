@@ -826,9 +826,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   completed_age: function (frm) {
     if (frm.doc.date_of_birth !== frappe.datetime.get_today()) {
-      frm.doc.manual_update = true
-      let dob = generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month)
-      frm.set_value("date_of_birth", dob)
+      // let dob = generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month)
+      // frm.set_value("date_of_birth", dob)
     }
     // console.log("dob", dob)
   },
