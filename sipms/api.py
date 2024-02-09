@@ -7,40 +7,51 @@ def execute(name=None):
     return BeneficaryScheme.get_schemes(name)
 
 @frappe.whitelist(allow_guest=True)
-def eligible_beneficiaries(scheme=None, columns=[]):
+def eligible_beneficiaries(scheme=None, columns=[], start=0, page_length=1000):
     columns = json.loads(columns)
     if scheme is None:
         return frappe.throw('Scheme not found.')
-    # doc = frappe.get_doc("Scheme", scheme)
-    # filters = Misc.rules_to_filters(doc.rules,True)
-    # print("filters",filters)
-    # beneficiary_list = frappe.get_list("Beneficiary Profiling", fields=columns, filters={},page_length=100)
-    # return beneficiary_list
 
     cond_str= Misc.scheme_rules_to_condition(scheme)
+    condtion = f"{('WHERE'+ cond_str) if cond_str else '' }"
     ben_sql = f"""
         SELECT
             distinct name as name
         FROM
             `tabBeneficiary Profiling`
-        {('WHERE'+ cond_str) if cond_str else "" }
+        {condtion }
     """
     bens = frappe.db.sql(ben_sql, as_dict=True)
-    beneficiary_list = frappe.get_list("Beneficiary Profiling", fields=columns, filters={'name':('in', [ben.get('name') for ben in bens])}, order_by='select_primary_member',page_length=100)
-    return {'data':beneficiary_list, 'total':len(bens)}
-
-
-
-    get_elegible_ben = f"""
-        SELECT
-            {','.join(columns)}
-        FROM
-            `tabBeneficiary Profiling`
-        {('WHERE'+ cond_str) if cond_str else "" }
-    """
-    all_ben = frappe.db.sql(get_elegible_ben, as_dict=True)
-    return all_ben
-
+    total = len(bens)
+    beneficiary_list = []
+    if total:
+        beneficiary_list = frappe.get_list("Beneficiary Profiling",
+            fields=columns,
+            filters={'name':('in', [ben.get('name') for ben in bens])},
+            order_by='select_primary_member',
+            start=10, page_length=page_length
+        )
+        count_sql = f"""
+            select
+                count(distinct select_primary_member) as family_count,
+                count(distinct select_primary_member) as block_count,
+                count(distinct select_primary_member) as settelment_count
+            from
+                `tabBeneficiary Profiling`
+            {condtion}
+        """
+        count_data = frappe.db.sql(count_sql, as_dict=True)
+        if len(count_data):
+            count_data = count_data[0]
+    return {
+        'data':beneficiary_list,
+        'count':{
+            'total':total,
+            'total_family':count_data.family_count,
+            'block_count':count_data.block_count,
+            'settelment_count':count_data.settelment_count
+        }
+    }
 @frappe.whitelist(allow_guest=True)
 def most_eligible_ben():
     scheam_ben_count =[]

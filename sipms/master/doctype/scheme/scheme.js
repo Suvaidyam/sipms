@@ -106,7 +106,7 @@ const get_ben_list = async (frm, columns) => {
 }
 frappe.ui.form.on("Scheme", {
     async refresh(frm) {
-        let response = { total: 0, data: [] };
+        let response = { count: { total: 0, total_family: 0, }, data: [] };
         get_field_list('rules', frm)
         let tableConf = {
             columns: [
@@ -151,8 +151,18 @@ frappe.ui.form.on("Scheme", {
                     focusable: false,
                     dropdown: false,
                     width: 200,
+                },
+                {
+                    name: "Name of the settlement",
+                    id: 'village_name',
+                    field: 'name_of_the_settlement.village_name',
+                    editable: false,
+                    resizable: false,
+                    sortable: false,
+                    focusable: false,
+                    dropdown: false,
+                    width: 200,
                 }
-
             ],
             rows: []
         };
