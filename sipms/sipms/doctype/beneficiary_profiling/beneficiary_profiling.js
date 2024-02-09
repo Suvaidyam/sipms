@@ -468,7 +468,10 @@ const get_lead_date = async (lead_id, frm) => {
 }
 frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
-  before_save: function (frm) {
+  before_save:async function (frm) {
+    if(frm.doc.completed_age || frm.doc.completed_age_month){      
+      await frm.set_value("date_of_birth", generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month))
+    }
     // fill into hidden fields
     if (frm.doc?.scheme_table && frm.doc?.scheme_table?.length) {
       for (_doc of frm.doc.scheme_table) {
@@ -599,7 +602,12 @@ frappe.ui.form.on("Beneficiary Profiling", {
     if (frm.doc.lead && frm.doc.__islocal) {
       get_lead_date(frm.doc.lead, frm)
     }
-
+    // read only fields
+    if(!frappe.user_roles.includes("Admin")){
+      if(!frm.doc.__islocal){
+        frm.set_df_property('help_desk', 'read_only', 1);
+      }
+    }
     //  APPLY Filter in ID DOCUMENT
     var child_table = frm.fields_dict['id_table_list'].grid;
     console.log("child_table", child_table.get_field('which_of_the_following_id_documents_do_you_have'))

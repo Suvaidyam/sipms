@@ -9,9 +9,9 @@
   "follow_up_date",
   "follow_up_with",
   "follow_up_mode",
+  "follow",
   "follow_up_status",
   "remarks",
-  "follow",
   "parent_ref"
  ],
  "fields": [
@@ -81,7 +81,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-02-06 16:09:56.502963",
+ "modified": "2024-02-09 13:10:53.782195",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Follow Up Child",
