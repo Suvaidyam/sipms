@@ -85,7 +85,6 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Date of visit",
-   "read_only_depends_on": "eval:!frappe.user_roles.includes(\"Administrator\")",
    "reqd": 1
   },
   {
@@ -544,7 +543,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-09 13:20:37.934578",
+ "modified": "2024-02-09 17:52:59.181043",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",

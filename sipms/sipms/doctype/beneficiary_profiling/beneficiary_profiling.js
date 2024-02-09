@@ -606,6 +606,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     if(!frappe.user_roles.includes("Admin")){
       if(!frm.doc.__islocal){
         frm.set_df_property('help_desk', 'read_only', 1);
+        frm.set_df_property('date_of_visit', 'read_only', 1);
       }
     }
     //  APPLY Filter in ID DOCUMENT
