@@ -61,7 +61,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-15 22:01:29.589671",
+ "modified": "2024-02-07 10:07:34.355224",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Village",
@@ -82,6 +82,7 @@
   },
   {
    "create": 1,
+   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,

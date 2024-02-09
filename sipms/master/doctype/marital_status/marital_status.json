@@ -23,7 +23,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-12 10:45:51.028409",
+ "modified": "2024-02-07 17:33:35.748369",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Marital status",
@@ -44,6 +44,7 @@
   },
   {
    "create": 1,
+   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,

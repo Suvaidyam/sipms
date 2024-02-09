@@ -468,7 +468,10 @@ const get_lead_date = async (lead_id, frm) => {
 }
 frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
-  before_save: function (frm) {
+  before_save:async function (frm) {
+    if(frm.doc.completed_age || frm.doc.completed_age_month){      
+      await frm.set_value("date_of_birth", generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month))
+    }
     // fill into hidden fields
     if (frm.doc?.scheme_table && frm.doc?.scheme_table?.length) {
       for (_doc of frm.doc.scheme_table) {
@@ -599,7 +602,13 @@ frappe.ui.form.on("Beneficiary Profiling", {
     if (frm.doc.lead && frm.doc.__islocal) {
       get_lead_date(frm.doc.lead, frm)
     }
-
+    // read only fields
+    if(!frappe.user_roles.includes("Admin")){
+      if(!frm.doc.__islocal){
+        frm.set_df_property('help_desk', 'read_only', 1);
+        frm.set_df_property('date_of_visit', 'read_only', 1);
+      }
+    }
     //  APPLY Filter in ID DOCUMENT
     var child_table = frm.fields_dict['id_table_list'].grid;
     console.log("child_table", child_table.get_field('which_of_the_following_id_documents_do_you_have'))
@@ -618,7 +627,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     // hide delete options for helpdesk and csc member
     apply_filter('select_primary_member', 'name_of_head_of_family', frm, ['!=', frm.doc.name])
 
-    if (frappe.user_roles.includes("Help-desk member") || frappe.user_roles.includes("CSC Member")) {
+    if (frappe.user_roles.includes("Help-desk member") || frappe.user_roles.includes("CSC Member") || frappe.user_roles.includes("MIS executive")) {
       if (!frappe.user_roles.includes("Administrator")) {
         frm.set_df_property('scheme_table', 'cannot_delete_rows', true); // Hide delete button
         frm.set_df_property('scheme_table', 'cannot_delete_all_rows', true);
@@ -667,8 +676,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
     };
     for (let scheme of scheme_list) {
       tableConf.rows.push({
-        name: scheme.name,
-        matches: `<a href="/app/scheme/${scheme.name}">${scheme.matching_rules}/${scheme.total_rules}</a>`,
+        name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
+        matches: `<a href="/app/scheme/${scheme?.name}">${scheme.matching_rules}/${scheme?.total_rules}</a>`,
         rules: scheme.rules
       })
     }
@@ -826,9 +835,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   completed_age: function (frm) {
     if (frm.doc.date_of_birth !== frappe.datetime.get_today()) {
-      frm.doc.manual_update = true
-      let dob = generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month)
-      frm.set_value("date_of_birth", dob)
+      // let dob = generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month)
+      // frm.set_value("date_of_birth", dob)
     }
     // console.log("dob", dob)
   },
@@ -848,6 +856,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   are_you_a_person_with_disability_pwd: function (frm) {
     if (frm.doc.are_you_a_person_with_disability_pwd == "No") {
+      frm.set_value("type_of_disability",'')
       frm.doc.proof_of_disability = '';
       frm.doc.what_is_the_extent_of_your_disability = '';
       frm.refresh_fields('what_is_the_extent_of_your_disability', 'proof_of_disability')
@@ -1091,6 +1100,11 @@ frappe.ui.form.on('Follow Up Child', {
   },
   follow_up_with: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
+    if(row.follow_up_with == "Government department" || row.follow_up_with =="Others"){
+      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_mode", "options", ["Phone call", "In-person visit"]);
+    }else{
+      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_mode", "options", ["Phone call", "Home visit","Centre visit"]);
+    }
     let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
     let latestSupport = supports.length ? supports[supports.length - 1] : null;
     if (row.follow_up_with != "Beneficiary" && latestSupport.application_submitted == "Yes") {
