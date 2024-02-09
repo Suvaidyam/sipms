@@ -20,7 +20,7 @@ def execute(filters=None):
             "width": 200
         }
     ]
-    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True, 'b')
+    condition_str = ReportFilter.set_report_filters(filters, 'date_of_visit', True,)
     if condition_str:
         condition_str = f"{condition_str}"
     else:
