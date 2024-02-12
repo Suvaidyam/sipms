@@ -111,6 +111,16 @@ frappe.ui.form.on("Scheme", {
         let tableConf = {
             columns: [
                 {
+                    name: " ",
+                    id: 'serial_no',
+                    editable: false,
+                    resizable: true,
+                    sortable: false,
+                    focusable: false,
+                    dropdown: true,
+                    width: 70
+                },
+                {
                     name: "Name of the beneficiary",
                     id: 'name_of_the_beneficiary',
                     editable: false,
@@ -170,17 +180,20 @@ frappe.ui.form.on("Scheme", {
             let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
             response = await get_ben_list(frm, ['name', ...columns])
         }
-
+        let sno = 0;
         for (let ben of response.data) {
+            sno++
             tableConf.rows.push({
                 ...ben,
-                name_of_the_beneficiary: `<a href="/app/beneficiary-profiling/${ben.name}">${ben.name_of_the_beneficiary}</a>`
+                name_of_the_beneficiary: `<a href="/app/beneficiary-profiling/${ben.name}">${ben.name_of_the_beneficiary}</a>`,
+                serial_no: sno
             })
         }
         const container = document.getElementById('eligible_beneficiaries');
         const datatable = new DataTable(container, {
             layout: 'fluid',
-            columns: tableConf.columns
+            columns: tableConf.columns,
+            serialNoColumn: false
         });
         datatable.style.setStyle(`.dt-scrollable`, { height: '800px!important', overflow: 'scroll!important' });
         datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
