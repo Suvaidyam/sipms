@@ -151,12 +151,12 @@
    "fieldname": "summary",
    "fieldtype": "HTML",
    "label": "Summary",
-   "options": "<div id=\"total\"></div>"
+   "options": "<div id=\"parent\">\n<div id=\"total\"></div>\n<div id=\"total_family\"></div>\n<div id=\"block_count\"></div>\n<div id=\"settlement_count\"></div>\n</div>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-12 15:13:10.575230",
+ "modified": "2024-02-12 16:27:31.941550",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",

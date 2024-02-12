@@ -35,7 +35,7 @@ def eligible_beneficiaries(scheme=None, columns=[], start=0, page_length=1000):
             select
                 count(distinct select_primary_member) as family_count,
                 count(distinct ward) as block_count,
-                count(distinct name_of_the_settlement) as settelment_count
+                count(distinct name_of_the_settlement) as settlement_count
             from
                 `tabBeneficiary Profiling`
             {condtion}
@@ -49,7 +49,7 @@ def eligible_beneficiaries(scheme=None, columns=[], start=0, page_length=1000):
             'total':total,
             'total_family':count_data.family_count,
             'block_count':count_data.block_count,
-            'settelment_count':count_data.settelment_count
+            'settlement_count':count_data.settlement_count
         }
     }
 @frappe.whitelist(allow_guest=True)
