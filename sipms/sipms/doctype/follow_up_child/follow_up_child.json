@@ -68,7 +68,7 @@
    "fieldtype": "Select",
    "label": "Follow up mode",
    "mandatory_depends_on": "eval:doc.follow_up_with != \"Government website\"",
-   "options": "\nPhone call\nHome visit\nCentre visit",
+   "options": "\nPhone call\nHome visit\nCentre visit\nIn-person visit",
    "set_only_once": 1
   },
   {
@@ -81,7 +81,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-02-09 13:10:53.782195",
+ "modified": "2024-02-12 10:11:23.141860",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Follow Up Child",
