@@ -29,13 +29,13 @@ def eligible_beneficiaries(scheme=None, columns=[], start=0, page_length=1000):
             fields=columns,
             filters={'name':('in', [ben.get('name') for ben in bens])},
             order_by='select_primary_member',
-            start=10, page_length=page_length
+            start=0, page_length=page_length
         )
         count_sql = f"""
             select
                 count(distinct select_primary_member) as family_count,
-                count(distinct select_primary_member) as block_count,
-                count(distinct select_primary_member) as settelment_count
+                count(distinct ward) as block_count,
+                count(distinct name_of_the_settlement) as settelment_count
             from
                 `tabBeneficiary Profiling`
             {condtion}

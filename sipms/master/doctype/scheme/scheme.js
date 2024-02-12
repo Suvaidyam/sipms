@@ -185,8 +185,7 @@ frappe.ui.form.on("Scheme", {
         datatable.style.setStyle(`.dt-scrollable`, { height: '800px!important', overflow: 'scroll!important' });
         datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
         datatable.refresh(tableConf.rows);
-
-        document.getElementById('total') ? document.getElementById('total').innerText = "Total: " + response.total : ''
+        document.getElementById('total') ? document.getElementById('total').innerText = "Total: " + response?.count?.total : ''
         frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
         if (frm.doc.department_urlwebsite) {
             frm.add_web_link(frm?.doc?.department_urlwebsite)
