@@ -69,6 +69,7 @@ const dialogsConfig = {
       }
     ]
   },
+  
   document_completed_frm_support: {
     title: __('Enter details for Support'),
     fields: [
