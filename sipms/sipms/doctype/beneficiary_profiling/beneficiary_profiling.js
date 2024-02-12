@@ -15,6 +15,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 })
 
 let _frm;
+let global_frm;
 // global variable
 const dialogsConfig = {
   document_submitted: {
@@ -183,7 +184,7 @@ const dialogsConfig = {
   }
 }
 const doc_submitted_validate = (_doc, _scheme) => {
-  if (_doc.date_of_application < _frm.date_of_visit) {
+  if (_doc.date_of_application < _frm.doc.date_of_visit) {
     return {
       status: false,
       message: __("Date of application should not be less than date of visit"),
@@ -201,7 +202,7 @@ const doc_submitted_validate = (_doc, _scheme) => {
   }
 }
 const doc_rejected_validate = (_doc, _scheme) => {
-  if (_doc.date_of_rejection < _frm.date_of_visit) {
+  if (_doc.date_of_rejection < _frm.doc.date_of_visit) {
     return {
       status: false,
       message: __("Date of visit should not be less than date of visit")
@@ -225,13 +226,13 @@ const doc_rejected_validate = (_doc, _scheme) => {
 }
 const date_of_complete_validate = (_doc, _scheme) => {
   console.log(_doc, _scheme)
-  if (_doc.date_of_application < _frm.date_of_visit) {
+  if (_doc.date_of_application < _frm.doc.date_of_visit) {
     return {
       status: false,
       message: __("Date of application should not be less than date of visit")
 
     }
-  } else if (_doc.date_of_completion < _frm.date_of_visit) {
+  } else if (_doc.date_of_completion < _frm.doc.date_of_visit) {
     return {
       status: false,
       message: __("Date of completion should not be less than date of visit")
@@ -466,10 +467,29 @@ const get_lead_date = async (lead_id, frm) => {
   });
 
 }
+const apply_filter_on_id_document = async () => {
+  //  APPLY Filter in ID DOCUMENT
+  var child_table = _frm.fields_dict['id_table_list'].grid;
+  if (child_table) {
+    try {
+      child_table.get_field('which_of_the_following_id_documents_do_you_have').get_query = function () {
+        return {
+          filters: [
+            ['ID Document', 'document', 'NOT IN', cur_frm.doc.id_table_list.map(function (item) {
+              return item.which_of_the_following_id_documents_do_you_have;
+            })]
+          ]
+        };
+      };
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
 frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
-  before_save:async function (frm) {
-    if(frm.doc.completed_age || frm.doc.completed_age_month){      
+  before_save: async function (frm) {
+    if (frm.doc.completed_age || frm.doc.completed_age_month) {
       await frm.set_value("date_of_birth", generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month))
     }
     // fill into hidden fields
@@ -598,29 +618,19 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
   },
   async refresh(frm) {
-    _frm = frm.doc
+    _frm = frm
     if (frm.doc.lead && frm.doc.__islocal) {
       get_lead_date(frm.doc.lead, frm)
     }
+    apply_filter_on_id_document()
     // read only fields
-    if(!frappe.user_roles.includes("Admin")){
-      if(!frm.doc.__islocal){
+    if (!frappe.user_roles.includes("Admin")) {
+      if (!frm.doc.__islocal) {
         frm.set_df_property('help_desk', 'read_only', 1);
         frm.set_df_property('date_of_visit', 'read_only', 1);
       }
     }
-    //  APPLY Filter in ID DOCUMENT
-    var child_table = frm.fields_dict['id_table_list'].grid;
-    console.log("child_table", child_table.get_field('which_of_the_following_id_documents_do_you_have'))
-    child_table.get_field('which_of_the_following_id_documents_do_you_have').get_query = function () {
-      return {
-        filters: [
-          ['ID Document', 'document', 'NOT IN', cur_frm.doc.id_table_list.map(function (item) {
-            return item.which_of_the_following_id_documents_do_you_have;
-          })]
-        ]
-      };
-    };
+
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 
@@ -858,7 +868,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   are_you_a_person_with_disability_pwd: function (frm) {
     if (frm.doc.are_you_a_person_with_disability_pwd == "No") {
-      frm.set_value("type_of_disability",'')
+      frm.set_value("type_of_disability", '')
       frm.doc.proof_of_disability = '';
       frm.doc.what_is_the_extent_of_your_disability = '';
       frm.refresh_fields('what_is_the_extent_of_your_disability', 'proof_of_disability')
@@ -930,30 +940,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
 // ********************* ID documents CHILD Table***********************
 frappe.ui.form.on('ID Document Child', {
   form_render: async function (frm, cdt, cdn) {
+    
   },
   id_table_list_add: async function (frm, cdt, cdn) {
     console.log("hello everyone")
-    // var child = locals[cdt][cdn]
-    // grid_row = cur_frm.fields_dict['id_table_list'].grid.grid_rows_by_docname[child.name]
-
-    // console.log(grid_row , child)
-    // cur_frm.fields_dict['id_table_list'].grid.get_field('which_of_the_following_id_documents_do_you_have').get_query= function () {
-    //   return {
-    //     filters: {
-    //       "document": "Pan Card"
-    //     }
-    //   }
-    // };
-    // grid_row.refresh_field("which_of_the_following_id_documents_do_you_have");
-    var child_table = frm.fields_dict['id_table_list'].grid;
-    console.log("child_table", child_table.get_field('which_of_the_following_id_documents_do_you_have'))
-    child_table.get_field('which_of_the_following_id_documents_do_you_have').get_query = function () {
-      return {
-        filters: [
-          ['ID Document Child', 'document', '=', 'Pan Card']
-        ]
-      };
-    };
+    apply_filter_on_id_document()
   }
 })
 
@@ -1102,10 +1093,10 @@ frappe.ui.form.on('Follow Up Child', {
   },
   follow_up_with: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    if(row.follow_up_with == "Government department" || row.follow_up_with =="Others"){
+    if (row.follow_up_with == "Government department" || row.follow_up_with == "Others") {
       frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_mode", "options", ["Phone call", "In-person visit"]);
-    }else{
-      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_mode", "options", ["Phone call", "Home visit","Centre visit"]);
+    } else {
+      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_mode", "options", ["Phone call", "Home visit", "Centre visit"]);
     }
     let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
     let latestSupport = supports.length ? supports[supports.length - 1] : null;
