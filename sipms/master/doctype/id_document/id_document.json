@@ -23,7 +23,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-12 10:42:46.601261",
+ "modified": "2024-02-07 10:07:57.698533",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "ID Document",
@@ -39,6 +39,20 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Admin",
+   "select": 1,
    "share": 1,
    "write": 1
   },
@@ -49,27 +63,22 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Admin",
+   "role": "CSC Member",
+   "select": 1,
    "share": 1,
    "write": 1
   },
   {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "CSC Member",
-   "share": 1
-  },
-  {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Help-desk member",
-   "share": 1
+   "select": 1,
+   "share": 1,
+   "write": 1
   },
   {
    "create": 1,
@@ -79,7 +88,9 @@
    "read": 1,
    "report": 1,
    "role": "MIS executive",
-   "share": 1
+   "select": 1,
+   "share": 1,
+   "write": 1
   }
  ],
  "sort_field": "modified",

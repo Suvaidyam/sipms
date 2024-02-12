@@ -36,6 +36,7 @@
   "added_by",
   "column_break_tgpw",
   "are_you_a_person_with_disability_pwd",
+  "type_of_disability",
   "what_is_the_extent_of_your_disability",
   "proof_of_disability",
   "annual_income",
@@ -110,6 +111,8 @@
    "fieldname": "completed_age",
    "fieldtype": "Int",
    "label": "Completed age (Year)",
+   "non_negative": 1,
+   "read_only_depends_on": "eval:doc.date_of_birth",
    "reqd": 1
   },
   {
@@ -422,7 +425,8 @@
    "fieldtype": "Link",
    "label": "Single Window",
    "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
-   "options": "Single Window"
+   "options": "Single Window",
+   "read_only_depends_on": "eval:(!frappe.user_roles.includes(\"Administrator\"))"
   },
   {
    "fieldname": "help_desk",
@@ -444,6 +448,7 @@
    "fieldtype": "Link",
    "label": "Occupational category",
    "options": "Occupational Category",
+   "read_only_depends_on": "eval:doc.occupational_category",
    "reqd": 1
   },
   {
@@ -499,6 +504,7 @@
    "fieldtype": "Int",
    "label": "Completed age (Month)",
    "non_negative": 1,
+   "read_only_depends_on": "eval:doc.date_of_birth",
    "reqd": 1
   },
   {
@@ -524,12 +530,20 @@
    "fieldtype": "Data",
    "label": "New occupation category",
    "mandatory_depends_on": "eval:doc.occupational_category == 'Others'"
+  },
+  {
+   "depends_on": "eval:doc.are_you_a_person_with_disability_pwd ==\"Yes\"",
+   "fieldname": "type_of_disability",
+   "fieldtype": "Select",
+   "label": "Type of disability",
+   "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd ==\"Yes\"",
+   "options": "\nBlindness\nLow vision\nLeprosy cured persons\nLocomotor disability\nDwarfism\nIntellectual disability\nMental illness\nCerebral Palsy\nSpecific learning disability\nSpeech and Language disability\nHearing impairment\nMuscular dystrophy\nAcid attack victim\nParkinson's disease\nMultiple Sclerosis\nThalassemia\nHemophilia\nSickle cell disease\nAutism spectrum disorder\nChronic neurological conditions\nMultiple disabilities including deaf and blindness."
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-30 14:21:45.207379",
+ "modified": "2024-02-09 17:52:59.181043",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
