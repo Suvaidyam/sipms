@@ -90,7 +90,6 @@ def top_schemes_of_milestone(milestone=None):
     get_all_scheame = frappe.db.sql(scheame_query, as_dict=True)
     for scheme in get_all_scheame:
         get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where _ts.name_of_the_scheme ='{scheme.name.replace("'", "''")}';"""
-
         # get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where _ts.name_of_the_scheme ='{scheme.name}';"""
         rules = frappe.db.sql(get_rules, as_dict=True)
         condition_str =""
