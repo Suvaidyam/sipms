@@ -37,9 +37,12 @@ class BeneficaryScheme:
         obj = {'total':len(conditions), 'matched':0, 'percentage':0,'rules':[],'key':key}
         for condition in conditions:
             is_matched = BeneficaryScheme.validate(condition)
-            obj['message'] = ' AND '.join([f"{condition[0]} {condition[1]} {condition[2]}"]) if is_matched else ''
-            obj['matched'] = (obj['matched'] + 1) if is_matched else (obj['matched'] + 0)
-            obj['rules'].append({'message':obj['message'],'matched':obj['matched']})
+            if is_matched:
+                obj['matched'] += 1
+            obj['rules'].append({
+                'message':f"{condition[0]} {condition[1]} {condition[2]}",
+                'matched':is_matched
+            })
         obj['percentage'] = ((obj['matched']/obj['total'])*100) if obj['total'] > 0 else 0
         return obj
 
@@ -47,6 +50,11 @@ class BeneficaryScheme:
         schemes = frappe.get_list('Scheme', fields=['name', 'name_of_department', 'milestone'])
         for scheme in schemes:
             doc = frappe.get_doc("Scheme", scheme.name)
+            scheme['groups'] = []
+            scheme['rules'] = []
+            scheme['total_rules'] = 0
+            scheme['matching_rules'] = 0
+            scheme['matching_rules_per'] = 0
             if doc.rules and len(doc.rules):
                 filters = Misc.rules_to_filters(doc.rules,True)
                 groups = []
@@ -55,6 +63,7 @@ class BeneficaryScheme:
                 denominator_sorted_list = sorted(groups, key=lambda x: x['total'], reverse=True)
                 percentage_sorted_list = sorted(denominator_sorted_list, key=lambda x: x['percentage'], reverse=True)
 
+                scheme['groups'] = percentage_sorted_list
                 scheme['rules'] = percentage_sorted_list[0]['rules'] if len(percentage_sorted_list)>0 else []
                 scheme['total_rules'] = percentage_sorted_list[0]['total'] if len(percentage_sorted_list)>0 else 0
                 scheme['matching_rules'] = percentage_sorted_list[0]['matched'] if len(percentage_sorted_list)>0 else 0

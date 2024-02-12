@@ -299,7 +299,6 @@ function extend_options_length(frm, fields) {
     });
   })
 };
-
 var scheme_list = []
 function callAPI(options) {
   return new Promise((resolve, reject) => {
@@ -672,7 +671,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
         },
         {
           name: "Matches",
-          id: 'name',
+          id: 'matches',
           editable: false,
           resizable: false,
           sortable: false,
@@ -683,6 +682,20 @@ frappe.ui.form.on("Beneficiary Profiling", {
             let rules = row?.rules?.map(e => `${e.message} ${e.matched ? '&#x2714;' : '&#10060;'}`).join("\n").toString()
             return `<p title="${rules}">${row?.matches?.bold()}</p>`
           }
+        },
+        {
+          name: "Group",
+          id: 'group',
+          editable: false,
+          resizable: false,
+          sortable: false,
+          focusable: false,
+          dropdown: false,
+          width: 200,
+          format: (value, columns, ops, row) => {
+            let messages = row.groups.map(g => (g.rules?.map(e => `${e.message} ${e.matched ? '&#x2714;' : '&#10060;'}`).join("\n").toString()))
+            return `<p title="${messages.join('\n--------------   \n')}">${row?.groups?.length?.toString()?.bold()}</p>`
+          }
         }
       ],
       rows: []
@@ -691,7 +704,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
       tableConf.rows.push({
         name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
         matches: `<a href="/app/scheme/${scheme?.name}">${scheme.matching_rules}/${scheme?.total_rules}</a>`,
-        rules: scheme.rules
+        rules: scheme.rules,
+        groups: scheme.groups
       })
     }
     console.log("tableConf", tableConf)
@@ -941,7 +955,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 // ********************* ID documents CHILD Table***********************
 frappe.ui.form.on('ID Document Child', {
   form_render: async function (frm, cdt, cdn) {
-    
+
   },
   id_table_list_add: async function (frm, cdt, cdn) {
     console.log("hello everyone")
