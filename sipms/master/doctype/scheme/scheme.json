@@ -27,7 +27,8 @@
   "rules",
   "note",
   "beneficiaries_tab",
-  "table"
+  "table",
+  "summary"
  ],
  "fields": [
   {
@@ -125,8 +126,7 @@
   {
    "fieldname": "beneficiaries_tab",
    "fieldtype": "Tab Break",
-   "label": "Eligible beneficiaries",
-   "options": "<div><h1>Hello </h1> </div>"
+   "label": "Eligible beneficiaries"
   },
   {
    "fieldname": "table",
@@ -138,7 +138,7 @@
    "fieldname": "note",
    "fieldtype": "HTML",
    "label": "Note",
-   "options": "<h6 style=\"color: #333; margin-bottom: 10px;\">Rules:</h6>\n    <div id=\"query\" style='background-color: #f7f7f7; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 20px; white-space: pre-wrap; font-family: \"Courier New\", Courier, monospace;'></div>\n    <div style=\"display: flex;\">\n        <div style=\"flex: 1;\">\n            <div id=\"note\" style=\"text-align: right; font-style: italic; margin-top: 10px; color: red;\">\n                Please note that if you leave a group empty, it will be treated as a single group.\n            </div>\n        </div>\n    </div>"
+   "options": "<div align=\"right\">\nNote: Leaving empty group will be consider as two different groups.\n</div>"
   },
   {
    "fieldname": "how_many_times_can_this_scheme_be_availed",
@@ -146,11 +146,17 @@
    "label": "How many times can this scheme be availed?",
    "options": "\nOnce\nInfinite times",
    "reqd": 1
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "HTML",
+   "label": "Summary",
+   "options": "<div id=\"parent\">\n<div id=\"total\"></div>\n<div id=\"total_family\"></div>\n<div id=\"block_count\"></div>\n<div id=\"settlement_count\"></div>\n</div>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-09 23:23:52.369470",
+ "modified": "2024-02-12 16:27:31.941550",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
