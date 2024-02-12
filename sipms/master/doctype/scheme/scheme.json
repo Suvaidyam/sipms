@@ -14,6 +14,7 @@
   "state",
   "name_of_the_scheme",
   "milestone",
+  "how_many_times_can_this_scheme_be_availed",
   "column_break_pwlq",
   "name_of_department",
   "department_urlwebsite",
@@ -26,7 +27,8 @@
   "rules",
   "note",
   "beneficiaries_tab",
-  "table"
+  "table",
+  "summary"
  ],
  "fields": [
   {
@@ -124,8 +126,7 @@
   {
    "fieldname": "beneficiaries_tab",
    "fieldtype": "Tab Break",
-   "label": "Eligible beneficiaries",
-   "options": "<div><h1>Hello </h1> </div>"
+   "label": "Eligible beneficiaries"
   },
   {
    "fieldname": "table",
@@ -138,11 +139,24 @@
    "fieldtype": "HTML",
    "label": "Note",
    "options": "<div align=\"right\">\nNote: Leaving empty group will be consider as two different groups.\n</div>"
+  },
+  {
+   "fieldname": "how_many_times_can_this_scheme_be_availed",
+   "fieldtype": "Select",
+   "label": "How many times can this scheme be availed?",
+   "options": "\nOnce\nInfinite times",
+   "reqd": 1
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "HTML",
+   "label": "Summary",
+   "options": "<div id=\"total\"></div>"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-23 23:42:15.063631",
+ "modified": "2024-02-12 15:13:10.575230",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
@@ -163,6 +177,7 @@
   },
   {
    "create": 1,
+   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,

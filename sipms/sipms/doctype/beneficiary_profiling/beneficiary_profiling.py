@@ -69,6 +69,8 @@ class BeneficiaryProfiling(Document):
 			occupation.save()
 
 	def validate(self):
+		if(self.do_you_have_any_id_documents != "Yes"):
+			self.id_table_list = []
 		if(self.date_of_birth and self.date_of_visit):
 			if self.date_of_visit < self.date_of_birth:
 				return frappe.throw("Date of Visit shall not be before the <strong>Date of Birth</strong>")

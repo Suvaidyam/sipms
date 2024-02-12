@@ -8,6 +8,8 @@ var field_types = {
     "Select": [...common_operators],
     "Currency": [...common_operators, ">", "<", ">=", "<="]
 }
+// CHILD TABLE
+var child_table_field = 'rules'
 function evaluateExpression(input, expression) {
     if (!(/^[a-zA-Z0-9\s()+\-/*%&|=!<>]*$/.test(expression))) {
         return 'Invalid expression'
@@ -24,19 +26,21 @@ function evaluateExpression(input, expression) {
         return err.message;
     }
 }
-function generateQueryString(rows, __expression) {
-    let expression = __expression.replace(/and/g, '#').replace(/or/g, '%');
-    expression = expression.replace(/AND/g, '#').replace(/OR/g, '%');
+function generateQueryString(rows) {
+    console.log("generateQueryString[called]", rows);
+    let obj = {};
     for (let row of rows) {
-        if (['IN', 'NOT IN'].includes(row.operator)) {
-            let val = row.data?.split(',').map(e => `'${e}'`).join(',');
-            expression = expression.replace(new RegExp(row.code, 'g'), `${row.rule_field} ${row.operator} (${val})`)
-        } else {
-            expression = expression.replace(new RegExp(row.code, 'g'), `${row.rule_field} ${row.operator} '${row.data}'`)
+        if (row.rule_field && row.operator && row.data) {
+            let val = ['IN', 'NOT IN'].includes(row.operator) ? row.data?.split(',').map(e => `'${e}'`).join(',') : row.data;
+            if (obj[row.group]) {
+                obj[row.group].push(`${row.rule_field} ${row.operator} ${val}`)
+            } else {
+                obj[row.group] = [`${row.rule_field} ${row.operator} ${val}`]
+            }
         }
     }
-    expression = expression.replace(/#/g, 'AND').replace(/%/g, 'OR');
-    return 'select * from `tabBeneficiary Profiling` where ' + expression
+    let cond = Object.keys(obj).map(e => `(${obj[e].join(' AND ')})`).join(' OR ')
+    document.getElementById('query').innerText = cond ? cond : 'Rules are not set for this scheme.'
 }
 var field_list = []
 function get_field_list(child_table_field, frm) {
@@ -87,12 +91,13 @@ function callAPI(options) {
         });
     })
 }
-const get_ben_list = async (frm) => {
+const get_ben_list = async (frm, columns) => {
     let list = await callAPI({
         method: 'sipms.api.eligible_beneficiaries',
         freeze: true,
         args: {
-            "scheme": frm.doc.name_of_the_scheme
+            "scheme": frm.doc.name_of_the_scheme,
+            columns: columns
         },
         freeze_message: __("Getting beneficiaries..."),
     })
@@ -101,58 +106,91 @@ const get_ben_list = async (frm) => {
 }
 frappe.ui.form.on("Scheme", {
     async refresh(frm) {
-        let ben_list = []
+        let response = { count: { total: 0, total_family: 0, }, data: [] };
         get_field_list('rules', frm)
-        if (!frm?.doc?.__islocal) {
-            ben_list = await get_ben_list(frm)
-        }
         let tableConf = {
             columns: [
                 {
-                    name: "Name of beneficiary",
-                    id: 'name',
+                    name: "Name of the beneficiary",
+                    id: 'name_of_the_beneficiary',
                     editable: false,
                     resizable: false,
                     sortable: false,
                     focusable: false,
                     dropdown: true,
-                    width: 400
+                    width: 200
                 },
                 {
-                    name: "Phone number",
-                    id: 'phone_number',
+                    name: "Primary member",
+                    id: 'name_of_parents',
+                    field: 'select_primary_member.name_of_parents',
                     editable: false,
                     resizable: false,
                     sortable: false,
                     focusable: false,
                     dropdown: false,
-                    width: 400,
+                    width: 200,
+                },
+                {
+                    name: "Contact number",
+                    id: 'contact_number',
+                    editable: false,
+                    resizable: false,
+                    sortable: false,
+                    focusable: false,
+                    dropdown: false,
+                    width: 150,
+                },
+                {
+                    name: "Block",
+                    id: 'block_name',
+                    field: 'ward.block_name',
+                    editable: false,
+                    resizable: false,
+                    sortable: false,
+                    focusable: false,
+                    dropdown: false,
+                    width: 200,
+                },
+                {
+                    name: "Name of the settlement",
+                    id: 'village_name',
+                    field: 'name_of_the_settlement.village_name',
+                    editable: false,
+                    resizable: false,
+                    sortable: false,
+                    focusable: false,
+                    dropdown: false,
+                    width: 200,
                 }
             ],
             rows: []
         };
-        for (let scheme of ben_list) {
-            console.log("scheme", scheme)
+        if (!frm?.doc?.__islocal) {
+            let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
+            response = await get_ben_list(frm, ['name', ...columns])
+        }
+
+        for (let ben of response.data) {
             tableConf.rows.push({
-                name: `<a href="/app/beneficiary-profiling/${scheme.name}">${scheme.name_of_the_beneficiary}</a>`,
-                phone_number: scheme.contact_number
+                ...ben,
+                name_of_the_beneficiary: `<a href="/app/beneficiary-profiling/${ben.name}">${ben.name_of_the_beneficiary}</a>`
             })
         }
         const container = document.getElementById('eligible_beneficiaries');
-        const datatable = new DataTable(container, { columns: tableConf.columns });
+        const datatable = new DataTable(container, {
+            layout: 'fluid',
+            columns: tableConf.columns
+        });
         datatable.style.setStyle(`.dt-scrollable`, { height: '800px!important', overflow: 'scroll!important' });
         datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
         datatable.refresh(tableConf.rows);
-        console.log("tableConf.rows", tableConf.rows)
-
+        document.getElementById('total') ? document.getElementById('total').innerText = "Total: " + response?.count?.total : ''
         frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
-
-
         if (frm.doc.department_urlwebsite) {
             frm.add_web_link(frm?.doc?.department_urlwebsite)
         }
-
-
+        generateQueryString(frm.doc[child_table_field])
     },
     type_of_the_scheme: function (frm) {
         if (frm.doc.type_of_the_scheme != "State") {
@@ -165,8 +203,6 @@ frappe.ui.form.on("Scheme", {
         }
     }
 });
-// CHILD TABLE
-var child_table_field = 'rules'
 const form_events = {
     [`${child_table_field}_add`]: (frm, cdt, cdn) => {
         console.log("row added");
@@ -182,8 +218,10 @@ const form_events = {
 }
 frappe.ui.form.on('Rule Engine Child', {
     refresh(frm) {
-        console.log("refresh");
-
+        generateQueryString(frm.doc[child_table_field])
+    },
+    form_render(frm) {
+        generateQueryString(frm.doc[child_table_field])
     },
     ...form_events,
     rule_field: async function (frm, cdt, cdn) {
@@ -206,19 +244,26 @@ frappe.ui.form.on('Rule Engine Child', {
         var cur_row = cur_grid.get_row(cur_doc.name);
         // cur_row.toggle_view();
     },
+    data: (frm) => {
+        frm.fields_dict[child_table_field].grid.refresh();
+        generateQueryString(frm.doc[child_table_field])
+    },
     date: function (frm, cdt, cdn) {
         let row = frappe.get_doc(cdt, cdn);
         row.data = row.date
         frm.fields_dict[child_table_field].grid.refresh();
+        generateQueryString(frm.doc[child_table_field])
     },
     select: function (frm, cdt, cdn) {
         let row = frappe.get_doc(cdt, cdn);
         row.data = row.select
         frm.fields_dict[child_table_field].grid.refresh();
+        generateQueryString(frm.doc[child_table_field])
     },
     value: function (frm, cdt, cdn) {
         let row = frappe.get_doc(cdt, cdn);
         row.data = row.value
         frm.fields_dict[child_table_field].grid.refresh();
+        generateQueryString(frm.doc[child_table_field])
     }
 })

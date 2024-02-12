@@ -1,27 +1,57 @@
 import frappe
 from sipms.services.beneficiary_scheme import BeneficaryScheme
 from sipms.utils.misc import Misc
+import json
 @frappe.whitelist(allow_guest=True)
 def execute(name=None):
-    return BeneficaryScheme.run(name)
+    return BeneficaryScheme.get_schemes(name)
 
 @frappe.whitelist(allow_guest=True)
-def eligible_beneficiaries(scheme=None):
+def eligible_beneficiaries(scheme=None, columns=[], start=0, page_length=1000):
+    columns = json.loads(columns)
     if scheme is None:
         return frappe.throw('Scheme not found.')
+
     cond_str= Misc.scheme_rules_to_condition(scheme)
-    get_elegible_ben = f"""
+    condtion = f"{('WHERE'+ cond_str) if cond_str else '' }"
+    ben_sql = f"""
         SELECT
-            name,
-            name_of_the_beneficiary,
-            contact_number
+            distinct name as name
         FROM
             `tabBeneficiary Profiling`
-        {('WHERE'+ cond_str) if cond_str else "" }
+        {condtion }
     """
-    all_ben = frappe.db.sql(get_elegible_ben, as_dict=True)
-    return all_ben
-
+    bens = frappe.db.sql(ben_sql, as_dict=True)
+    total = len(bens)
+    beneficiary_list = []
+    if total:
+        beneficiary_list = frappe.get_list("Beneficiary Profiling",
+            fields=columns,
+            filters={'name':('in', [ben.get('name') for ben in bens])},
+            order_by='select_primary_member',
+            start=0, page_length=page_length
+        )
+        count_sql = f"""
+            select
+                count(distinct select_primary_member) as family_count,
+                count(distinct ward) as block_count,
+                count(distinct name_of_the_settlement) as settelment_count
+            from
+                `tabBeneficiary Profiling`
+            {condtion}
+        """
+        count_data = frappe.db.sql(count_sql, as_dict=True)
+        if len(count_data):
+            count_data = count_data[0]
+    return {
+        'data':beneficiary_list,
+        'count':{
+            'total':total,
+            'total_family':count_data.family_count,
+            'block_count':count_data.block_count,
+            'settelment_count':count_data.settelment_count
+        }
+    }
 @frappe.whitelist(allow_guest=True)
 def most_eligible_ben():
     scheam_ben_count =[]

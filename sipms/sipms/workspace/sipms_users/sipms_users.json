@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Sipms Users",
  "links": [],
- "modified": "2024-01-16 09:45:27.887535",
+ "modified": "2024-02-08 13:44:12.554914",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Sipms Users",
@@ -25,6 +25,9 @@
  "roles": [
   {
    "role": "System Manager"
+  },
+  {
+   "role": "Admin"
   }
  ],
  "sequence_id": 2.0,
