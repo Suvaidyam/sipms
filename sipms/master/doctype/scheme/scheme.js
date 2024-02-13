@@ -220,7 +220,19 @@ frappe.ui.form.on("Scheme", {
         if (frm.doc.department_urlwebsite) {
             frm.add_web_link(frm?.doc?.department_urlwebsite)
         }
-    }
+    },
+    name_of_beneficiary: function (frm) {
+        console.log('sadsadad', frm.doc.name_of_beneficiary)
+    },
+    primary_member: function (frm) {
+        console.log('sadsadad', frm.doc.primary_member)
+    },
+    phone_number: function (frm) {
+        console.log('sadsadad', frm.doc.phone_number)
+    },
+    block: function (frm) {
+        console.log('sadsadad', frm.doc.block)
+    },
 });
 const form_events = {
     [`${child_table_field}_add`]: (frm, cdt, cdn) => {
