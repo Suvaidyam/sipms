@@ -27,6 +27,16 @@
   "rules",
   "note",
   "beneficiaries_tab",
+  "filters_section",
+  "name_of_beneficiary",
+  "column_break_olkm",
+  "primary_member",
+  "column_break_jnkk",
+  "phone_number",
+  "column_break_qesv",
+  "block",
+  "column_break_xofo",
+  "section_break_torq",
   "table",
   "summary"
  ],
@@ -80,7 +90,7 @@
    "reqd": 1
   },
   {
-   "fetch_from": "name_of_department.department_urlwebsite",
+   "fetch_from": ".department_urlwebsite",
    "fieldname": "department_urlwebsite",
    "fieldtype": "Data",
    "label": "Department URL/Website"
@@ -152,11 +162,62 @@
    "fieldtype": "HTML",
    "label": "Summary",
    "options": "<div id=\"parent\">\n<div id=\"total\"></div>\n<div id=\"total_family\"></div>\n<div id=\"block_count\"></div>\n<div id=\"settlement_count\"></div>\n</div>"
+  },
+  {
+   "columns": 1,
+   "fieldname": "name_of_beneficiary",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "Name of beneficiary"
+  },
+  {
+   "fieldname": "column_break_olkm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "primary_member",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "Primary member"
+  },
+  {
+   "fieldname": "column_break_jnkk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "Phone number"
+  },
+  {
+   "fieldname": "column_break_qesv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "block",
+   "fieldtype": "Select",
+   "label": "Block",
+   "options": "Block"
+  },
+  {
+   "fieldname": "section_break_torq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "filters_section",
+   "fieldtype": "Section Break",
+   "label": "Filters"
+  },
+  {
+   "fieldname": "column_break_xofo",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-12 23:56:48.877497",
+ "modified": "2024-02-13 21:50:58.196181",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",

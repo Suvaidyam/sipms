@@ -1,17 +1,22 @@
 import frappe
 from sipms.services.beneficiary_scheme import BeneficaryScheme
 from sipms.utils.misc import Misc
+from sipms.utils.filter import Filter
 import json
 @frappe.whitelist(allow_guest=True)
 def execute(name=None):
     return BeneficaryScheme.get_schemes(name)
 
 @frappe.whitelist(allow_guest=True)
-def eligible_beneficiaries(scheme=None, columns=[], start=0, page_length=1000):
+def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
+    print("filters /////////////////////////////", filters)
+    # filter value is getting hear
     columns = json.loads(columns)
     if scheme is None:
         return frappe.throw('Scheme not found.')
 
+    user_role_filter = Filter.set_query_filters()
+    # user_grole_filter will apply on condtional string 
     cond_str= Misc.scheme_rules_to_condition(scheme)
     condtion = f"{('WHERE'+ cond_str) if cond_str else '' }"
     ben_sql = f"""
@@ -29,7 +34,7 @@ def eligible_beneficiaries(scheme=None, columns=[], start=0, page_length=1000):
             fields=columns,
             filters={'name':('in', [ben.get('name') for ben in bens])},
             order_by='select_primary_member',
-            start=0, page_length=page_length
+            start=start, page_length=page_length
         )
         count_sql = f"""
             select
@@ -108,6 +113,8 @@ def top_schemes_of_milestone(milestone=None):
 @frappe.whitelist(allow_guest=True)
 def top_schemes():
     milestones = frappe.get_list("Milestone category", fields=['name'])
+    user_role_filter = Filter.set_query_filters()
+    # user_grole_filter will apply on condtional string 
     for milestone in milestones:
         schemes = frappe.get_list("Scheme", filters={'milestone':milestone.name}, fields=['name'])
         for scheme in schemes:

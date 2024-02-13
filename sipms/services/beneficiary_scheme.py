@@ -47,10 +47,11 @@ class BeneficaryScheme:
         return obj
 
     def get_schemes(beneficiary=None):
-        schemes = frappe.get_list('Scheme', fields=['name', 'name_of_department', 'milestone'])
+        schemes = frappe.get_list('Scheme', fields=['name', 'name_of_department', 'milestone', 'how_many_times_can_this_scheme_be_availed'])
         for scheme in schemes:
             doc = frappe.get_doc("Scheme", scheme.name)
             scheme['groups'] = []
+            # scheme['available'] = schemes.
             scheme['rules'] = []
             scheme['total_rules'] = 0
             scheme['matching_rules'] = 0

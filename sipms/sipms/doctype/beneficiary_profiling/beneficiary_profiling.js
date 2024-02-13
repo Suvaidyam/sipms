@@ -500,8 +500,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
       }
     }
     // check alternate mobile number digits
-    if (frm.doc.alternate_contact_number < 4) {
-      frm.doc.alternate_contact_number = ''
+    if (frm.doc.alternate_contact_number == "+91-") {
+      frm.set_value("alternate_contact_number", '')
     }
     if (frm.doc.do_you_have_id_document == "Yes" && frm.doc.id_section?.length == '0') {
       if (!(frm.doc.id_section[0] && frm.doc?.id_section[0]?.select_id != "undefined")) {
@@ -528,7 +528,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     // follow up status manage
     if (frm.selected_doc.follow_up_table) {
       for (support_item of frm.selected_doc.scheme_table) {
-        if (!['Completed'].includes(support_item.status)) {
+        if (!['Completed','Previously availed'].includes(support_item.status)) {
           let followups = frm.selected_doc.follow_up_table.filter(f => f.parent_ref == support_item?.name)
           let latestFollowup = followups.length ? followups[(followups.length - 1)] : null
           if (latestFollowup?.parent_ref == support_item.name) {
@@ -578,7 +578,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
     }
 
-    let open, under_process, form_submitted, rejected, completed, closed;
+    let open, under_process, form_submitted, rejected, completed, closed ;
     open = under_process = form_submitted = rejected = completed = closed = 0;
     let total_no_of_support = 0
     if (frm.selected_doc.scheme_table) {
@@ -593,7 +593,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           ++form_submitted
         } else if (item.status === 'Rejected') {
           ++rejected
-        } else if (item.status === 'Completed') {
+        } else if (item.status === 'Completed' || item.status === 'Previously availed') {
           ++completed
         } else {
           ++closed
@@ -630,7 +630,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
         frm.set_df_property('date_of_visit', 'read_only', 1);
       }
     }
-
+    // phoneno defult +91-
+    if(frm.doc.alternate_contact_number.length < 10){
+      frm.doc.alternate_contact_number = '+91-'
+    frm.refresh_fields("alternate_contact_number")
+    }
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 
@@ -659,6 +663,16 @@ frappe.ui.form.on("Beneficiary Profiling", {
     scheme_list = await get_scheme_list(frm)
     let tableConf = {
       columns: [
+        {
+          name: " ",
+          id: 'serial_no',
+          editable: false,
+          resizable: true,
+          sortable: false,
+          focusable: false,
+          dropdown: true,
+          width: 70
+        },
         {
           name: "Name",
           id: 'name',
@@ -700,8 +714,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
       ],
       rows: []
     };
+    let sno = 0;
     for (let scheme of scheme_list) {
+      sno++
       tableConf.rows.push({
+        serial_no: sno,
         name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
         matches: `<a href="/app/scheme/${scheme?.name}">${scheme.matching_rules}/${scheme?.total_rules}</a>`,
         rules: scheme.rules,
@@ -710,7 +727,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
     console.log("tableConf", tableConf)
     const container = document.getElementById('all_schemes');
-    const datatable = new DataTable(container, { columns: tableConf.columns });
+    const datatable = new DataTable(container, { columns: tableConf.columns, serialNoColumn: false });
     datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });
     datatable.refresh(tableConf.rows);
     // if not is local
