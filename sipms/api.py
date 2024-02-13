@@ -8,7 +8,9 @@ def execute(name=None):
     return BeneficaryScheme.get_schemes(name)
 
 @frappe.whitelist(allow_guest=True)
-def eligible_beneficiaries(scheme=None, columns=[], filters={}, start=0, page_length=1000):
+def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
+    # print("filters /////////////////////////////", filters)
+    # filter value is getting hear
     columns = json.loads(columns)
     if scheme is None:
         return frappe.throw('Scheme not found.')
