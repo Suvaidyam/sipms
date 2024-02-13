@@ -500,8 +500,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
       }
     }
     // check alternate mobile number digits
-    if (frm.doc.alternate_contact_number < 4) {
-      frm.doc.alternate_contact_number = ''
+    if (frm.doc.alternate_contact_number == "+91-") {
+      frm.set_value("alternate_contact_number", '')
     }
     if (frm.doc.do_you_have_id_document == "Yes" && frm.doc.id_section?.length == '0') {
       if (!(frm.doc.id_section[0] && frm.doc?.id_section[0]?.select_id != "undefined")) {
@@ -630,7 +630,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
         frm.set_df_property('date_of_visit', 'read_only', 1);
       }
     }
-
+    // phoneno defult +91-
+    if(frm.doc.alternate_contact_number.length < 10){
+      frm.doc.alternate_contact_number = '+91-'
+    frm.refresh_fields("alternate_contact_number")
+    }
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 
