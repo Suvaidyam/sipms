@@ -78,9 +78,6 @@ def most_eligible_ben():
     top_5_schemes = sorted_schemes[:5]
     return top_5_schemes
 
-
-
-
 @frappe.whitelist(allow_guest=True)
 def top_schemes_of_milestone(milestone=None):
     if milestone is None:
@@ -107,3 +104,20 @@ def top_schemes_of_milestone(milestone=None):
     # Get the top 5 schemes
     top_5_schemes = sorted_schemes[:5]
     return top_5_schemes
+
+@frappe.whitelist(allow_guest=True)
+def top_schemes():
+    milestones = frappe.get_list("Milestone category", fields=['name'])
+    for milestone in milestones:
+        schemes = frappe.get_list("Scheme", filters={'milestone':milestone.name}, fields=['name'])
+        for scheme in schemes:
+            scheme['ben_count'] = 0
+            cond_str= Misc.scheme_rules_to_condition(scheme.name)
+            condition = f"{('WHERE'+ cond_str) if cond_str else '' }"
+            count_sql = f"SELECT count(name) as count FROM `tabBeneficiary Profiling` {condition }"
+            data = frappe.db.sql(count_sql, as_dict=True)
+            if len(data):
+                scheme['ben_count'] = data[0].count
+        sorted_schemes = sorted(schemes, key=lambda x: x.get('ben_count', 0), reverse=True)
+        milestone['schemes'] = sorted_schemes[:5]
+    return milestones
