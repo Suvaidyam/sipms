@@ -29,7 +29,7 @@ def eligible_beneficiaries(scheme=None, columns=[], start=0, page_length=1000):
             fields=columns,
             filters={'name':('in', [ben.get('name') for ben in bens])},
             order_by='select_primary_member',
-            start=0, page_length=page_length
+            start=start, page_length=page_length
         )
         count_sql = f"""
             select
