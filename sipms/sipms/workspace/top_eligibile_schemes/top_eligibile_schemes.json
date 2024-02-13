@@ -1,11 +1,11 @@
 {
  "charts": [],
- "content": "[{\"id\":\"gfdBPV670R\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"Top Schemes\",\"col\":12}}]",
+ "content": "[{\"id\":\"gfdBPV670R\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"Top eligible schemes\",\"col\":12}}]",
  "creation": "2024-02-02 10:42:36.564251",
  "custom_blocks": [
   {
-   "custom_block_name": "Top Schemes",
-   "label": "Top Schemes"
+   "custom_block_name": "Top eligible schemes",
+   "label": "Top eligible schemes"
   }
  ],
  "docstatus": 0,
@@ -17,7 +17,7 @@
  "is_hidden": 0,
  "label": "Top eligibile schemes",
  "links": [],
- "modified": "2024-02-13 02:25:21.710843",
+ "modified": "2024-02-13 10:52:42.533472",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Top eligibile schemes",
