@@ -90,7 +90,7 @@
    "reqd": 1
   },
   {
-   "fetch_from": "name_of_department.department_urlwebsite",
+   "fetch_from": ".department_urlwebsite",
    "fieldname": "department_urlwebsite",
    "fieldtype": "Data",
    "label": "Department URL/Website"
@@ -214,7 +214,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-13 13:12:31.900312",
+ "modified": "2024-02-13 16:54:05.003466",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
