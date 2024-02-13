@@ -528,7 +528,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     // follow up status manage
     if (frm.selected_doc.follow_up_table) {
       for (support_item of frm.selected_doc.scheme_table) {
-        if (!['Completed','Previously availed'].includes(support_item.status)) {
+        if (!['Completed', 'Previously availed'].includes(support_item.status)) {
           let followups = frm.selected_doc.follow_up_table.filter(f => f.parent_ref == support_item?.name)
           let latestFollowup = followups.length ? followups[(followups.length - 1)] : null
           if (latestFollowup?.parent_ref == support_item.name) {
@@ -578,7 +578,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
     }
 
-    let open, under_process, form_submitted, rejected, completed, closed ;
+    let open, under_process, form_submitted, rejected, completed, closed;
     open = under_process = form_submitted = rejected = completed = closed = 0;
     let total_no_of_support = 0
     if (frm.selected_doc.scheme_table) {
@@ -631,9 +631,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
       }
     }
     // phoneno defult +91-
-    if(frm.doc.alternate_contact_number.length < 10){
+    if (frm.doc.alternate_contact_number.length < 10) {
       frm.doc.alternate_contact_number = '+91-'
-    frm.refresh_fields("alternate_contact_number")
+      frm.refresh_fields("alternate_contact_number")
     }
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
@@ -708,7 +708,20 @@ frappe.ui.form.on("Beneficiary Profiling", {
           width: 200,
           format: (value, columns, ops, row) => {
             let messages = row.groups.map(g => (g.rules?.map(e => `${e.message} ${e.matched ? '&#x2714;' : '&#10060;'}`).join("\n").toString()))
-            return `<p title="${messages.join('\n--------------   \n')}">${row?.groups?.length?.toString()?.bold()}</p>`
+            return `<p title="${messages.join('\n--------------   \n')}">${row?.groups?.filter(f => f.percentage == 100)?.length?.toString()?.bold()}/${row?.groups?.length?.toString()?.bold()}</p>`
+          }
+        },
+        {
+          name: "Availed",
+          id: 'availed',
+          editable: false,
+          resizable: false,
+          sortable: false,
+          focusable: false,
+          dropdown: false,
+          width: 100,
+          format: (value, columns, ops, row) => {
+            return `<p style="text-align:center; color:green; font-size:18px; font-weight:600;">${value ? '' : '&#x2714;'}</p>`
           }
         }
       ],
@@ -722,10 +735,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
         name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
         matches: `<a href="/app/scheme/${scheme?.name}">${scheme.matching_rules}/${scheme?.total_rules}</a>`,
         rules: scheme.rules,
-        groups: scheme.groups
+        groups: scheme.groups,
+        availed: scheme.available
       })
     }
-    console.log("tableConf", tableConf)
+    // console.log("tableConf", tableConf)
     const container = document.getElementById('all_schemes');
     const datatable = new DataTable(container, { columns: tableConf.columns, serialNoColumn: false });
     datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });
@@ -996,7 +1010,7 @@ frappe.ui.form.on('Scheme Child', {
   scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
     let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
-    let fl_schemes_ops = scheme_list.filter(f => !schemes_op.includes(f.name))
+    let fl_schemes_ops = scheme_list.filter(f => !schemes_op.includes(f.name) && f.available)
     let milestones = {};
     let ops = fl_schemes_ops.map(e => {
       milestones.hasOwnProperty(e.milestone) ? '' : milestones[e.milestone] = e.milestone
@@ -1036,7 +1050,7 @@ frappe.ui.form.on('Scheme Child', {
       row.status = ''; row.date_of_completion = '';
       frm.refresh_fields('status', 'date_of_completion')
       createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
-    } else if (row.application_submitted == "Completed") {
+    } else if (["Completed", 'Previously availed'].includes(row.application_submitted)) {
       createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
     } else if (row.application_submitted == "No") {
       row.date_of_application = ''; row.date_of_completion = ''; row.application_number = ''; row.amount_paid = ''; row.paid_by = "";

@@ -7,6 +7,14 @@ import json
 def execute(name=None):
     return BeneficaryScheme.get_schemes(name)
 
+def create_condition(scheme):
+    user_role_filter = Filter.set_query_filters()
+    cond_str = Misc.scheme_rules_to_condition(scheme)
+    if cond_str:
+        cond_str = ' AND '+cond_str
+    if user_role_filter:
+        user_role_filter = ' AND '+ user_role_filter
+    return f" WHERE 1=1 {cond_str} {user_role_filter}"
 @frappe.whitelist(allow_guest=True)
 def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
     print("filters /////////////////////////////", filters)
@@ -15,10 +23,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
     if scheme is None:
         return frappe.throw('Scheme not found.')
 
-    user_role_filter = Filter.set_query_filters()
-    # user_grole_filter will apply on condtional string 
-    cond_str= Misc.scheme_rules_to_condition(scheme)
-    condtion = f"{('WHERE'+ cond_str) if cond_str else '' }"
+    condtion = create_condition(scheme)
     ben_sql = f"""
         SELECT
             distinct name as name
@@ -114,13 +119,12 @@ def top_schemes_of_milestone(milestone=None):
 def top_schemes():
     milestones = frappe.get_list("Milestone category", fields=['name'])
     user_role_filter = Filter.set_query_filters()
-    # user_grole_filter will apply on condtional string 
+    # user_grole_filter will apply on condtional string
     for milestone in milestones:
         schemes = frappe.get_list("Scheme", filters={'milestone':milestone.name}, fields=['name'])
         for scheme in schemes:
             scheme['ben_count'] = 0
-            cond_str= Misc.scheme_rules_to_condition(scheme.name)
-            condition = f"{('WHERE'+ cond_str) if cond_str else '' }"
+            condtion = create_condition(scheme)
             count_sql = f"SELECT count(name) as count FROM `tabBeneficiary Profiling` {condition }"
             data = frappe.db.sql(count_sql, as_dict=True)
             if len(data):
