@@ -18,7 +18,25 @@ class Misc:
             for key in groups.keys():
                 filters.append(groups[key])
         return filters
-
+    @staticmethod
+    def create_condition(rules=[], queries_groups=False):
+        conditions = []
+        if rules is not None and len(rules):
+            groups = {}
+            gIndex = 0
+            for rule in rules:
+                if not rule.group:
+                    gIndex += 1
+                    groups[f"G{gIndex}"] = [f"{rule.rule_field} {rule.operator} '{rule.data}'"]
+                elif groups.get(rule.group) is None:
+                    groups[rule.group] = [f"{rule.rule_field} {rule.operator} '{rule.data}'"]
+                else:
+                    groups[rule.group].append(f"{rule.rule_field} {rule.operator} '{rule.data}'")
+            for key in groups.keys():
+                conditions.append(f"({' AND '.join(groups[key])})")
+        if queries_groups:
+            return conditions
+        return f"{' OR '.join(conditions)}"
     @staticmethod
     def scheme_rules_to_condition(scheme, queries_groups=False):
         """
@@ -45,20 +63,4 @@ class Misc:
                 _ts.name_of_the_scheme = %s
         """
         rules = frappe.db.sql(sql, (scheme), as_dict=True)
-        conditions = []
-        if rules is not None and len(rules):
-            groups = {}
-            gIndex = 0
-            for rule in rules:
-                if not rule.group:
-                    gIndex += 1
-                    groups[f"G{gIndex}"] = [f"{rule.rule_field} {rule.operator} '{rule.data}'"]
-                elif groups.get(rule.group) is None:
-                    groups[rule.group] = [f"{rule.rule_field} {rule.operator} '{rule.data}'"]
-                else:
-                    groups[rule.group].append(f"{rule.rule_field} {rule.operator} '{rule.data}'")
-            for key in groups.keys():
-                conditions.append(f"({' AND '.join(groups[key])})")
-        if queries_groups:
-            return conditions
-        return f"{' OR '.join(conditions)}"
+        return Misc.create_condition(rules, queries_groups)
