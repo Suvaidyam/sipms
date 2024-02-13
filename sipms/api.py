@@ -82,28 +82,34 @@ def most_eligible_ben():
 
 
 @frappe.whitelist(allow_guest=True)
-def top_schemes_of_milestone(milestone=None):
-    if milestone is None:
-        return frappe.throw('Milestone not found.')
-    scheam_ben_count =[]
-    scheame_query = f"""select name  from `tabScheme` where milestone = '{milestone}'"""
-    get_all_scheame = frappe.db.sql(scheame_query, as_dict=True)
-    for scheme in get_all_scheame:
-        get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where _ts.name_of_the_scheme ='{scheme.name.replace("'", "''")}';"""
-        # get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where _ts.name_of_the_scheme ='{scheme.name}';"""
-        rules = frappe.db.sql(get_rules, as_dict=True)
-        condition_str =""
-        if rules:
-            for rule in rules:
-                condition_str = f"""{condition_str} {rule.rule_field} {rule.operator} '{rule.data}' AND"""
-            # condition_str = f"{condition_str} "
-        else:
-            condition_str = ""
-        get_elegible_ben = f""" SELECT count(name) as abc FROM `tabBeneficiary Profiling` WHERE{condition_str} 1=1 order by abc DESC"""
-        all_ben = frappe.db.sql(get_elegible_ben, as_dict=True)
-        sch_ben = {"scheam": scheme.name , "bencount": all_ben[0].abc}
-        scheam_ben_count.append(sch_ben)
-    sorted_schemes = sorted(scheam_ben_count, key=lambda x: x["bencount"], reverse=True)
-    # Get the top 5 schemes
-    top_5_schemes = sorted_schemes[:5]
-    return top_5_schemes
+def top_schemes_of_milestone():
+    milestone_query = f"""SELECT name FROM `tabMilestone category`"""
+    milestone = frappe.db.sql(milestone_query, as_dict=True)
+    result = []
+
+    for mil in milestone:
+        scheam_ben_count =[]
+        scheame_query = f"""select name  from `tabScheme` where milestone = '{mil.name}'"""
+        # return scheame_query
+        get_all_scheame = frappe.db.sql(scheame_query, as_dict=True)
+        for scheme in get_all_scheame:
+            get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where _ts.name_of_the_scheme ='{scheme.name.replace("'", "''")}';"""
+            # get_rules = f"""select  rule_field, operator, data from `tabScheme` as _ts JOIN `tabRule Engine Child` as _tsc on _tsc.parent = _ts.name where _ts.name_of_the_scheme ='{scheme.name}';"""
+            rules = frappe.db.sql(get_rules, as_dict=True)
+            condition_str =""
+            if rules:
+                for rule in rules:
+                    condition_str = f"""{condition_str} {rule.rule_field} {rule.operator} '{rule.data}' AND"""
+                # condition_str = f"{condition_str} "
+            else:
+                condition_str = ""
+            get_elegible_ben = f""" SELECT count(name) as abc FROM `tabBeneficiary Profiling` WHERE{condition_str} 1=1 order by abc DESC"""
+            all_ben = frappe.db.sql(get_elegible_ben, as_dict=True)
+            sch_ben = {"scheam name": scheme.name , "bencount": all_ben[0].abc}
+            scheam_ben_count.append(sch_ben)
+        sorted_schemes = sorted(scheam_ben_count, key=lambda x: x["bencount"], reverse=True)
+        # Get the top 5 schemes
+        top_5_schemes = sorted_schemes[:5]
+        data = {"milestone": mil.name, "schemes": top_5_schemes}
+        result.append(data)
+    return result
