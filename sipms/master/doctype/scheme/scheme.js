@@ -91,125 +91,130 @@ function callAPI(options) {
         });
     })
 }
-const get_ben_list = async (frm, columns) => {
+const get_ben_list = async (frm, columns , filter={}) => {
+    // console.log(filter)
     let list = await callAPI({
         method: 'sipms.api.eligible_beneficiaries',
         freeze: true,
         args: {
             "scheme": frm.doc.name_of_the_scheme,
-            columns: columns
+            columns: columns,
+            "filter":filter
         },
         freeze_message: __("Getting beneficiaries..."),
     })
     // scheme_list = list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
     return list
 }
+let tableConf = {
+    columns: [
+        {
+            name: " ",
+            id: 'serial_no',
+            editable: false,
+            resizable: true,
+            sortable: false,
+            focusable: false,
+            dropdown: true,
+            width: 70
+        },
+        {
+            name: "Name of the beneficiary",
+            id: 'name_of_the_beneficiary',
+            editable: false,
+            resizable: false,
+            sortable: false,
+            focusable: false,
+            dropdown: true,
+            width: 200
+        },
+        {
+            name: "Primary member",
+            id: 'name_of_parents',
+            field: 'select_primary_member.name_of_parents',
+            editable: false,
+            resizable: false,
+            sortable: false,
+            focusable: false,
+            dropdown: false,
+            width: 200,
+        },
+        {
+            name: "Contact number",
+            id: 'contact_number',
+            editable: false,
+            resizable: false,
+            sortable: false,
+            focusable: false,
+            dropdown: false,
+            width: 150,
+        },
+        {
+            name: "Block",
+            id: 'block_name',
+            field: 'ward.block_name',
+            editable: false,
+            resizable: false,
+            sortable: false,
+            focusable: false,
+            dropdown: false,
+            width: 200,
+        },
+        {
+            name: "Name of the settlement",
+            id: 'village_name',
+            field: 'name_of_the_settlement.village_name',
+            editable: false,
+            resizable: false,
+            sortable: false,
+            focusable: false,
+            dropdown: false,
+            width: 200,
+        }
+    ],
+    rows: []
+};
+const render_table = async(frm)=>{
+    let response = { count: { total: 0, total_family: 0, }, data: [] };
+    get_field_list('rules', frm)
+    if (!frm?.doc?.__islocal) {
+        let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
+        response = await get_ben_list(frm, ['name', ...columns])
+    }
+    let sno = 0;
+    for (let ben of response.data) {
+        sno++
+        tableConf.rows.push({
+            ...ben,
+            name_of_the_beneficiary: `<a href="/app/beneficiary-profiling/${ben.name}">${ben.name_of_the_beneficiary}</a>`,
+            serial_no: sno
+        })
+    }
+    const container = document.getElementById('eligible_beneficiaries');
+    const datatable = new DataTable(container, {
+        layout: 'fluid',
+        columns: tableConf.columns,
+        serialNoColumn: false
+    });
+    datatable.style.setStyle(`.dt-scrollable`, { height: '800px!important', overflow: 'scroll!important' });
+    datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
+    datatable.refresh(tableConf.rows);
+    document.getElementById('parent').style.display = "flex";
+    document.getElementById('parent').style.columnGap = "15px";
+    document.getElementById('parent').style.flexWrap = "wrap";
+    document.getElementById('total') ? document.getElementById('total').innerText = "Total: Beneficiary: " + response?.count?.total + ',' : ''
+    document.getElementById('total_family') ? document.getElementById('total_family').innerText = "Primary member: " + response?.count?.total_family + ',' : ''
+    document.getElementById('block_count') ? document.getElementById('block_count').innerText = "Block count: " + response?.count?.total + ',' : ''
+    document.getElementById('settlement_count') ? document.getElementById('settlement_count').innerText = "Settlement count: " + response?.count?.settlement_count : ''
+    frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
+    if (frm.doc.department_urlwebsite) {
+        frm.add_web_link(frm?.doc?.department_urlwebsite)
+    }
+    generateQueryString(frm.doc[child_table_field])
+}
 frappe.ui.form.on("Scheme", {
     async refresh(frm) {
-        let response = { count: { total: 0, total_family: 0, }, data: [] };
-        get_field_list('rules', frm)
-        let tableConf = {
-            columns: [
-                {
-                    name: " ",
-                    id: 'serial_no',
-                    editable: false,
-                    resizable: true,
-                    sortable: false,
-                    focusable: false,
-                    dropdown: true,
-                    width: 70
-                },
-                {
-                    name: "Name of the beneficiary",
-                    id: 'name_of_the_beneficiary',
-                    editable: false,
-                    resizable: false,
-                    sortable: false,
-                    focusable: false,
-                    dropdown: true,
-                    width: 200
-                },
-                {
-                    name: "Primary member",
-                    id: 'name_of_parents',
-                    field: 'select_primary_member.name_of_parents',
-                    editable: false,
-                    resizable: false,
-                    sortable: false,
-                    focusable: false,
-                    dropdown: false,
-                    width: 200,
-                },
-                {
-                    name: "Contact number",
-                    id: 'contact_number',
-                    editable: false,
-                    resizable: false,
-                    sortable: false,
-                    focusable: false,
-                    dropdown: false,
-                    width: 150,
-                },
-                {
-                    name: "Block",
-                    id: 'block_name',
-                    field: 'ward.block_name',
-                    editable: false,
-                    resizable: false,
-                    sortable: false,
-                    focusable: false,
-                    dropdown: false,
-                    width: 200,
-                },
-                {
-                    name: "Name of the settlement",
-                    id: 'village_name',
-                    field: 'name_of_the_settlement.village_name',
-                    editable: false,
-                    resizable: false,
-                    sortable: false,
-                    focusable: false,
-                    dropdown: false,
-                    width: 200,
-                }
-            ],
-            rows: []
-        };
-        if (!frm?.doc?.__islocal) {
-            let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
-            response = await get_ben_list(frm, ['name', ...columns])
-        }
-        let sno = 0;
-        for (let ben of response.data) {
-            sno++
-            tableConf.rows.push({
-                ...ben,
-                name_of_the_beneficiary: `<a href="/app/beneficiary-profiling/${ben.name}">${ben.name_of_the_beneficiary}</a>`,
-                serial_no: sno
-            })
-        }
-        const container = document.getElementById('eligible_beneficiaries');
-        const datatable = new DataTable(container, {
-            layout: 'fluid',
-            columns: tableConf.columns,
-            serialNoColumn: false
-        });
-        datatable.style.setStyle(`.dt-scrollable`, { height: '800px!important', overflow: 'scroll!important' });
-        datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
-        datatable.refresh(tableConf.rows);
-        document.getElementById('parent').style.display = "flex";
-        document.getElementById('parent').style.columnGap = "15px";
-        document.getElementById('parent').style.flexWrap = "wrap";
-        document.getElementById('total') ? document.getElementById('total').innerText = "Total: Beneficiary: " + response?.count?.total + ',' : ''
-        document.getElementById('total_family') ? document.getElementById('total_family').innerText = "Primary member: " + response?.count?.total_family + ',' : ''
-        document.getElementById('block_count') ? document.getElementById('block_count').innerText = "Block count: " + response?.count?.total + ',' : ''
-        document.getElementById('settlement_count') ? document.getElementById('settlement_count').innerText = "Settlement count: " + response?.count?.settlement_count : ''
-        frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
-        if (frm.doc.department_urlwebsite) {
-            frm.add_web_link(frm?.doc?.department_urlwebsite)
-        }
-        generateQueryString(frm.doc[child_table_field])
+        render_table(frm)
     },
     type_of_the_scheme: function (frm) {
         if (frm.doc.type_of_the_scheme != "State") {
@@ -221,17 +226,21 @@ frappe.ui.form.on("Scheme", {
             frm.add_web_link(frm?.doc?.department_urlwebsite)
         }
     },
-    name_of_beneficiary: function (frm) {
-        console.log('sadsadad', frm.doc.name_of_beneficiary)
+    name_of_beneficiary: async function (frm) {
+        let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
+        response = await get_ben_list(frm, ['name', ...columns] , {"name_of_beneficiary":frm.doc.name_of_beneficiary})
     },
-    primary_member: function (frm) {
-        console.log('sadsadad', frm.doc.primary_member)
+    primary_member: async function (frm) {
+        let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
+        response = await get_ben_list(frm, ['name', ...columns] , {"primary_member":frm.doc.primary_member})
     },
-    phone_number: function (frm) {
-        console.log('sadsadad', frm.doc.phone_number)
+    phone_number: async function (frm) {
+        let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
+        response = await get_ben_list(frm, ['name', ...columns] , {"phone_number":frm.doc.phone_number})
     },
-    block: function (frm) {
-        console.log('sadsadad', frm.doc.block)
+    block:async function (frm) {
+        let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
+        response = await get_ben_list(frm, ['name', ...columns] , {"name_of_beneficiary":frm.doc.name_of_beneficiary})
     },
 });
 const form_events = {

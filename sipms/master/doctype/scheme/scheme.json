@@ -35,6 +35,7 @@
   "phone_number",
   "column_break_qesv",
   "block",
+  "column_break_xofo",
   "section_break_torq",
   "table",
   "summary"
@@ -163,6 +164,7 @@
    "options": "<div id=\"parent\">\n<div id=\"total\"></div>\n<div id=\"total_family\"></div>\n<div id=\"block_count\"></div>\n<div id=\"settlement_count\"></div>\n</div>"
   },
   {
+   "columns": 1,
    "fieldname": "name_of_beneficiary",
    "fieldtype": "Data",
    "label": "Name of beneficiary"
@@ -204,11 +206,15 @@
    "fieldname": "filters_section",
    "fieldtype": "Section Break",
    "label": "Filters"
+  },
+  {
+   "fieldname": "column_break_xofo",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-13 12:14:53.896075",
+ "modified": "2024-02-13 13:12:31.900312",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
