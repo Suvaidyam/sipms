@@ -124,7 +124,7 @@ def top_schemes():
         schemes = frappe.get_list("Scheme", filters={'milestone':milestone.name}, fields=['name'])
         for scheme in schemes:
             scheme['ben_count'] = 0
-            condtion = create_condition(scheme)
+            condition = create_condition(scheme.name)
             count_sql = f"SELECT count(name) as count FROM `tabBeneficiary Profiling` {condition }"
             data = frappe.db.sql(count_sql, as_dict=True)
             if len(data):
