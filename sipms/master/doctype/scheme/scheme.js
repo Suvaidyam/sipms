@@ -91,7 +91,7 @@ function callAPI(options) {
         });
     })
 }
-const get_ben_list = async (frm, columns , filter={}) => {
+const get_ben_list = async (frm, columns , filters={}) => {
     // console.log(filter)
     let list = await callAPI({
         method: 'sipms.api.eligible_beneficiaries',
@@ -99,7 +99,7 @@ const get_ben_list = async (frm, columns , filter={}) => {
         args: {
             "scheme": frm.doc.name_of_the_scheme,
             columns: columns,
-            "filter":filter
+            filters:filters
         },
         freeze_message: __("Getting beneficiaries..."),
     })
