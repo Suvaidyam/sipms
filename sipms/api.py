@@ -9,7 +9,7 @@ def execute(name=None):
 
 @frappe.whitelist(allow_guest=True)
 def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
-    # print("filters /////////////////////////////", filters)
+    print("filters /////////////////////////////", filters)
     # filter value is getting hear
     columns = json.loads(columns)
     if scheme is None:

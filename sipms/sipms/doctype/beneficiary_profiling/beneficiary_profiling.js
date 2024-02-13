@@ -528,7 +528,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     // follow up status manage
     if (frm.selected_doc.follow_up_table) {
       for (support_item of frm.selected_doc.scheme_table) {
-        if (!['Completed'].includes(support_item.status)) {
+        if (!['Completed','Previously availed'].includes(support_item.status)) {
           let followups = frm.selected_doc.follow_up_table.filter(f => f.parent_ref == support_item?.name)
           let latestFollowup = followups.length ? followups[(followups.length - 1)] : null
           if (latestFollowup?.parent_ref == support_item.name) {
@@ -578,7 +578,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
     }
 
-    let open, under_process, form_submitted, rejected, completed, closed;
+    let open, under_process, form_submitted, rejected, completed, closed ;
     open = under_process = form_submitted = rejected = completed = closed = 0;
     let total_no_of_support = 0
     if (frm.selected_doc.scheme_table) {
@@ -593,7 +593,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           ++form_submitted
         } else if (item.status === 'Rejected') {
           ++rejected
-        } else if (item.status === 'Completed') {
+        } else if (item.status === 'Completed' || item.status === 'Previously availed') {
           ++completed
         } else {
           ++closed

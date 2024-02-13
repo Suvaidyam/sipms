@@ -167,6 +167,7 @@
    "columns": 1,
    "fieldname": "name_of_beneficiary",
    "fieldtype": "Data",
+   "is_virtual": 1,
    "label": "Name of beneficiary"
   },
   {
@@ -176,6 +177,7 @@
   {
    "fieldname": "primary_member",
    "fieldtype": "Data",
+   "is_virtual": 1,
    "label": "Primary member"
   },
   {
@@ -185,6 +187,7 @@
   {
    "fieldname": "phone_number",
    "fieldtype": "Data",
+   "is_virtual": 1,
    "label": "Phone number"
   },
   {
@@ -193,7 +196,7 @@
   },
   {
    "fieldname": "block",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "label": "Block",
    "options": "Block"
   },
@@ -214,7 +217,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-13 16:54:05.003466",
+ "modified": "2024-02-13 21:50:58.196181",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
