@@ -201,10 +201,10 @@ frappe.ui.form.on("Scheme", {
         document.getElementById('parent').style.display = "flex";
         document.getElementById('parent').style.columnGap = "15px";
         document.getElementById('parent').style.flexWrap = "wrap";
-        document.getElementById('total') ? document.getElementById('total').innerText = "Total beneficiary: " + response?.count?.total : ''
-        document.getElementById('total_family') ? document.getElementById('total_family').innerText = "Total primary member: " + response?.count?.total_family : ''
-        // document.getElementById('block_count') ? document.getElementById('block_count').innerText = "Block count: " + response?.count?.total : ''
-        // document.getElementById('settlement_count') ? document.getElementById('settlement_count').innerText = "Settlement count: " + response?.count?.settlement_count : ''
+        document.getElementById('total') ? document.getElementById('total').innerText = "Total: Beneficiary: " + response?.count?.total + ',' : ''
+        document.getElementById('total_family') ? document.getElementById('total_family').innerText = "Primary member: " + response?.count?.total_family + ',' : ''
+        document.getElementById('block_count') ? document.getElementById('block_count').innerText = "Block count: " + response?.count?.total + ',' : ''
+        document.getElementById('settlement_count') ? document.getElementById('settlement_count').innerText = "Settlement count: " + response?.count?.settlement_count : ''
         frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
         if (frm.doc.department_urlwebsite) {
             frm.add_web_link(frm?.doc?.department_urlwebsite)
