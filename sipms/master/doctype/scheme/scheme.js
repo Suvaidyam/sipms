@@ -91,8 +91,19 @@ function callAPI(options) {
         });
     })
 }
-const get_ben_list = async (frm, columns , filters={}) => {
-    // console.log(filter)
+const generate_filters = async(frm)=>{
+    
+    filter_val = []
+    frm?.doc?.name_of_beneficiary ? filter_val.push({"name_of_beneficiary":frm.doc.name_of_beneficiary}):undefined
+    frm?.doc?.primary_member?filter_val.push({"primary_member":frm.doc.primary_member}):undefined
+    frm?.doc?.phone_number?filter_val.push({"phone_number":frm.doc.phone_number}):undefined
+    frm?.doc?.block?filter_val.push({"block":frm.doc.block}):undefined
+    // console.log("hhelo", filter_val)
+    let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
+    response = await get_ben_list(frm, ['name', ...columns] , filter_val)
+}
+const get_ben_list = async (frm, columns , filters=[]) => {
+    console.log("filters",filters,)
     let list = await callAPI({
         method: 'sipms.api.eligible_beneficiaries',
         freeze: true,
@@ -227,20 +238,17 @@ frappe.ui.form.on("Scheme", {
         }
     },
     name_of_beneficiary: async function (frm) {
-        let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
-        response = await get_ben_list(frm, ['name', ...columns] , {"name_of_beneficiary":frm.doc.name_of_beneficiary})
+        generate_filters(frm)
+
     },
     primary_member: async function (frm) {
-        let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
-        response = await get_ben_list(frm, ['name', ...columns] , {"primary_member":frm.doc.primary_member})
+        generate_filters(frm)
     },
     phone_number: async function (frm) {
-        let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
-        response = await get_ben_list(frm, ['name', ...columns] , {"phone_number":frm.doc.phone_number})
+        generate_filters(frm)
     },
     block:async function (frm) {
-        let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
-        response = await get_ben_list(frm, ['name', ...columns] , {"name_of_beneficiary":frm.doc.name_of_beneficiary})
+        generate_filters(frm)
     },
 });
 const form_events = {
