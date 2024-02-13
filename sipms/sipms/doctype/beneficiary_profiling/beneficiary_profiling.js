@@ -660,6 +660,16 @@ frappe.ui.form.on("Beneficiary Profiling", {
     let tableConf = {
       columns: [
         {
+          name: " ",
+          id: 'serial_no',
+          editable: false,
+          resizable: true,
+          sortable: false,
+          focusable: false,
+          dropdown: true,
+          width: 70
+        },
+        {
           name: "Name",
           id: 'name',
           editable: false,
@@ -700,8 +710,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
       ],
       rows: []
     };
+    let sno = 0;
     for (let scheme of scheme_list) {
+      sno++
       tableConf.rows.push({
+        serial_no: sno,
         name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
         matches: `<a href="/app/scheme/${scheme?.name}">${scheme.matching_rules}/${scheme?.total_rules}</a>`,
         rules: scheme.rules,
@@ -710,7 +723,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
     console.log("tableConf", tableConf)
     const container = document.getElementById('all_schemes');
-    const datatable = new DataTable(container, { columns: tableConf.columns });
+    const datatable = new DataTable(container, { columns: tableConf.columns, serialNoColumn: false });
     datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });
     datatable.refresh(tableConf.rows);
     // if not is local
