@@ -105,7 +105,7 @@ def top_schemes_of_milestone():
                 condition_str = ""
             get_elegible_ben = f""" SELECT count(name) as abc FROM `tabBeneficiary Profiling` WHERE{condition_str} 1=1 order by abc DESC"""
             all_ben = frappe.db.sql(get_elegible_ben, as_dict=True)
-            sch_ben = {"scheam name": scheme.name , "bencount": all_ben[0].abc}
+            sch_ben = {"scheam_name": scheme.name , "bencount": all_ben[0].abc}
             scheam_ben_count.append(sch_ben)
         sorted_schemes = sorted(scheam_ben_count, key=lambda x: x["bencount"], reverse=True)
         # Get the top 5 schemes
