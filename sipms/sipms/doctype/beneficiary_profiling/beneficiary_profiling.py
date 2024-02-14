@@ -70,7 +70,7 @@ class BeneficiaryProfiling(Document):
 
 	def validate(self):
 		if(self.contact_number == self.alternate_contact_number):
-			return frappe.throw("Contact number and alternet contact number both is same")
+			return frappe.throw("Alternate contact number cannot be the same as mobile number")
 		if(self.do_you_have_any_id_documents != "Yes"):
 			self.id_table_list = []
 		if(self.date_of_birth and self.date_of_visit):

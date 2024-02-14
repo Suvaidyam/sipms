@@ -193,7 +193,7 @@ const doc_submitted_validate = (_doc, _scheme) => {
   } else if (_doc.date_of_application > frappe.datetime.get_today()) {
     return {
       status: false,
-      message: __("Date of application should not be greater than today date")
+      message: __("Date of application should not be greater than today's date")
     }
   } else {
     return {
@@ -216,7 +216,7 @@ const doc_rejected_validate = (_doc, _scheme) => {
   } else if (_doc.date_of_rejection > frappe.datetime.get_today()) {
     return {
       status: false,
-      message: __("Date of rejection should not be greater than today date")
+      message: __("Date of rejection should not be greater than today's date")
     }
   } else {
     return {
@@ -241,7 +241,7 @@ const date_of_complete_validate = (_doc, _scheme) => {
   } else if (_doc.date_of_completion > frappe.datetime.get_today()) {
     return {
       status: false,
-      message: __("Date of completion should not be greater than today date")
+      message: __("Date of completion should not be greater than today's date")
     }
   } else if ((_doc.date_of_completion < _doc.date_of_application) || (_doc.date_of_completion < _scheme?.date_of_application)) {
     return {
