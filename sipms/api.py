@@ -17,7 +17,7 @@ def create_condition(scheme):
     return f" WHERE 1=1 {cond_str} {user_role_filter}"
 @frappe.whitelist(allow_guest=True)
 def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
-    print("filters /////////////////////////////", filters)
+    print("filters /////////////////////////////", filters,scheme)
     # filter value is getting hear
     columns = json.loads(columns)
     if scheme is None:
@@ -71,6 +71,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
         )
         count_sql = f"""
             select
+                count(distinct name) as total,
                 count(distinct select_primary_member) as family_count,
                 count(distinct ward) as block_count,
                 count(distinct name_of_the_settlement) as settlement_count
