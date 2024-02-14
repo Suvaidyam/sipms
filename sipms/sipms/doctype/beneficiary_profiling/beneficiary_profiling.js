@@ -520,7 +520,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
           if (support_items.status != 'Closed') {
             support_items.status = 'Under process'
           }
-        } else {
+        } else if(support_items.application_submitted == "Previously availed"){
+          support_items.status = 'Availed'
+        }else if(support_items.application_submitted == "Completed"){
           support_items.status = 'Completed'
         }
       }
@@ -1062,7 +1064,7 @@ frappe.ui.form.on('Scheme Child', {
       row.status = ''; row.date_of_completion = '';
       frm.refresh_fields('status', 'date_of_completion')
       createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
-    } else if (["Completed", 'Previously availed'].includes(row.application_submitted)) {
+    } else if (["Completed"].includes(row.application_submitted)) {
       createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
     } else if (row.application_submitted == "No") {
       row.date_of_application = ''; row.date_of_completion = ''; row.application_number = ''; row.amount_paid = ''; row.paid_by = "";
@@ -1080,11 +1082,11 @@ frappe.ui.form.on('Follow Up Child', {
     if (row.__islocal) {
       if (row.follow_up_status == 'Document submitted' && (!row.date_of_application || !row.mode_of_application)) {
         row.status = ''
-        createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
+        // createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
       } else if (row.follow_up_status == 'Completed' && !row.date_of_completion) {
-        createDialog(row, dialogsConfig.document_completed, date_of_complete_validate).show();
+        // createDialog(row, dialogsConfig.document_completed, date_of_complete_validate).show();
       } else if (row.follow_up_status == 'Rejected' && (!row.date_of_rejection || !row.reason_of_rejection)) {
-        createDialog(row, dialogsConfig.document_rejected, doc_rejected_validate).show();
+        // createDialog(row, dialogsConfig.document_rejected, doc_rejected_validate).show();
       }
     }
   },
@@ -1099,7 +1101,7 @@ frappe.ui.form.on('Follow Up Child', {
       row.follow = frappe.session.user_fullname
     }
     // call api of list of helpdesk with checking roles
-    let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
+    let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed'&& f.status != 'Availed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
     row.follow_up_date = frappe.datetime.get_today()
     frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },
