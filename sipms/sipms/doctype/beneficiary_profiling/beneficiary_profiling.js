@@ -520,9 +520,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
           if (support_items.status != 'Closed') {
             support_items.status = 'Under process'
           }
-        } else if(support_items.application_submitted == "Previously availed"){
+        } else if (support_items.application_submitted == "Previously availed") {
           support_items.status = 'Availed'
-        }else if(support_items.application_submitted == "Completed"){
+        } else if (support_items.application_submitted == "Completed") {
           support_items.status = 'Completed'
         }
       }
@@ -677,7 +677,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
         },
         {
           name: "Name",
-          id: 'name',
+          id: 'scheme_name',
           editable: false,
           resizable: false,
           sortable: false,
@@ -740,24 +740,32 @@ frappe.ui.form.on("Beneficiary Profiling", {
       ],
       rows: []
     };
-    let sno = 0;
-    for (let scheme of scheme_list) {
-      sno++
-      scheme.available && tableConf.rows.push({
-        serial_no: sno,
-        name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
+    let scheme_row_list = scheme_list.map((scheme, i) => {
+      return scheme.available && {
+        serial_no: (i + 1),
+        scheme_name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
         matches: `<a href="/app/scheme/${scheme?.name}">${scheme.matching_rules}/${scheme?.total_rules}</a>`,
         rules: scheme.rules,
         groups: scheme.groups,
         availed: scheme.available,
         milestone: scheme.milestone
-      })
-    }
-    console.log("tableConf", tableConf)
+      }
+    }).filter(f => f);
+
     const container = document.getElementById('all_schemes');
     const datatable = new DataTable(container, { columns: tableConf.columns, serialNoColumn: false });
     datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });
-    datatable.refresh(tableConf.rows);
+    document.addEventListener('keyup', function (event) {
+      if (['scheme_name', 'milestone'].includes(event.target.id)) {
+        const filter = event.target.value.trim().toLowerCase();
+        let rows = scheme_row_list;
+        if (filter) {
+          rows = scheme_row_list.filter(ben => (ben[event.target.id]?.toString()?.toLowerCase()?.indexOf(filter) > -1));
+        }
+        datatable.refresh(rows);
+      }
+    });
+    datatable.refresh(scheme_row_list);
     // if not is local
     if (frm.doc.__islocal) {
       frm.doc.added_by = frappe.session.user
@@ -1101,7 +1109,7 @@ frappe.ui.form.on('Follow Up Child', {
       row.follow = frappe.session.user_fullname
     }
     // call api of list of helpdesk with checking roles
-    let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed'&& f.status != 'Availed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
+    let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Availed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
     row.follow_up_date = frappe.datetime.get_today()
     frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },

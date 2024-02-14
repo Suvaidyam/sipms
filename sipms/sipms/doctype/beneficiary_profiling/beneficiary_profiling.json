@@ -441,7 +441,7 @@
    "fieldname": "all_schemes",
    "fieldtype": "HTML",
    "label": "Schemes",
-   "options": "<h3>Schemes</h3>\n<div id=\"all_schemes\"></div>"
+   "options": "<h4>Schemes</h4>\n<div class=\"row\">\n    <div class=\"col-md-2\">\n        <label for=\"scheme_name\">Name</label>\n        <input type=\"text\" id=\"scheme_name\" class=\"form-control\">\n    </div>\n    <div class=\"col-md-2\">\n        <label for=\"milestone\">Milestone</label>\n        <input type=\"text\" id=\"milestone\" class=\"form-control\">\n    </div>\n    <div class=\"col-md-8\">\n        <p style=\"text-align:right; margin-top:26px;\">\n            Schemes with 0/0 matches mean that no rules (eligibility conditions) have been set for the schemes.\n        </p>\n    </div>\n</div>\n<div style=\"margin-top: 5px;\">\n    <div class=\"row\">\n        <div class=\"col-md-12\">\n            <div id=\"all_schemes\"></div>\n        </div>\n    </div>\n</div>\n"
   },
   {
    "fetch_from": ".occupational_category",
@@ -544,7 +544,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-13 18:57:30.522142",
+ "modified": "2024-02-15 01:47:30.755855",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
