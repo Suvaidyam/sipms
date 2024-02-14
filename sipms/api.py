@@ -80,7 +80,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
         """
         count_data = frappe.db.sql(count_sql, as_dict=True)
         if len(count_data):
-            res['count'] = count_data[0]
+            res['count'].update(count_data[0])
     return res
 @frappe.whitelist(allow_guest=True)
 def most_eligible_ben():
