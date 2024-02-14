@@ -22,14 +22,21 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
     columns = json.loads(columns)
     if scheme is None:
         return frappe.throw('Scheme not found.')
-
-    condtion = create_condition(scheme)
-    ben_sql = f"""
-        SELECT
-            distinct name as name
-        FROM
-            `tabBeneficiary Profiling`
-        {condtion } AND name not in (
+    scheme_doc = frappe.get_doc('Scheme',scheme)
+    if not scheme_doc:
+        return {
+            'data':[],
+            'count':{
+                'total':0,
+                'total_family':0,
+                'block_count':0,
+                'settlement_count':0
+            }
+        }
+    availed_sql = f""
+    if scheme_doc.get('how_many_times_can_this_scheme_be_availed') == 'Once':
+        availed_sql = f"""
+            AND name not in (
             select
                 distinct parent
             from
@@ -37,10 +44,18 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
             where
                 parenttype='Beneficiary Profiling'
                 and
-                name_of_the_scheme = '{scheme}'
+                name_of_the_scheme = '{scheme_doc.name}'
                 and
                 application_submitted IN ('Completed','Previously availed')
         )
+        """
+    condtion = create_condition(scheme)
+    ben_sql = f"""
+        SELECT
+            distinct name as name
+        FROM
+            `tabBeneficiary Profiling`
+        {condtion } {availed_sql}
     """
     bens = frappe.db.sql(ben_sql, as_dict=True)
     total = len(bens)
