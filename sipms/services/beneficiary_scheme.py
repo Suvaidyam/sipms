@@ -45,13 +45,33 @@ class BeneficaryScheme:
             })
         obj['percentage'] = ((obj['matched']/obj['total'])*100) if obj['total'] > 0 else 0
         return obj
+    def has_availed(beneficiary, scheme):
+        sql = f"""
+        select
+            name
+        from
+            `tabScheme Child`
+        where
+            parent = '{beneficiary}'
+            and
+            parenttype='Beneficiary Profiling'
+            and
+            name_of_the_scheme = '{scheme}'
+            and
+            application_submitted IN ('Completed','Previously availed')
+        limit 1
+        """
+        count_list = frappe.db.sql(sql, as_dict=True)
+        return True if len(count_list) else False
 
     def get_schemes(beneficiary=None):
         schemes = frappe.get_list('Scheme', fields=['name', 'name_of_department', 'milestone', 'how_many_times_can_this_scheme_be_availed'])
         for scheme in schemes:
             doc = frappe.get_doc("Scheme", scheme.name)
             scheme['groups'] = []
-            # scheme['available'] = schemes.
+            scheme['available'] = True
+            if scheme.get('how_many_times_can_this_scheme_be_availed') == 'Once':
+                scheme['available'] = not BeneficaryScheme.has_availed(beneficiary, scheme.name)
             scheme['rules'] = []
             scheme['total_rules'] = 0
             scheme['matching_rules'] = 0

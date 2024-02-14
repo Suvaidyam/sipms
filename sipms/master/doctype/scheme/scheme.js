@@ -91,26 +91,27 @@ function callAPI(options) {
         });
     })
 }
-const generate_filters = async(frm)=>{
-    
+const generate_filters = async (frm) => {
+
     filter_val = []
-    frm?.doc?.name_of_beneficiary ? filter_val.push({"name_of_beneficiary":frm.doc.name_of_beneficiary}):undefined
-    frm?.doc?.primary_member?filter_val.push({"primary_member":frm.doc.primary_member}):undefined
-    frm?.doc?.phone_number?filter_val.push({"phone_number":frm.doc.phone_number}):undefined
-    frm?.doc?.block?filter_val.push({"block":frm.doc.block}):undefined
+    frm?.doc?.name_of_beneficiary ? filter_val.push({ "name_of_beneficiary": frm.doc.name_of_beneficiary }) : undefined
+    frm?.doc?.primary_member ? filter_val.push({ "primary_member": frm.doc.primary_member }) : undefined
+    frm?.doc?.phone_number ? filter_val.push({ "phone_number": frm.doc.phone_number }) : undefined
+    frm?.doc?.block ? filter_val.push({ "block": frm.doc.block }) : undefined
     // console.log("hhelo", filter_val)
     let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
-    response = await get_ben_list(frm, ['name', ...columns] , filter_val)
+    response = await get_ben_list(frm, ['name', ...columns], filter_val)
 }
-const get_ben_list = async (frm, columns , filters=[]) => {
-    console.log("filters",filters,)
+
+const get_ben_list = async (frm, columns, filters = []) => {
+    console.log("filters", filters,)
     let list = await callAPI({
         method: 'sipms.api.eligible_beneficiaries',
         freeze: true,
         args: {
             "scheme": frm.doc.name_of_the_scheme,
             columns: columns,
-            filters:filters
+            filters: filters
         },
         freeze_message: __("Getting beneficiaries..."),
     })
@@ -127,7 +128,10 @@ let tableConf = {
             sortable: false,
             focusable: false,
             dropdown: true,
-            width: 70
+            width: 100,
+            // format: (value, columns, ops, row, i) => {
+            //     return row.serial_no ? value : `&nbsp;&nbsp;`
+            // }
         },
         {
             name: "Name of the beneficiary",
@@ -137,7 +141,10 @@ let tableConf = {
             sortable: false,
             focusable: false,
             dropdown: true,
-            width: 200
+            width: 200,
+            // format: (value, columns, ops, row, i) => {
+            //     return row.serial_no ? value : `<input type="text" id="name_of_the_beneficiary" class="form-control">`
+            // }
         },
         {
             name: "Primary member",
@@ -149,6 +156,9 @@ let tableConf = {
             focusable: false,
             dropdown: false,
             width: 200,
+            // format: (value, columns, ops, row, i) => {
+            //     return row.serial_no ? value : `<input type="text" id="name_of_parents" class="form-control">`
+            // }
         },
         {
             name: "Contact number",
@@ -159,6 +169,9 @@ let tableConf = {
             focusable: false,
             dropdown: false,
             width: 150,
+            // format: (value, columns, ops, row, i) => {
+            //     return row.serial_no ? value : `<input type="text" id="contact_number" class="form-control">`
+            // }
         },
         {
             name: "Block",
@@ -170,6 +183,9 @@ let tableConf = {
             focusable: false,
             dropdown: false,
             width: 200,
+            // format: (value, columns, ops, row, i) => {
+            //     return row.serial_no ? value : `<input type="text" id="block_name" class="form-control">`
+            // }
         },
         {
             name: "Name of the settlement",
@@ -183,16 +199,19 @@ let tableConf = {
             width: 200,
         }
     ],
-    rows: []
+    rows: [],
+    filterable: true
 };
-const render_table = async(frm)=>{
+const render_table = async (frm) => {
     let response = { count: { total: 0, total_family: 0, }, data: [] };
     get_field_list('rules', frm)
     if (!frm?.doc?.__islocal) {
         let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
         response = await get_ben_list(frm, ['name', ...columns])
     }
+    tableConf.rows = []
     let sno = 0;
+    // tableConf.rows.push({ serial_no: sno })
     for (let ben of response.data) {
         sno++
         tableConf.rows.push({
@@ -210,12 +229,29 @@ const render_table = async(frm)=>{
     datatable.style.setStyle(`.dt-scrollable`, { height: '800px!important', overflow: 'scroll!important' });
     datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
     datatable.refresh(tableConf.rows);
+
+    document.addEventListener('keyup', function (event) {
+        if (['name_of_the_beneficiary', 'name_of_parents', 'contact_number', 'block_name'].includes(event.target.id)) {
+            const filter = event.target.value.trim().toLowerCase();
+            let rows = response.data;
+            if (filter) {
+                rows = response.data.filter(ben => (ben[event.target.id]?.toString()?.toLowerCase()?.indexOf(filter) > -1));
+            }
+            datatable.refresh(rows.map((ben, i) => {
+                return {
+                    ...ben,
+                    name_of_the_beneficiary: `<a href="/app/beneficiary-profiling/${ben.name}">${ben.name_of_the_beneficiary}</a>`,
+                    serial_no: (i + 1)
+                }
+            }));
+        }
+    });
     document.getElementById('parent').style.display = "flex";
     document.getElementById('parent').style.columnGap = "15px";
     document.getElementById('parent').style.flexWrap = "wrap";
     document.getElementById('total') ? document.getElementById('total').innerText = "Total: Beneficiary: " + response?.count?.total + ',' : ''
     document.getElementById('total_family') ? document.getElementById('total_family').innerText = "Primary member: " + response?.count?.total_family + ',' : ''
-    document.getElementById('block_count') ? document.getElementById('block_count').innerText = "Block count: " + response?.count?.total + ',' : ''
+    document.getElementById('block_count') ? document.getElementById('block_count').innerText = "Block count: " + response?.count?.block_count + ',' : ''
     document.getElementById('settlement_count') ? document.getElementById('settlement_count').innerText = "Settlement count: " + response?.count?.settlement_count : ''
     frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
     if (frm.doc.department_urlwebsite) {
@@ -247,7 +283,7 @@ frappe.ui.form.on("Scheme", {
     phone_number: async function (frm) {
         generate_filters(frm)
     },
-    block:async function (frm) {
+    block: async function (frm) {
         generate_filters(frm)
     },
 });

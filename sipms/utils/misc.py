@@ -25,10 +25,10 @@ class Misc:
             groups = {}
             gIndex = 0
             for rule in rules:
-                if not rule.group:
-                    gIndex += 1
-                    groups[f"G{gIndex}"] = [f"{rule.rule_field} {rule.operator} '{rule.data}'"]
-                elif groups.get(rule.group) is None:
+                # if not rule.group:
+                #     gIndex += 1
+                #     groups[f"G{gIndex}"] = [f"{rule.rule_field} {rule.operator} '{rule.data}'"]
+                if groups.get(rule.group) is None:
                     groups[rule.group] = [f"{rule.rule_field} {rule.operator} '{rule.data}'"]
                 else:
                     groups[rule.group].append(f"{rule.rule_field} {rule.operator} '{rule.data}'")

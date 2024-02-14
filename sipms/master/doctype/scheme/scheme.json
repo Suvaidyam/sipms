@@ -27,15 +27,6 @@
   "rules",
   "note",
   "beneficiaries_tab",
-  "filters_section",
-  "name_of_beneficiary",
-  "column_break_olkm",
-  "primary_member",
-  "column_break_jnkk",
-  "phone_number",
-  "column_break_qesv",
-  "block",
-  "column_break_xofo",
   "section_break_torq",
   "table",
   "summary"
@@ -142,7 +133,7 @@
    "fieldname": "table",
    "fieldtype": "HTML",
    "label": "Table",
-   "options": "<div id=\"eligible_beneficiaries\"></div>"
+   "options": "\n    <div class=\"row\">\n        <div class=\"col-md-2\">\n            <label for=\"name_of_the_beneficiary\">Name of beneficiary</label>\n            <input type=\"text\" id=\"name_of_the_beneficiary\" class=\"form-control\">\n        </div>\n        <div class=\"col-md-2\">\n            <label for=\"name_of_parents\">Primary member</label>\n            <input type=\"text\" id=\"name_of_parents\" class=\"form-control\">\n        </div>\n        <div class=\"col-md-2\">\n            <label for=\"contact_number\">Phone number</label>\n            <input type=\"text\" id=\"contact_number\" class=\"form-control\">\n        </div>\n        <div class=\"col-md-2\">\n            <label for=\"block_name\">Block</label>\n            <input type=\"text\" id=\"block_name\" class=\"form-control\">\n        </div>\n    </div>\n<br>\n<div class=\"row\" id=\"eligible_beneficiaries\"></div>\n\n"
   },
   {
    "fieldname": "note",
@@ -164,60 +155,13 @@
    "options": "<div id=\"parent\">\n<div id=\"total\"></div>\n<div id=\"total_family\"></div>\n<div id=\"block_count\"></div>\n<div id=\"settlement_count\"></div>\n</div>"
   },
   {
-   "columns": 1,
-   "fieldname": "name_of_beneficiary",
-   "fieldtype": "Data",
-   "is_virtual": 1,
-   "label": "Name of beneficiary"
-  },
-  {
-   "fieldname": "column_break_olkm",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "primary_member",
-   "fieldtype": "Data",
-   "is_virtual": 1,
-   "label": "Primary member"
-  },
-  {
-   "fieldname": "column_break_jnkk",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "phone_number",
-   "fieldtype": "Data",
-   "is_virtual": 1,
-   "label": "Phone number"
-  },
-  {
-   "fieldname": "column_break_qesv",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "block",
-   "fieldtype": "Select",
-   "label": "Block",
-   "options": "Block"
-  },
-  {
    "fieldname": "section_break_torq",
    "fieldtype": "Section Break"
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "filters_section",
-   "fieldtype": "Section Break",
-   "label": "Filters"
-  },
-  {
-   "fieldname": "column_break_xofo",
-   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-13 21:50:58.196181",
+ "modified": "2024-02-14 01:31:06.191475",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
