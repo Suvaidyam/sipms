@@ -1070,11 +1070,11 @@ frappe.ui.form.on('Follow Up Child', {
     if (row.__islocal) {
       if (row.follow_up_status == 'Document submitted' && (!row.date_of_application || !row.mode_of_application)) {
         row.status = ''
-        createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
+        // createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
       } else if (row.follow_up_status == 'Completed' && !row.date_of_completion) {
-        createDialog(row, dialogsConfig.document_completed, date_of_complete_validate).show();
+        // createDialog(row, dialogsConfig.document_completed, date_of_complete_validate).show();
       } else if (row.follow_up_status == 'Rejected' && (!row.date_of_rejection || !row.reason_of_rejection)) {
-        createDialog(row, dialogsConfig.document_rejected, doc_rejected_validate).show();
+        // createDialog(row, dialogsConfig.document_rejected, doc_rejected_validate).show();
       }
     }
   },
