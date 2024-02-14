@@ -670,7 +670,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           resizable: true,
           sortable: false,
           focusable: false,
-          dropdown: true,
+          dropdown: false,
           width: 70
         },
         {
@@ -680,8 +680,18 @@ frappe.ui.form.on("Beneficiary Profiling", {
           resizable: false,
           sortable: false,
           focusable: false,
-          dropdown: true,
-          width: 600
+          dropdown: false,
+          width: 400
+        },
+        {
+          name: "Milestone",
+          id: 'milestone',
+          editable: false,
+          resizable: false,
+          sortable: false,
+          focusable: false,
+          dropdown: false,
+          width: 200
         },
         {
           name: "Matches",
@@ -711,35 +721,37 @@ frappe.ui.form.on("Beneficiary Profiling", {
             return `<p title="${messages.join('\n--------------   \n')}">${row?.groups?.filter(f => f.percentage == 100)?.length?.toString()?.bold()}/${row?.groups?.length?.toString()?.bold()}</p>`
           }
         },
-        {
-          name: "Availed",
-          id: 'availed',
-          editable: false,
-          resizable: false,
-          sortable: false,
-          focusable: false,
-          dropdown: false,
-          width: 100,
-          format: (value, columns, ops, row) => {
-            return `<p style="text-align:center; color:green; font-size:18px; font-weight:600;">${value ? '' : '&#x2714;'}</p>`
-          }
-        }
+        //milestone
+        // {
+        //   name: "Availed",
+        //   id: 'availed',
+        //   editable: false,
+        //   resizable: false,
+        //   sortable: false,
+        //   focusable: false,
+        //   dropdown: false,
+        //   width: 100,
+        //   format: (value, columns, ops, row) => {
+        //     return `<p style="text-align:center; color:green; font-size:18px; font-weight:600;">${value ? '' : '&#x2714;'}</p>`
+        //   }
+        // }
       ],
       rows: []
     };
     let sno = 0;
     for (let scheme of scheme_list) {
       sno++
-      tableConf.rows.push({
+      scheme.available && tableConf.rows.push({
         serial_no: sno,
         name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
         matches: `<a href="/app/scheme/${scheme?.name}">${scheme.matching_rules}/${scheme?.total_rules}</a>`,
         rules: scheme.rules,
         groups: scheme.groups,
-        availed: scheme.available
+        availed: scheme.available,
+        milestone: scheme.milestone
       })
     }
-    // console.log("tableConf", tableConf)
+    console.log("tableConf", tableConf)
     const container = document.getElementById('all_schemes');
     const datatable = new DataTable(container, { columns: tableConf.columns, serialNoColumn: false });
     datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });

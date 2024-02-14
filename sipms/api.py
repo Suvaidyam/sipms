@@ -23,16 +23,17 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
     if scheme is None:
         return frappe.throw('Scheme not found.')
     scheme_doc = frappe.get_doc('Scheme',scheme)
-    if not scheme_doc:
-        return {
-            'data':[],
-            'count':{
-                'total':0,
-                'total_family':0,
-                'block_count':0,
-                'settlement_count':0
-            }
+    res = {
+        'data':[],
+        'count':{
+            'total':0,
+            'total_family':0,
+            'block_count':0,
+            'settlement_count':0
         }
+    }
+    if not scheme_doc:
+        return res
     availed_sql = f""
     if scheme_doc.get('how_many_times_can_this_scheme_be_availed') == 'Once':
         availed_sql = f"""
@@ -57,11 +58,12 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
             `tabBeneficiary Profiling`
         {condtion } {availed_sql}
     """
+    # print(ben_sql)
     bens = frappe.db.sql(ben_sql, as_dict=True)
     total = len(bens)
     beneficiary_list = []
     if total:
-        beneficiary_list = frappe.get_list("Beneficiary Profiling",
+        res['data'] = frappe.get_list("Beneficiary Profiling",
             fields=columns,
             filters={'name':('in', [ben.get('name') for ben in bens])},
             order_by='select_primary_member',
@@ -74,20 +76,12 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
                 count(distinct name_of_the_settlement) as settlement_count
             from
                 `tabBeneficiary Profiling`
-            {condtion}
+            {condtion} {availed_sql}
         """
         count_data = frappe.db.sql(count_sql, as_dict=True)
         if len(count_data):
-            count_data = count_data[0]
-    return {
-        'data':beneficiary_list,
-        'count':{
-            'total':total,
-            'total_family':count_data.family_count,
-            'block_count':count_data.block_count,
-            'settlement_count':count_data.settlement_count
-        }
-    }
+            res['count'] = count_data[0]
+    return res
 @frappe.whitelist(allow_guest=True)
 def most_eligible_ben():
     scheam_ben_count =[]
@@ -146,8 +140,16 @@ def top_schemes():
     milestones = frappe.get_list("Milestone category", fields=['name'])
     user_role_filter = Filter.set_query_filters()
     # user_grole_filter will apply on condtional string
+    scheme_with_rule_sql = f"""
+        select
+            distinct parent
+        from
+            `tabRule Engine Child`
+    """
+    scheme_with_rules = frappe.db.sql(scheme_with_rule_sql, as_dict=True)
+    scheme_list = [sc.get('parent') for sc in scheme_with_rules]
     for milestone in milestones:
-        schemes = frappe.get_list("Scheme", filters={'milestone':milestone.name}, fields=['name'])
+        schemes = frappe.get_list("Scheme", filters={'milestone':milestone.name, 'name':["IN",scheme_list]}, fields=['name'])
         for scheme in schemes:
             scheme['ben_count'] = 0
             condition = create_condition(scheme.name)
