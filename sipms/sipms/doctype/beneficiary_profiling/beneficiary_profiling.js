@@ -631,7 +631,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
       }
     }
     // phoneno defult +91-
-    if (frm.doc.alternate_contact_number.length < 10) {
+    if (frm.doc?.alternate_contact_number?.length < 10) {
       frm.doc.alternate_contact_number = '+91-'
       frm.refresh_fields("alternate_contact_number")
     }

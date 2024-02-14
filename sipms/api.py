@@ -29,7 +29,18 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
             distinct name as name
         FROM
             `tabBeneficiary Profiling`
-        {condtion }
+        {condtion } AND name not in (
+            select
+                distinct parent
+            from
+                `tabScheme Child`
+            where
+                parenttype='Beneficiary Profiling'
+                and
+                name_of_the_scheme = '{scheme}'
+                and
+                application_submitted IN ('Completed','Previously availed')
+        )
     """
     bens = frappe.db.sql(ben_sql, as_dict=True)
     total = len(bens)
