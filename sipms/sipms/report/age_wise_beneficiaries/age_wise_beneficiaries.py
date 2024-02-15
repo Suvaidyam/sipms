@@ -15,8 +15,8 @@ def execute(filters=None):
             "width": 200
         },
         {
-            "fieldname": "Number_of_People",
-            "label": "Number of Beneficiary",
+            "fieldname": "Number_of_beneficiaries",
+            "label": "Number Of beneficiaries/people",
             "fieldtype": "int",
             "width": 300
         }
@@ -29,7 +29,7 @@ def execute(filters=None):
         condition_str = ""
     sql_query = f"""
 SELECT
-        'Less than 5 years' AS Age_Category, COUNT(CASE WHEN completed_age < 5 THEN 1 END) AS Number_of_People
+        'Less than 5 years' AS Age_Category, COUNT(CASE WHEN completed_age < 5 THEN 1 END) AS Number_of_beneficiaries
     FROM
         `tabBeneficiary Profiling`
     {condition_str}
@@ -37,7 +37,7 @@ SELECT
     UNION ALL
 
     SELECT
-        '5 - 10 years' AS Age_Category, COUNT(CASE WHEN completed_age BETWEEN 5 AND 10 THEN 1 END) AS Number_of_People
+        '5 - 10 years' AS Age_Category, COUNT(CASE WHEN completed_age BETWEEN 5 AND 10 THEN 1 END) AS Number_of_beneficiaries
     FROM
         `tabBeneficiary Profiling`
     {condition_str}
@@ -45,7 +45,7 @@ SELECT
     UNION ALL
 
     SELECT
-        '11 - 17 years' AS Age_Category, COUNT(CASE WHEN completed_age BETWEEN 11 AND 17 THEN 1 END) AS Number_of_People
+        '11 - 17 years' AS Age_Category, COUNT(CASE WHEN completed_age BETWEEN 11 AND 17 THEN 1 END) AS Number_of_beneficiaries
     FROM
         `tabBeneficiary Profiling`
     {condition_str}
@@ -53,7 +53,7 @@ SELECT
     UNION ALL
 
     SELECT
-        '18 - 40 years' AS Age_Category, COUNT(CASE WHEN completed_age BETWEEN 18 AND 40 THEN 1 END) AS Number_of_People
+        '18 - 40 years' AS Age_Category, COUNT(CASE WHEN completed_age BETWEEN 18 AND 40 THEN 1 END) AS Number_of_beneficiaries
     FROM
         `tabBeneficiary Profiling`
     {condition_str}
@@ -61,7 +61,7 @@ SELECT
     UNION ALL
 
     SELECT
-        '41 - 60 years' AS Age_Category, COUNT(CASE WHEN completed_age BETWEEN 41 AND 60 THEN 1 END) AS Number_of_People
+        '41 - 60 years' AS Age_Category, COUNT(CASE WHEN completed_age BETWEEN 41 AND 60 THEN 1 END) AS Number_of_beneficiaries
     FROM
         `tabBeneficiary Profiling`
     {condition_str}
@@ -69,11 +69,10 @@ SELECT
     UNION ALL
 
     SELECT
-        '60 years above' AS Age_Category, COUNT(CASE WHEN completed_age > 60 THEN 1 END) AS Number_of_People
+        '60 years above' AS Age_Category, COUNT(CASE WHEN completed_age > 60 THEN 1 END) AS Number_of_beneficiaries
     FROM
         `tabBeneficiary Profiling`
     {condition_str}
-    ORDER BY Number_of_People DESC
 	"""
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
