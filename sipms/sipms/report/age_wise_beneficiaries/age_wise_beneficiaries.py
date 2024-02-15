@@ -16,7 +16,7 @@ def execute(filters=None):
         },
         {
             "fieldname": "Number_of_beneficiaries",
-            "label": "Number Of beneficiaries/people",
+            "label": "Number of beneficiaries",
             "fieldtype": "int",
             "width": 300
         }
