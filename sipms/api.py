@@ -4,7 +4,7 @@ from sipms.utils.misc import Misc
 from sipms.utils.filter import Filter
 import json
 
-def create_condition(scheme):
+def create_condition(scheme, _tbl_pre=""):
     if isinstance(scheme, str):
         raise "No rules"
     user_role_filter = Filter.set_query_filters()
@@ -36,10 +36,15 @@ def get_beneficiary_scheme_query(scheme_doc):
     condition = create_condition(scheme_doc)
     sql = f"""
         select
-            *
+            _ben.*,
+            _pm.name_of_parents as name_of_parents,
+            _bl.block_name as block_name,
+            _vl.village_name as village_name
         from
-            `tabBeneficiary Profiling`
-        {condition} {availed_sql}
+        (select * from `tabBeneficiary Profiling` {condition} {availed_sql}) as _ben
+        LEFT JOIN `tabPrimary Member` _pm ON _pm.name = _ben.select_primary_member
+        LEFT JOIN `tabBlock` _bl ON _bl.name = _ben.ward
+        LEFT JOIN `tabVillage` _vl ON _vl.name = _ben.name_of_the_settlement
         ORDER BY select_primary_member DESC
     """
     return sql
@@ -68,6 +73,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
         return res
 
     ben_sql = get_beneficiary_scheme_query(scheme_doc)
+    # print(ben_sql)
     res['data'] = frappe.db.sql(ben_sql, as_dict=True)
     count_sql = f"""
         select
@@ -132,8 +138,9 @@ def top_schemes():
                 select
                     count(distinct _tbl.name) as total
                 from
-                    ({ben_sql}) _tbl
+                    ({ben_sql}) as _tbl
             """
+            # print(count_sql)
             count_data = frappe.db.sql(count_sql, as_dict=True)
             if len(count_data):
                 scheme['ben_count'] = count_data[0].total
