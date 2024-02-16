@@ -160,7 +160,7 @@ let tableConf = {
             dropdown: true,
             width: 200,
             format: (value, columns, ops, row, i) => {
-                return row.serial_no ? value : `<input type="text" id="name_of_the_beneficiary" class="form-control">`
+                return `<a href="/app/beneficiary-profiling/${row?.name}">${row.name_of_the_beneficiary}</a>`
             }
         },
         {
@@ -174,7 +174,7 @@ let tableConf = {
             dropdown: false,
             width: 200,
             // format: (value, columns, ops, row, i) => {
-            //     return row.serial_no ? value : `<input type="text" id="name_of_parents" class="form-control">`
+            //     return `<a href="/app/beneficiary-profiling/${row?.name}">${row.name_of_the_beneficiary}</a>`
             // }
         },
         {
