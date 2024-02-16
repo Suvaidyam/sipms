@@ -7,8 +7,8 @@ import json
 def execute(name=None):
     return BeneficaryScheme.get_schemes(name)
 def create_condition(scheme):
-    if not scheme.rules:
-        raise "No rules"
+    # if not scheme.rules:
+    #     raise "No rules"
     user_role_filter = Filter.set_query_filters()
     cond_str = Misc.create_condition(scheme.rules)
     filters = []
