@@ -15,7 +15,7 @@ def create_condition(scheme):
         filters.append(cond_str)
     if user_role_filter:
         filters.append(user_role_filter)
-    return f" WHERE  1=1 {' AND '.join(filters)}"
+    return f" WHERE  1=1 AND {' AND '.join(filters)}"
 @frappe.whitelist(allow_guest=True)
 def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
     # filter value is getting hear
@@ -52,7 +52,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
         )
         """
     condtion = create_condition(scheme_doc)
-    print(condtion)
+    # print(condtion)
     ben_sql = f"""
         SELECT
             distinct name as name
