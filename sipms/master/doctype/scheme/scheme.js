@@ -220,7 +220,7 @@ let tableConf = {
     filterable: true
 };
 const render_table = async (frm) => {
-    let response = { count: { total: 0, total_family: 0, }, data: [] };
+    let response = { count: { total: 0, family_count: 0, }, data: [] };
     get_field_list('rules', frm)
     if (!frm?.doc?.__islocal) {
         let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
@@ -247,7 +247,7 @@ const render_table = async (frm) => {
     document.getElementById('parent').style.columnGap = "15px";
     document.getElementById('parent').style.flexWrap = "wrap";
     document.getElementById('total') ? document.getElementById('total').innerText = "Total: Beneficiary: " + response?.count?.total + ',' : ''
-    document.getElementById('total_family') ? document.getElementById('total_family').innerText = "Primary member: " + response?.count?.total_family + ',' : ''
+    document.getElementById('total_family') ? document.getElementById('total_family').innerText = "Primary member: " + response?.count?.family_count + ',' : ''
     document.getElementById('block_count') ? document.getElementById('block_count').innerText = "Block count: " + response?.count?.block_count + ',' : ''
     document.getElementById('settlement_count') ? document.getElementById('settlement_count').innerText = "Settlement count: " + response?.count?.settlement_count : ''
     frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
