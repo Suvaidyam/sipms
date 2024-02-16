@@ -693,7 +693,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 70
+          width: 70,
+          format: (value, columns, ops, row) => {
+            return (columns?.[0]?.rowIndex + 1)
+          }
         },
         {
           name: "Name",
@@ -723,7 +726,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 70,
+          width: 90,
           format: (value, columns, ops, row) => {
             let rules = row?.rules?.map(e => `${e.message} ${e.matched ? '&#x2714;' : '&#10060;'}`).join("\n").toString()
             return `<p title="${rules}">${row?.matches?.bold()}</p>`
@@ -763,7 +766,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
     let scheme_row_list = scheme_list.map((scheme, i) => {
       return scheme.available && {
         scheme_name: scheme?.name,
-        serial_no: (i + 1),
         name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
         matches: `<a href="/app/scheme/${scheme?.name}">${scheme.matching_rules}/${scheme?.total_rules}</a>`,
         rules: scheme.rules,
@@ -1075,8 +1077,14 @@ frappe.ui.form.on('Scheme Child', {
     } else {
       schemes = scheme_list.filter(f => row.milestone_category == f.milestone);
     }
-    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
-    let ops = schemes.filter(f => !schemes_op.includes(f.name)).map(e => { return { 'lable': e.name, "value": e.name } })
+    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed', ''].includes(f.status)).map(e => e.name_of_the_scheme);
+    // debugger;
+    let fl_schemes_ops = scheme_list.filter(f => !schemes_op.includes(f.name) && f.available)
+    let milestones = {};
+    let ops = fl_schemes_ops.map(e => {
+      milestones.hasOwnProperty(e.milestone) ? '' : milestones[e.milestone] = e.milestone
+      return { 'lable': e.name, "value": e.name }
+    })
     frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
   },
   application_submitted: function (frm, cdt, cdn) {
