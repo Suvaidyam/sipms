@@ -15,7 +15,7 @@ def create_condition(scheme):
         filters.append(cond_str)
     if user_role_filter:
         filters.append(user_role_filter)
-    return f" WHERE  1=1 AND {' AND '.join(filters)}"
+    return " WHERE  1=1 "+ (f"AND {' AND '.join(filters)}" if len(filters) else "")
 @frappe.whitelist(allow_guest=True)
 def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
     # filter value is getting hear
@@ -155,7 +155,7 @@ def top_schemes():
         schemes = frappe.get_list("Scheme", filters={'milestone':milestone.name, 'name':["IN",scheme_list]}, fields=['name'])
         for scheme in schemes:
             scheme['ben_count'] = 0
-            condition = create_condition(scheme.name)
+            condition = create_condition(scheme)
             count_sql = f"SELECT count(name) as count FROM `tabBeneficiary Profiling` {condition }"
             data = frappe.db.sql(count_sql, as_dict=True)
             if len(data):
