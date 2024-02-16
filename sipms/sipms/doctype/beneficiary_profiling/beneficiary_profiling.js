@@ -486,6 +486,24 @@ const apply_filter_on_id_document = async () => {
     }
   }
 }
+const addTableFilter = (datatable, elements = [], rows = []) => {
+  document.addEventListener('keyup', function (event) {
+    if (elements.includes(event.target.id)) {
+      let filters = []
+      for (el of elements) {
+        let val = document.getElementById(el)?.value;
+        if (val) {
+          filters.push([el, val])
+        }
+      }
+      if (filters.length) {
+        datatable.refresh(rows.filter(row => !filters.map(e => (row[e[0]]?.toString()?.toLowerCase()?.indexOf(e[1]?.toLowerCase()) > -1)).includes(false)))
+      } else {
+        datatable.refresh(rows)
+      }
+    }
+  });
+}
 frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
   before_save: async function (frm) {
@@ -677,7 +695,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
         },
         {
           name: "Name",
-          id: 'scheme_name',
+          id: 'name',
           editable: false,
           resizable: false,
           sortable: false,
@@ -742,8 +760,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
     };
     let scheme_row_list = scheme_list.map((scheme, i) => {
       return scheme.available && {
+        scheme_name: scheme?.name,
         serial_no: (i + 1),
-        scheme_name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
+        name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
         matches: `<a href="/app/scheme/${scheme?.name}">${scheme.matching_rules}/${scheme?.total_rules}</a>`,
         rules: scheme.rules,
         groups: scheme.groups,
@@ -755,16 +774,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     const container = document.getElementById('all_schemes');
     const datatable = new DataTable(container, { columns: tableConf.columns, serialNoColumn: false });
     datatable.style.setStyle(`.dt-scrollable`, { height: '300px!important', overflow: 'scroll!important' });
-    document.addEventListener('keyup', function (event) {
-      if (['scheme_name', 'milestone'].includes(event.target.id)) {
-        const filter = event.target.value.trim().toLowerCase();
-        let rows = scheme_row_list;
-        if (filter) {
-          rows = scheme_row_list.filter(ben => (ben[event.target.id]?.toString()?.toLowerCase()?.indexOf(filter) > -1));
-        }
-        datatable.refresh(rows);
-      }
-    });
+    addTableFilter(datatable, ['scheme_name', 'milestone'], scheme_row_list)
     datatable.refresh(scheme_row_list);
     // if not is local
     if (frm.doc.__islocal) {
@@ -1110,13 +1120,13 @@ frappe.ui.form.on('Follow Up Child', {
     }
     // call api of list of helpdesk with checking roles
     let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Availed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
-    row.follow_up_date = frappe.datetime.get_today()
     frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },
   name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
     let supports = frm.doc.scheme_table.filter(f => f.scheme == row.name_of_the_scheme);
     row.date_of_application = supports[0].date_of_application
+    row.follow_up_date = frappe.datetime.get_today()
     // console.log(supports, "supports")
     row.parent_ref = supports[0].name
     for (support_items of frm.doc.scheme_table) {

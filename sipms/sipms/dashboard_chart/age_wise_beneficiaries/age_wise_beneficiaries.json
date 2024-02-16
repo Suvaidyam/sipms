@@ -10,7 +10,7 @@
  "idx": 0,
  "is_public": 0,
  "is_standard": 1,
- "modified": "2024-01-16 10:08:03.777771",
+ "modified": "2024-02-15 17:14:52.708319",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Age-wise beneficiaries",
@@ -26,7 +26,7 @@
  "x_field": "Age_Category",
  "y_axis": [
   {
-   "y_field": "Number_of_People"
+   "y_field": "Number_of_beneficiaries"
   }
  ]
 }

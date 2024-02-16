@@ -6,18 +6,19 @@ import json
 @frappe.whitelist(allow_guest=True)
 def execute(name=None):
     return BeneficaryScheme.get_schemes(name)
-
 def create_condition(scheme):
+    if not scheme.rules:
+        raise "No rules"
     user_role_filter = Filter.set_query_filters()
-    cond_str = Misc.scheme_rules_to_condition(scheme)
+    cond_str = Misc.create_condition(scheme.rules)
+    filters = []
     if cond_str:
-        cond_str = ' AND '+cond_str
+        filters.append(cond_str)
     if user_role_filter:
-        user_role_filter = ' AND '+ user_role_filter
-    return f" WHERE 1=1 {cond_str} {user_role_filter}"
+        filters.append(user_role_filter)
+    return " WHERE  1=1 "+ (f"AND {' AND '.join(filters)}" if len(filters) else "")
 @frappe.whitelist(allow_guest=True)
 def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
-    print("filters /////////////////////////////", filters,scheme)
     # filter value is getting hear
     columns = json.loads(columns)
     if scheme is None:
@@ -34,6 +35,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
     }
     if not scheme_doc:
         return res
+
     availed_sql = f""
     if scheme_doc.get('how_many_times_can_this_scheme_be_availed') == 'Once':
         availed_sql = f"""
@@ -50,7 +52,9 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
                 application_submitted IN ('Completed','Previously availed')
         )
         """
-    condtion = create_condition(scheme)
+    condtion = create_condition(scheme_doc)
+    # print(condtion)
+
     ben_sql = f"""
         SELECT
             distinct name as name
@@ -149,11 +153,14 @@ def top_schemes():
     """
     scheme_with_rules = frappe.db.sql(scheme_with_rule_sql, as_dict=True)
     scheme_list = [sc.get('parent') for sc in scheme_with_rules]
+    print("scheme_list",scheme_list)
     for milestone in milestones:
         schemes = frappe.get_list("Scheme", filters={'milestone':milestone.name, 'name':["IN",scheme_list]}, fields=['name'])
         for scheme in schemes:
             scheme['ben_count'] = 0
-            condition = create_condition(scheme.name)
+            scheme_doc = frappe.get_doc('Scheme',scheme.name)
+            condition = create_condition(scheme_doc)
+            print("scheme", condition)
             count_sql = f"SELECT count(name) as count FROM `tabBeneficiary Profiling` {condition }"
             data = frappe.db.sql(count_sql, as_dict=True)
             if len(data):

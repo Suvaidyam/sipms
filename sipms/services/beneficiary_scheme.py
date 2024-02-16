@@ -29,14 +29,14 @@ class BeneficaryScheme:
             if matching_counter > 0:
                 scheme['matching_rules_per'] = (matching_counter/scheme['total_rules'])*100
         return schemes
-    def validate(condition):
-        list = frappe.get_list("Beneficiary Profiling", filters=[condition],page_length=1)
+    def validate(beneficiary, condition):
+        list = frappe.get_list("Beneficiary Profiling", filters=[condition,['name','=',beneficiary]],page_length=1)
         return True if len(list) > 0 else False
 
-    def validate_conditions(key, conditions):
+    def validate_conditions(beneficiary, key, conditions):
         obj = {'total':len(conditions), 'matched':0, 'percentage':0,'rules':[],'key':key}
         for condition in conditions:
-            is_matched = BeneficaryScheme.validate(condition)
+            is_matched = BeneficaryScheme.validate(beneficiary, condition)
             if is_matched:
                 obj['matched'] += 1
             obj['rules'].append({
@@ -80,7 +80,7 @@ class BeneficaryScheme:
                 filters = Misc.rules_to_filters(doc.rules,True)
                 groups = []
                 for key in filters:
-                    groups.append(BeneficaryScheme.validate_conditions(key,filters[key]))
+                    groups.append(BeneficaryScheme.validate_conditions(beneficiary,key,filters[key]))
                 denominator_sorted_list = sorted(groups, key=lambda x: x['total'], reverse=True)
                 percentage_sorted_list = sorted(denominator_sorted_list, key=lambda x: x['percentage'], reverse=True)
 
