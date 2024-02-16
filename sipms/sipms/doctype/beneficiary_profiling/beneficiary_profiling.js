@@ -669,8 +669,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
         frm.set_df_property('scheme_table', 'cannot_delete_all_rows', true);
         frm.set_df_property('follow_up_table', 'cannot_delete_rows', true); // Hide delete button
         frm.set_df_property('follow_up_table', 'cannot_delete_all_rows', true);
-        frm.set_df_property('id_table_list', 'cannot_delete_rows', true); // Hide delete button
-        frm.set_df_property('id_table_list', 'cannot_delete_all_rows', true);
+        // frm.set_df_property('id_table_list', 'cannot_delete_rows', true); // Hide delete button
+        // frm.set_df_property('id_table_list', 'cannot_delete_all_rows', true);
       }
     }
 
