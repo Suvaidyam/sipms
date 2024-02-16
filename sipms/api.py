@@ -53,6 +53,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
         """
     condtion = create_condition(scheme_doc)
     # print(condtion)
+
     ben_sql = f"""
         SELECT
             distinct name as name
