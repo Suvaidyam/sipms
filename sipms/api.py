@@ -7,8 +7,8 @@ import json
 def execute(name=None):
     return BeneficaryScheme.get_schemes(name)
 def create_condition(scheme):
-    # if not scheme.rules:
-    #     raise "No rules"
+    if isinstance(scheme, str):
+        raise "No rules"
     user_role_filter = Filter.set_query_filters()
     cond_str = Misc.create_condition(scheme.rules)
     filters = []
@@ -49,12 +49,10 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
                 and
                 name_of_the_scheme = '{scheme_doc.name}'
                 and
-                application_submitted IN ('Completed','Previously availed')
+                status IN ('Completed','Previously availed')
         )
         """
     condtion = create_condition(scheme_doc)
-    # print(condtion)
-
     ben_sql = f"""
         SELECT
             distinct name as name

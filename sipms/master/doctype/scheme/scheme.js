@@ -138,7 +138,7 @@ const get_ben_list = async (frm, columns, filters = []) => {
 let tableConf = {
     columns: [
         {
-            name: " ",
+            name: "&emsp;",
             id: 'serial_no',
             editable: false,
             resizable: true,
@@ -146,9 +146,9 @@ let tableConf = {
             focusable: false,
             dropdown: true,
             width: 100,
-            // format: (value, columns, ops, row, i) => {
-            //     return row.serial_no ? value : `&nbsp;&nbsp;`
-            // }
+            format: (value, columns, ops, row) => {
+                return (columns?.[0]?.rowIndex + 1)
+            }
         },
         {
             name: "Name of the beneficiary",
@@ -173,9 +173,6 @@ let tableConf = {
             focusable: false,
             dropdown: false,
             width: 200,
-            // format: (value, columns, ops, row, i) => {
-            //     return `<a href="/app/beneficiary-profiling/${row?.name}">${row.name_of_the_beneficiary}</a>`
-            // }
         },
         {
             name: "Contact number",
@@ -186,9 +183,6 @@ let tableConf = {
             focusable: false,
             dropdown: false,
             width: 150,
-            // format: (value, columns, ops, row, i) => {
-            //     return row.serial_no ? value : `<input type="text" id="contact_number" class="form-control">`
-            // }
         },
         {
             name: "Block",
@@ -200,9 +194,6 @@ let tableConf = {
             focusable: false,
             dropdown: false,
             width: 200,
-            // format: (value, columns, ops, row, i) => {
-            //     return row.serial_no ? value : `<input type="text" id="block_name" class="form-control">`
-            // }
         },
         {
             name: "Name of the settlement",
@@ -234,14 +225,8 @@ const render_table = async (frm) => {
     });
     datatable.style.setStyle(`.dt-scrollable`, { height: '800px!important', overflow: 'scroll!important' });
     datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
-    let rows = response?.data?.map((e, i) => {
-        return {
-            ...e,
-            serial_no: (i + 1)
-        }
-    })
-    datatable.refresh(rows);
-    addTableFilter(datatable, ['name_of_the_beneficiary', 'name_of_parents', 'contact_number', 'block_name'], rows)
+    datatable.refresh(response?.data);
+    addTableFilter(datatable, ['name_of_the_beneficiary', 'name_of_parents', 'contact_number', 'block_name'], response?.data)
 
     document.getElementById('parent').style.display = "flex";
     document.getElementById('parent').style.columnGap = "15px";
