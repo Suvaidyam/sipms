@@ -36,7 +36,7 @@ class Misc:
                 conditions.append(f"({' AND '.join(groups[key])})")
         if queries_groups:
             return conditions
-        return f"{' OR '.join(conditions)}"
+        return f"({' OR '.join(conditions)})" if len(conditions) else ""
     @staticmethod
     def scheme_rules_to_condition(scheme, queries_groups=False):
         """

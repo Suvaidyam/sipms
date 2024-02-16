@@ -9,20 +9,21 @@ def execute(name=None):
 
 def create_condition(scheme):
     user_role_filter = Filter.set_query_filters()
-    cond_str = Misc.scheme_rules_to_condition(scheme)
+    cond_str = Misc.create_condition(scheme.rules)
+    filters = []
     if cond_str:
-        cond_str = ' AND '+cond_str
+        filters.append(cond_str)
     if user_role_filter:
-        user_role_filter = ' AND '+ user_role_filter
-    return f" WHERE 1=1 {cond_str} {user_role_filter}"
+        filters.append(user_role_filter)
+    return f" WHERE {' AND '.join(filters)}" if len(filters) else ""
 @frappe.whitelist(allow_guest=True)
 def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
-    print("filters /////////////////////////////", filters,scheme)
     # filter value is getting hear
     columns = json.loads(columns)
     if scheme is None:
         return frappe.throw('Scheme not found.')
     scheme_doc = frappe.get_doc('Scheme',scheme)
+    print(scheme_doc.rules)
     res = {
         'data':[],
         'count':{
@@ -34,6 +35,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
     }
     if not scheme_doc:
         return res
+
     availed_sql = f""
     if scheme_doc.get('how_many_times_can_this_scheme_be_availed') == 'Once':
         availed_sql = f"""
@@ -50,7 +52,8 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
                 application_submitted IN ('Completed','Previously availed')
         )
         """
-    condtion = create_condition(scheme)
+    condtion = create_condition(scheme_doc)
+    print(condtion)
     ben_sql = f"""
         SELECT
             distinct name as name

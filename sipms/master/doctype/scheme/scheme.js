@@ -102,7 +102,24 @@ const generate_filters = async (frm) => {
     let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
     response = await get_ben_list(frm, ['name', ...columns], filter_val)
 }
-
+const addTableFilter = (datatable, elements = [], rows = []) => {
+    document.addEventListener('keyup', function (event) {
+        if (elements.includes(event.target.id)) {
+            let filters = []
+            for (el of elements) {
+                let val = document.getElementById(el)?.value;
+                if (val) {
+                    filters.push([el, val])
+                }
+            }
+            if (filters.length) {
+                datatable.refresh(rows.filter(row => !filters.map(e => (row[e[0]]?.toString()?.toLowerCase()?.indexOf(e[1]?.toLowerCase()) > -1)).includes(false)))
+            } else {
+                datatable.refresh(rows)
+            }
+        }
+    });
+}
 const get_ben_list = async (frm, columns, filters = []) => {
     console.log("filters", filters,)
     let list = await callAPI({
@@ -142,9 +159,9 @@ let tableConf = {
             focusable: false,
             dropdown: true,
             width: 200,
-            // format: (value, columns, ops, row, i) => {
-            //     return row.serial_no ? value : `<input type="text" id="name_of_the_beneficiary" class="form-control">`
-            // }
+            format: (value, columns, ops, row, i) => {
+                return row.serial_no ? value : `<input type="text" id="name_of_the_beneficiary" class="form-control">`
+            }
         },
         {
             name: "Primary member",
@@ -209,17 +226,6 @@ const render_table = async (frm) => {
         let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
         response = await get_ben_list(frm, ['name', ...columns])
     }
-    tableConf.rows = []
-    let sno = 0;
-    // tableConf.rows.push({ serial_no: sno })
-    for (let ben of response.data) {
-        sno++
-        tableConf.rows.push({
-            ...ben,
-            name_of_the_beneficiary: `<a href="/app/beneficiary-profiling/${ben.name}">${ben.name_of_the_beneficiary}</a>`,
-            serial_no: sno
-        })
-    }
     const container = document.getElementById('eligible_beneficiaries');
     const datatable = new DataTable(container, {
         layout: 'fluid',
@@ -228,24 +234,15 @@ const render_table = async (frm) => {
     });
     datatable.style.setStyle(`.dt-scrollable`, { height: '800px!important', overflow: 'scroll!important' });
     datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
-    datatable.refresh(tableConf.rows);
-
-    document.addEventListener('keyup', function (event) {
-        if (['name_of_the_beneficiary', 'name_of_parents', 'contact_number', 'block_name'].includes(event.target.id)) {
-            const filter = event.target.value.trim().toLowerCase();
-            let rows = response.data;
-            if (filter) {
-                rows = response.data.filter(ben => (ben[event.target.id]?.toString()?.toLowerCase()?.indexOf(filter) > -1));
-            }
-            datatable.refresh(rows.map((ben, i) => {
-                return {
-                    ...ben,
-                    name_of_the_beneficiary: `<a href="/app/beneficiary-profiling/${ben.name}">${ben.name_of_the_beneficiary}</a>`,
-                    serial_no: (i + 1)
-                }
-            }));
+    let rows = response?.data?.map((e, i) => {
+        return {
+            ...e,
+            serial_no: (i + 1)
         }
-    });
+    })
+    datatable.refresh(rows);
+    addTableFilter(datatable, ['name_of_the_beneficiary', 'name_of_parents', 'contact_number', 'block_name'], rows)
+
     document.getElementById('parent').style.display = "flex";
     document.getElementById('parent').style.columnGap = "15px";
     document.getElementById('parent').style.flexWrap = "wrap";
@@ -263,10 +260,10 @@ frappe.ui.form.on("Scheme", {
     async refresh(frm) {
         render_table(frm)
     },
-    before_save : async function(frm){
-        if(frm.doc.rules.length > 0){
-           frm.set_value('rules_status', 'Rules')
-        }else{
+    before_save: async function (frm) {
+        if (frm.doc.rules.length > 0) {
+            frm.set_value('rules_status', 'Rules')
+        } else {
             frm.set_value('rules_status', 'No rules')
         }
     },
