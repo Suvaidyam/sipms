@@ -49,7 +49,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
                 and
                 name_of_the_scheme = '{scheme_doc.name}'
                 and
-                application_submitted IN ('Completed','Previously availed')
+                status IN ('Completed','Previously availed')
         )
         """
     condtion = create_condition(scheme_doc)
