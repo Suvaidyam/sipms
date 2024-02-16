@@ -15,7 +15,7 @@ def create_condition(scheme):
         filters.append(cond_str)
     if user_role_filter:
         filters.append(user_role_filter)
-    return f" WHERE {' AND '.join(filters)}" if len(filters) else ""
+    return f" WHERE  1=1 {' AND '.join(filters)}"
 @frappe.whitelist(allow_guest=True)
 def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
     # filter value is getting hear
@@ -23,7 +23,6 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
     if scheme is None:
         return frappe.throw('Scheme not found.')
     scheme_doc = frappe.get_doc('Scheme',scheme)
-    print(scheme_doc.rules)
     res = {
         'data':[],
         'count':{
