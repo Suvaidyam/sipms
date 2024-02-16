@@ -1,5 +1,6 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // For license information, please see license.txt
+
 frappe.ui.form.on("Beneficiary Profiling", {
   refresh: (frm) => {
     let link_fields = frm.meta.fields.filter(f => ['Link'].includes(f.fieldtype)).map(e => {
@@ -550,6 +551,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
       for (support_item of frm.selected_doc.scheme_table) {
         if (!['Completed', 'Previously availed'].includes(support_item.status)) {
           let followups = frm.selected_doc.follow_up_table.filter(f => f.parent_ref == support_item?.name)
+          // debugger;
           let latestFollowup = followups.length ? followups[(followups.length - 1)] : null
           if (latestFollowup?.parent_ref == support_item.name) {
             switch (latestFollowup.follow_up_status) {
@@ -1041,7 +1043,8 @@ frappe.ui.form.on('Scheme Child', {
   },
   scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
-    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
+    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed', ''].includes(f.status)).map(e => e.name_of_the_scheme);
+    // debugger;
     let fl_schemes_ops = scheme_list.filter(f => !schemes_op.includes(f.name) && f.available)
     let milestones = {};
     let ops = fl_schemes_ops.map(e => {
@@ -1072,7 +1075,7 @@ frappe.ui.form.on('Scheme Child', {
     } else {
       schemes = scheme_list.filter(f => row.milestone_category == f.milestone);
     }
-    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
+    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
     let ops = schemes.filter(f => !schemes_op.includes(f.name)).map(e => { return { 'lable': e.name, "value": e.name } })
     frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
   },
@@ -1119,12 +1122,14 @@ frappe.ui.form.on('Follow Up Child', {
       row.follow = frappe.session.user_fullname
     }
     // call api of list of helpdesk with checking roles
-    let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Availed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
+    let _local_scheme_followups = frm.doc.follow_up_table.filter(f => f.__islocal).map(e => e.name_of_the_scheme)
+    debugger;
+    let support_data = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed'].includes(f.status) && !_local_scheme_followups.includes(f.scheme)).map(m => m.name_of_the_scheme);
     frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },
   name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    let supports = frm.doc.scheme_table.filter(f => f.scheme == row.name_of_the_scheme);
+    let supports = frm.doc.scheme_table.filter(f => f.scheme == row.name_of_the_scheme && (['Open', 'Under process', 'Closed'].includes(f.status)));
     row.date_of_application = supports[0].date_of_application
     row.follow_up_date = frappe.datetime.get_today()
     // console.log(supports, "supports")
