@@ -26,6 +26,7 @@
   "rules_tab",
   "rules",
   "note",
+  "rules_status",
   "beneficiaries_tab",
   "section_break_torq",
   "table",
@@ -69,7 +70,6 @@
   {
    "fieldname": "objective_of_the_scheme",
    "fieldtype": "Long Text",
-   "in_list_view": 1,
    "label": "Objectives and details of the scheme",
    "options": "Milestone category"
   },
@@ -113,14 +113,12 @@
   {
    "fieldname": "docs_required_to_apply",
    "fieldtype": "Long Text",
-   "in_list_view": 1,
    "label": "Documents required to apply",
    "options": "Milestone category"
   },
   {
    "fieldname": "comments_remarks",
    "fieldtype": "Long Text",
-   "in_list_view": 1,
    "label": "Comments/remarks",
    "options": "Milestone category"
   },
@@ -157,11 +155,20 @@
   {
    "fieldname": "section_break_torq",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "rules_status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Rules status",
+   "options": "\nRules\nNo rules"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-14 01:31:06.191475",
+ "modified": "2024-02-15 14:14:55.289975",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
