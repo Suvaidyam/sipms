@@ -6,8 +6,9 @@ import json
 @frappe.whitelist(allow_guest=True)
 def execute(name=None):
     return BeneficaryScheme.get_schemes(name)
-
 def create_condition(scheme):
+    if not scheme.rules:
+        raise "No rules"
     user_role_filter = Filter.set_query_filters()
     cond_str = Misc.create_condition(scheme.rules)
     filters = []
@@ -152,11 +153,14 @@ def top_schemes():
     """
     scheme_with_rules = frappe.db.sql(scheme_with_rule_sql, as_dict=True)
     scheme_list = [sc.get('parent') for sc in scheme_with_rules]
+    print("scheme_list",scheme_list)
     for milestone in milestones:
         schemes = frappe.get_list("Scheme", filters={'milestone':milestone.name, 'name':["IN",scheme_list]}, fields=['name'])
         for scheme in schemes:
             scheme['ben_count'] = 0
-            condition = create_condition(scheme)
+            scheme_doc = frappe.get_doc('Scheme',scheme.name)
+            condition = create_condition(scheme_doc)
+            print("scheme", condition)
             count_sql = f"SELECT count(name) as count FROM `tabBeneficiary Profiling` {condition }"
             data = frappe.db.sql(count_sql, as_dict=True)
             if len(data):
