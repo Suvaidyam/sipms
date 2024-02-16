@@ -721,7 +721,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 200,
+          width: 70,
           format: (value, columns, ops, row) => {
             let rules = row?.rules?.map(e => `${e.message} ${e.matched ? '&#x2714;' : '&#10060;'}`).join("\n").toString()
             return `<p title="${rules}">${row?.matches?.bold()}</p>`
@@ -735,7 +735,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 200,
+          width: 70,
           format: (value, columns, ops, row) => {
             let messages = row.groups.map(g => (g.rules?.map(e => `${e.message} ${e.matched ? '&#x2714;' : '&#10060;'}`).join("\n").toString()))
             return `<p title="${messages.join('\n--------------   \n')}">${row?.groups?.filter(f => f.percentage == 100)?.length?.toString()?.bold()}/${row?.groups?.length?.toString()?.bold()}</p>`
