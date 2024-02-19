@@ -143,8 +143,7 @@
    "fieldname": "how_many_times_can_this_scheme_be_availed",
    "fieldtype": "Select",
    "label": "How many times can this scheme be availed?",
-   "options": "\nOnce\nInfinite times",
-   "reqd": 1
+   "options": "\nOnce\nInfinite times"
   },
   {
    "fieldname": "summary",
@@ -169,7 +168,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-16 11:13:52.479522",
+ "modified": "2024-02-19 17:23:36.802048",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
