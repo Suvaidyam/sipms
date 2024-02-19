@@ -1,5 +1,6 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // For license information, please see license.txt
+
 frappe.ui.form.on("Beneficiary Profiling", {
   refresh: (frm) => {
     let link_fields = frm.meta.fields.filter(f => ['Link'].includes(f.fieldtype)).map(e => {
@@ -550,6 +551,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
       for (support_item of frm.selected_doc.scheme_table) {
         if (!['Completed', 'Previously availed'].includes(support_item.status)) {
           let followups = frm.selected_doc.follow_up_table.filter(f => f.parent_ref == support_item?.name)
+          // debugger;
           let latestFollowup = followups.length ? followups[(followups.length - 1)] : null
           if (latestFollowup?.parent_ref == support_item.name) {
             switch (latestFollowup.follow_up_status) {
@@ -667,8 +669,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
         frm.set_df_property('scheme_table', 'cannot_delete_all_rows', true);
         frm.set_df_property('follow_up_table', 'cannot_delete_rows', true); // Hide delete button
         frm.set_df_property('follow_up_table', 'cannot_delete_all_rows', true);
-        frm.set_df_property('id_table_list', 'cannot_delete_rows', true); // Hide delete button
-        frm.set_df_property('id_table_list', 'cannot_delete_all_rows', true);
+        // frm.set_df_property('id_table_list', 'cannot_delete_rows', true); // Hide delete button
+        // frm.set_df_property('id_table_list', 'cannot_delete_all_rows', true);
       }
     }
 
@@ -691,7 +693,10 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 70
+          width: 70,
+          format: (value, columns, ops, row) => {
+            return (columns?.[0]?.rowIndex + 1)
+          }
         },
         {
           name: "Name",
@@ -721,7 +726,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 200,
+          width: 90,
           format: (value, columns, ops, row) => {
             let rules = row?.rules?.map(e => `${e.message} ${e.matched ? '&#x2714;' : '&#10060;'}`).join("\n").toString()
             return `<p title="${rules}">${row?.matches?.bold()}</p>`
@@ -735,7 +740,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
           sortable: false,
           focusable: false,
           dropdown: false,
-          width: 200,
+          width: 70,
           format: (value, columns, ops, row) => {
             let messages = row.groups.map(g => (g.rules?.map(e => `${e.message} ${e.matched ? '&#x2714;' : '&#10060;'}`).join("\n").toString()))
             return `<p title="${messages.join('\n--------------   \n')}">${row?.groups?.filter(f => f.percentage == 100)?.length?.toString()?.bold()}/${row?.groups?.length?.toString()?.bold()}</p>`
@@ -761,7 +766,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
     let scheme_row_list = scheme_list.map((scheme, i) => {
       return scheme.available && {
         scheme_name: scheme?.name,
-        serial_no: (i + 1),
         name: `<a href="/app/scheme/${scheme?.name}">${scheme.name}</a>`,
         matches: `<a href="/app/scheme/${scheme?.name}">${scheme.matching_rules}/${scheme?.total_rules}</a>`,
         rules: scheme.rules,
@@ -1041,7 +1045,8 @@ frappe.ui.form.on('Scheme Child', {
   },
   scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
-    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
+    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed', ''].includes(f.status)).map(e => e.name_of_the_scheme);
+    // debugger;
     let fl_schemes_ops = scheme_list.filter(f => !schemes_op.includes(f.name) && f.available)
     let milestones = {};
     let ops = fl_schemes_ops.map(e => {
@@ -1072,8 +1077,14 @@ frappe.ui.form.on('Scheme Child', {
     } else {
       schemes = scheme_list.filter(f => row.milestone_category == f.milestone);
     }
-    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under Process', 'Closed'].includes(f.status)).map(e => e.name_of_the_scheme);
-    let ops = schemes.filter(f => !schemes_op.includes(f.name)).map(e => { return { 'lable': e.name, "value": e.name } })
+    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed', ''].includes(f.status)).map(e => e.name_of_the_scheme);
+    // debugger;
+    let fl_schemes_ops = scheme_list.filter(f => !schemes_op.includes(f.name) && f.available)
+    let milestones = {};
+    let ops = fl_schemes_ops.map(e => {
+      milestones.hasOwnProperty(e.milestone) ? '' : milestones[e.milestone] = e.milestone
+      return { 'lable': e.name, "value": e.name }
+    })
     frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
   },
   application_submitted: function (frm, cdt, cdn) {
@@ -1119,12 +1130,14 @@ frappe.ui.form.on('Follow Up Child', {
       row.follow = frappe.session.user_fullname
     }
     // call api of list of helpdesk with checking roles
-    let support_data = frm.doc.scheme_table.filter(f => (f.status != 'Completed' && f.status != 'Availed' && f.status != 'Rejected' && !f.__islocal)).map(m => m.name_of_the_scheme);
+    let _local_scheme_followups = frm.doc.follow_up_table.filter(f => f.__islocal).map(e => e.name_of_the_scheme)
+    debugger;
+    let support_data = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed'].includes(f.status) && !_local_scheme_followups.includes(f.scheme)).map(m => m.name_of_the_scheme);
     frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },
   name_of_the_scheme: function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    let supports = frm.doc.scheme_table.filter(f => f.scheme == row.name_of_the_scheme);
+    let supports = frm.doc.scheme_table.filter(f => f.scheme == row.name_of_the_scheme && (['Open', 'Under process', 'Closed'].includes(f.status)));
     row.date_of_application = supports[0].date_of_application
     row.follow_up_date = frappe.datetime.get_today()
     // console.log(supports, "supports")

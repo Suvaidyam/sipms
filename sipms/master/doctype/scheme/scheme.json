@@ -157,6 +157,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "default": "No rules",
    "fieldname": "rules_status",
    "fieldtype": "Select",
    "hidden": 1,
@@ -168,7 +169,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-15 14:14:55.289975",
+ "modified": "2024-02-16 11:13:52.479522",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",
