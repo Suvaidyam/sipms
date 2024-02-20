@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:proof_of_disability",
  "creation": "2024-01-23 09:43:34.287490",
@@ -21,7 +22,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-25 11:05:03.535619",
+ "modified": "2024-02-20 16:04:59.519205",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Proof of Disability",
