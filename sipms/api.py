@@ -30,7 +30,7 @@ def get_beneficiary_scheme_query(scheme_doc):
                     and
                     name_of_the_scheme = '{scheme_doc.name}'
                     and
-                    status IN ('Completed','Previously availed')
+                    status IN ('Completed','Availed')
             )
         """
     condition = create_condition(scheme_doc)
