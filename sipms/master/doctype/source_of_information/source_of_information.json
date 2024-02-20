@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:source_name",
  "creation": "2023-12-23 19:50:28.974455",
@@ -20,7 +21,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-08 13:49:59.421616",
+ "modified": "2024-02-20 16:04:23.412102",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Source Of Information",
