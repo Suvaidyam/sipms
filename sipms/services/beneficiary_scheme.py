@@ -58,7 +58,7 @@ class BeneficaryScheme:
             and
             name_of_the_scheme = '{scheme}'
             and
-            status IN ('Completed','Previously availed')
+            status IN ('Completed','Availed')
         limit 1
         """
         count_list = frappe.db.sql(sql, as_dict=True)
