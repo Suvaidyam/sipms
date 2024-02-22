@@ -818,11 +818,16 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
   },
   validate(frm) {
-    // for( row of frm.doc.scheme_table){
-      // console.log("validate:", row);
+    for( row of frm.doc.scheme_table){
+      console.log(row)
+      if(row.application_submitted == "Yes" || row.application_submitted == "Completed"){
+        if(!row.date_of_application){
+          frappe.throw(`Mandatory fields required in table Scheme Table, Row ${row.idx} 
+          </br> </br> <ul><li>Date of application</li></ul>`)
+        }
+      }
 
-    // }
-    // frappe.throw("hh")
+    }
   },
   ////////////////////DATE VALIDATION/////////////////////////////////////////
   date_of_visit: function (frm) {
