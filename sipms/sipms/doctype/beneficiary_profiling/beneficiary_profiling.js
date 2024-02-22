@@ -818,7 +818,11 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
   },
   validate(frm) {
-    console.log("validate:", frm.doc);
+    // for( row of frm.doc.scheme_table){
+      // console.log("validate:", row);
+
+    // }
+    // frappe.throw("hh")
   },
   ////////////////////DATE VALIDATION/////////////////////////////////////////
   date_of_visit: function (frm) {
