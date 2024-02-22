@@ -1129,7 +1129,6 @@ frappe.ui.form.on('Follow Up Child', {
     }
     // call api of list of helpdesk with checking roles
     let _local_scheme_followups = frm.doc.follow_up_table.filter(f => f.__islocal).map(e => e.name_of_the_scheme)
-    debugger;
     let support_data = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed'].includes(f.status) && !_local_scheme_followups.includes(f.scheme)).map(m => m.name_of_the_scheme);
     frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
   },
