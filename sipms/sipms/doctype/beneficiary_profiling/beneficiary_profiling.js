@@ -1,20 +1,6 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on("Beneficiary Profiling", {
-  refresh: (frm) => {
-    let link_fields = frm.meta.fields.filter(f => ['Link'].includes(f.fieldtype)).map(e => {
-      return {
-        fieldname: e.fieldname,
-        fieldtype: e.fieldtype,
-        label: e.label,
-        options: e.options
-      }
-    })
-    console.log('Upper', link_fields);
-  }
-})
-
 let _frm;
 let global_frm;
 // global variable
@@ -819,7 +805,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
   },
   validate(frm) {
     for( row of frm.doc.scheme_table){
-      console.log(row)
       if(row.application_submitted == "Yes" || row.application_submitted == "Completed"){
         if(!row.date_of_application){
           frappe.throw(`Mandatory fields required in table Scheme Table, Row ${row.idx} 
