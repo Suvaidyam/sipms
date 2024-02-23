@@ -773,7 +773,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
 
     // set  defult date of visit
-    if (frm.doc.__islocal) {
+    if (frm.doc.__islocal && !frm.doc.date_of_visit) {
       frm.set_value('date_of_visit', frappe.datetime.get_today());
     }
     // Hide Advance search options
