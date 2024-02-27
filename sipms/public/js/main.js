@@ -7,7 +7,6 @@ setTimeout(() => {
             document.getElementById('navbar-search').hidden = false
             document.getElementsByClassName('search-icon')[0].hidden = false
         }
-
     }else{
         document.getElementById('navbar-search').hidden = false
         document.getElementsByClassName('search-icon')[0].hidden = false
