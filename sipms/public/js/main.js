@@ -1,6 +1,7 @@
 setTimeout(() => {
     if(frappe.user_roles.includes("Help-desk member") || frappe.user_roles.includes("CSC Member") || frappe.user_roles.includes("MIS executive")){
         if(!frappe.user_roles.includes("Administrator")){
+            console.log("hide search for other than admin")
             document.getElementById('navbar-search').hidden = true
             document.getElementsByClassName('search-icon')[0].hidden = true
         }else{
