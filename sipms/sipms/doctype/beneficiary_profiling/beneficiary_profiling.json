@@ -9,17 +9,27 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "basic_details_tab",
+  "column_break_xbco",
   "date_of_visit",
   "name_of_the_beneficiary",
   "gender",
   "date_of_birth",
   "completed_age",
   "completed_age_month",
+  "lead",
+  "column_break_qbcl",
   "contact_number",
   "alternate_contact_number",
   "single_window",
   "help_desk",
-  "lead",
+  "source_of_information",
+  "name_of_the_camp",
+  "new_camp",
+  "new_source_of_information",
+  "has_anyone_from_your_family_visisted_before",
+  "select_primary_member",
+  "demographic_profile_tab",
   "column_break_ewit",
   "caste_category",
   "religion",
@@ -31,9 +41,7 @@
   "marital_status",
   "spouses_name",
   "social_vulnerable",
-  "social_vulnerable_category",
   "other_social_vulnerable_category",
-  "added_by",
   "column_break_tgpw",
   "are_you_a_person_with_disability_pwd",
   "type_of_disability",
@@ -43,12 +51,7 @@
   "do_you_have_any_bank_account",
   "fathers_name",
   "mothers_name",
-  "source_of_information",
-  "name_of_the_camp",
-  "new_camp",
-  "new_source_of_information",
-  "has_anyone_from_your_family_visisted_before",
-  "select_primary_member",
+  "added_by",
   "tab_2_tab",
   "current_address_section",
   "current_address_column",
@@ -112,8 +115,7 @@
    "fieldtype": "Int",
    "label": "Completed age (Year)",
    "non_negative": 1,
-   "read_only_depends_on": "eval:doc.date_of_birth",
-   "reqd": 1
+   "read_only_depends_on": "eval:doc.date_of_birth"
   },
   {
    "default": "+91-",
@@ -138,58 +140,43 @@
    "fieldname": "caste_category",
    "fieldtype": "Select",
    "label": "Caste category",
-   "options": "\nGeneral\nEWS\nOBC\nSC\nST\nDidn't know\nRefused to share",
-   "reqd": 1
+   "options": "\nGeneral\nEWS\nOBC\nSC\nST\nDidn't know\nRefused to share"
   },
   {
    "fieldname": "religion",
    "fieldtype": "Select",
    "label": "Religion",
-   "options": "\nHindu\nMuslim\nSikh\nChristian\nBuddhist\nJain",
-   "reqd": 1
+   "options": "\nHindu\nMuslim\nSikh\nChristian\nBuddhist\nJain"
   },
   {
    "fieldname": "education",
    "fieldtype": "Select",
    "label": "Education",
-   "options": "\nChild\nIlliterate\nLiterate\nKindergarten\nPrimary (1-5)\nLower secondary (6-8)\nSecondary (9-10)\nHigher secondary (11-12)\nDiploma\nITI/Technical\nUnder graduate\nGraduate\nPost graduate",
-   "reqd": 1
+   "options": "\nChild\nIlliterate\nLiterate\nKindergarten\nPrimary (1-5)\nLower secondary (6-8)\nSecondary (9-10)\nHigher secondary (11-12)\nDiploma\nITI/Technical\nUnder graduate\nGraduate\nPost graduate"
   },
   {
    "fieldname": "current_occupation",
    "fieldtype": "Link",
    "label": "Current occupation",
-   "options": "Occupation",
-   "reqd": 1
+   "options": "Occupation"
   },
   {
    "fieldname": "marital_status",
    "fieldtype": "Select",
    "label": "Marital status",
-   "options": "\nChild\nSingle (unmarried)\nMarried\nDivorced\nWidow\nSeparated\nAbandoned",
-   "reqd": 1
+   "options": "\nChild\nSingle (unmarried)\nMarried\nDivorced\nWidow\nSeparated\nAbandoned"
   },
   {
    "depends_on": "eval:doc.marital_status ==\"Married\"",
    "fieldname": "spouses_name",
    "fieldtype": "Data",
-   "label": "Spouse's name",
-   "mandatory_depends_on": "eval:doc.marital_status ==\"Married\""
+   "label": "Spouse's name"
   },
   {
    "fieldname": "social_vulnerable",
    "fieldtype": "Select",
    "label": "Are you a part any social vulnerable category?",
-   "options": "\nNo\nYes",
-   "reqd": 1
-  },
-  {
-   "depends_on": "eval:doc.social_vulnerable=='Yes'",
-   "fieldname": "social_vulnerable_category",
-   "fieldtype": "Link",
-   "label": "Social vulnerable category",
-   "mandatory_depends_on": "eval:doc.social_vulnerable=='Yes'",
-   "options": "Social vulnerable category"
+   "options": "\nNo\nYes"
   },
   {
    "fieldname": "column_break_tgpw",
@@ -199,28 +186,24 @@
    "fieldname": "are_you_a_person_with_disability_pwd",
    "fieldtype": "Select",
    "label": "Are you a person with disability (PWD)?",
-   "options": "\nNo\nYes",
-   "reqd": 1
+   "options": "\nNo\nYes"
   },
   {
    "fieldname": "annual_income",
    "fieldtype": "Currency",
    "label": "Annual income",
    "non_negative": 1,
-   "options": "INR",
-   "reqd": 1
+   "options": "INR"
   },
   {
    "fieldname": "fathers_name",
    "fieldtype": "Data",
-   "label": "Father's name",
-   "reqd": 1
+   "label": "Father's name"
   },
   {
    "fieldname": "mothers_name",
    "fieldtype": "Data",
-   "label": "Mother's name",
-   "reqd": 1
+   "label": "Mother's name"
   },
   {
    "default": "No",
@@ -233,7 +216,7 @@
   {
    "fieldname": "tab_2_tab",
    "fieldtype": "Tab Break",
-   "label": "Residence demography"
+   "label": "Residence details"
   },
   {
    "fieldname": "id_documents_tab",
@@ -247,22 +230,19 @@
   {
    "fieldname": "current_house_type",
    "fieldtype": "Select",
-   "label": "Current house type",
-   "reqd": 1
+   "label": "Current house type"
   },
   {
    "fieldname": "state",
    "fieldtype": "Link",
    "label": "State",
-   "options": "State",
-   "reqd": 1
+   "options": "State"
   },
   {
    "fieldname": "district",
    "fieldtype": "Link",
    "label": "District",
-   "options": "District",
-   "reqd": 1
+   "options": "District"
   },
   {
    "fieldname": "column_break_hspz",
@@ -272,15 +252,13 @@
    "fieldname": "ward",
    "fieldtype": "Link",
    "label": "Ward/Tehsil/Block",
-   "options": "Block",
-   "reqd": 1
+   "options": "Block"
   },
   {
    "fieldname": "name_of_the_settlement",
    "fieldtype": "Link",
    "label": "Name of the settlement",
-   "options": "Village",
-   "reqd": 1
+   "options": "Village"
   },
   {
    "fieldname": "address_with_landmark",
@@ -297,8 +275,7 @@
    "fieldtype": "Link",
    "label": "State of origin",
    "options": "State",
-   "read_only_depends_on": "eval:doc.same_as_above == 1",
-   "reqd": 1
+   "read_only_depends_on": "eval:doc.same_as_above == 1"
   },
   {
    "fieldname": "district_of_origin",
@@ -348,7 +325,6 @@
    "fieldname": "what_is_the_extent_of_your_disability",
    "fieldtype": "Select",
    "label": "What is the extent of your disability? (%)",
-   "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd=='Yes'",
    "options": "\nBelow 40%\nAbove 40%\nDo not know"
   },
   {
@@ -425,7 +401,6 @@
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single Window",
-   "mandatory_depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
    "options": "Single Window",
    "read_only_depends_on": "eval:(!frappe.user_roles.includes(\"Administrator\"))"
   },
@@ -433,8 +408,7 @@
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
-   "options": "Help Desk",
-   "reqd": 1
+   "options": "Help Desk"
   },
   {
    "depends_on": "eval:!doc.__islocal",
@@ -449,15 +423,13 @@
    "fieldtype": "Link",
    "label": "Occupational category",
    "options": "Occupational Category",
-   "read_only_depends_on": "eval:doc.occupational_category",
-   "reqd": 1
+   "read_only_depends_on": "eval:doc.occupational_category"
   },
   {
    "fieldname": "do_you_have_any_bank_account",
    "fieldtype": "Select",
    "label": "Do you have any bank account?",
-   "options": "\nYes\nNo",
-   "reqd": 1
+   "options": "\nYes\nNo"
   },
   {
    "depends_on": "eval:(frappe.user_roles.includes(\"Admin\"))",
@@ -471,8 +443,7 @@
    "depends_on": "eval:doc.social_vulnerable_category ==\"Others\"",
    "fieldname": "other_social_vulnerable_category",
    "fieldtype": "Data",
-   "label": "Other social vulnerable category",
-   "mandatory_depends_on": "eval:doc.social_vulnerable_category ==\"Others\""
+   "label": "Other social vulnerable category"
   },
   {
    "fieldname": "column_break_igyv",
@@ -505,15 +476,13 @@
    "fieldtype": "Int",
    "label": "Completed age (Month)",
    "non_negative": 1,
-   "read_only_depends_on": "eval:doc.date_of_birth",
-   "reqd": 1
+   "read_only_depends_on": "eval:doc.date_of_birth"
   },
   {
    "depends_on": "eval:doc.what_is_the_extent_of_your_disability == \"Above 40%\"",
    "fieldname": "proof_of_disability",
    "fieldtype": "Table MultiSelect",
    "label": "Proof of disability",
-   "mandatory_depends_on": "eval:doc.what_is_the_extent_of_your_disability == \"Above 40%\"",
    "options": "Proof of Disability Child"
   },
   {
@@ -521,7 +490,6 @@
    "fieldname": "new_occupation",
    "fieldtype": "Data",
    "label": "New occupation",
-   "mandatory_depends_on": "eval:doc.current_occupation == 'Others'",
    "options": "Occupation"
   },
   {
@@ -529,22 +497,38 @@
    "fetch_from": ".occupational_category",
    "fieldname": "new_occupation_category",
    "fieldtype": "Data",
-   "label": "New occupation category",
-   "mandatory_depends_on": "eval:doc.occupational_category == 'Others'"
+   "label": "New occupation category"
   },
   {
    "depends_on": "eval:doc.are_you_a_person_with_disability_pwd ==\"Yes\"",
    "fieldname": "type_of_disability",
    "fieldtype": "Select",
    "label": "Type of disability",
-   "mandatory_depends_on": "eval:doc.are_you_a_person_with_disability_pwd ==\"Yes\"",
    "options": "\nBlindness\nLow vision\nLeprosy cured persons\nLocomotor disability\nDwarfism\nIntellectual disability\nMental illness\nCerebral Palsy\nSpecific learning disability\nSpeech and Language disability\nHearing impairment\nMuscular dystrophy\nAcid attack victim\nParkinson's disease\nMultiple Sclerosis\nThalassemia\nHemophilia\nSickle cell disease\nAutism spectrum disorder\nChronic neurological conditions\nMultiple disabilities including deaf and blindness."
+  },
+  {
+   "fieldname": "basic_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Basic details"
+  },
+  {
+   "fieldname": "demographic_profile_tab",
+   "fieldtype": "Tab Break",
+   "label": "Demographic profile"
+  },
+  {
+   "fieldname": "column_break_xbco",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_qbcl",
+   "fieldtype": "Column Break"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-15 01:47:30.755855",
+ "modified": "2024-02-28 12:03:26.938637",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
