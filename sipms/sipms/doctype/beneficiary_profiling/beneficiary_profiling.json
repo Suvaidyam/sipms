@@ -140,30 +140,35 @@
    "fieldname": "caste_category",
    "fieldtype": "Select",
    "label": "Caste category",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "\nGeneral\nEWS\nOBC\nSC\nST\nDidn't know\nRefused to share"
   },
   {
    "fieldname": "religion",
    "fieldtype": "Select",
    "label": "Religion",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "\nHindu\nMuslim\nSikh\nChristian\nBuddhist\nJain"
   },
   {
    "fieldname": "education",
    "fieldtype": "Select",
    "label": "Education",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "\nChild\nIlliterate\nLiterate\nKindergarten\nPrimary (1-5)\nLower secondary (6-8)\nSecondary (9-10)\nHigher secondary (11-12)\nDiploma\nITI/Technical\nUnder graduate\nGraduate\nPost graduate"
   },
   {
    "fieldname": "current_occupation",
    "fieldtype": "Link",
    "label": "Current occupation",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "Occupation"
   },
   {
    "fieldname": "marital_status",
    "fieldtype": "Select",
    "label": "Marital status",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "\nChild\nSingle (unmarried)\nMarried\nDivorced\nWidow\nSeparated\nAbandoned"
   },
   {
@@ -176,6 +181,7 @@
    "fieldname": "social_vulnerable",
    "fieldtype": "Select",
    "label": "Are you a part any social vulnerable category?",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "\nNo\nYes"
   },
   {
@@ -186,24 +192,28 @@
    "fieldname": "are_you_a_person_with_disability_pwd",
    "fieldtype": "Select",
    "label": "Are you a person with disability (PWD)?",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "\nNo\nYes"
   },
   {
    "fieldname": "annual_income",
    "fieldtype": "Currency",
    "label": "Annual income",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "non_negative": 1,
    "options": "INR"
   },
   {
    "fieldname": "fathers_name",
    "fieldtype": "Data",
-   "label": "Father's name"
+   "label": "Father's name",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))"
   },
   {
    "fieldname": "mothers_name",
    "fieldtype": "Data",
-   "label": "Mother's name"
+   "label": "Mother's name",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))"
   },
   {
    "default": "No",
@@ -230,18 +240,21 @@
   {
    "fieldname": "current_house_type",
    "fieldtype": "Select",
-   "label": "Current house type"
+   "label": "Current house type",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))"
   },
   {
    "fieldname": "state",
    "fieldtype": "Link",
    "label": "State",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "State"
   },
   {
    "fieldname": "district",
    "fieldtype": "Link",
    "label": "District",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "District"
   },
   {
@@ -252,12 +265,14 @@
    "fieldname": "ward",
    "fieldtype": "Link",
    "label": "Ward/Tehsil/Block",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "Block"
   },
   {
    "fieldname": "name_of_the_settlement",
    "fieldtype": "Link",
    "label": "Name of the settlement",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "Village"
   },
   {
@@ -274,6 +289,7 @@
    "fieldname": "state_of_origin",
    "fieldtype": "Link",
    "label": "State of origin",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "State",
    "read_only_depends_on": "eval:doc.same_as_above == 1"
   },
@@ -401,10 +417,12 @@
    "fieldname": "single_window",
    "fieldtype": "Link",
    "label": "Single Window",
+   "mandatory_depends_on": "eval:!frappe.user_roles.includes(\"Help-desk member\")",
    "options": "Single Window",
    "read_only_depends_on": "eval:(!frappe.user_roles.includes(\"Administrator\"))"
   },
   {
+   "depends_on": "eval:!frappe.user_roles.includes(\"Help-desk member\")",
    "fieldname": "help_desk",
    "fieldtype": "Link",
    "label": "Name of Help-desk",
@@ -422,6 +440,7 @@
    "fieldname": "occupational_category",
    "fieldtype": "Link",
    "label": "Occupational category",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "Occupational Category",
    "read_only_depends_on": "eval:doc.occupational_category"
   },
@@ -429,6 +448,7 @@
    "fieldname": "do_you_have_any_bank_account",
    "fieldtype": "Select",
    "label": "Do you have any bank account?",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "\nYes\nNo"
   },
   {
@@ -490,6 +510,7 @@
    "fieldname": "new_occupation",
    "fieldtype": "Data",
    "label": "New occupation",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "Occupation"
   },
   {
@@ -528,7 +549,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-28 12:03:26.938637",
+ "modified": "2024-02-28 14:50:47.105862",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
