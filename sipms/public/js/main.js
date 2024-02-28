@@ -11,4 +11,4 @@ setTimeout(() => {
         document.getElementById('navbar-search').hidden = false
         document.getElementsByClassName('search-icon')[0].hidden = false
     }
-}, 1000);
+}, 100);
