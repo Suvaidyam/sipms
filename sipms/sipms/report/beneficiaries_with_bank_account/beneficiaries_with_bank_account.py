@@ -27,15 +27,19 @@ def execute(filters=None):
 		condition_str = ""
 	
 	sql_query = f"""
-		SELECT
-			do_you_have_any_bank_account as bank_account,
-			COUNT(do_you_have_any_bank_account) as count
-		FROM
-			`tabBeneficiary Profiling`
+	SELECT
+    	CASE
+        	WHEN COALESCE(do_you_have_any_bank_account, '') = '' THEN 'Unknown'
+        	ELSE do_you_have_any_bank_account
+    	END AS bank_account,
+    		COUNT(do_you_have_any_bank_account) AS count
+	FROM
+    	`tabBeneficiary Profiling`
 		WHERE
-		do_you_have_any_bank_account IS NOT NULL {condition_str}
+			do_you_have_any_bank_account IS NOT NULL {condition_str}
 		GROUP BY
-		bank_account;
+			bank_account;
 	"""
+
 	data = frappe.db.sql(sql_query, as_dict=True)
 	return columns, data

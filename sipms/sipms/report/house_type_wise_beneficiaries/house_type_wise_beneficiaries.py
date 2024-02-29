@@ -28,15 +28,15 @@ def execute(filters=None):
         condition_str = ""
 
     sql_query = f"""
-        SELECT
-            current_house_type AS House_Type,
-            COUNT(*) AS Number_of_Beneficiaries
-        FROM
-            `tabBeneficiary Profiling`
-        {condition_str}
-        GROUP BY
-            current_house_type
-        ORDER BY Number_of_Beneficiaries DESC
+    SELECT
+        COALESCE(current_house_type, 'Unknown') AS House_Type,
+        COUNT(*) AS Number_of_Beneficiaries
+    FROM
+        `tabBeneficiary Profiling`
+    {condition_str}
+    GROUP BY
+        COALESCE(current_house_type, 'Unknown')
+    ORDER BY Number_of_Beneficiaries DESC
     """
 
     data = frappe.db.sql(sql_query, as_dict=True)

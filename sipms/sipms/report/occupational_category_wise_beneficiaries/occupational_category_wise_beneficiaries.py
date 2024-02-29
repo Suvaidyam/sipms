@@ -28,15 +28,16 @@ def execute(filters=None):
 
     sql_query = f"""
         SELECT
-            occupational_category AS Occupation,
+            COALESCE(occupational_category, 'Unknown') AS Occupation,
             COUNT(name) AS Number_of_Beneficiaries
         FROM
             `tabBeneficiary Profiling`
         {condition_str}
         GROUP BY
-            occupational_category
+            COALESCE(occupational_category, 'Unknown')
         ORDER BY Number_of_Beneficiaries DESC
     """
+
 
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
