@@ -615,6 +615,17 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frm.doc.alternate_contact_number = '+91-'
       frm.refresh_fields("alternate_contact_number")
     }
+    // add family member button 
+    if(!frm.is_new()){
+      frm.add_custom_button(__('Add family members'), function(){
+          frappe.route_options = {
+            has_anyone_from_your_family_visisted_before: "Yes",
+            select_primary_member: frm.doc.select_primary_member || frm.doc.contact_number,
+          };
+          // Open a new form for the desired DocType
+          frappe.new_doc('Beneficiary Profiling');
+        }, __());
+  }
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 
