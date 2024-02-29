@@ -616,16 +616,16 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frm.refresh_fields("alternate_contact_number")
     }
     // add family member button 
-    if(!frm.is_new()){
-      frm.add_custom_button(__('Add family members'), function(){
-          frappe.route_options = {
-            has_anyone_from_your_family_visisted_before: "Yes",
-            select_primary_member: frm.doc.select_primary_member || frm.doc.contact_number,
-          };
-          // Open a new form for the desired DocType
-          frappe.new_doc('Beneficiary Profiling');
-        }, __());
-  }
+    if (!frm.is_new()) {
+      frm.add_custom_button(__('Add family members'), function () {
+        frappe.route_options = {
+          has_anyone_from_your_family_visisted_before: "Yes",
+          select_primary_member: frm.doc.select_primary_member || frm.doc.contact_number,
+        };
+        // Open a new form for the desired DocType
+        frappe.new_doc('Beneficiary Profiling');
+      }, __());
+    }
     // set dropdown value by ordering
     frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 
@@ -812,7 +812,6 @@ frappe.ui.form.on("Beneficiary Profiling", {
       }
     }
   },
-
   state: function (frm) {
     apply_filter("district", "State", frm, frm.doc.state)
     frm.set_value("district", '')
@@ -1008,15 +1007,13 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frm.set_value('add_house_type', '')
     }
   },
-  same_as_above: function (frm) {
+  same_as_above: async function (frm) {
     if (frm.doc.same_as_above == '1') {
       frm.doc.state_of_origin = frm.doc.state;
       frm.doc.district_of_origin = frm.doc.district;
       frm.doc.block = frm.doc.ward;
     } else {
-      frm.doc.state_of_origin = '';
-      frm.doc.district_of_origin = '';
-      frm.doc.block = '';
+      await truncate_multiple_fields_value(frm, ['state_of_origin', 'district_of_origin', 'block'])
     }
     refresh_field("state_of_origin")
     refresh_field("district_of_origin")
