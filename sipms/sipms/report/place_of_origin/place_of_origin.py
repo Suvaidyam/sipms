@@ -34,8 +34,8 @@ def execute(filters=None):
     print("condition_str", condition_str)
     sql_query = f"""
         SELECT
-            COALESCE(s.state_name, 'Unknown') AS state,
-            COALESCE(d.district_name, 'Unknown') AS district,
+            COALESCE(NULLIF(s.state_name, ''), 'Unknown') AS state,
+            COALESCE(NULLIF(d.district_name, ''), 'Unknown') AS district,
             COUNT(b.name) AS count
         FROM
             `tabBeneficiary Profiling` AS b
@@ -43,10 +43,11 @@ def execute(filters=None):
             LEFT JOIN tabDistrict AS d ON b.district_of_origin = d.name
         WHERE {condition_str}
         GROUP BY
-            COALESCE(b.state_of_origin, 'Unknown'), COALESCE(b.district_of_origin, 'Unknown')
+            COALESCE(NULLIF(b.state_of_origin, ''), 'Unknown'), COALESCE(NULLIF(b.district_of_origin, ''), 'Unknown')
         ORDER BY
-            COALESCE(b.state_of_origin, 'Unknown'), COALESCE(b.district_of_origin, 'Unknown');
+            COALESCE(NULLIF(b.state_of_origin, ''), 'Unknown'), COALESCE(NULLIF(b.district_of_origin, ''), 'Unknown');
     """
+
 
     
     data = frappe.db.sql(sql_query, as_dict=True)
