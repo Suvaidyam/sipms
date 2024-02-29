@@ -33,20 +33,21 @@ def execute(filters=None):
         condition_str = "1=1"
     print("condition_str", condition_str)
     sql_query = f"""
-    SELECT
-        s.state_name AS state,
-        d.district_name AS district,
-        COUNT(b.name) AS count
-    FROM
-        `tabBeneficiary Profiling` AS b
-        JOIN tabState AS s ON b.state_of_origin = s.name
-        JOIN tabDistrict AS d ON b.district_of_origin = d.name
-    WHERE {condition_str}
-    GROUP BY
-        b.state_of_origin, b.district_of_origin
-    ORDER BY
-        b.state_of_origin, b.district_of_origin;
-"""
+        SELECT
+            COALESCE(s.state_name, 'Unknown') AS state,
+            COALESCE(d.district_name, 'Unknown') AS district,
+            COUNT(b.name) AS count
+        FROM
+            `tabBeneficiary Profiling` AS b
+            LEFT JOIN tabState AS s ON b.state_of_origin = s.name
+            LEFT JOIN tabDistrict AS d ON b.district_of_origin = d.name
+        WHERE {condition_str}
+        GROUP BY
+            COALESCE(b.state_of_origin, 'Unknown'), COALESCE(b.district_of_origin, 'Unknown')
+        ORDER BY
+            COALESCE(b.state_of_origin, 'Unknown'), COALESCE(b.district_of_origin, 'Unknown');
+    """
+
     
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
