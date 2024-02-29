@@ -29,15 +29,20 @@ def execute(filters=None):
 
     sql_query = f"""
         SELECT
-            religion AS Religion,
+            CASE
+                WHEN COALESCE(religion, '') = '' THEN 'Unknown'
+                ELSE religion
+            END AS Religion,
             COUNT(*) AS Number_of_Beneficiaries
         FROM
             `tabBeneficiary Profiling`
         {condition_str}
         GROUP BY
-            religion
+            Religion
         ORDER BY Number_of_Beneficiaries DESC
     """
+
+
 
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
