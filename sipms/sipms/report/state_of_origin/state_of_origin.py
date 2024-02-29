@@ -41,9 +41,6 @@ def execute(filters=None):
 			COALESCE(t1.state_of_origin, 'Unknown');
 	"""
 
-
-
-
 	data = frappe.db.sql(sql_query, as_dict=True)
 
 	return columns, data
