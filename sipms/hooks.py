@@ -55,7 +55,13 @@ app_include_js = "/assets/sipms/js/main.js"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Beneficiary Profiling" : ["public/js/utils/utils.js" ,
+                                         "public/js/beneficiary_profiling/beneficiary_profiling.js",
+                                         "public/js/beneficiary_profiling/follow_up.js",
+                                         "public/js/beneficiary_profiling/scheme.js",
+                                         "public/js/beneficiary_profiling/id_document.js"
+                                         ]}
+# doctype_js = {"Beneficiary Profiling" : }     
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -63,7 +69,7 @@ app_include_js = "/assets/sipms/js/main.js"
 # Svg Icons
 # ------------------
 # include app icons in desk
-# app_include_icons = "sipms/public/icons.svg"
+# app_include_icons = "sipms/public/images/mYojana.png"
 
 # Home Pages
 # ----------

@@ -1,6 +1,6 @@
 // Copyright (c) 2023, suvaidyam and contributors
-// For license information, please see license.txt
-
+// // For license information, please see license.txt
+// import { hide_advance_search } from "../../../public/js/utils/utils";
 let _frm;
 let global_frm;
 // global variable
@@ -279,24 +279,9 @@ function generateDOBFromAge(ageInYears = 0, ageInMonths = 0) {
   let generatedDOB = new Date(birthYear, birthMonth, startOfMonth.getDate());
   return generatedDOB;
 }
-function extend_options_length(frm, fields) {
-  fields?.forEach((field) => {
-    frm.set_query(field, () => {
-      return { page_length: 1000 };
-    });
-  })
-};
+
 var scheme_list = []
-function callAPI(options) {
-  return new Promise((resolve, reject) => {
-    frappe.call({
-      ...options,
-      callback: async function (response) {
-        resolve(response?.message || response?.value)
-      }
-    });
-  })
-}
+
 const showRules = (row) => {
   let rules = (row?.rules || []).map(e => `${e.rule_field} ${e.operator} ${e.data} ${e.check}`).join("\n")
   frappe.msgprint({
@@ -309,29 +294,8 @@ const showRules = (row) => {
     }
   });
 }
-// COMMON FUNCTON FOR FILTER OF LINK FIELD
-function apply_filter(field_name, filter_on, frm, filter_value, withoutFilter = false) {
-  frm.fields_dict[field_name].get_query = () => {
-    if (withoutFilter) {
-      return {
-        filters: {},
-        page_length: 1000
-      };
-    }
-    return {
-      filters: {
-        [filter_on]: filter_value || frm.doc[filter_on] || `please select ${filter_on}`,
-      },
-      page_length: 1000
-    };
-  }
-};
-// ///// Hide Advance search option in Link Fields
-function hide_advance_search(frm, list) {
-  for (item of list) {
-    frm.set_df_property(item, 'only_select', true);
-  }
-};
+
+
 // const get_helpdesk= async(){
 //   let list = await callAPI({
 //     method: 'frappe.desk.search.search_link',
@@ -344,125 +308,8 @@ function hide_advance_search(frm, list) {
 //     freeze_message: __("Getting list ..."),
 //   })
 // }
-async function truncate_multiple_fields_value(_frm, fields) {
-  for (field of fields) {
-    _frm.set_value(field, '')
-  }
-}
-const get_ordered_list = async (doctype, optionsToSort) => {
-  let list = await callAPI({
-    method: 'frappe.desk.search.search_link',
-    freeze: true,
-    args: {
-      doctype: doctype,
-      page_length: 1000,
-      txt: ''
-    },
-    freeze_message: __("Getting list ..."),
-  })
-  if (optionsToSort) {
-    let reOrderedList = [];
-    optionsToSort?.forEach(async (option) => {
-      const requiredOption = await list?.find(item => item.value === option);
-      reOrderedList.push(requiredOption);
-    });
-    const exceptionList = await list?.filter(item => !optionsToSort.some(item2 => item.value === item2));
-    exceptionList?.forEach(async (option) => {
-      reOrderedList = [...reOrderedList, option];
-    })
-    list = reOrderedList;
-    return list;
-    // const otherOption = list.find(item => item.value === 'Others');
-    // if (otherOption) {
-    //   list = list.filter(item => item.value !== 'Others');
-    //   list.push(otherOption);
-    // }
-  }
-  return list
 
-}
-const get_scheme_list = async (frm) => {
-  let list = await callAPI({
-    method: 'sipms.api.execute',
-    freeze: true,
-    args: {
-      name: frm.doc.name
-    },
-    freeze_message: __("Getting schemes..."),
-  })
-  scheme_list = list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
-  return scheme_list
-}
-const get_occupation_category = async (frm) => {
-  let list = await callAPI({
-    method: 'frappe.client.get',
-    freeze: true,
-    args: {
-      doctype: 'Occupation',
-      name: frm.doc.current_occupation
-    },
-    freeze_message: __("Getting schemes..."),
-  })
-  return list;
-}
 
-const get_document = async (filter, fields) => {
-  return await frappe.call({
-    method: 'frappe.client.get_value',
-    args: {
-      'doctype': 'Beneficiary Profiling',
-      'filters': filter,
-      'fieldname': fields
-    },
-    callback: function (response) {
-      // Handle the response
-      if (!response.exc) {
-        var doc = response.message;
-        return doc;
-      } else {
-        console.error('Error fetching document:', response.exc);
-      }
-    }
-  });
-
-}
-const apply_filter_on_id_document = async () => {
-  //  APPLY Filter in ID DOCUMENT
-  var child_table = _frm.fields_dict['id_table_list'].grid;
-  if (child_table) {
-    try {
-      child_table.get_field('which_of_the_following_id_documents_do_you_have').get_query = function () {
-        return {
-          filters: [
-            ['ID Document', 'document', 'NOT IN', cur_frm.doc.id_table_list.map(function (item) {
-              return item.which_of_the_following_id_documents_do_you_have;
-            })]
-          ]
-        };
-      };
-    } catch (error) {
-      console.error(error)
-    }
-  }
-}
-const addTableFilter = (datatable, elements = [], rows = []) => {
-  document.addEventListener('keyup', function (event) {
-    if (elements.includes(event.target.id)) {
-      let filters = []
-      for (el of elements) {
-        let val = document.getElementById(el)?.value;
-        if (val) {
-          filters.push([el, val])
-        }
-      }
-      if (filters.length) {
-        datatable.refresh(rows.filter(row => !filters.map(e => (row[e[0]]?.toString()?.toLowerCase()?.indexOf(e[1]?.toLowerCase()) > -1)).includes(false)))
-      } else {
-        datatable.refresh(rows)
-      }
-    }
-  });
-}
 frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
   before_save: async function (frm) {
@@ -1020,209 +867,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     refresh_field("block")
   }
 });
-// ********************* ID documents CHILD Table***********************
-frappe.ui.form.on('ID Document Child', {
-  form_render: async function (frm, cdt, cdn) {
 
-  },
-  id_table_list_add: async function (frm, cdt, cdn) {
-    console.log("hello everyone")
-    apply_filter_on_id_document()
-  }
-})
 
-// ********************* Support CHILD Table***********************
-frappe.ui.form.on('Scheme Child', {
-  form_render: async function (frm, cdt, cdn) {
-    let row = frappe.get_doc(cdt, cdn);
-    if (row.__islocal) {
-      if (row.application_submitted == 'Yes' && (!row.date_of_application || !row.mode_of_application)) {
-        row.status = ''
-        createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
-      } else if (row.application_submitted == 'Completed' && (!row.date_of_application || !row.mode_of_application)) {
-        createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
-      }
-    }
-  },
-  scheme_table_add: async function (frm, cdt, cdn) {
-    // get_milestone_category(frm)
-    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed', ''].includes(f.status)).map(e => e.name_of_the_scheme);
-    let fl_schemes_ops = scheme_list.filter(f => !schemes_op.includes(f.name) && f.available)
-    let milestones = {};
-    let ops = fl_schemes_ops.map(e => {
-      milestones.hasOwnProperty(e.milestone) ? '' : milestones[e.milestone] = e.milestone
-      return { 'lable': e.name, "value": e.name }
-    })
-    frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
-    frm.fields_dict.scheme_table.grid.update_docfield_property("milestone_category", "options", [{ 'lable': "", "value": "" }, ...Object.keys(milestones).map(e => { return { 'lable': milestones[e], "value": milestones[e] } })]);
-  },
-  name_of_the_scheme: function (frm, cdt, cdn) {
-    let row = frappe.get_doc(cdt, cdn);
-    row.milestone_category = ''
-    let scheme = scheme_list.find(f => row.name_of_the_scheme == f.name)
 
-    if (scheme) {
-      row.milestone_category = scheme.milestone;
-      // row.mode_of_application = scheme.mode_of_application;
-      row.name_of_the_department = scheme.name_of_department;
-    }
-    refresh_field("scheme_table")
-  },
-  milestone_category: (frm, cdt, cdn) => {
-    let row = frappe.get_doc(cdt, cdn);
-    row.name_of_the_scheme = ''
-    let schemes;
-    if (row.milestone_category === "") {
-      schemes = scheme_list;
-    } else {
-      schemes = scheme_list.filter(f => row.milestone_category == f.milestone);
-    }
-    let schemes_op = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed', ''].includes(f.status)).map(e => e.name_of_the_scheme);
-    let fl_schemes_ops = schemes.filter(f => !schemes_op.includes(f.name) && f.available)
-    let milestones = {};
-    let ops = fl_schemes_ops.map(e => {
-      milestones.hasOwnProperty(e.milestone) ? '' : milestones[e.milestone] = e.milestone
-      return { 'lable': e.name, "value": e.name }
-    })
-    frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
-  },
-  application_submitted: function (frm, cdt, cdn) {
-    let row = frappe.get_doc(cdt, cdn);
-    if (row.application_submitted == "Yes") {
-      row.status = ''; row.date_of_completion = '';
-      frm.refresh_fields('status', 'date_of_completion')
-      createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
-    } else if (["Completed"].includes(row.application_submitted)) {
-      createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
-    } else if (row.application_submitted == "No") {
-      row.date_of_application = ''; row.date_of_completion = ''; row.application_number = ''; row.amount_paid = ''; row.paid_by = "";
-      frm.refresh_fields("date_of_application", "date_of_completion", "application_number", "amount_paid", "paid_by");
-    }
-  },
 
-})
-
-// ********************* FOLLOW UP CHILD Table***********************
-
-frappe.ui.form.on('Follow Up Child', {
-  form_render: async function (frm, cdt, cdn) {
-    let row = frappe.get_doc(cdt, cdn);
-    if (row.__islocal) {
-      if (row.follow_up_status == 'Document submitted' && (!row.date_of_application || !row.mode_of_application)) {
-        row.status = ''
-        // createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
-      } else if (row.follow_up_status == 'Completed' && !row.date_of_completion) {
-        // createDialog(row, dialogsConfig.document_completed, date_of_complete_validate).show();
-      } else if (row.follow_up_status == 'Rejected' && (!row.date_of_rejection || !row.reason_of_rejection)) {
-        // createDialog(row, dialogsConfig.document_rejected, doc_rejected_validate).show();
-      }
-    }
-  },
-  async follow_up_table_add(frm, cdt, cdn) {
-    let row = frappe.get_doc(cdt, cdn);
-    if (frappe.user_roles.includes("Help-desk member")) {
-      let help_desk = await get_ordered_list("Help Desk", false)
-      // console.log("help_desk", help_desk)
-      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow", "options", help_desk);
-    } else {
-      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow", "options", [`${frappe.session.user_fullname}`]);
-      row.follow = frappe.session.user_fullname
-    }
-    // call api of list of helpdesk with checking roles
-    let _local_scheme_followups = frm.doc.follow_up_table.filter(f => f.__islocal).map(e => e.name_of_the_scheme)
-    let support_data = frm.doc.scheme_table.filter(f => ['Open', 'Under process', 'Closed'].includes(f.status) && !_local_scheme_followups.includes(f.scheme)).map(m => m.name_of_the_scheme);
-    frm.fields_dict.follow_up_table.grid.update_docfield_property("name_of_the_scheme", "options", support_data);
-  },
-  name_of_the_scheme: function (frm, cdt, cdn) {
-    let row = frappe.get_doc(cdt, cdn);
-    let supports = frm.doc.scheme_table.filter(f => f.scheme == row.name_of_the_scheme && (['Open', 'Under process', 'Closed'].includes(f.status)));
-    row.date_of_application = supports[0].date_of_application
-    row.follow_up_date = frappe.datetime.get_today()
-    // console.log(supports, "supports")
-    row.parent_ref = supports[0].name
-    for (support_items of frm.doc.scheme_table) {
-      if (row.name_of_the_scheme == support_items.name_of_the_scheme) {
-        if (support_items.status === "Open" && support_items.application_submitted == "No") {
-          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_with", "options", ["Beneficiary"]);
-          row.follow_up_with = "Beneficiary"
-          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Interested", "Not interested", "Document submitted", "Not reachable"]);
-        } else if (support_items.status === "Under process" && support_items.application_submitted == "Yes") {
-          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_with", "options", ["Beneficiary", "Government department", "Government website", "Others"]);
-          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Not reachable", "Under process", "Additional info required", "Completed", "Rejected"]);
-        } else if (support_items.status === "Closed" && support_items.application_submitted == "Yes") {
-          // last call update  ?? confusion changes
-          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_with", "options", ["Beneficiary", "Government department", "Government website", "Others"]);
-          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Not reachable", "Under process", "Additional info required", "Completed", "Rejected"]);
-        } else if (support_items.status === "Closed" && support_items.application_submitted == "No") {
-          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_with", "options", ["Beneficiary"]);
-          row.follow_up_with = "Beneficiary"
-          frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Interested", "Not interested", "Document submitted", "Not reachable"]);
-        }
-      }
-    }
-  },
-  follow_up_date: function (frm, cdt, cdn) {
-    let row = frappe.get_doc(cdt, cdn);
-    console.log("follow up", row)
-  },
-  follow_up_date: function (frm, cdt, cdn) {
-    let row = frappe.get_doc(cdt, cdn);
-    if (row.follow_up_date > frappe.datetime.get_today()) {
-      row.follow_up_date = null
-      frappe.throw(__("You can not select future date in Follow-up date"));
-    }
-    if (row.follow_up_date < row.date_of_application) {
-      row.follow_up_date = null
-      frappe.throw(__("Follow-up date should not be less than date of application"));
-    }
-    if (row.follow_up_date < frm.doc.date_of_visit) {
-      row.follow_up_date = null
-      frappe.throw(__("Follow-up date should not be less than date of date of visit"));
-    }
-  },
-  follow_up_with: function (frm, cdt, cdn) {
-    let row = frappe.get_doc(cdt, cdn);
-    if (row.follow_up_with == "Government department" || row.follow_up_with == "Others") {
-      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_mode", "options", ["Phone call", "In-person visit"]);
-    } else {
-      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_mode", "options", ["Phone call", "Home visit", "Centre visit"]);
-    }
-    let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
-    let latestSupport = supports.length ? supports[supports.length - 1] : null;
-    if (row.follow_up_with != "Beneficiary" && latestSupport.application_submitted == "Yes") {
-      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Not reachable", "Under process", "Additional info required", "Completed", "Rejected"]);
-    } else if (row.follow_up_with == "Beneficiary" && latestSupport.application_submitted == "Yes") {
-      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Not reachable", "Under process", "Additional info required", "Completed", "Rejected"]);
-    } else if (row.follow_up_with == "Beneficiary" && latestSupport.application_submitted == "No") {
-      frm.fields_dict.follow_up_table.grid.update_docfield_property("follow_up_status", "options", ["Interested", "Not interested", "Document submitted", "Not reachable"]);
-    }
-  },
-  follow_up_status: function (frm, cdt, cdn) {
-    let row = frappe.get_doc(cdt, cdn);
-    let supports = frm.doc.scheme_table.filter(f => f.specific_support_type == row.support_name);
-    let latestSupport = supports.length ? supports[supports.length - 1] : null;
-    if (row.follow_up_status === "Document submitted") {
-      createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
-    } else if (row.follow_up_status === "Completed") {
-      createDialog(row, dialogsConfig.document_completed, date_of_complete_validate).show();
-    } else if (row.follow_up_status === "Rejected") {
-      createDialog(row, dialogsConfig.document_rejected, doc_rejected_validate).show();
-    } else if (row.follow_up_status === "Not reachable" && latestSupport.status != "Closed") {
-      let followups = frm.doc.follow_up_table.filter(f => f.parent_ref == row.parent_ref && f.support_name == row.support_name && f.follow_up_status == "Not reachable")
-      if (followups.length >= 2) {
-        frappe.warn('Do you want to close the scheme?',
-          `The follow-up status is "Not reachable" ${followups.length} times`,
-          () => {
-            row.to_close_status = "Closed"
-            console.log(row, "row")
-          },
-          'Close',
-          true // Sets dialog as minimizable
-        )
-
-      }
-      //  show popup and continue and close if more than two times
-    }
-  }
-
-})
