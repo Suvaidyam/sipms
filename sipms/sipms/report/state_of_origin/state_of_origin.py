@@ -28,18 +28,20 @@ def execute(filters=None):
 		condition_str = ""
 
 	sql_query = f"""
-	SELECT
-		t2.state_name as state,
-		COUNT(t1.state_of_origin) as count
-	FROM
-		`tabBeneficiary Profiling` AS t1
-	LEFT JOIN
-		`tabState` AS t2 ON t1.state_of_origin = t2.name
-	WHERE
-		1=1 {condition_str}
-	GROUP BY
-		t1.state_of_origin;
+		SELECT
+			COALESCE(t2.state_name, 'Unknown') as state,
+			COUNT(t1.state_of_origin) as count
+		FROM
+			`tabBeneficiary Profiling` AS t1
+		LEFT JOIN
+			`tabState` AS t2 ON t1.state_of_origin = t2.name
+		WHERE 
+			t1.state_of_origin <> ''
+			{condition_str}
+		GROUP BY
+			COALESCE(t2.state_name, 'Unknown');
 	"""
+
 	data = frappe.db.sql(sql_query, as_dict=True)
 
 	return columns, data
