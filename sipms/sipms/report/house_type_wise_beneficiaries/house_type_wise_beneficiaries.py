@@ -37,7 +37,7 @@ def execute(filters=None):
     GROUP BY
         COALESCE(current_house_type, 'Unknown')
     ORDER BY Number_of_Beneficiaries DESC
-    """
+    """ 
 
     data = frappe.db.sql(sql_query, as_dict=True)
     return columns, data
