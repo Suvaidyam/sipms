@@ -59,29 +59,28 @@ def execute(filters=None):
         condition_str = ""
 
     sql_query = f"""
-    SELECT
-        s.state_name,
-        d.district_name,
-        SUM(CASE WHEN (sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
-        SUM(CASE WHEN (sc.status = 'Completed') THEN 1 ELSE 0 END) as completed_demands,
-        SUM(CASE WHEN (sc.status = 'Closed') THEN 1 ELSE 0 END) as closed_demands,
-        SUM(CASE WHEN (sc.status = 'Under process') THEN 1 ELSE 0 END) as submitted_demands,
-        SUM(CASE WHEN (sc.status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands,
-        COUNT(sc.status) as total_demands
-    FROM
-        `tabBeneficiary Profiling` bp
-    LEFT JOIN
-        `tabScheme Child` sc ON bp.name = sc.parent
-    LEFT JOIN
-        `tabState` s ON bp.state = s.name
-    LEFT JOIN
-        `tabDistrict` d ON bp.district = d.name
-    {condition_str}
-    WHERE
-        s.state_name IS NOT NULL  -- Exclude rows where state is null
-    GROUP BY
-        s.state_name, d.district_name;
+        SELECT
+            COALESCE(s.state_name, 'Unknown') AS state_name,
+            COALESCE(d.district_name, 'Unknown') AS district_name,
+            SUM(CASE WHEN (sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
+            SUM(CASE WHEN (sc.status = 'Completed') THEN 1 ELSE 0 END) as completed_demands,
+            SUM(CASE WHEN (sc.status = 'Closed') THEN 1 ELSE 0 END) as closed_demands,
+            SUM(CASE WHEN (sc.status = 'Under process') THEN 1 ELSE 0 END) as submitted_demands,
+            SUM(CASE WHEN (sc.status = 'Rejected') THEN 1 ELSE 0 END) as rejected_demands,
+            COUNT(sc.status) as total_demands
+        FROM
+            `tabBeneficiary Profiling` bp
+        LEFT JOIN
+            `tabScheme Child` sc ON bp.name = sc.parent
+        LEFT JOIN
+            `tabState` s ON bp.state = s.name
+        LEFT JOIN
+            `tabDistrict` d ON bp.district = d.name
+        {condition_str}
+        GROUP BY
+            COALESCE(s.state_name, 'Unknown'), COALESCE(d.district_name, 'Unknown');
     """
+
 
 
 
