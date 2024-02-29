@@ -30,17 +30,18 @@ def execute(filters=None):
 	sql_query = f"""
 		SELECT
 			COALESCE(t2.state_name, 'Unknown') as state,
-			COUNT(t1.state_of_origin) as count
+			COUNT(COALESCE(t1.state_of_origin, 'Unknown')) as count
 		FROM
 			`tabBeneficiary Profiling` AS t1
 		LEFT JOIN
 			`tabState` AS t2 ON t1.state_of_origin = t2.name
-		WHERE 
-			t1.state_of_origin <> ''
-			{condition_str}
+		WHERE
+			1=1 {condition_str}
 		GROUP BY
-			COALESCE(t2.state_name, 'Unknown');
+			COALESCE(t1.state_of_origin, 'Unknown');
 	"""
+
+
 
 	data = frappe.db.sql(sql_query, as_dict=True)
 
