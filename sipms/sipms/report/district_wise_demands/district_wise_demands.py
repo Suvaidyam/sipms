@@ -60,7 +60,6 @@ def execute(filters=None):
 
     sql_query = f"""
         SELECT
-            COALESCE(s.state_name, 'Unknown') AS state_name,
             COALESCE(d.district_name, 'Unknown') AS district_name,
             SUM(CASE WHEN (sc.status = 'Open') THEN 1 ELSE 0 END) as open_demands,
             SUM(CASE WHEN (sc.status = 'Completed') THEN 1 ELSE 0 END) as completed_demands,
@@ -73,12 +72,10 @@ def execute(filters=None):
         LEFT JOIN
             `tabScheme Child` sc ON bp.name = sc.parent
         LEFT JOIN
-            `tabState` s ON bp.state = s.name
-        LEFT JOIN
             `tabDistrict` d ON bp.district = d.name
         {condition_str}
         GROUP BY
-            COALESCE(s.state_name, 'Unknown'), COALESCE(d.district_name, 'Unknown');
+             COALESCE(d.district_name, 'Unknown');
     """
 
 
