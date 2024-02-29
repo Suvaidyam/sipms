@@ -30,7 +30,7 @@ def execute(filters=None):
 	sql_query = f"""
 		SELECT
 			COALESCE(t2.state_name, 'Unknown') as state,
-			COUNT(COALESCE(t1.state_of_origin, 'Unknown')) as count
+			COUNT(CASE WHEN COALESCE(t1.state_of_origin, '') = '' THEN 'Unknown' ELSE t1.state_of_origin END) as count
 		FROM
 			`tabBeneficiary Profiling` AS t1
 		LEFT JOIN
@@ -40,6 +40,7 @@ def execute(filters=None):
 		GROUP BY
 			COALESCE(t1.state_of_origin, 'Unknown');
 	"""
+
 
 
 
