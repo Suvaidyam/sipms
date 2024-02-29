@@ -344,6 +344,11 @@ function hide_advance_search(frm, list) {
 //     freeze_message: __("Getting list ..."),
 //   })
 // }
+async function truncate_multiple_fields_value(_frm, fields) {
+  for (field of fields) {
+    _frm.set_value(field, '')
+  }
+}
 const get_ordered_list = async (doctype, optionsToSort) => {
   let list = await callAPI({
     method: 'frappe.desk.search.search_link',
@@ -401,52 +406,19 @@ const get_occupation_category = async (frm) => {
   return list;
 }
 
-const get_lead_date = async (lead_id, frm) => {
-  var fieldsToFetch = ["completed_age", "contact_number"];
-  // Fetch document with name 'your_document_name' from DocType 'YourDocType'
-  frappe.call({
-    method: 'frappe.client.get',
+const get_document = async (filter, fields) => {
+  return await frappe.call({
+    method: 'frappe.client.get_value',
     args: {
-      doctype: 'Community meeting',
-      name: lead_id,
-      fields: fieldsToFetch
+      'doctype': 'Beneficiary Profiling',
+      'filters': filter,
+      'fieldname': fields
     },
     callback: function (response) {
       // Handle the response
       if (!response.exc) {
         var doc = response.message;
-        console.log('Fetched Document:', doc);
-        frm.doc.completed_age = doc.completed_age,
-          frm.doc.contact_number = doc.contact_number,
-          // frm.doc.date_of_visit = doc.date_of_visit,
-          frm.doc.gender = doc.gender,
-          frm.doc.name_of_the_beneficiary = doc.name_of_the_beneficiary,
-          frm.doc.caste_category = doc.caste_category,
-          frm.doc.education = doc.education,
-          frm.doc.current_occupation = doc.current_occupation,
-          frm.doc.marital_status = doc.marital_status,
-          frm.doc.spouses_name = doc.spouses_name,
-          frm.doc.single_window = doc.single_window,
-          frm.doc.fathers_name = doc.fathers_name,
-          frm.doc.mothers_name = doc.mothers_name,
-          frm.doc.source_of_information = doc.source_of_information,
-          frm.doc.name_of_the_camp = doc.name_of_the_camp
-        frm.doc.state_of_origin = doc.state_of_origin,
-          frm.doc.current_house_type = doc.current_house_type,
-          frm.doc.current_house_type = doc.current_house_type,
-          frm.doc.help_desk = doc.help_desk
-        frm.doc.occupational_category = doc.occupational_category
-        // frm.doc.address = frm.doc.address,
-        // frm.doc.name_of_scheme= doc.name_of_scheme,
-        frm.refresh_fields(["completed_age", "contact_number", "gender", "name_of_the_beneficiary"
-          , "caste_category", "education", "current_occupation", "occupational_category", "marital_status", "single_window", "fathers_name", "mothers_name",
-          "source_of_information", "state_of_origin", "current_house_type", "name_of_the_camp"
-        ])
-        // refresh_field("completed_age")
-        // refresh_field("contact_number")
-
-
-        // Now you can access the specific fields, e.g., doc.field1, doc.field2, etc.
+        return doc;
       } else {
         console.error('Error fetching document:', response.exc);
       }
@@ -804,9 +776,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
   },
   validate(frm) {
-    for( row of frm.doc.scheme_table){
-      if(row.application_submitted == "Yes" || row.application_submitted == "Completed"){
-        if(!row.date_of_application){
+    for (row of frm.doc.scheme_table) {
+      if (row.application_submitted == "Yes" || row.application_submitted == "Completed") {
+        if (!row.date_of_application) {
           frappe.throw(`Mandatory fields required in table Scheme Table, Row ${row.idx} 
           </br> </br> <ul><li>Date of application</li></ul>`)
         }
@@ -988,9 +960,36 @@ frappe.ui.form.on("Beneficiary Profiling", {
       frm.set_value('new_camp', '')
     }
   },
-  has_anyone_from_your_family_visisted_before: function (frm) {
+  has_anyone_from_your_family_visisted_before: async function (frm) {
     if (frm.doc.has_anyone_from_your_family_visisted_before == "Yes") {
       frm.set_value('select_primary_member', '')
+    } else {
+      await truncate_multiple_fields_value(frm, ['current_house_type', 'state', 'district', 'ward',
+        'name_of_the_settlement', 'address_with_landmark', 'same_as_above', 'state_of_origin', 'district_of_origin', 'block'])
+    }
+  },
+  select_primary_member: async function (frm) {
+    const pm = frm.doc.select_primary_member;
+    if (pm) {
+      let response = await get_document({ "contact_number": pm },
+        ['name', "name_of_the_beneficiary", 'current_house_type', 'state', 'district', 'ward',
+          'name_of_the_settlement', 'address_with_landmark', 'same_as_above', 'state_of_origin', 'district_of_origin', 'block']);
+      const parent = response.message;
+      frm.doc.current_house_type = parent.current_house_type;
+      frm.doc.state = parent.state;
+      frm.doc.district = parent.district;
+      frm.doc.ward = parent.ward;
+      frm.doc.name_of_the_settlement = parent.name_of_the_settlement;
+      frm.doc.address_with_landmark = parent.address_with_landmark;
+      frm.doc.same_as_above = parent.same_as_above;
+      frm.doc.state_of_origin = parent.state_of_origin;
+      frm.doc.district_of_origin = parent.district_of_origin;
+      frm.doc.block = parent.block;
+      frm.refresh_fields(['current_house_type', 'state', 'district', 'ward',
+        'name_of_the_settlement', 'address_with_landmark', 'same_as_above', 'state_of_origin', 'district_of_origin', 'block'])
+    } else {
+      await truncate_multiple_fields_value(frm, ['current_house_type', 'state', 'district', 'ward',
+        'name_of_the_settlement', 'address_with_landmark', 'same_as_above', 'state_of_origin', 'district_of_origin', 'block'])
     }
   },
   current_house_type: function (frm) {
