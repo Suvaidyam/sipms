@@ -1,4 +1,3 @@
-console.log("dilogs code run")
 
 let _frm;
 let global_frm;

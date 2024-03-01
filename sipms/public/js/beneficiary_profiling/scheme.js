@@ -1,4 +1,49 @@
-console.log("scheame js run")
+var scheme_list = []
+
+const showRules = (row) => {
+  let rules = (row?.rules || []).map(e => `${e.rule_field} ${e.operator} ${e.data} ${e.check}`).join("\n")
+  frappe.msgprint({
+    title: __('rules'),
+    message: rules,
+    primary_action: {
+      action(values) {
+        console.log(values);
+      }
+    }
+  });
+}
+// get scheme lists
+const get_scheme_list = async (frm) => {
+  let list = await callAPI({
+    method: 'sipms.api.execute',
+    freeze: true,
+    args: {
+      name: frm.doc.name
+    },
+    freeze_message: __("Getting schemes..."),
+  })
+  scheme_list = list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
+  return scheme_list
+}
+const addTableFilter = (datatable, elements = [], rows = []) => {
+  document.addEventListener('keyup', function (event) {
+    if (elements.includes(event.target.id)) {
+      let filters = []
+      for (el of elements) {
+        let val = document.getElementById(el)?.value;
+        if (val) {
+          filters.push([el, val])
+        }
+      }
+      if (filters.length) {
+        datatable.refresh(rows.filter(row => !filters.map(e => (row[e[0]]?.toString()?.toLowerCase()?.indexOf(e[1]?.toLowerCase()) > -1)).includes(false)))
+      } else {
+        datatable.refresh(rows)
+      }
+    }
+  });
+}
+
 // ********************* Support CHILD Table***********************
 frappe.ui.form.on('Scheme Child', {
     form_render: async function (frm, cdt, cdn) {

@@ -1,5 +1,4 @@
 // ********************* FOLLOW UP CHILD Table***********************
-console.log("Follow up render")
 frappe.ui.form.on('Follow Up Child', {
     form_render: async function (frm, cdt, cdn) {
       let row = frappe.get_doc(cdt, cdn);

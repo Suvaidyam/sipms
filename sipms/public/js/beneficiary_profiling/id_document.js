@@ -1,5 +1,3 @@
-console.log("id document run")
-
 const apply_filter_on_id_document = async () => {
     //  APPLY Filter in ID DOCUMENT
     var child_table = _frm.fields_dict['id_table_list'].grid;

@@ -1,4 +1,3 @@
-console.log("second files render")
 // order list in select fields
 const get_ordered_list = async (doctype, optionsToSort) => {
     let list = await callAPI({
@@ -32,19 +31,6 @@ const get_ordered_list = async (doctype, optionsToSort) => {
     return list
   
 }
-// get scheme lists
-const get_scheme_list = async (frm) => {
-    let list = await callAPI({
-      method: 'sipms.api.execute',
-      freeze: true,
-      args: {
-        name: frm.doc.name
-      },
-      freeze_message: __("Getting schemes..."),
-    })
-    scheme_list = list.sort((a, b) => b.matching_rules_per - a.matching_rules_per);
-    return scheme_list
-  }
   const get_occupation_category = async (frm) => {
     let list = await callAPI({
       method: 'frappe.client.get',
@@ -78,24 +64,7 @@ const get_scheme_list = async (frm) => {
     });
   
   }
-  const addTableFilter = (datatable, elements = [], rows = []) => {
-    document.addEventListener('keyup', function (event) {
-      if (elements.includes(event.target.id)) {
-        let filters = []
-        for (el of elements) {
-          let val = document.getElementById(el)?.value;
-          if (val) {
-            filters.push([el, val])
-          }
-        }
-        if (filters.length) {
-          datatable.refresh(rows.filter(row => !filters.map(e => (row[e[0]]?.toString()?.toLowerCase()?.indexOf(e[1]?.toLowerCase()) > -1)).includes(false)))
-        } else {
-          datatable.refresh(rows)
-        }
-      }
-    });
-  }
+
 // generate date of birth
 function generateDOBFromAge(ageInYears = 0, ageInMonths = 0) {
   // date of birth of tommorow is not selected in calander

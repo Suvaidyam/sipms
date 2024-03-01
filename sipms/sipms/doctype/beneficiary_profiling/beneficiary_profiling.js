@@ -1,22 +1,5 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // // For license information, please see license.txt
-// import { hide_advance_search } from "../../../public/js/utils/utils";
-
-var scheme_list = []
-
-const showRules = (row) => {
-  let rules = (row?.rules || []).map(e => `${e.rule_field} ${e.operator} ${e.data} ${e.check}`).join("\n")
-  frappe.msgprint({
-    title: __('rules'),
-    message: rules,
-    primary_action: {
-      action(values) {
-        console.log(values);
-      }
-    }
-  });
-}
-
 
 // const get_helpdesk= async(){
 //   let list = await callAPI({
@@ -30,8 +13,6 @@ const showRules = (row) => {
 //     freeze_message: __("Getting list ..."),
 //   })
 // }
-
-
 frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
   before_save: async function (frm) {
