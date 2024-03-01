@@ -59,7 +59,9 @@ doctype_js = {"Beneficiary Profiling" : ["public/js/utils/utils.js" ,
                                          "public/js/beneficiary_profiling/beneficiary_profiling.js",
                                          "public/js/beneficiary_profiling/follow_up.js",
                                          "public/js/beneficiary_profiling/scheme.js",
-                                         "public/js/beneficiary_profiling/id_document.js"
+                                         "public/js/beneficiary_profiling/id_document.js",
+                                         "public/js/beneficiary_profiling/dialogs.js"
+                                        
                                          ]}
 # doctype_js = {"Beneficiary Profiling" : }     
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}

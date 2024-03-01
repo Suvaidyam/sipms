@@ -96,3 +96,18 @@ const get_scheme_list = async (frm) => {
       }
     });
   }
+// generate date of birth
+function generateDOBFromAge(ageInYears = 0, ageInMonths = 0) {
+  // date of birth of tommorow is not selected in calander
+  let currentDate = new Date();
+  let startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+  let birthYear = startOfMonth.getFullYear() - ageInYears;
+  let birthMonth = startOfMonth.getMonth() - ageInMonths;
+  if (birthMonth < 0) {
+    birthYear--;
+    birthMonth = 12 + birthMonth;
+  }
+  // Create the Date object for the generated date of birth
+  let generatedDOB = new Date(birthYear, birthMonth, startOfMonth.getDate());
+  return generatedDOB;
+}
