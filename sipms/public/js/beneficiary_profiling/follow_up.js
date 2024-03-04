@@ -109,7 +109,7 @@ frappe.ui.form.on('Follow Up Child', {
             `The follow-up status is "Not reachable" ${followups.length} times`,
             () => {
               row.to_close_status = "Closed"
-              console.log(row, "row")
+              // console.log(row, "row")
             },
             'Close',
             true // Sets dialog as minimizable

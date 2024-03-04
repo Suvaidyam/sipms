@@ -13,9 +13,10 @@
 //     freeze_message: __("Getting list ..."),
 //   })
 // }
-frappe.ui.form.on("Beneficiary Profiling", {
+frappe.ui.form.on("Beneficiary Profiling",{
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
   before_save: async function (frm) {
+    console.log("before save")
     if (frm.doc.completed_age || frm.doc.completed_age_month) {
       await frm.set_value("date_of_birth", generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month))
     }
@@ -56,6 +57,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     }
     // follow up status manage
     if (frm.selected_doc.follow_up_table) {
+      console.log("frm.selected_doc.follow_up_table", frm.selected_doc.follow_up_table)
       for (support_item of frm.selected_doc.scheme_table) {
         if (!['Completed', 'Previously availed'].includes(support_item.status)) {
           let followups = frm.selected_doc.follow_up_table.filter(f => f.parent_ref == support_item?.name)
@@ -145,7 +147,8 @@ frappe.ui.form.on("Beneficiary Profiling", {
         frm.doc.overall_status = 'Partially completed'
       }
     }
-
+    // validation of date of application
+    await validate_date_of_application(frm);
   },
   async refresh(frm) {
     _frm = frm
@@ -336,17 +339,9 @@ frappe.ui.form.on("Beneficiary Profiling", {
       apply_filter("help_desk", "single_window", frm, frm.doc.single_window)
     }
   },
-  validate(frm) {
-    for (row of frm.doc.scheme_table) {
-      if (row.application_submitted == "Yes" || row.application_submitted == "Completed") {
-        if (!row.date_of_application) {
-          frappe.throw(`Mandatory fields required in table Scheme Table, Row ${row.idx} 
-          </br> </br> <ul><li>Date of application</li></ul>`)
-        }
-      }
+  // validate(frm) {
 
-    }
-  },
+  // },
   ////////////////////DATE VALIDATION/////////////////////////////////////////
   date_of_visit: function (frm) {
     if (new Date(frm.doc.date_of_visit) > new Date(frappe.datetime.get_today())) {
