@@ -109,7 +109,8 @@
   {
    "fieldname": "date_of_birth",
    "fieldtype": "Date",
-   "label": "Date of birth"
+   "label": "Date of birth",
+   "reqd": 1
   },
   {
    "fieldname": "completed_age",
@@ -557,7 +558,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-04 12:16:13.606928",
+ "modified": "2024-03-05 16:08:34.947251",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
