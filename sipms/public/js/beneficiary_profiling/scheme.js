@@ -66,7 +66,9 @@ frappe.ui.form.on('Scheme Child', {
         milestones.hasOwnProperty(e.milestone) ? '' : milestones[e.milestone] = e.milestone
         return { 'lable': e.name, "value": e.name }
       })
+      // console.log("work", frm.fields_dict.scheme_table.grid)
       frm.fields_dict.scheme_table.grid.update_docfield_property("name_of_the_scheme", "options", ops);
+      // frm.refresh_fields('name_of_the_scheme')
       frm.fields_dict.scheme_table.grid.update_docfield_property("milestone_category", "options", [{ 'lable': "", "value": "" }, ...Object.keys(milestones).map(e => { return { 'lable': milestones[e], "value": milestones[e] } })]);
     },
     name_of_the_scheme: function (frm, cdt, cdn) {
