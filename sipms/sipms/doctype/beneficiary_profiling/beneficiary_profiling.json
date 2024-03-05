@@ -110,7 +110,7 @@
    "fieldname": "date_of_birth",
    "fieldtype": "Date",
    "label": "Date of birth",
-   "reqd": 1
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))"
   },
   {
    "fieldname": "completed_age",
@@ -558,7 +558,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-05 16:08:34.947251",
+ "modified": "2024-03-05 21:59:12.152678",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
