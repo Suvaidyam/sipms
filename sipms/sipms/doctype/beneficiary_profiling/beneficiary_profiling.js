@@ -5,8 +5,8 @@ frappe.ui.form.on("Beneficiary Profiling",{
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
   before_save: async function (frm) {
     console.log("before save")
-    if (frm.doc.completed_age || frm.doc.completed_age_month) {
-      await frm.set_value("date_of_birth", generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month))
+    if ((frm.doc.completed_age || frm.doc.completed_age_month) && !frm.doc?.date_of_birth) {
+      await frm.set_value("date_of_birth", generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month, frm.doc?.date_of_birth))
     }
     // fill into hidden fields
     if (frm.doc?.scheme_table && frm.doc?.scheme_table?.length) {
@@ -450,7 +450,7 @@ frappe.ui.form.on("Beneficiary Profiling",{
       frappe.throw(__("Completed age in month should be less than or equal to 11"))
     }
     if (frm.doc.date_of_birth !== frappe.datetime.get_today()) {
-      let dob = generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month)
+      let dob = generateDOBFromAge(frm.doc?.completed_age, frm.doc?.completed_age_month, frm.doc?.date_of_birth)
       console.log("generatedDOB", dob, frm.doc?.completed_age, frm.doc?.completed_age_month);
 
       frm.set_value("date_of_birth", dob)
