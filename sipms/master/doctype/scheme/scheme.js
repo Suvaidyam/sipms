@@ -1,5 +1,6 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // For license information, please see license.txt
+let response;
 var common_operators = ["=", "!="]
 var field_types = {
     "Date": [...common_operators, ">", "<", ">=", "<="],
@@ -80,6 +81,32 @@ function get_Link_list(doctype_name) {
             }
         });
     })
+}
+// exel function 
+function exportToExcel(fileName = 'Ben', sheetName='eligibal ben') {
+    // Create a new workbook
+    var workbook = XLSX.utils.book_new();
+
+    // Convert data to worksheet
+    var worksheet = XLSX.utils.json_to_sheet(response);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, sheetName || "Sheet1");
+
+    // Create a blob from the workbook
+    var blob = XLSX.write(workbook, { bookType: 'xlsx', type: 'blob' });
+
+    // Create a download link
+    var link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = fileName || 'export.xlsx';
+
+    // Append the link to the body and trigger the click event
+    document.body.appendChild(link);
+    link.click();
+
+    // Remove the link from the body
+    document.body.removeChild(link);
 }
 function callAPI(options) {
     return new Promise((resolve, reject) => {
@@ -244,6 +271,10 @@ const render_table = async (frm) => {
 frappe.ui.form.on("Scheme", {
     async refresh(frm) {
         render_table(frm)
+        document.getElementById('export-exel').onclick = function(){
+            console.log("hello world")
+        }
+        // console.log("abcd", abcd)
     },
     before_save: async function (frm) {
         if (frm.doc.rules.length > 0) {
