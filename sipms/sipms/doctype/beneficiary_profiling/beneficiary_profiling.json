@@ -274,6 +274,7 @@
    "fieldname": "name_of_the_settlement",
    "fieldtype": "Link",
    "label": "Name of the settlement",
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
    "options": "Village"
   },
   {
@@ -557,7 +558,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-06 09:54:01.457329",
+ "modified": "2024-03-06 11:30:09.189772",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
