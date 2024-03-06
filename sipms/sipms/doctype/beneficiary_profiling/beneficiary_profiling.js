@@ -16,8 +16,15 @@ frappe.ui.form.on("Beneficiary Profiling",{
       }
     }
     // check alternate mobile number digits
-    if (frm.doc.alternate_contact_number == "+91-") {
-      frm.set_value("alternate_contact_number", '')
+    if (frm.doc.alternate_contact_number) {
+      const indianPhoneNumberRegex = /^(?:(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9})$/;
+      if (indianPhoneNumberRegex.test(frm.doc.alternate_contact_number)) {
+        console.log("Valid Indian phone number");
+      }else{
+        frappe.throw(`Phone Number <b>${frm.doc.alternate_contact_number}</b> set in field alternate_contact_number is not valid.`)
+        console.log("Invalid Indian phone number");
+      }
+      // frm.set_value("alternate_contact_number", '')
     }
     if (frm.doc.do_you_have_id_document == "Yes" && frm.doc.id_section?.length == '0') {
       if (!(frm.doc.id_section[0] && frm.doc?.id_section[0]?.select_id != "undefined")) {
@@ -152,10 +159,10 @@ frappe.ui.form.on("Beneficiary Profiling",{
       }
     }
     // phoneno defult +91-
-    if (frm.doc?.alternate_contact_number?.length < 10) {
-      frm.doc.alternate_contact_number = '+91-'
-      frm.refresh_fields("alternate_contact_number")
-    }
+    // if (frm.doc?.alternate_contact_number?.length < 10) {
+    //   frm.doc.alternate_contact_number = '+91-'
+    //   frm.refresh_fields("alternate_contact_number")
+    // }
     // add family member button 
     if (!frm.is_new()) {
       frm.add_custom_button(__('Add family members'), function () {
