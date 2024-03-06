@@ -82,32 +82,6 @@ function get_Link_list(doctype_name) {
         });
     })
 }
-// exel function 
-function exportToExcel(fileName = 'Ben', sheetName='eligibal ben') {
-    // Create a new workbook
-    var workbook = XLSX.utils.book_new();
-
-    // Convert data to worksheet
-    var worksheet = XLSX.utils.json_to_sheet(response);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, sheetName || "Sheet1");
-
-    // Create a blob from the workbook
-    var blob = XLSX.write(workbook, { bookType: 'xlsx', type: 'blob' });
-
-    // Create a download link
-    var link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.download = fileName || 'export.xlsx';
-
-    // Append the link to the body and trigger the click event
-    document.body.appendChild(link);
-    link.click();
-
-    // Remove the link from the body
-    document.body.removeChild(link);
-}
 function callAPI(options) {
     return new Promise((resolve, reject) => {
         frappe.call({
