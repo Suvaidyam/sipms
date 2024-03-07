@@ -3,6 +3,11 @@ from sipms.services.beneficiary_scheme import BeneficaryScheme
 from sipms.utils.misc import Misc
 from sipms.utils.filter import Filter
 import json
+import csv
+import io
+
+
+
 
 def create_condition(scheme, _tbl_pre=""):
     if isinstance(scheme, str):
@@ -56,6 +61,7 @@ def execute(name=None):
 @frappe.whitelist(allow_guest=True)
 def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
     # filter value is getting hear
+    print("filter", filters)
     columns = json.loads(columns)
     if scheme is None:
         return frappe.throw('Scheme not found.')
@@ -151,3 +157,4 @@ def top_schemes():
 #Code is not reflecting
 
 
+# @frappe.whitelist()
