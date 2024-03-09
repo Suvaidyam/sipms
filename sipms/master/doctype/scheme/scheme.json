@@ -172,12 +172,12 @@
    "fieldname": "pagination",
    "fieldtype": "HTML",
    "label": "Pagination",
-   "options": "<div id=\"pagination\">\n        <nav>\n            <ul class=\"pagination\">\n                <li class=\"page-item\">\n                    <a class=\"page-link\" href=\"#\">\n                        <span>&laquo;</span>\n                        <span class=\"sr-only\">Previous</span>\n                    </a>\n                </li>\n                <li class=\"page-item\"><a class=\"page-link\">1</a></li>\n                <li class=\"page-item\"><a id=\"page_no\" class=\"page-link\">2</a></li>\n                <li class=\"page-item\"><a class=\"page-link\">3</a></li>\n                <li class=\"page-item\">\n                    <a class=\"page-link\" href=\"#\">\n                        <span>&raquo;</span>\n                        <span class=\"sr-only\">Next</span>\n                    </a>\n                </li>\n            </ul>\n        </nav>\n</div>\n"
+   "options": "<div id=\"pagination\" class=\"mt-1\">\n        <nav>\n            <ul class=\"pagination\" id=\"page_list\">\n\n            </ul>\n        </nav>\n</div>\n"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-08 10:49:59.036769",
+ "modified": "2024-03-09 11:37:09.346762",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",

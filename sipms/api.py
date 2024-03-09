@@ -55,6 +55,35 @@ def get_beneficiary_scheme_query(scheme_doc,start=0,page_limit=1000):
     """
     return sql
 
+def get_total_beneficiary_count_query(scheme_doc):
+    availed_sql = f""
+    if scheme_doc.get('how_many_times_can_this_scheme_be_availed') == 'Once':
+        availed_sql = f"""
+            AND name not in (
+                select
+                    distinct parent
+                from
+                    `tabScheme Child`
+                where
+                    parenttype='Beneficiary Profiling'
+                    and
+                    name_of_the_scheme = '{scheme_doc.name}'
+                    and
+                    status IN ('Completed','Availed')
+            )
+        """
+    condition = create_condition(scheme_doc)
+    sql = f"""
+            SELECT
+                _ben.*,
+                _ben.select_primary_member AS name_of_parents,
+                _ben.ward AS block_name,
+                _ben.name_of_the_settlement AS village_name
+            FROM
+                (SELECT * FROM `tabBeneficiary Profiling` {condition} {availed_sql}) AS _ben
+            ORDER BY select_primary_member DESC
+    """
+    return sql
 @frappe.whitelist(allow_guest=True)
 def execute(name=None):
     return BeneficaryScheme.get_schemes(name)
@@ -81,6 +110,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_im
 
     ben_sql = get_beneficiary_scheme_query(scheme_doc,start,page_imit)
     # print(ben_sql)
+    total_count_sql = get_total_beneficiary_count_query(scheme_doc)
     res['data'] = frappe.db.sql(ben_sql, as_dict=True)
     count_sql = f"""
         select
@@ -89,7 +119,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_im
             count(distinct _tbl.ward) as block_count,
             count(distinct _tbl.name_of_the_settlement) as settlement_count
         from
-            ({ben_sql}) _tbl
+            ({total_count_sql}) _tbl
     """
     count_data = frappe.db.sql(count_sql, as_dict=True)
     if len(count_data):

@@ -90,6 +90,19 @@ function callAPI(options) {
         });
     })
 }
+let page_list = `<li class="page-item">
+        <a class="page-link" href="#">
+            <span>&laquo;</span>
+            <span class="sr-only">Previous</span>
+        </a>
+        </li>
+        <li class="page-item"><a id="page_no" class="page-link">2</a></li>
+        <li class="page-item">
+        <a class="page-link" href="#">
+            <span>&raquo;</span>
+            <span class="sr-only">Next</span>
+        </a>
+        </li>`
 const generate_filters = async (frm) => {
 
     filter_val = []
@@ -120,7 +133,7 @@ const addTableFilter = (datatable, elements = [], rows = []) => {
         }
     });
 }
-const get_ben_list = async (frm, columns, filters = [], start = 0, page_imit = 5) => {
+const get_ben_list = async (frm, columns, filters = [], start = 0, page_imit = 10) => {
     console.log("filters", filters,)
     let list = await callAPI({
         method: 'sipms.api.eligible_beneficiaries',
@@ -233,6 +246,7 @@ const render_table = async (frm) => {
         let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
         response = await get_ben_list(frm, ['name', ...columns])
     }
+    console.log("render table", response.count.total)
     const container = document.getElementById('eligible_beneficiaries');
     const datatable = new DataTable(container, {
         layout: 'fluid',

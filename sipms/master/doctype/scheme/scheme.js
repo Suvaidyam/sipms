@@ -3,6 +3,9 @@
 
 frappe.ui.form.on("Scheme", {
     async refresh(frm) {
+        let pagination_page = document.getElementById('page_list')
+        pagination_page.innerHTML = page_list
+        console.log("pagination", pagination_page)
         render_table(frm)
         document.getElementById('export-exel').onclick = function () {
             console.log("hello world")
@@ -13,6 +16,8 @@ frappe.ui.form.on("Scheme", {
         }
 
         // console.log("abcd", abcd)
+    },
+    async onload(frm){
     },
     before_save: async function (frm) {
         if (frm.doc.rules.length > 0) {
