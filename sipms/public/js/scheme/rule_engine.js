@@ -1,6 +1,7 @@
 let response;
 var common_operators = ["=", "!="]
 let columns;
+let current_page;
 var field_types = {
     "Date": [...common_operators, ">", "<", ">=", "<="],
     "Int": [...common_operators, ">", "<", ">=", "<="],
@@ -117,7 +118,7 @@ const addTableFilter = (datatable, elements = [], rows = []) => {
         }
     });
 }
-const get_ben_list = async (frm, columns, filters = [], start = 0, page_imit = 50) => {
+const get_ben_list = async (frm, columns, filters = [], start = 0, page_imit = 100) => {
     // console.log("filters", filters,)
     let list = await callAPI({
         method: 'sipms.api.eligible_beneficiaries',
@@ -160,6 +161,7 @@ let tableConf = {
             dropdown: true,
             width: 100,
             format: (value, columns, ops, row) => {
+                console.log(current_page)
                 return (columns?.[0]?.rowIndex + 1)
             }
         },
@@ -232,7 +234,7 @@ const render_table = async (frm) => {
     if (!frm?.doc?.__islocal) {
         columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
         response = await get_ben_list(frm, ['name', ...columns])
-        total_page = Math.ceil((response?.count.total/50));
+        total_page = Math.ceil((response?.count.total/100));
     }
     page_list = `<li class="page-item">
     <a class="page-link" href="#">
@@ -241,7 +243,7 @@ const render_table = async (frm) => {
     </a>
     </li>`
     for(let i=1; i <= total_page; i++){
-        page_list = page_list + ` <li class="page-item"><a class="page-link page-value">${i}</a></li>`
+        page_list = page_list + `<li class="page-item"><a class="page-link page-value">${i}</a></li>`
         // console.log("loop page", i)
     }
     page_list = page_list +`
@@ -263,8 +265,10 @@ const render_table = async (frm) => {
     const elements = document.querySelectorAll('.page-value');
     elements.forEach(element => {
     element.addEventListener('click',async function(event) {
-        const start = (Number(event.target.innerText) > 1 ? ((Number(event.target.innerText) *(50)) - 50) : 0)
-        response = await get_ben_list(frm, ['name', ...columns],[],start,50)
+        current_page = event.target.innerText;
+        let active_page = Number(event.target.innerText)
+        const start = (active_page > 1 ? ((active_page *(100)) - 100) : 0)
+        response = await get_ben_list(frm, ['name', ...columns],[],start,100)
         datatable.refresh(response.data)
     });
     });
