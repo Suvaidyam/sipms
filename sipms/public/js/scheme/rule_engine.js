@@ -268,11 +268,11 @@ const render_table = async (frm) => {
     elements.forEach(element => {
     element.addEventListener('click',async function(event) {
         const start = (Number(event.target.innerText) > 1 ? ((Number(event.target.innerText) *(50)) - 50) : 0)
-        const page_limit = (Number(event.target.innerText) * 50) < response.count.total ? (Number(event.target.innerText) * 50) :response.count.total 
-        console.log('////',start,page_limit)
+        // const page_limit = (Number(event.target.innerText) * 50) < response.count.total ? (Number(event.target.innerText) * 50) :response.count.total 
+        // console.log('////',start,page_limit)
 
         console.log('Element clicked:', event.target.innerText);
-        response = await get_ben_list(frm, ['name', ...columns],start,page_limit)
+        response = await get_ben_list(frm, ['name', ...columns],[],start,50)
         datatable.refresh(response.data)
     });
     });
