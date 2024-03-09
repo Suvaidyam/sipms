@@ -90,19 +90,6 @@ function callAPI(options) {
         });
     })
 }
-let page_list = `<li class="page-item">
-        <a class="page-link" href="#">
-            <span>&laquo;</span>
-            <span class="sr-only">Previous</span>
-        </a>
-        </li>
-        <li class="page-item"><a id="page_no" class="page-link">2</a></li>
-        <li class="page-item">
-        <a class="page-link" href="#">
-            <span>&raquo;</span>
-            <span class="sr-only">Next</span>
-        </a>
-        </li>`
 const generate_filters = async (frm) => {
 
     filter_val = []
@@ -133,7 +120,7 @@ const addTableFilter = (datatable, elements = [], rows = []) => {
         }
     });
 }
-const get_ben_list = async (frm, columns, filters = [], start = 0, page_imit = 10) => {
+const get_ben_list = async (frm, columns, filters = [], start = 0, page_imit = 50) => {
     console.log("filters", filters,)
     let list = await callAPI({
         method: 'sipms.api.eligible_beneficiaries',
@@ -239,13 +226,37 @@ let tableConf = {
     rows: [],
     filterable: true
 };
+var page_list
 const render_table = async (frm) => {
     let response = { count: { total: 0, family_count: 0, }, data: [] };
+    let total_page = 0;
     get_field_list('rules', frm)
     if (!frm?.doc?.__islocal) {
         let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
         response = await get_ben_list(frm, ['name', ...columns])
+        total_page = Math.ceil((response?.count.total/50));
     }
+    page_list = `<li class="page-item">
+    <a class="page-link" href="#">
+        <span>&laquo;</span>
+        <span class="sr-only">Previous</span>
+    </a>
+    </li>`
+    for(let i=1; i <= total_page; i++){
+        page_list = page_list + ` <li class="page-item"><a class="page-link">${i}</a></li>`
+        console.log("loop page", i)
+    }
+
+    page_list = page_list +`
+    <li class="page-item">
+    <a class="page-link" href="#">
+        <span>&raquo;</span>
+        <span class="sr-only">Next</span>
+    </a>
+    </li>`
+    let pagination_page = document.getElementById('page_list')
+    pagination_page.innerHTML = page_list
+
     console.log("render table", response.count.total)
     const container = document.getElementById('eligible_beneficiaries');
     const datatable = new DataTable(container, {
