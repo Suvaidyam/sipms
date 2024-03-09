@@ -1,6 +1,5 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // // For license information, please see license.txt
-
 frappe.ui.form.on("Beneficiary Profiling",{
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
   before_save: async function (frm) {
@@ -16,12 +15,18 @@ frappe.ui.form.on("Beneficiary Profiling",{
       }
     }
     // check alternate mobile number digits
-    if (frm.doc.alternate_contact_number) {
+    if (frm.doc.alternate_contact_number || frm.doc.contact_number) {
       const indianPhoneNumberRegex = /^(?:(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9})$/;
       if (indianPhoneNumberRegex.test(frm.doc.alternate_contact_number)) {
         console.log("Valid Indian phone number");
       }else{
         frappe.throw(`Phone Number <b>${frm.doc.alternate_contact_number}</b> set in field alternate_contact_number is not valid.`)
+        console.log("Invalid Indian phone number");
+      }
+      if (indianPhoneNumberRegex.test(frm.doc.contact_number)) {
+        console.log("Valid Indian phone number");
+      }else{
+        frappe.throw(`Phone Number <b>${frm.doc.contact_number}</b> set in field contact_number is not valid.`)
         console.log("Invalid Indian phone number");
       }
       // frm.set_value("alternate_contact_number", '')
