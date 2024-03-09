@@ -30,6 +30,7 @@
   "beneficiaries_tab",
   "section_break_torq",
   "table",
+  "pagination",
   "summary"
  ],
  "fields": [
@@ -151,7 +152,7 @@
    "fieldname": "summary",
    "fieldtype": "HTML",
    "label": "Summary",
-   "options": "<div id=\"parent\">\n<div id=\"total\"></div>\n<div id=\"total_family\"></div>\n<div id=\"block_count\"></div>\n<div id=\"settlement_count\"></div>\n</div>"
+   "options": "<div id=\"parent\">\n<div id=\"total\"></div>\n<div id=\"total_family\"></div>\n<div id=\"block_count\"></div>\n<div id=\"settlement_count\"></div></div>"
   },
   {
    "fieldname": "section_break_torq",
@@ -166,11 +167,17 @@
    "in_standard_filter": 1,
    "label": "Rules status",
    "options": "\nRules\nNo rules"
+  },
+  {
+   "fieldname": "pagination",
+   "fieldtype": "HTML",
+   "label": "Pagination",
+   "options": "<div id=\"pagination\">\n        <nav>\n            <ul class=\"pagination\">\n                <li class=\"page-item\">\n                    <a class=\"page-link\" href=\"#\">\n                        <span>&laquo;</span>\n                        <span class=\"sr-only\">Previous</span>\n                    </a>\n                </li>\n                <li class=\"page-item\"><a class=\"page-link\">1</a></li>\n                <li class=\"page-item\"><a id=\"page_no\" class=\"page-link\">2</a></li>\n                <li class=\"page-item\"><a class=\"page-link\">3</a></li>\n                <li class=\"page-item\">\n                    <a class=\"page-link\" href=\"#\">\n                        <span>&raquo;</span>\n                        <span class=\"sr-only\">Next</span>\n                    </a>\n                </li>\n            </ul>\n        </nav>\n</div>\n"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-06 08:45:13.100820",
+ "modified": "2024-03-08 10:49:59.036769",
  "modified_by": "Administrator",
  "module": "Master",
  "name": "Scheme",

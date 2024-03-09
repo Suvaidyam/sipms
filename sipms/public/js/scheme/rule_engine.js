@@ -120,7 +120,7 @@ const addTableFilter = (datatable, elements = [], rows = []) => {
         }
     });
 }
-const get_ben_list = async (frm, columns, filters = []) => {
+const get_ben_list = async (frm, columns, filters = [], start = 0, page_imit = 5) => {
     console.log("filters", filters,)
     let list = await callAPI({
         method: 'sipms.api.eligible_beneficiaries',
@@ -128,7 +128,9 @@ const get_ben_list = async (frm, columns, filters = []) => {
         args: {
             "scheme": frm.doc.name_of_the_scheme,
             columns: columns,
-            filters: filters
+            filters: filters,
+            start: start,
+            page_imit: page_imit
         },
         freeze_message: __("Getting beneficiaries..."),
     })
@@ -237,11 +239,10 @@ const render_table = async (frm) => {
         columns: tableConf.columns,
         serialNoColumn: false
     });
-    datatable.style.setStyle(`.dt-scrollable`, { height: '800px!important', overflow: 'scroll!important' });
+    datatable.style.setStyle(`.dt-scrollable`, { height: '400px!important', overflow: 'scroll!important' });
     datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
     datatable.refresh(response?.data);
     addTableFilter(datatable, ['name_of_the_beneficiary', 'name_of_parents', 'contact_number', 'block_name'], response?.data)
-
     document.getElementById('parent').style.display = "flex";
     document.getElementById('parent').style.columnGap = "15px";
     document.getElementById('parent').style.flexWrap = "wrap";
@@ -249,6 +250,7 @@ const render_table = async (frm) => {
     document.getElementById('total_family') ? document.getElementById('total_family').innerText = "Primary member: " + response?.count?.family_count + ',' : ''
     document.getElementById('block_count') ? document.getElementById('block_count').innerText = "Block count: " + response?.count?.block_count + ',' : ''
     document.getElementById('settlement_count') ? document.getElementById('settlement_count').innerText = "Settlement count: " + response?.count?.settlement_count : ''
+    // document.getElementById('pagination') ? document.getElementById('pagination').innerHTML = paginationHTML : ""
     frm.set_query("name_of_department", () => { return { page_length: 1000 }; });
     if (frm.doc.department_urlwebsite) {
         frm.add_web_link(frm?.doc?.department_urlwebsite)

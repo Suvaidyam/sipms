@@ -21,7 +21,7 @@ def create_condition(scheme, _tbl_pre=""):
         filters.append(user_role_filter)
     return " WHERE  1=1 "+ (f"AND {' AND '.join(filters)}" if len(filters) else "")
 
-def get_beneficiary_scheme_query(scheme_doc):
+def get_beneficiary_scheme_query(scheme_doc,start=0,page_limit=1000):
     availed_sql = f""
     if scheme_doc.get('how_many_times_can_this_scheme_be_availed') == 'Once':
         availed_sql = f"""
@@ -40,17 +40,18 @@ def get_beneficiary_scheme_query(scheme_doc):
         """
     condition = create_condition(scheme_doc)
     sql = f"""
-        select
-            _ben.*,
-            _pm.name_of_parents as name_of_parents,
-            _bl.block_name as block_name,
-            _vl.village_name as village_name
-        from
-        (select * from `tabBeneficiary Profiling` {condition} {availed_sql}) as _ben
-        LEFT JOIN `tabPrimary Member` _pm ON _pm.name = _ben.select_primary_member
-        LEFT JOIN `tabBlock` _bl ON _bl.name = _ben.ward
-        LEFT JOIN `tabVillage` _vl ON _vl.name = _ben.name_of_the_settlement
-        ORDER BY select_primary_member DESC
+            SELECT
+                _ben.*,
+                _pm.name_of_parents AS name_of_parents,
+                _bl.block_name AS block_name,
+                _vl.village_name AS village_name
+            FROM
+                (SELECT * FROM `tabBeneficiary Profiling` {condition} {availed_sql}) AS _ben
+            LEFT JOIN `tabPrimary Member` _pm ON _pm.name = _ben.select_primary_member
+            LEFT JOIN `tabBlock` _bl ON _bl.name = _ben.ward
+            LEFT JOIN `tabVillage` _vl ON _vl.name = _ben.name_of_the_settlement
+            ORDER BY select_primary_member DESC
+            LIMIT {page_limit} OFFSET {start}
     """
     return sql
 
@@ -59,7 +60,7 @@ def execute(name=None):
     return BeneficaryScheme.get_schemes(name)
 
 @frappe.whitelist(allow_guest=True)
-def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_length=1000):
+def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_imit=1000):
     # filter value is getting hear
     print("filter", filters)
     columns = json.loads(columns)
@@ -78,7 +79,7 @@ def eligible_beneficiaries(scheme=None, columns=[], filters=[], start=0, page_le
     if not scheme_doc:
         return res
 
-    ben_sql = get_beneficiary_scheme_query(scheme_doc)
+    ben_sql = get_beneficiary_scheme_query(scheme_doc,start,page_imit)
     # print(ben_sql)
     res['data'] = frappe.db.sql(ben_sql, as_dict=True)
     count_sql = f"""

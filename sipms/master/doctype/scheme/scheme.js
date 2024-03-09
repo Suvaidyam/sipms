@@ -4,10 +4,14 @@
 frappe.ui.form.on("Scheme", {
     async refresh(frm) {
         render_table(frm)
-        document.getElementById('export-exel').onclick = function(){
+        document.getElementById('export-exel').onclick = function () {
             console.log("hello world")
-            get_ben_csv(frm, ["name" , 'state.state_name'])
+            get_ben_csv(frm, ["name", 'state.state_name'])
         }
+        document.getElementById('page_no').onclick = function () {
+            console.log('object............')
+        }
+
         // console.log("abcd", abcd)
     },
     before_save: async function (frm) {
