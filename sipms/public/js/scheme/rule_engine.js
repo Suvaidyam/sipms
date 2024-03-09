@@ -1,5 +1,6 @@
 let response;
 var common_operators = ["=", "!="]
+let columns;
 var field_types = {
     "Date": [...common_operators, ">", "<", ">=", "<="],
     "Int": [...common_operators, ">", "<", ">=", "<="],
@@ -26,7 +27,7 @@ function evaluateExpression(input, expression) {
     }
 }
 function generateQueryString(rows) {
-    console.log("generateQueryString[called]", rows);
+    // console.log("generateQueryString[called]", rows);
     let obj = {};
     for (let row of rows) {
         if (row.rule_field && row.operator && row.data) {
@@ -54,7 +55,7 @@ function get_field_list(child_table_field, frm) {
             if (response.message) {
                 field_list = response.message
                 frm.fields_dict[child_table_field].grid.update_docfield_property("rule_field", "options", response.message);
-                console.log(response.message);
+                // console.log(response.message);
             } else {
                 // console.error("API call failed");
             }
@@ -90,17 +91,11 @@ function callAPI(options) {
         });
     })
 }
-const generate_filters = async (frm) => {
-    console.log('////////generate filters');
-    filter_val = []
-    frm?.doc?.name_of_beneficiary ? filter_val.push({ "name_of_beneficiary": frm.doc.name_of_beneficiary }) : undefined
-    frm?.doc?.primary_member ? filter_val.push({ "primary_member": frm.doc.primary_member }) : undefined
-    frm?.doc?.phone_number ? filter_val.push({ "phone_number": frm.doc.phone_number }) : undefined
-    frm?.doc?.block ? filter_val.push({ "block": frm.doc.block }) : undefined
-    // console.log("hhelo", filter_val)
-    let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
+const generate_filters = async (frm,datatable,filter_val) => {
     response = await get_ben_list(frm, ['name', ...columns], filter_val)
-    console.log("filter values", filter_val)
+    datatable.refresh(response.data)
+    // console.log("filter values", filter_val)
+    
 }
 const addTableFilter = (datatable, elements = [], rows = []) => {
     document.addEventListener('keyup', function (event) {
@@ -109,11 +104,13 @@ const addTableFilter = (datatable, elements = [], rows = []) => {
             for (el of elements) {
                 let val = document.getElementById(el)?.value;
                 if (val) {
-                    filters.push([el, val])
+                    filters.push({[el]: val})
                 }
             }
+            // generate_filters(frm,datatable,filters)
             if (filters.length) {
-                datatable.refresh(rows.filter(row => !filters.map(e => (row[e[0]]?.toString()?.toLowerCase()?.indexOf(e[1]?.toLowerCase()) > -1)).includes(false)))
+                generate_filters(cur_frm,datatable,filters)
+                // datatable.refresh(rows.filter(row => !filters.map(e => (row[e[0]]?.toString()?.toLowerCase()?.indexOf(e[1]?.toLowerCase()) > -1)).includes(false)))
             } else {
                 datatable.refresh(rows)
             }
@@ -121,7 +118,7 @@ const addTableFilter = (datatable, elements = [], rows = []) => {
     });
 }
 const get_ben_list = async (frm, columns, filters = [], start = 0, page_imit = 50) => {
-    console.log("filters", filters,)
+    // console.log("filters", filters,)
     let list = await callAPI({
         method: 'sipms.api.eligible_beneficiaries',
         freeze: true,
@@ -231,7 +228,6 @@ var page_list
 const render_table = async (frm) => {
     let response = { count: { total: 0, family_count: 0, }, data: [] };
     let total_page = 0;
-    let columns;
     get_field_list('rules', frm)
     if (!frm?.doc?.__islocal) {
         columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
@@ -246,7 +242,7 @@ const render_table = async (frm) => {
     </li>`
     for(let i=1; i <= total_page; i++){
         page_list = page_list + ` <li class="page-item"><a class="page-link page-value">${i}</a></li>`
-        console.log("loop page", i)
+        // console.log("loop page", i)
     }
     page_list = page_list +`
     <li class="page-item">
@@ -268,10 +264,6 @@ const render_table = async (frm) => {
     elements.forEach(element => {
     element.addEventListener('click',async function(event) {
         const start = (Number(event.target.innerText) > 1 ? ((Number(event.target.innerText) *(50)) - 50) : 0)
-        // const page_limit = (Number(event.target.innerText) * 50) < response.count.total ? (Number(event.target.innerText) * 50) :response.count.total 
-        // console.log('////',start,page_limit)
-
-        console.log('Element clicked:', event.target.innerText);
         response = await get_ben_list(frm, ['name', ...columns],[],start,50)
         datatable.refresh(response.data)
     });

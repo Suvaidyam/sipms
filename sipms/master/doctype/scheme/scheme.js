@@ -8,12 +8,6 @@ frappe.ui.form.on("Scheme", {
             console.log("hello world")
             get_ben_csv(frm, ["name", 'state.state_name'])
         }
-        // .onclick = function () {
-        //     console.log("hello world")
-        //     get_ben_csv(frm, ["name", 'state.state_name'])
-        // }
-
-
     },
     async onload(frm){
     },
@@ -34,23 +28,22 @@ frappe.ui.form.on("Scheme", {
             frm.add_web_link(frm?.doc?.department_urlwebsite)
         }
     },
-    name_of_beneficiary: async function (frm) {
-        generate_filters(frm)
+    // name_of_beneficiary: async function (frm) {
+    //     generate_filters(frm)
 
-    },
-    primary_member: async function (frm) {
-        generate_filters(frm)
-    },
-    phone_number: async function (frm) {
-        generate_filters(frm)
-    },
-    block: async function (frm) {
-        generate_filters(frm)
-    },
+    // },
+    // primary_member: async function (frm) {
+    //     generate_filters(frm)
+    // },
+    // phone_number: async function (frm) {
+    //     generate_filters(frm)
+    // },
+    // block: async function (frm) {
+    //     generate_filters(frm)
+    // },
 });
 const form_events = {
     [`${child_table_field}_add`]: (frm, cdt, cdn) => {
-        console.log("row added");
         let initial_code = 64
         let row = frappe.get_doc(cdt, cdn);
         if (row.idx <= 26) {
