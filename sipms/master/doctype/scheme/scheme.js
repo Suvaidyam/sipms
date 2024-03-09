@@ -8,11 +8,12 @@ frappe.ui.form.on("Scheme", {
             console.log("hello world")
             get_ben_csv(frm, ["name", 'state.state_name'])
         }
-        document.getElementById('page_no').onclick = function () {
-            console.log('object............')
-        }
+        // .onclick = function () {
+        //     console.log("hello world")
+        //     get_ben_csv(frm, ["name", 'state.state_name'])
+        // }
 
-        // console.log("abcd", abcd)
+
     },
     async onload(frm){
     },

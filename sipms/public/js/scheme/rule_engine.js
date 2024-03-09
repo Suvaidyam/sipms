@@ -91,7 +91,7 @@ function callAPI(options) {
     })
 }
 const generate_filters = async (frm) => {
-
+    console.log('////////generate filters');
     filter_val = []
     frm?.doc?.name_of_beneficiary ? filter_val.push({ "name_of_beneficiary": frm.doc.name_of_beneficiary }) : undefined
     frm?.doc?.primary_member ? filter_val.push({ "primary_member": frm.doc.primary_member }) : undefined
@@ -226,13 +226,15 @@ let tableConf = {
     rows: [],
     filterable: true
 };
+
 var page_list
 const render_table = async (frm) => {
     let response = { count: { total: 0, family_count: 0, }, data: [] };
     let total_page = 0;
+    let columns;
     get_field_list('rules', frm)
     if (!frm?.doc?.__islocal) {
-        let columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
+        columns = tableConf.columns.map(e => (e.field ? e.field : e.id))
         response = await get_ben_list(frm, ['name', ...columns])
         total_page = Math.ceil((response?.count.total/50));
     }
@@ -243,10 +245,9 @@ const render_table = async (frm) => {
     </a>
     </li>`
     for(let i=1; i <= total_page; i++){
-        page_list = page_list + ` <li class="page-item"><a class="page-link">${i}</a></li>`
+        page_list = page_list + ` <li class="page-item"><a class="page-link page-value">${i}</a></li>`
         console.log("loop page", i)
     }
-
     page_list = page_list +`
     <li class="page-item">
     <a class="page-link" href="#">
@@ -256,13 +257,24 @@ const render_table = async (frm) => {
     </li>`
     let pagination_page = document.getElementById('page_list')
     pagination_page.innerHTML = page_list
-
-    console.log("render table", response.count.total)
+   
     const container = document.getElementById('eligible_beneficiaries');
     const datatable = new DataTable(container, {
         layout: 'fluid',
         columns: tableConf.columns,
         serialNoColumn: false
+    });
+    const elements = document.querySelectorAll('.page-value');
+    elements.forEach(element => {
+    element.addEventListener('click',async function(event) {
+        const start = (Number(event.target.innerText) > 1 ? ((Number(event.target.innerText) *(50)) - 50) : 0)
+        const page_limit = (Number(event.target.innerText) * 50) < response.count.total ? (Number(event.target.innerText) * 50) :response.count.total 
+        console.log('////',start,page_limit)
+
+        console.log('Element clicked:', event.target.innerText);
+        response = await get_ben_list(frm, ['name', ...columns],start,page_limit)
+        datatable.refresh(response.data)
+    });
     });
     datatable.style.setStyle(`.dt-scrollable`, { height: '400px!important', overflow: 'scroll!important' });
     datatable.style.setStyle(`.dt-instance-1 .dt-cell__content--col-0`, { width: '660px' });
