@@ -21,6 +21,7 @@ frappe.ui.form.on("Beneficiary Profiling",{
         frappe.throw(`Phone Number <b>${frm.doc.alternate_contact_number}</b> set in field alternate_contact_number is not valid.`)
       }
       if (!indianPhoneNumberRegex.test(frm.doc.contact_number)) {
+        
         frappe.throw(`Phone Number <b>${frm.doc.contact_number}</b> set in field contact_number is not valid.`)
       }
       // frm.set_value("alternate_contact_number", '')
