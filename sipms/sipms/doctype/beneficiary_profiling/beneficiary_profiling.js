@@ -193,7 +193,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
 
     extend_options_length(frm, ["single_window", "help_desk",
       "source_of_information", "current_house_type", "state", "district", "occupational_category",
-      "education", "ward", "name_of_the_settlement", "proof_of_disability", "block", "state_of_origin", "current_occupation", "district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
+      "education", "religion", "education", "marital_status", "ward", "name_of_the_settlement", "proof_of_disability", "block", "state_of_origin", "current_occupation", "district_of_origin", "social_vulnerable_category", "name_of_the_camp"])
     frm.set_query('religion', () => {
       return {
         order_by: 'religion.religion ASC'
@@ -311,6 +311,7 @@ frappe.ui.form.on("Beneficiary Profiling", {
     hide_advance_search(frm, ["state", "district", "ward", "state_of_origin",
       "district_of_origin", "block", "gender", "current_occupation",
       , "social_vulnerable_category", "pwd_category", "family",
+      "religion", "education", "marital_status",
       "help_desk", "single_window", "source_of_information", "occupational_category",
       "current_house_type", "name_of_the_settlement", "name_of_the_camp", "proof_of_disability"
     ])
