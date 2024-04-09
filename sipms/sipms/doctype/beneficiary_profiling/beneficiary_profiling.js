@@ -1,6 +1,6 @@
 // Copyright (c) 2023, suvaidyam and contributors
 // // For license information, please see license.txt
-frappe.ui.form.on("Beneficiary Profiling",{
+frappe.ui.form.on("Beneficiary Profiling", {
   /////////////////  CALL ON SAVE OF DOC OR UPDATE OF DOC ////////////////////////////////
   before_save: async function (frm) {
     console.log("before save")
@@ -21,7 +21,7 @@ frappe.ui.form.on("Beneficiary Profiling",{
         frappe.throw(`Phone Number <b>${frm.doc.alternate_contact_number}</b> set in field alternate_contact_number is not valid.`)
       }
       if (!indianPhoneNumberRegex.test(frm.doc.contact_number)) {
-        
+
         frappe.throw(`Phone Number <b>${frm.doc.contact_number}</b> set in field contact_number is not valid.`)
       }
       // frm.set_value("alternate_contact_number", '')
@@ -175,7 +175,7 @@ frappe.ui.form.on("Beneficiary Profiling",{
       }, __());
     }
     // set dropdown value by ordering
-    frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
+    // frm.set_df_property('current_house_type', 'options', await get_ordered_list("House Types", ["Own", "Rented", "Relative's home", "Government quarter", "Others"]));
 
     // hide delete options for helpdesk and csc member
     apply_filter('select_primary_member', 'name_of_head_of_family', frm, ['!=', frm.doc.name])
@@ -520,7 +520,7 @@ frappe.ui.form.on("Beneficiary Profiling",{
   },
   select_primary_member: async function (frm) {
     const pm = frm.doc.select_primary_member;
-    if (pm && !frm.doc.current_house_type  && !frm.doc.state && !frm.doc.district && !frm.doc.ward) {
+    if (pm && !frm.doc.current_house_type && !frm.doc.state && !frm.doc.district && !frm.doc.ward) {
       let response = await get_document({ "contact_number": pm },
         ['name', "name_of_the_beneficiary", 'current_house_type', 'state', 'district', 'ward',
           'name_of_the_settlement', 'address_with_landmark', 'same_as_above', 'state_of_origin', 'district_of_origin', 'block']);
@@ -543,7 +543,7 @@ frappe.ui.form.on("Beneficiary Profiling",{
       //   'name_of_the_settlement', 'address_with_landmark', 'same_as_above', 'state_of_origin', 'district_of_origin', 'block'])
 
       // }
-       }
+    }
   },
   current_house_type: function (frm) {
     if (frm.doc.current_house_type != "Others") {

@@ -138,24 +138,24 @@
   },
   {
    "fieldname": "caste_category",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Caste category",
    "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
-   "options": "\nGeneral\nEWS\nOBC\nSC\nST\nDidn't know\nRefused to share"
+   "options": "Caste category"
   },
   {
    "fieldname": "religion",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Religion",
    "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
-   "options": "\nHindu\nMuslim\nSikh\nChristian\nBuddhist\nJain"
+   "options": "Religion"
   },
   {
    "fieldname": "education",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Education",
    "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
-   "options": "\nChild\nIlliterate\nLiterate\nKindergarten\nPrimary (1-5)\nLower secondary (6-8)\nSecondary (9-10)\nHigher secondary (11-12)\nDiploma\nITI/Technical\nUnder graduate\nGraduate\nPost graduate"
+   "options": "Education"
   },
   {
    "fieldname": "current_occupation",
@@ -166,10 +166,10 @@
   },
   {
    "fieldname": "marital_status",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Marital status",
    "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
-   "options": "\nChild\nSingle (unmarried)\nMarried\nDivorced\nWidow\nSeparated\nAbandoned"
+   "options": "Marital status"
   },
   {
    "depends_on": "eval:doc.marital_status ==\"Married\"",
@@ -240,9 +240,10 @@
   },
   {
    "fieldname": "current_house_type",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Current house type",
-   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))"
+   "mandatory_depends_on": "eval:(!frappe.user_roles.includes(\"Help-desk member\") || frappe.user_roles.includes(\"Administrator\"))",
+   "options": "House Types"
   },
   {
    "fieldname": "state",
@@ -557,7 +558,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-09 10:41:52.020819",
+ "modified": "2024-04-09 17:51:00.646216",
  "modified_by": "Administrator",
  "module": "SIPMS",
  "name": "Beneficiary Profiling",
