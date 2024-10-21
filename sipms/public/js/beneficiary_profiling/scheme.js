@@ -48,14 +48,15 @@ const addTableFilter = (datatable, elements = [], rows = []) => {
 frappe.ui.form.on('Scheme Child', {
   form_render: async function (frm, cdt, cdn) {
     let row = frappe.get_doc(cdt, cdn);
-    if (row.__islocal) {
-      if (row.application_submitted == 'Yes' && (!row.date_of_application || !row.mode_of_application)) {
-        row.status = ''
-        createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
-      } else if (row.application_submitted == 'Completed' && (!row.date_of_application || !row.mode_of_application)) {
-        createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
-      }
-    }
+    console.log(row)
+    // if (row.__islocal) {
+    //   if (row.application_submitted == 'Yes' && (!row.date_of_application || !row.mode_of_application)) {
+    //     row.status = ''
+    //     // createDialog(row, dialogsConfig.document_submitted, doc_submitted_validate).show();
+    //   } else if (row.application_submitted == 'Completed' && (!row.date_of_application || !row.mode_of_application)) {
+    //     // createDialog(row, dialogsConfig.document_completed_frm_support, date_of_complete_validate).show();
+    //   }
+    // }
   },
   scheme_table_add: async function (frm, cdt, cdn) {
     // get_milestone_category(frm)
